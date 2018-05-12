@@ -1,0 +1,16 @@
+
+<!--<%= partial "includes/efatura/getuserlist" %>-->
+#<%= partial "includes/efatura/checkuser" %>
+<%= partial "includes/efatura/loadinvoice" %>
+<%= partial "includes/efatura/getinvoice" %>
+<%= partial "includes/efatura/getinvoicewithtype" %>
+<%= partial "includes/efatura/getinvoicestatus" %>
+<%= partial "includes/efatura/getinvoicestatusall" %>
+<%= partial "includes/efatura/markinvoice" %>
+<%= partial "includes/efatura/prepareinvoiceresponse"%>
+<%= partial "includes/efatura/sendinvoiceresponse"%>
+<%= partial "includes/efatura/sendinvoiceresponsewithserversign"%>
+<%= partial "includes/efatura/getenvelope" %>
+<%= partial "includes/efatura/markenvelope" %>
+<%= partial "includes/efatura/getapplicationresponse" %>
+---

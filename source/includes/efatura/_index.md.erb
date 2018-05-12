@@ -1,0 +1,45 @@
+# E-Fatura Servisi
+e-Fatura sistemi Uyumsoft aracılığı ile bağlanarak işlem yapmaya yarayan ve hem özel entegrasyon
+hemde doğrudan entegrasyon modelinde kullanılabilinecek olan Web Servis uygulaması, müşteri
+ortamından gelen verileri alarak Uyumsoft e-Fatura Engine’ine işlenmek üzere teslim eden ve yine
+müşteri sorgularını yaparak gerekli değerleri dönen bir ara platformdur.
+
+## Bağlantı Adresleri
+
+Web Servise aşağıdaki adreslerden erişilebilmektedir:
+
+Canlı Sistem: [https://efatura.izibiz.com.tr:2443/EFaturaOIB](https://efatura.izibiz.com.tr:2443/EFaturaOIB)
+
+Test Sistemi: [https://efaturatest.izibiz.com.tr/EFaturaOIB](https://efaturatest.izibiz.com.tr/EFaturaOIB)
+
+Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
+
+Test portali erişimi bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
+
+## Entegrasyon Tasarımı
+Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
+
+1. Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.
+
+2. GetUserListBinary servisi ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.
+
+3. E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.
+
+4. SendInvoice servisi ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.
+
+5. GetInvoiceStatus servisi ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularında sorgulanmalıdır.
+
+6. GetInvoice servisi ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.
+
+7. MarkInvoice servisi ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.
+
+8. SendInvoiceResponseWithServerSign servisi ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. 8 günü geçtikten sonra kabul/red yapılması engellenmelidir.
+
+9. Logout servisi ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.
+
+
+<%= partial "includes/efatura/login" %>
+<%= partial "includes/efatura/logout" %>
+<%= partial "includes/efatura/getuserlistbinary" %>
+<%= partial "includes/efatura/sendinvoice" %>
