@@ -9,6 +9,7 @@
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <link href="stylesheets/fakeloader.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/izibiz.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="https://izibiz.com.tr/templates/theme3181/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="javascripts/fakeloader.js"></script>
@@ -69,7 +70,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.izibiz.com.tr' target='_blank'>Test Hesabı Talep Formu</a></li>
+            <li><a href='https://dev.izibiz.com.tr' target='_blank'>Test Hesabı Talep Formu</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -97,85 +98,75 @@
 
           <h1 id="e-fatura-servisi">E-Fatura Servisi</h1>
 
-<p>e-Fatura sistemi Uyumsoft aracılığı ile bağlanarak işlem yapmaya yarayan ve hem özel entegrasyon
-hemde doğrudan entegrasyon modelinde kullanılabilinecek olan Web Servis uygulaması, müşteri
-ortamından gelen verileri alarak Uyumsoft e-Fatura Engine’ine işlenmek üzere teslim eden ve yine
-müşteri sorgularını yaparak gerekli değerleri dönen bir ara platformdur.</p>
+<p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="ba-lant-adresleri">Bağlantı Adresleri</h2>
+<h2 id="fatura-xml-rnekleri">Fatura XML Örnekleri</h2>
 
-<p>Web Servise aşağıdaki adreslerden erişilebilmektedir:</p>
+<p>E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.</p>
 
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişimi bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="entegrasyon-tasar-m">Entegrasyon Tasarımı</h2>
-
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ol>
-<li><p>Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</p></li>
-<li><p>GetUserListBinary servisi ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</p></li>
-<li><p>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
-<li><p>SendInvoice servisi ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
-<li><p>GetInvoiceStatus servisi ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularında sorgulanmalıdır.</p></li>
-<li><p>GetInvoice servisi ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
-<li><p>MarkInvoice servisi ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</p></li>
-<li><p>SendInvoiceResponseWithServerSign servisi ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. 8 günü geçtikten sonra kabul/red yapılması engellenmelidir.</p></li>
-<li><p>Logout servisi ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
-kapatabilirsiniz.</p></li>
-</ol>
-
-<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
-
-<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
-
-<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+<aside class="notice">Senaryo listesinde bulunmayan senaryolar için İZİBİZ portale erişebilirsiniz.</aside>
 
 <table><thead>
 <tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
+<th>Fatura Senaryosu</th>
 <th>Açıklama</th>
+<th>XML</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>SESSION_ID</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde bulunan SESSION_ID login servisinde -1 olarak gönderilmelidir.</td>
+<td><strong>Temel Fatura</strong></td>
+<td>Alıcısı tarafından elektronik ortamda kabul veya reddedilemeyen fatura tipidir.</td>
+<td><a href="/resource/xml/temel_fatura_ornek.xml" target="_blank"><img src="/images/xml-icon.png" height="42" width="42"/></a></td>
 </tr>
 <tr>
-<td><strong>USER_NAME</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>Kullanıcı adı. Portale giriş için kullanılan ile aynı.</td>
+<td><strong>Ticari Fatura</strong></td>
+<td>Alıcısı tarafından elektronik ortamda kabul veya reddedilebilen fatura tipidir.</td>
+<td><a href="/resource/xml/ticari_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
 </tr>
 <tr>
-<td><strong>PASSWORD</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>Şifre. Portale giriş için kullanılan ile aynı.</td>
+<td><strong>Satış Faturası</strong></td>
+<td>Mal satışı veya hizmet ifası sonrası alıcıya düzenlenen fatura tipidir.</td>
+<td><a href="/resource/xml/satis_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
 </tr>
-</tbody></table>
-
-<p>Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
 <tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
+<td><strong>İade Faturası</strong></td>
+<td>Alınan bir fatura üzerinde ki yanlış tutar veya eksik bilgi sebebi ile düzenlenen fatura tipidir. <strong>İade faturası TEMELFATURA olarak gönderilmesi zorunludur.</strong></td>
+<td><a href="/resource/xml/iade_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
 </tr>
-</thead><tbody>
 <tr>
-<td><strong>SESSION_ID</strong></td>
-<td>String</td>
-<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
+<td><strong>İstisna Faturası</strong></td>
+<td>İstisna Faturası</td>
+<td><a href="/resource/xml/istisna_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Özel Mathrah Faturası</strong></td>
+<td>Özel Matrah Faturası</td>
+<td><a href="/resource/xml/ozelmatrah_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Tevkifat Faturası</strong></td>
+<td>Tevkifat Faturası</td>
+<td><a href="/resource/xml/tevkifat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İhraç Kayıtlı Fatura</strong></td>
+<td>İhraç Kayıtlı Fatura</td>
+<td><a href="/resource/xml/ihrackayitli_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İhracat Faturası</strong></td>
+<td>İhracat Faturası</td>
+<td><a href="/resource/xml/ihracat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Yolcu Beraberi (Taxfree)</strong></td>
+<td>Yolcu Beraberi (Taxfree)</td>
+<td><a href="/resource/xml/taxfree_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK Faturası</strong></td>
+<td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
+<td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
 </tr>
 </tbody></table>
 
@@ -185,6 +176,213 @@ kapatabilirsiniz.</p></li>
 
 <aside class="warning">&hellip;</aside>
 
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="entegrasyon-tasar-m">Entegrasyon Tasarımı</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Login</strong> metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</p></li>
+<li><p><strong>GetUserListBinary</strong> metodu ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
+<li><p><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</p></li>
+<li><p><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
+</tr>
+</tbody></table>
+
+<p><strong>LoadInvoice</strong></p>
+
+<p><strong>SendInvoice</strong></p>
+
+<p><strong>SendInvoiceResponse</strong></p>
+
+<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
+
+<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
+
+<aside class="notice">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.
+</aside>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde bulunan SESSION_ID login servisinde -1 olarak gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>USER_NAME</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Kullanıcı adı. Portale giriş için kullanılan ile aynı.</td>
+</tr>
+<tr>
+<td><strong>PASSWORD</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Şifre. Portale giriş için kullanılan ile aynı.</td>
+</tr>
+</tbody></table>
+
+<p><br><br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
+</tr>
+</tbody></table>
+
+<h2 id="oturum-kapatma-logout">Oturum Kapatma (Logout)</h2>
+
+<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformununda ki oturumu kapatmasını sağlayan metotdur.</p>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Oturum kapatılmak istenen session ID değeri gönderilir.</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Oturum başarı ile sonlandırılmışsa 0 döner</td>
+</tr>
+</tbody></table>
+
 <h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
 
 <p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
@@ -235,6 +433,369 @@ kapatabilirsiniz.</p></li>
 </tr>
 </tbody></table>
 
+<h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme (SendInvoice)</h2>
+
+<ul>
+<li>EFATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir. </li>
+<li>Bu işlemden sonra gönderilen faturaların durumları GetInvoiceStatus servisi ile kontrol edilmelidir.</li>
+<li> Faturanın durumu GIB’de hatalı olduğu zaman bu servis ile faturayı aynı fatura numarası ve aynı ETTN ile tekrar gönderilebilir. </li>
+<li> Fatura yüklenirken fatura şema ve şematron kontrolü ve tekillik kontrolünden geçirilir. Fatura XML içerisinde hata varsa sisteme yüklenmez. Fatura XML içerisinde ki sorun düzeltilerek tekrar gönderilmelidir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER:SESSION_ID</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde bulunan SESSION_ID gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_HEADER:COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Binary Fatura içeriği sıkıştırılmış/sıkıştırılmamış bilgisi. Varsayılan değer Y olduğu için gönderilmediği durumda fatura sıkıştırılarak/ziplenerek gönderilmesi beklenmektedir. <strong>Faturayı XML olarak göndermek için mutlaka eleman eklenmeli ve N değeri gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>SENDER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Faturayı gönderen tarafın vergi kimlik numarasını &lsquo;vkn&rsquo; attribute içerisine, gönderici birim etiketini &lsquo;alias&rsquo; attribute eklenmelidir. Eğer eleman gönderilmezse oturum açılan kullanıcının bağlı olduğu hesapta ki VKN ve gönderici birim etiketi kullanılacaktır. <strong>Sender elemanı gönderilmesini tavsiye ederiz.</strong></td>
+</tr>
+<tr>
+<td><strong>RECEIVER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Faturanın alıcı tarafının vergi kimlik numarasını &#39;vkn&rsquo; attribute içerisine, posta kutusu etiketini &#39;alias&rsquo; attribute içerisine eklenmelidir. Eğer eleman gönderilmezse fatura içerisinde ki alıcı taraf (AccountingCustomerParty) içerisinde ki VKN ve o VKN için tanımlanmış herhangi bir posta kutusu etiketi kullanılacaktır. <strong>Receiver elemanı gönderilmesini tavsiye ederiz. Özellikle alıcı tarafından posta kutusu tercihi talep edilmişse bu eleman kullanılmalıdır.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE:CONTENT</strong></td>
+<td>Array</td>
+<td>Evet</td>
+<td>Faturanın Base64Binary tipinde XML veya Ziplenmiş içeriği. Bir istek ile çoklu fatura gönderimi yapılabilir. <strong>Birden fazla fatura göndermek için INVOICE elemanı çoklanmalıdır.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak İzibiz’e verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="e-ar-iv-fatura-servisi">E-Arşiv Fatura Servisi</h1>
+
+<p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
+
+<h2 id="e-fatura-ve-e-ar-iv-faturan-n-farkl-l-klar">E-Fatura ve E-Arşiv Faturanın Farklılıkları</h2>
+
+<h2 id="fatura-xml-rnekleri">Fatura XML Örnekleri</h2>
+
+<p>E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.</p>
+
+<aside class="notice">Senaryo listesinde bulunmayan senaryolar için İZİBİZ portale erişebilirsiniz.</aside>
+
+<table><thead>
+<tr>
+<th>Fatura Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Temel Fatura</strong></td>
+<td>Alıcısı tarafından elektronik ortamda kabul veya reddedilemeyen fatura tipidir.</td>
+<td><a href="/resource/xml/temel_fatura_ornek.xml" target="_blank"><img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Ticari Fatura</strong></td>
+<td>Alıcısı tarafından elektronik ortamda kabul veya reddedilebilen fatura tipidir.</td>
+<td><a href="/resource/xml/ticari_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Satış Faturası</strong></td>
+<td>Mal satışı veya hizmet ifası sonrası alıcıya düzenlenen fatura tipidir.</td>
+<td><a href="/resource/xml/satis_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İade Faturası</strong></td>
+<td>Alınan bir fatura üzerinde ki yanlış tutar veya eksik bilgi sebebi ile düzenlenen fatura tipidir. <strong>İade faturası TEMELFATURA olarak gönderilmesi zorunludur.</strong></td>
+<td><a href="/resource/xml/iade_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İstisna Faturası</strong></td>
+<td>İstisna Faturası</td>
+<td><a href="/resource/xml/istisna_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Özel Mathrah Faturası</strong></td>
+<td>Özel Matrah Faturası</td>
+<td><a href="/resource/xml/ozelmatrah_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Tevkifat Faturası</strong></td>
+<td>Tevkifat Faturası</td>
+<td><a href="/resource/xml/tevkifat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İhraç Kayıtlı Fatura</strong></td>
+<td>İhraç Kayıtlı Fatura</td>
+<td><a href="/resource/xml/ihrackayitli_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>İhracat Faturası</strong></td>
+<td>İhracat Faturası</td>
+<td><a href="/resource/xml/ihracat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>Yolcu Beraberi (Taxfree)</strong></td>
+<td>Yolcu Beraberi (Taxfree)</td>
+<td><a href="/resource/xml/taxfree_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK Faturası</strong></td>
+<td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
+<td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="42" width="42"/></a></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">&hellip;</aside>
+
+<aside class="success">&hellip;</aside>
+
+<aside class="warning">&hellip;</aside>
+
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="entegrasyon-tasar-m">Entegrasyon Tasarımı</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Login</strong> metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</p></li>
+<li><p><strong>GetUserListBinary</strong> metodu ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
+<li><p><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</p></li>
+<li><p><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
+</tr>
+</tbody></table>
+
+<p><strong>LoadInvoice</strong></p>
+
+<p><strong>SendInvoice</strong></p>
+
+<p><strong>SendInvoiceResponse</strong></p>
+
+<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
+
+<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
+
+<aside class="notice">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.
+</aside>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde bulunan SESSION_ID login servisinde -1 olarak gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>USER_NAME</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Kullanıcı adı. Portale giriş için kullanılan ile aynı.</td>
+</tr>
+<tr>
+<td><strong>PASSWORD</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Şifre. Portale giriş için kullanılan ile aynı.</td>
+</tr>
+</tbody></table>
+
+<p><br><br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
+</tr>
+</tbody></table>
+
+<h2 id="oturum-kapatma-logout">Oturum Kapatma (Logout)</h2>
+
+<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformununda ki oturumu kapatmasını sağlayan metotdur.</p>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Oturum kapatılmak istenen session ID değeri gönderilir.</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Oturum başarı ile sonlandırılmışsa 0 döner</td>
+</tr>
+</tbody></table>
+
 <h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
 
 <p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
@@ -285,9 +846,14 @@ kapatabilirsiniz.</p></li>
 </tr>
 </tbody></table>
 
-<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
+<h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme (SendInvoice)</h2>
 
-<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
+<ul>
+<li>EFATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir. </li>
+<li>Bu işlemden sonra gönderilen faturaların durumları GetInvoiceStatus servisi ile kontrol edilmelidir.</li>
+<li> Faturanın durumu GIB’de hatalı olduğu zaman bu servis ile faturayı aynı fatura numarası ve aynı ETTN ile tekrar gönderilebilir. </li>
+<li> Fatura yüklenirken fatura şema ve şematron kontrolü ve tekillik kontrolünden geçirilir. Fatura XML içerisinde hata varsa sisteme yüklenmez. Fatura XML içerisinde ki sorun düzeltilerek tekrar gönderilmelidir.</li>
+</ul>
 
 <p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
@@ -300,24 +866,38 @@ kapatabilirsiniz.</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>SESSION_ID</strong></td>
+<td><strong>REQUEST_HEADER:SESSION_ID</strong></td>
 <td>String</td>
 <td>Evet</td>
-<td>Request Header objesi içerisinde bulunan SESSION_ID login servisinde -1 olarak gönderilmelidir.</td>
+<td>Request Header objesi içerisinde bulunan SESSION_ID gönderilmelidir.</td>
 </tr>
 <tr>
-<td><strong>USER_NAME</strong></td>
+<td><strong>REQUEST_HEADER:COMPRESSED</strong></td>
 <td>String</td>
-<td>Evet</td>
-<td>Kullanıcı adı. Portale giriş için kullanılan ile aynı.</td>
+<td>Hayır</td>
+<td>Binary Fatura içeriği sıkıştırılmış/sıkıştırılmamış bilgisi. Varsayılan değer Y olduğu için gönderilmediği durumda fatura sıkıştırılarak/ziplenerek gönderilmesi beklenmektedir. <strong>Faturayı XML olarak göndermek için mutlaka eleman eklenmeli ve N değeri gönderilmelidir.</strong></td>
 </tr>
 <tr>
-<td><strong>PASSWORD</strong></td>
+<td><strong>SENDER</strong></td>
 <td>String</td>
+<td>Hayır</td>
+<td>Faturayı gönderen tarafın vergi kimlik numarasını &lsquo;vkn&rsquo; attribute içerisine, gönderici birim etiketini &lsquo;alias&rsquo; attribute eklenmelidir. Eğer eleman gönderilmezse oturum açılan kullanıcının bağlı olduğu hesapta ki VKN ve gönderici birim etiketi kullanılacaktır. <strong>Sender elemanı gönderilmesini tavsiye ederiz.</strong></td>
+</tr>
+<tr>
+<td><strong>RECEIVER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Faturanın alıcı tarafının vergi kimlik numarasını &#39;vkn&rsquo; attribute içerisine, posta kutusu etiketini &#39;alias&rsquo; attribute içerisine eklenmelidir. Eğer eleman gönderilmezse fatura içerisinde ki alıcı taraf (AccountingCustomerParty) içerisinde ki VKN ve o VKN için tanımlanmış herhangi bir posta kutusu etiketi kullanılacaktır. <strong>Receiver elemanı gönderilmesini tavsiye ederiz. Özellikle alıcı tarafından posta kutusu tercihi talep edilmişse bu eleman kullanılmalıdır.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE:CONTENT</strong></td>
+<td>Array</td>
 <td>Evet</td>
-<td>Şifre. Portale giriş için kullanılan ile aynı.</td>
+<td>Faturanın Base64Binary tipinde XML veya Ziplenmiş içeriği. Bir istek ile çoklu fatura gönderimi yapılabilir. <strong>Birden fazla fatura göndermek için INVOICE elemanı çoklanmalıdır.</strong></td>
 </tr>
 </tbody></table>
+
+<p><br><br></p>
 
 <p>Servisten dönen parametreler şu şekildedir:</p>
 
@@ -329,9 +909,14 @@ kapatabilirsiniz.</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>SESSION_ID</strong></td>
+<td><strong>TXN_ID</strong></td>
 <td>String</td>
-<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak İzibiz’e verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
 </tr>
 </tbody></table>
 
