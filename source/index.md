@@ -8,19 +8,12 @@ language_tabs:
   - java: Java
 
 toc_footers:
-  - <a href='https://www.izibiz.com.tr' target='_blank'>Test Hesabı Talep Formu</a>
-  
+  - <a href='https://dev.izibiz.com.tr' target='_blank'>Test Hesabı Talep Formu</a>
+
 includes:
   - baslarken
   - efatura
+  - earsiv
 
 search: true
 ---
-
-
-
-
-
-
-
-
