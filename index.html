@@ -91,10 +91,27 @@
 <li>E-Serbest Meslek Makbuzu&lt;</li>
 </ul>
 
-<p>&ldquo;
-Eğer entegrasyona yeni başlıyorsanız Başlarken başlığı altında ki bilgileri okumanızı tavsiye ederiz.</p>
+<p>Eğer entegrasyona yeni başlıyorsanız Başlarken başlığı altında ki bilgileri okumanızı tavsiye ederiz.</p>
 
 <h2 id="yard-m-talebi">Yardım Talebi</h2>
+
+<h2 id="kavramlar">Kavramlar</h2>
+
+<table><thead>
+<tr>
+<th><strong>Kavram</strong></th>
+<th><strong>Açıklama</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>API</td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>Hyper Text Markup Language.</td>
+</tr>
+</tbody></table>
 
 <h2 id="rnek-projeler">Örnek Projeler</h2>
 
@@ -106,7 +123,7 @@ Eğer entegrasyona yeni başlıyorsanız Başlarken başlığı altında ki bilg
 
 <p>E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.</p>
 
-<aside class="notice">Senaryo listesinde bulunmayan senaryolar için İZİBİZ portale erişebilirsiniz.</aside>
+<aside class="notice">Listede bulunmayan senaryolar için fatura üretmek için  E-Fatura Portale erişebilirsiniz.</aside>
 
 <table><thead>
 <tr>
@@ -500,7 +517,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>TXN_ID</strong></td>
 <td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak İzibiz’e verilmelidir.</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
 <td><strong>RETURN_CODE</strong></td>
@@ -509,9 +526,274 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<h2 id="yeni-metod">Yeni Metod</h2>
+<h2 id="taslak-fatura-y-kleme-loadinvoice">Taslak Fatura Yükleme (LoadInvoice)</h2>
 
-<p>afasfasdf</p>
+<ul>
+<li>FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
+<li>Eğer fatura numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. Fatura numarası atanmamışsa şema ve şematron kontrolü yapılmaz.</li>
+<li>Aynı faturanın tekrar yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Fatura sıkıştırılarak/ziplenerek gönderiliyorsa <code class="prettyprint">COMPRESSED</code> alanı gönderilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. <strong>Faturayı XML formatında sıkıştırılmadan yüklemek için mutlaka <code class="prettyprint">COMPRESSED</code> eleman eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE.CONTENT</strong></td>
+<td>Array</td>
+<td>Evet</td>
+<td>Faturanın Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Bir istek ile çoklu fatura gönderimi yapılabilir. <strong>Birden fazla fatura göndermek için INVOICE elemanı çoklanmalıdır.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="fatura-okuma-getinvoice">Fatura Okuma (GetInvoice)</h2>
+
+<ul>
+<li>E-Fatura sisteminden giden imzalı faturaları veya gelen faturaları muhasebe paketine çekmek için kullanılır.</li>
+<li>Fatura özet bilgilerini veya fatura özet bilgileri ile beraber XML içeriğini de çekmek için kullanılabilir.</li>
+<li>Entegrasyon yapan iş ortaklarımızdan yeni gelen bütün faturaları içerikleri (XML) beraber müşteri ortamına çekilmesini tavsiye ediyoruz.</li>
+<li>İçerik ile beraber en fazla 100 fatura çekilebilir.</li>
+<li>Fatura özet bilgileri ile en fazla 25000 adet fatura dönülmektedir.</li>
+<li>Alıcı tarafından zamanlanmış fatura çekme özelliği eklenecekse en fazla 15 dakika aralığında olmalıdır.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
+<td>Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür.</td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.FROM</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Gönderici firma gönderici birim (GB) etiketine göre çekmek için kullanılabilir. Örneğin birden fazla GB etiketi olan bir firmanın sadece muhasebe departmanından gelen faturaları okumak için kullanılabilir.</td>
+<td>urn:mail:muhasebegb@firma.com</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TO</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür.</td>
+<td>urn:mail:muhasebepk@firma.com</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura numarası ile fatura okumak için kullanılabilir.</td>
+<td>FYA2018000000001</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.UUID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.</td>
+<td>GUID formatında</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">Y</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen faturalar dönülür.</td>
+<td>Y/N</td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse faturalar XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse faturaların özeti dönülür.</td>
+<td>Y/N</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Faturaya ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.FROM</strong></td>
+<td>String</td>
+<td>Faturayı gönderen Gönderici Birim (GB)</td>
+</tr>
+<tr>
+<td><strong>HEADER.TO</strong></td>
+<td>String</td>
+<td>Faturanın geldiği Posta Kutusu (PK)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu. TEMELFATURA, TICARIFATURA,IHRACATFATURA, YOLCUBERABER değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_TYPE_CODE</strong></td>
+<td>String</td>
+<td>Faturanın tipi. SATIS, IADE, ISTISNA, IHRACAT, OZELMATRAH, TEVKIFAT, IHRACKAYITLI değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_CODE</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_DESC</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın sistemimize ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>HEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.CONTENT</strong></td>
+<td>String</td>
+<td>Faturanın içeriği. Eğer <code class="prettyprint">COMPRESSED</code> elemanı <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
 
           <h1 id="e-ar-iv-fatura-servisi">E-Arşiv Fatura Servisi</h1>
 
@@ -523,7 +805,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 
 <p>E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.</p>
 
-<aside class="notice">Senaryo listesinde bulunmayan senaryolar için İZİBİZ portale erişebilirsiniz.</aside>
+<aside class="notice">Listede bulunmayan senaryolar için fatura üretmek için  E-Fatura Portale erişebilirsiniz.</aside>
 
 <table><thead>
 <tr>
@@ -917,7 +1199,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>TXN_ID</strong></td>
 <td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak İzibiz’e verilmelidir.</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
 <td><strong>RETURN_CODE</strong></td>
