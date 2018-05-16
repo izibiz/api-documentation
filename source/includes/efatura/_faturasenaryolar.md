@@ -1,7 +1,7 @@
 ## Fatura XML Örnekleri
 E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.
 
-<aside class="notice">Senaryo listesinde bulunmayan senaryolar için İZİBİZ portale erişebilirsiniz.</aside>
+<aside class="notice">Listede bulunmayan senaryolar için fatura üretmek için  E-Fatura Portale erişebilirsiniz.</aside>
 
 
 Fatura Senaryosu | Açıklama         | XML  

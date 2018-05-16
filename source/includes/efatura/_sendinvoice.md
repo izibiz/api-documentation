@@ -21,5 +21,5 @@ Servisten dönen parametreler şu şekildedir:
 
 Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
-**TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak İzibiz’e verilmelidir.
+**TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
 **RETURN_CODE** | String | Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.
