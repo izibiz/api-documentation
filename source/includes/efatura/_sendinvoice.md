@@ -17,10 +17,6 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 
 <br><br>
 
-```ruby
-	# This is some Ruby code!
-	```
-
 Servisten dönen parametreler şu şekildedir:
 
 Parametre | Tip        | Açıklama
