@@ -1,8 +1,11 @@
 @charset "utf-8";
 
-xml-icon {
+.xml-icon {
   content:url("/images/xml-icon.png");
   width: 42;
   height: 42
+}
 
+.red-color{
+  color:red !important;
 }

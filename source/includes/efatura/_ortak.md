@@ -16,8 +16,6 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SIMULATION_FLAG** | String | Hayır | Metod çağrılır ancak arkadaki işlem yapılmaz.
 **COMPRESSED** | String | Hayır | İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:
 
-**LoadInvoice**
-
-**SendInvoice**
-
-**SendInvoiceResponse**
+* LoadInvoice
+* SendInvoice
+* SendInvoiceResponse

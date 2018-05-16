@@ -1,0 +1,2 @@
+## Yeni Metod
+afasfasdf

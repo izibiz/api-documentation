@@ -8,12 +8,13 @@ language_tabs:
   - java: Java
 
 toc_footers:
-  - <a href='https://dev.izibiz.com.tr' target='_blank'>Test Hesabı Talep Formu</a>
+  - <a href='https://izibiz.com.tr/index.php/urun-ve-hizmetler/e-fatura-destek/demo' target='_blank'>Test Hesabı Talep Formu</a>
 
 includes:
   - baslarken
   - efatura
   - earsiv
+  - edefter
 
 search: true
 ---
