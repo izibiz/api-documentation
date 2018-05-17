@@ -1,45 +1,44 @@
 # E-Arşiv Fatura Servisi
-e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.
-
-## E-Fatura ve E-Arşiv Faturanın Farklılıkları
+e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.
 
 <%= partial "includes/efatura/faturasenaryolar" %>
 
 ## WSDL Endpoint Adresi
 
-E-Fatura Webservisine aşağıdaki adresten erişilmektedir:
+E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:
 
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EFaturaOIB](https://efaturatest.izibiz.com.tr/EFaturaOIB)
+Test Sistemi: [https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl](https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl)
 
 Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
 
 Test portali erişim bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
 
-## Entegrasyon Tasarımı
+## Dikkat Edilecek Hususlar
 Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 
-1. **Login** metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.
+* Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.
+* WriteToArchieveExtended servisi ile UBL formatlı e-arşiv faturası gönderilir.
+* ReadFromArchive servisi ile faturanın ihtiyaç duyulan formatta alınır.
+* CancelEArchiveInvoice servisi ile iptal edilen fatura GIB bildirilmek üzere gönderilir.
+* GetEArchiveInvoiceStatus serivisi ile izibiz platformuna yüklemiş olduğunuz e-Arşiv faturasanın durumu , email durumu ve raporlanma durumunu sorgulayabilirsiniz.
+* GetEArchiveReport servisi ile gelir idaresin raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.
+* ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.
+* GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir
 
-2. **GetUserListBinary** metodu ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.
+## Ödeme Şekilleri
+e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.
 
-3. E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.
+KOD | AÇIKLAMASI
+------ | ----------
+48 | KREDIKARTI/BANKAKARTI
+46 | EFT/HAVALE
+10 | KAPIDAODEME
+1 | Diğerleri
+Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
+Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
+Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
 
-4. **SendInvoice** metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.
-
-5. **GetInvoiceStatus** metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. **Sık sorgulama yapmayınız.**
-
-6. **GetInvoice** metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.
-
-7. **MarkInvoice** metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.
-
-8. **SendInvoiceResponseWithServerSign** metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. **8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.**
-
-9. **Logout** metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
-kapatabilirsiniz.
+## E-Fatura ve E-Arşiv Faturanın Farklılıkları
 
 
-<%= partial "includes/efatura/ortak" %>
-<%= partial "includes/efatura/login" %>
-<%= partial "includes/efatura/logout" %>
-<%= partial "includes/efatura/getuserlistbinary" %>
-<%= partial "includes/efatura/sendinvoice" %>
+<%= partial "includes/earsiv/writetoarchiveextended" %>

@@ -21,7 +21,7 @@ Parametre | Tip        | Açıklama
 **TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
 **RETURN_CODE** | String | İşlem başarılı ise `0` değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.
 <br>
-### Servisten dönebilecek Hatalar:
+### Servisten Dönebilecek Hatalar
 
 Hata Açıklaması | Açıklama     
 ---------------- | -----------
@@ -39,7 +39,7 @@ Fatura durumu yanıtlama için uygun olmadıgından işlem sonlandı! Fatura UUI
 Bu servis kullanımı sonlandırılmıştır. Lütfen Uygulama Yanıtı Gönderme (SendInvoiceResponseWithServerSign) başlığını inceleyiniz.
 </aside>
 
-## Uygulama Yanıtı Gönderme - İmzalı * (SendInvoiceResponse)
+## Uygulama Yanıtı Gönderme - İmzalı  (SendInvoiceResponse)
 <aside class="warning">
 Bu servis uygulama yanıtını kendi mali mühürü ile hazırlayıp göndermek isteyenler için hazırlanmıştır. Eğer belgelerinizin imzalanmasını Özel Entegratör'e devretmişseniz bu servisi kullanmayınız. Lütfen  Uygulama Yanıtı Gönderme (SendInvoiceResponseWithServerSign) başlığını inceleyiniz.
 </aside>

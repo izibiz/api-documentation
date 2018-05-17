@@ -13,7 +13,7 @@ Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.iz
 
 Test portali erişim bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
 
-## Entegrasyon Tasarımı
+## Dikkat Edilecek Hususlar
 Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 
 1. **Login** metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.
@@ -44,5 +44,7 @@ kapatabilirsiniz.
 <%= partial "includes/efatura/loadinvoice" %>
 <%= partial "includes/efatura/getinvoice" %>
 <%= partial "includes/efatura/getinvoicewithtype" %>
+<%= partial "includes/efatura/markinvoice" %>
 <%= partial "includes/efatura/getinvoicestatus" %>
 <%= partial "includes/efatura/sendinvoiceresponse" %>
+<%= partial "includes/efatura/envelope" %>

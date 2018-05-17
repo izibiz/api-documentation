@@ -27,7 +27,7 @@ Parametre | Tip        | Açıklama
 **INVOICE_STATUS.ENVELOPE_IDENTIFIER** | String | Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.
 
 
-## Fatura Durumları
+### Fatura Durumları
 AŞAMA | AÇIKLAMA
 ------ | -------
 `Ara Aşama` | Faturanın veya uygulama yanıtının alıcısına ulaştırılmak için geçen aşamanın tamamlanmadığı durumdur. Ara Aşamada ki faturalar üzerinde işlem yapılmamalı ve sürecin tamamlanması beklenmelidir.
@@ -66,7 +66,7 @@ SEND |	WAIT_APPLICATION_RESPONSE |	Fatura Gönderimi - Fatura Onayı Bekleniyor 
 ACCEPTED |	SUCCEED |	Giden Ticari Fatura Kabul - Başarıyla işlendi |	Gönderilmiş olan ticari fatura alıcı tarafından kabul edilmiştir ve alıcının kabul yanıtı gönderen tarafa başarılı şekilde ulaşmıştır. |	Nihai Aşama
 REJECTED |	SUCCEED |	Giden Ticari Fatura Red - Başarıyla işlendi |	Gönderilmiş olan ticari fatura alıcı tarafından red edilmiştir ve alıcının red yanıtı gönderen tarafa başarılı şekilde ulaşmıştır. |	Nihai Aşama
 
-## GİB Durum Kodları
+### GİB Durum Kodları
 
 KOD | AÇIKLAMA | ALINACAK AKSİYON
 ------ | --------- | -------------
