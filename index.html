@@ -954,6 +954,176 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h2 id="fatura-g-rsel-okuma-getinvoicewithtype">Fatura Görsel Okuma (GetInvoiceWithType)</h2>
+
+<ul>
+<li>E-Fatura sisteminden bulunan bir faturanın görselini çekmek için tasarlanmış servistir.</li>
+<li>Faturaların HTML ve PDF görsellerini çekebilirsiniz.</li>
+<li>Fatura görseli içerisinde ki XSLT ile yapılacaktır. Eğer fatura içerisinde ki şablonda sorun varsa hata fırlatılacaktır.</li>
+<li>İçerik sıkıştırılmış olarak dönülmektedir. İstemciye çektikten sonra unzip edilmelidir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. <strong>Bu serviste <code class="prettyprint">COMPRESSED</code> elemanı dikkate alınmamaktadır.</strong>   Talep edilen formatta sıkıştırılmış/ziplenmiş olarak dönülecektir. İstemciye çektikten sonra unzip edilmelidir.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura numarası ile fatura okumak için kullanılabilir. örnek FYA2018000000001 <code class="prettyprint">UUID</code> elamanı gönderilmemişse zorunludur.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.UUID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir. <code class="prettyprint">ID</code> elamanı gönderilmemişse zorunludur.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TYPE</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Faturanın çekilmek istenilen tipi: PDF, HTML, XML olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>Fatura görseli çekmek için <code class="prettyprint">Y</code> gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-fatura sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Faturaya ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.FROM</strong></td>
+<td>String</td>
+<td>Faturayı gönderen Gönderici Birim (GB)</td>
+</tr>
+<tr>
+<td><strong>HEADER.TO</strong></td>
+<td>String</td>
+<td>Faturanın geldiği Posta Kutusu (PK)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu. TEMELFATURA, TICARIFATURA,IHRACATFATURA, YOLCUBERABER değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_TYPE_CODE</strong></td>
+<td>String</td>
+<td>Faturanın tipi. SATIS, IADE, ISTISNA, IHRACAT, OZELMATRAH, TEVKIFAT, IHRACKAYITLI değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_CODE</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_DESC</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın sistemimize ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>HEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Faturanın talep edilen formatta <strong>(PDF, HTML)</strong> sıkıştırılmış/ziplenmiş dosyası dönülür. <strong>İstemciye çektikten sonra unzip edilmeldir.</strong></td>
+</tr>
+</tbody></table>
+
 <h2 id="fatura-durum-sorgulama-getinvoicestatus">Fatura Durum Sorgulama (GetInvoiceStatus)</h2>
 
 <ul>
@@ -1046,6 +1216,409 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_STATUS.ENVELOPE_IDENTIFIER</strong></td>
 <td>String</td>
 <td>Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h2 id="fatura-durumlar">Fatura Durumları</h2>
+
+<table><thead>
+<tr>
+<th>AŞAMA</th>
+<th>AÇIKLAMA</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">Ara Aşama</code></td>
+<td>Faturanın veya uygulama yanıtının alıcısına ulaştırılmak için geçen aşamanın tamamlanmadığı durumdur. Ara Aşamada ki faturalar üzerinde işlem yapılmamalı ve sürecin tamamlanması beklenmelidir.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">Nihai Aşama</code></td>
+<td>Faturanın veya uygulama yanıtının alıcısına ulaştırılma süreci tamamlanmıştır. Nihai Aşamada ki faturanın başarılı mı yoksa başarısız mı tamamlandığı kontrol edilerek gerekli aksiyon alınmalıdır. <strong>Nihai Aşama faturanın başarılı olduğu anlamına gelmez.</strong></td>
+</tr>
+</tbody></table>
+
+<h3 id="gelen-fatura-durumlar">Gelen Fatura Durumları</h3>
+
+<table><thead>
+<tr>
+<th>STATUS</th>
+<th>SUBSTATUS</th>
+<th>PORTAL STATUS</th>
+<th>Detaylı Açıklama</th>
+<th>Aşama Durumu</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RECEIVE</td>
+<td>SUCCEED</td>
+<td>Fatura Alımı - Başarıyla işlendi</td>
+<td>Temel Fatura Alımı Başarılı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>RECEIVE</td>
+<td>WAIT_APPLICATION_RESPONSE</td>
+<td>Fatura Alımı - Fatura Onayı Bekleniyor</td>
+<td>Ticari Faatura Alımı Başarılı</td>
+<td>Ara Aşama</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>PROCESSING</td>
+<td>Gelen Ticari Fatura Kabul – İşleniyor</td>
+<td>Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı GİB’e gönderilmek üzere işlenmektedir.  Hala GİB’e gönderilmemiştir.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>WAIT_GIB_RESPONSE</td>
+<td>Gelen Ticari Fatura Kabul – GIB&#39;e Gönderildi</td>
+<td>Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı GIB’e gönderildi.  GIB den onayın alındığına dair sistem yanıtı bekleniyor.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>WAIT_SYSTEM_RESPONSE</td>
+<td>Gelen Ticari Fatura Kabul – Sistem Yanıtı Bekleniyor</td>
+<td>Fatura onayı GIB tarafından alıcısına gönderildi ve alıcı taraftan onayın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>FAILED</td>
+<td>Gelen Ticari Fatura Kabul - Başarısız oldu</td>
+<td>Onaylanan Ticari fatura cevabı gönderiminden hata oluştu.  Bu fatura tekrar onaylanabilir.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>ACCEPT</td>
+<td>SUCCEED</td>
+<td>Gelen Ticari Fatura Kabul - Başarıyla işlendi</td>
+<td>Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı göndericiye başarılı bir şekilde ulaştırılmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>PROCESSING</td>
+<td>Gelen Ticari Fatura Red – İşleniyor</td>
+<td>Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı GİB’e gönderilmek üzere işlenmektedir.  Hala GİB’e gönderilmemiştir.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>WAIT_GIB_RESPONSE</td>
+<td>Gelen Ticari Fatura Red – GIB&#39;e Gönderildi</td>
+<td>Gelen Ticari Fatura reddedilmiştir  ve red yanıtı GIB’e gönderildi.  GIB den onayın alındığına dair sistem yanıtı bekleniyor.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>WAIT_SYSTEM_RESPONSE</td>
+<td>Gelen Ticari Fatura Red – Sistem Yanıtı Bekleniyor</td>
+<td>Fatura onayı GIB tarafından alıcısına gönderildi ve alıcı taraftan onayın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>SUCCEED</td>
+<td>Gelen Ticari Fatura Red - Başarıyla işlendi</td>
+<td>Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı göndericiye başarılı bir şekilde ulaştırılmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>REJECT</td>
+<td>FAILED</td>
+<td>Gelen Ticari Fatura Red - Başarısız oldu</td>
+<td>Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı GİB’de veya alıcı tarafında oluşan bir sebeple hatalı duruma ulaşmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+</tbody></table>
+
+<h3 id="giden-fatura-durumlar">Giden Fatura Durumları</h3>
+
+<table><thead>
+<tr>
+<th>STATUS</th>
+<th>SUBSTATUS</th>
+<th>PORTAL STATUS</th>
+<th>Detaylı Açıklama</th>
+<th>Aşama Durumu</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>LOAD</td>
+<td>SUCCEED</td>
+<td>Fatura Yükleme - Başarılı</td>
+<td>Fatura Yükleme Başarılı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>LOAD</td>
+<td>FAILED</td>
+<td>Fatura Yükleme - Başarısız</td>
+<td>Oldu   Fatura Yükleme Hatalı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>PACKAGE</td>
+<td>FAILED</td>
+<td>Fatura Paketleme - Başarısız oldu</td>
+<td>Fatura paketleme sırasında hata oluştu.  Sistem tarafından tekrar paketle işlemi yapılarak gönderilecektir.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>PACKAGE</td>
+<td>SUCCEED</td>
+<td>Fatura Paketleme - Başarıyla işlendi</td>
+<td>Fatura paketleme başarılı</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>PROCESSING</td>
+<td>Fatura Gönderimi - İşleniyor</td>
+<td>Fatura Gönderimi Yapılıyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>SUCCEED</td>
+<td>Fatura Gönderimi - Başarıyla işlendi</td>
+<td>Temel Fatura Gönderimi Başarılı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>FAILED</td>
+<td>Fatura Gönderimi – Başarısız Oldu</td>
+<td>Fatura Gönderiminde Hata Alındı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_GIB_RESPONSE</td>
+<td>Fatura Gönderimi - GIB&#39;e Gönderildi</td>
+<td>Fatura GIB e gönderildi ve GIB den faturanın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_SYSTEM_RESPONSE</td>
+<td>Fatura Gönderimi - Sistem Yanıtı Bekleniyor</td>
+<td>Fatura GIB tarafından alıcısına gönderildi ve alıcı taraftan faturanın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_APPLICATION_RESPONSE</td>
+<td>Fatura Gönderimi - Fatura Onayı Bekleniyor</td>
+<td>Ticari Fatura Alıcıdan Cevap Bekliyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>ACCEPTED</td>
+<td>SUCCEED</td>
+<td>Giden Ticari Fatura Kabul - Başarıyla işlendi</td>
+<td>Gönderilmiş olan ticari fatura alıcı tarafından kabul edilmiştir ve alıcının kabul yanıtı gönderen tarafa başarılı şekilde ulaşmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>REJECTED</td>
+<td>SUCCEED</td>
+<td>Giden Ticari Fatura Red - Başarıyla işlendi</td>
+<td>Gönderilmiş olan ticari fatura alıcı tarafından red edilmiştir ve alıcının red yanıtı gönderen tarafa başarılı şekilde ulaşmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+</tbody></table>
+
+<h2 id="g-b-durum-kodlar">GİB Durum Kodları</h2>
+
+<table><thead>
+<tr>
+<th>KOD</th>
+<th>AÇIKLAMA</th>
+<th>ALINACAK AKSİYON</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1000</td>
+<td>ZARF KUYRUĞA EKLENDİ</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>ZARF İŞLENİYOR</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>ZIP DOSYASI DEĞİL</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>ZARF ID UZUNLUĞU GEÇERSİZ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1120</td>
+<td>ZARF ARŞİVDEN KOPYALANAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1130</td>
+<td>ZIP AÇILAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1131</td>
+<td>ZIP BİR DOSYA İÇERMELİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1132</td>
+<td>XML DOSYASI DEĞİL</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1133</td>
+<td>ZARF ID VE XML DOSYASININ ADI AYNI OLMALI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1140</td>
+<td>DOKUMAN AYRIŞTIRILAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1141</td>
+<td>ZARF ID YOK</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1142</td>
+<td>ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1143</td>
+<td>GEÇERSİZ VERSİYON</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1150</td>
+<td>SCHEMATRON KONTROL SONUCU HATALI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1160</td>
+<td>XML SEMA KONTROLÜNDEN GEÇEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1161</td>
+<td>İMZA SAHİBİ TCKN VKN ALINAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1162</td>
+<td>İMZA KAYDEDİLEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1163</td>
+<td>GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1170</td>
+<td>YETKİ KONTROL EDİLEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1171</td>
+<td>GÖNDERİCİ BİRİM YETKİSİ YOK</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1172</td>
+<td>POSTA KUTUSU YETKİSİ YOK</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1175</td>
+<td>İMZA YETKİSİ KONTROL EDİLEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1176</td>
+<td>İMZA SAHİBİ YETKİSİZ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1177</td>
+<td>GEÇERSİZ İMZA</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1180</td>
+<td>ADRES KONTROL EDİLEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1181</td>
+<td>ADRES BULUNAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1182</td>
+<td>KULLANICI EKLENEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1183</td>
+<td>KULLANICI SİLİNEMEDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1190</td>
+<td>SİSTEM YANITI HAZIRLANAMADI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1195</td>
+<td>SİSTEM HATASI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1200</td>
+<td>ZARF BAŞARIYLA İŞLENDİ</td>
+<td>Özel entegratörden gönderilen faturada sorun tespit edilmedi. Sonra ki aşamalara geçilecek.</td>
+</tr>
+<tr>
+<td>1210</td>
+<td>DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ</td>
+<td>GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1215</td>
+<td>DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1220</td>
+<td>HEDEFTEN SİSTEM YANITI GELMEDİ</td>
+<td>Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Faturalar yeniden gönderilmelidir.</td>
+</tr>
+<tr>
+<td>1230</td>
+<td>HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ</td>
+<td>Faturalar yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>BAŞARIYLA TAMAMLANDI</td>
+<td>Başarılı olan fatura aynı numara ile gönderilemez.</td>
 </tr>
 </tbody></table>
 
