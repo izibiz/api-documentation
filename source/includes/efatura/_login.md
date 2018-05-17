@@ -8,9 +8,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**SESSION_ID** | String | Evet | Request Header objesi içerisinde bulunan SESSION_ID login servisinde -1 olarak gönderilmelidir.
-**USER_NAME** | String | Evet | Kullanıcı adı. Portale giriş için kullanılan ile aynı.
-**PASSWORD** | String | Evet | Şifre. Portale giriş için kullanılan ile aynı.
+**REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
+**REQUEST_HEADER.SESSION_ID** | String | Evet | Request Header objesi içerisinde bulunan `SESSION_ID` login servisinde -1 olarak gönderilmelidir.
+**USER_NAME** | String | Evet | E-Fatura sisteminde tanımlı kullanıcı adı. Test hesabı için entegrasyon@izibiz.com.tr e-posta adresiyle iletişime geçebilirsiniz.
+**PASSWORD** | String | Evet | E-Fatura sisteminde tanımlı kullanıcıya ait şifre.
 
 <br><br>
 Servisten dönen parametreler şu şekildedir:

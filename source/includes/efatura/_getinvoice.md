@@ -27,7 +27,7 @@ Servisten dönen parametreler şu şekildedir:
 
 Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
-**INVOICE** | ComplexType | Sorgu kriterine uyan fatura(lar)ın listesi.
+**INVOICE** | ComplexType | Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası `ID`, fatura evrensel tekil tanımlama numarası  `UUID` ve e-fatura sisteminde tanımlı tekil numara değeri  `LIST_ID` attribute içerisinde dönülmektedir.
 **INVOICE.HEADER** | ComplexType | Faturaya ait özet bilgiler içermektedir.
 **HEADER.SENDER** | String | Faturayı gönderen firma VKN'si.
 **HEADER.RECEIVER** | String | Faturayı alan firma VKN'si.
