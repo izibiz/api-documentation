@@ -119,6 +119,41 @@
 
 <p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
 
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Login</strong> metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</p></li>
+<li><p><strong>GetUserListBinary</strong> metodu ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
+<li><p><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</p></li>
+<li><p><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
+
+<p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
+
 <h2 id="fatura-xml-rnekleri">Fatura XML Örnekleri</h2>
 
 <p>E-Fatura ve E-Arşiv Fatura sistemi üzerinden düzenlebilecek ve gönderilebilecek fatura senaryoları ve örnek fatura XML dosyası aşağıda listelenmiştir.</p>
@@ -194,33 +229,6 @@
 <aside class="success">&hellip;</aside>
 
 <aside class="warning">&hellip;</aside>
-
-<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
-
-<p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
-
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
-
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ol>
-<li><p><strong>Login</strong> metodu ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</p></li>
-<li><p><strong>GetUserListBinary</strong> metodu ile GIB e-fatura mükellef listesini her 2 saatte İzibiz sunucularından çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</p></li>
-<li><p>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
-<li><p><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
-<li><p><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
-<li><p><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
-<li><p><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</p></li>
-<li><p><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></p></li>
-<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
-kapatabilirsiniz.</p></li>
-</ol>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -1980,6 +1988,14 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 <li>ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.</li>
 <li>GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir</li>
 </ul>
+
+<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
+
+<p>E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
 
 <h2 id="deme-ekilleri">Ödeme Şekilleri</h2>
 
