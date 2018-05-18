@@ -24,7 +24,12 @@ Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 * GetEArchiveReport servisi ile gelir idaresin raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.
 * ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.
 * GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir
-
+* E-Fatura ve E-Arşiv faturalarda farklı seri ile düzenlenmelidir.
+* İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.
+* UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı EARSIVFATURA olarak yazılmalıdır.
+* E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) alanı zorunludur.
+* E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.
+* İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.
 
 ## İstmeci (client) Örnek Projeler
 
@@ -44,11 +49,12 @@ KOD | AÇIKLAMASI
 46 | EFT/HAVALE
 10 | KAPIDAODEME
 1 | Diğerleri
-Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
-Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
-Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
 
-## E-Fatura ve E-Arşiv Faturanın Farklılıkları
+Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
+* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
+** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
+
+
 
 
 <%= partial "includes/earsiv/writetoarchiveextended" %>

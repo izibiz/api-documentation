@@ -1,11 +1,5 @@
-## Fatura Okuma (GetInvoice)
-* E-Fatura sisteminden giden imzalı faturaları veya gelen faturaları muhasebe paketine çekmek için kullanılır.
-* Fatura özet bilgilerini veya fatura özet bilgileri ile beraber XML içeriğini de çekmek için kullanılabilir.
-* Entegrasyon yapan iş ortaklarımızdan yeni gelen bütün faturaları içerikleri (XML) beraber müşteri ortamına çekilmesini tavsiye ediyoruz.
-* İçerik ile beraber en fazla 100 fatura çekilebilir.
-* Fatura özet bilgileri ile en fazla 25000 adet fatura dönülmektedir.
-* Alıcı tarafından zamanlanmış fatura çekme özelliği eklenecekse en fazla 15 dakika aralığında olmalıdır.
-
+## E-Arşiv Fatura Gönderme (WriteToArchieveExtended)
+* E-Arşiv faturalarını göndermek için kullanılan servistir.
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
 
