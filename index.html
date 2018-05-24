@@ -700,7 +700,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>TXN_ID</strong></td>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
@@ -708,6 +708,11 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
 <td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası. Eğer fatura numarası dışarıdan atanmışsa gönderilen faturanın numarası.</td>
 </tr>
 </tbody></table>
 
@@ -2103,6 +2108,12 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 </tr>
 </tbody></table>
 
+<h2 id="e-ar-iv-fatura-g-nderme-writetoarchieve-kullanmay-n-z">E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız</h2>
+
+<aside class="warning">
+Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
+</aside>
+
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieveextended">E-Arşiv Fatura Gönderme (WriteToArchieveExtended)</h2>
 
 <ul>
@@ -2292,6 +2303,103 @@ Servisten Dönebilecek Hatalar</p>
 <tr>
 <td>Fatura okunurken hata oluştu..Okumaya çalıştığınız UUID: xxxxxxx ile fatura bulunmadı&hellip;</td>
 <td>webservis isteğinde zorunlu olan bir veya birden fazla parametre eksik gönderilmiştir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-ptal-cancelearchiveinvoice">E-Arşiv Fatura İptal (CancelEArchiveInvoice)</h2>
+
+<ul>
+<li>CancelEArchiveInvoice servisi, E-Arşiv sunucularına gönderilen e-arşiv faturasının iptal ederek GIB&#39;e iptal fatura durumunda raporlanmasını sağlar.</li>
+<li>İptal edilen değil ama silinen fatura müteselsilliği bozmamak için tekrar yüklenmelidir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İptal edilecek faturanın numarası. FYA201800000001 formatında</td>
+</tr>
+<tr>
+<td><strong>INVOICE_UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>İptal edilecek faturanın Evrensel Tekil Tanımlama Numarası (ETTN). GUID formatında</td>
+</tr>
+<tr>
+<td><strong>UPLOAD_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>E-Arşiv platformunda bulunmayan bir faturayı iptal etmek için <code class="prettyprint">Y</code> degeri gönderilmesi ve <code class="prettyprint">İptal Tarihi</code>, <code class="prettyprint">Toplam Tutar</code> ve <code class="prettyprint">Fatura Tarihi</code> parametrelerinin doldurulması gerekir.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_CANCEL_EMAIL</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İptal edilecek e-arşiv faturasının alıcısına e-posta olarak bildirimi için kullanılacak parametre. Birden fazla e-posta adresini virgül <code class="prettyprint">,</code> ile ayırarak gönderebilirsiniz.  E-Posta formatında olmalıdır. (adsoyad@domain.com)</td>
+</tr>
+<tr>
+<td><strong>DELETE_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Sisteme yüklenmiş ama raporlanmamış bir e-Arşiv faturasını hiç raporlamamak için kullanılan parametredir.  <code class="prettyprint">Y</code> değeri gönderilirse fatura GİB&#39;e hiç bir türlü raporlanmayacaktır. <strong>Silinen fatura müteselsilliği bozmamak için tekrar yüklenmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>IPTAL_TARIHI</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>faturanın iptal edildiği tarih. <strong>Kullanmayınız</strong></td>
+</tr>
+<tr>
+<td><strong>TOPLAM_TUTAR</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>iptal edilen faturanın ödenecek tutarı.  E-Arşiv platformunda bulunmayan bir faturayı iptal ederken gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_CONTENT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Kullanmayınız</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner.</td>
 </tr>
 </tbody></table>
 
