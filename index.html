@@ -113,8 +113,6 @@
 </tr>
 </tbody></table>
 
-<h2 id="rnek-projeler">Örnek Projeler</h2>
-
           <h1 id="e-fatura-servisi">E-Fatura Servisi</h1>
 
 <p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
@@ -661,7 +659,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>REQUEST_HEADER.SESSION_ID</strong></td>
 <td>String</td>
-<td>Evet</td>
+<td><strong>Evet</strong></td>
 <td>Request Header objesi içerisinde bulunan SESSION_ID gönderilmelidir.</td>
 </tr>
 <tr>
@@ -683,9 +681,9 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td>Faturanın alıcı tarafının vergi kimlik numarasını <code class="prettyprint">vkn</code> attribute içerisine, posta kutusu etiketini <code class="prettyprint">alias</code> attribute içerisine eklenmelidir. Eğer eleman gönderilmezse fatura içerisinde ki alıcı taraf (AccountingCustomerParty) içerisinde ki VKN ve o VKN için tanımlanmış herhangi bir posta kutusu etiketi kullanılacaktır. <strong>Receiver elemanı gönderilmesini tavsiye ederiz. Özellikle alıcı tarafından posta kutusu tercihi talep edilmişse bu eleman kullanılmalıdır.</strong></td>
 </tr>
 <tr>
-<td><strong>INVOICE:CONTENT</strong></td>
+<td><strong>INVOICE.CONTENT</strong></td>
 <td>Array</td>
-<td>Evet</td>
+<td><strong>Evet</strong></td>
 <td>Faturanın Base64Binary tipinde XML veya Ziplenmiş içeriği. Bir istek ile çoklu fatura gönderimi yapılabilir. <strong>Birden fazla fatura göndermek için INVOICE elemanı çoklanmalıdır.</strong></td>
 </tr>
 </tbody></table>
@@ -709,7 +707,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
 </tr>
 </tbody></table>
 
@@ -769,7 +767,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<h2 id="fatura-okuma-getinvoice">Fatura Okuma (GetInvoice)</h2>
+<h2 id="e-fatura-okuma-getinvoice">E-Fatura Okuma (GetInvoice)</h2>
 
 <ul>
 <li>E-Fatura sisteminden giden imzalı faturaları veya gelen faturaları muhasebe paketine çekmek için kullanılır.</li>
@@ -795,7 +793,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td><strong>REQUEST_HEADER</strong></td>
 <td>ComplexType</td>
-<td>Evet</td>
+<td><strong>Evet</strong></td>
 <td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
 <td>Y/N</td>
 </tr>
@@ -2075,13 +2073,47 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 * Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
 ** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm</p>
 
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieveextended">E-Arşiv Fatura Gönderme (WriteToArchieveExtended)</h2>
 
 <ul>
-<li>E-Arşiv faturalarını göndermek için kullanılan servistir.
-<br>
-Servise gönderilmesi gereken parametreler şu şekildedir:</li>
+<li>E-Arşiv faturalarını E-Arşiv sitemine yüklemek için kullanılan servistir.</li>
+<li>Bir istek içerisinde birden fazla fatura göndermek için ArchiveInvoiceExtendedContent elemanı çoklanmalıdır.</li>
+<li>Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi <code class="prettyprint">INTERNET</code> olmak zorundadır. Diğerleri fatura tipleri için <code class="prettyprint">NORMAL</code> olacaktır.</li>
+<li>Eğer E-Arşiv sisteminde müşterinin e-posta gönderme hizmeti yoksa ve e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmetini aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini <code class="prettyprint">N</code> olarak gönderiniz.</li>
 </ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -2089,78 +2121,134 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 <th>Tip</th>
 <th>Zorunluluk</th>
 <th>Açıklama</th>
-<th>Örnek</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><strong>REQUEST_HEADER</strong></td>
 <td>ComplexType</td>
-<td>Evet</td>
+<td><strong>Evet</strong></td>
 <td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
-<td>Y/N</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td><strong>INVOICE_PROPERTIES.EARSIV_FLAG</strong></td>
 <td>String</td>
-<td>Hayır</td>
-<td>Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür.</td>
-<td>100</td>
+<td><strong>Evet</strong></td>
+<td>E-Arşiv fatura için <code class="prettyprint">Y</code> olmalıdır.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.FROM</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Gönderici firma gönderici birim (GB) etiketine göre çekmek için kullanılabilir. Örneğin birden fazla GB etiketi olan bir firmanın sadece muhasebe departmanından gelen faturaları okumak için kullanılabilir.</td>
-<td>urn:mail:muhasebegb@firma.com</td>
+<td><strong>INVOICE_PROPERTIES.EARSIV_PROPERTIES</strong></td>
+<td>ComplexType</td>
+<td>Evet</td>
+<td>E-Arşiv faturaları için kullanılabilecek parametreler</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.TO</strong></td>
+<td><strong>EARSIV_PROPERTIES.EARSIV_TYPE</strong></td>
 <td>String</td>
-<td>Hayır</td>
-<td>Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür.</td>
-<td>urn:mail:muhasebepk@firma.com</td>
+<td><strong>Evet</strong></td>
+<td>Gönderilen e-arşiv faturasının tipi: <code class="prettyprint">NORMAL</code> veya <code class="prettyprint">INTERNET</code> değerleri olabilir. Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi <code class="prettyprint">INTERNET</code> olmak zorundadır. Diğerleri fatura tipleri için <code class="prettyprint">NORMAL</code> olacaktır.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.ID</strong></td>
+<td><strong>EARSIV_PROPERTIES.EARSIV_EMAIL_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura numarası ile fatura okumak için kullanılabilir.</td>
-<td>FYA2018000000001</td>
+<td>E-Arşiv faturasının alıcı tarafa e-posta olarak gönderilmek isteniyorsa <code class="prettyprint">Y</code> değeri gönderilmelidir. Varsayılan değer <code class="prettyprint">N</code> dir. DİKKAT: Eğer E-Arşiv sisteminde müşterinin e-posta gönderme hizmeti yoksa <code class="prettyprint">Y</code> değeri gönderilince hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmetini aktiflemesi talep edilmelidir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.UUID</strong></td>
+<td><strong>EARSIV_PROPERTIES.EARSIV_EMAIL</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.</td>
-<td>GUID formatında</td>
+<td>E-Arşiv faturasının iletileceği e-posta adresi. E-Posta formatında olmalıdır.  <code class="prettyprint">EARSIV_EMAIL_FLAG= Y</code> olarak gönderilmişse bu alan zorunludur. DİKKAT: Eğer <code class="prettyprint">EARSIV_EMAIL_FLAG</code> gönderilmemiş veya <code class="prettyprint">N</code> olarak gönderilmişse bu alanda ki değer veritabanına kaydedilecek ama e-posta gönderilmeyecektir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td><strong>EARSIV_PROPERTIES.SUB_STATUS</strong></td>
 <td>String</td>
-<td>Hayır</td>
-<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi</td>
-<td>YYYY-MM-DD</td>
+<td><strong>Evet</strong></td>
+<td>E-Arşiv faturası için <code class="prettyprint">NEW</code> değeri gönderilmelidir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td><strong>EARSIV_PROPERTIES.SERI</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi</td>
-<td>YYYY-MM-DD</td>
+<td>Fatura numara atamasının E-Arşiv platformu üzerinde yapılması istenildiği durumlarda hangi seri ile numara atanacağını belirleyen alandır. Maksimum 3 hane alfanumerik değer içermelidir.  Gönderilecek seri önce portal ekranları kullanılarak e-arşiv sisteminde tanımlanmalıdır. Tanımlanmayan seri gönderildiğinde hata dönülecektir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td><strong>EARSIV_PROPERTIES.ARCH_INVOICE_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">Y</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen faturalar dönülür.</td>
-<td>Y/N</td>
+<td><strong>Kullanmayınız</strong></td>
 </tr>
 <tr>
-<td><strong>HEADER_ONLY</strong></td>
+<td><strong>EARSIV_PROPERTIES.EARCHIVE_TEST_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse faturalar XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse faturaların özeti dönülür.</td>
-<td>Y/N</td>
+<td><strong>Kullanmayınız</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES.PDF_PROPERTIES</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>E-Arşiv faturalara UBL-TR XML yanında üretilen PDF dosyasını da göndermek için kullanılacak parametredir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES.ARCHIVE_NOTE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>E-Arşiv faturalara not eklenebilecek parametredir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES.INVOICE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Faturanın UBL-TR formatında ki dosyasının Base64Binary tipinde sıkıştırılmış/ziplenmiş içeriği.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-okuma-readfromarchive">E-Arşiv Fatura Okuma (ReadFromArchive)</h2>
+
+<ul>
+<li>ReadFromArchive servisi, E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya imzalı PDF dosyasını almak için kullanılır.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında</td>
+</tr>
+<tr>
+<td><strong>PORTAL_DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td><code class="prettyprint">OUT</code> değeri gönderilecek.</td>
+</tr>
+<tr>
+<td><strong>EXTERNAL_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Kullanmayınız</strong></td>
+</tr>
+<tr>
+<td><strong>PROFILE</strong></td>
+<td>String</td>
+<td>Evet</td>
+<td>faturayı almak istediğini formattır. PDF, HTML, XML değeri alabilir. XML değeri gönderilirse faturanın imzalı UBL-TR XML dosyası dönülecektir.</td>
 </tr>
 </tbody></table>
 
@@ -2177,108 +2265,33 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </thead><tbody>
 <tr>
 <td><strong>INVOICE</strong></td>
-<td>ComplexType</td>
-<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-fatura sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+<td>Base64Binary</td>
+<td>Faturanın talep edilen formatta ki içeriği. Eğer <code class="prettyprint">COMPRESSED</code> elemanı <code class="prettyprint">N</code> olarak gönderilmişse sıkıştırılmamış, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş olarak dönülür. Sonuç alındıktan sonra ilgili formatta işlem yapılabilir.</td>
 </tr>
 <tr>
-<td><strong>INVOICE.HEADER</strong></td>
-<td>ComplexType</td>
-<td>Faturaya ait özet bilgiler içermektedir.</td>
-</tr>
-<tr>
-<td><strong>HEADER.SENDER</strong></td>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
 <td>String</td>
-<td>Faturayı gönderen firma VKN&#39;si.</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>HEADER.RECEIVER</strong></td>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
 <td>String</td>
-<td>Faturayı alan firma VKN&#39;si.</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
 </tr>
+</tbody></table>
+
+<p><br>
+Servisten Dönebilecek Hatalar</p>
+
+<table><thead>
 <tr>
-<td><strong>HEADER.SUPPLIER</strong></td>
-<td>String</td>
-<td>Faturayı gönderen firma ünvanı.</td>
+<th>Hata Açıklaması</th>
+<th>Açıklama</th>
 </tr>
+</thead><tbody>
 <tr>
-<td><strong>HEADER.CUSTOMER</strong></td>
-<td>String</td>
-<td>Faturayı alan firma ünvanı.</td>
-</tr>
-<tr>
-<td><strong>HEADER.ISSUE_DATE</strong></td>
-<td>String</td>
-<td>Fatura tarihi.</td>
-</tr>
-<tr>
-<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
-<td>String</td>
-<td>Toplam ödenecek tutar.</td>
-</tr>
-<tr>
-<td><strong>HEADER.FROM</strong></td>
-<td>String</td>
-<td>Faturayı gönderen Gönderici Birim (GB)</td>
-</tr>
-<tr>
-<td><strong>HEADER.TO</strong></td>
-<td>String</td>
-<td>Faturanın geldiği Posta Kutusu (PK)</td>
-</tr>
-<tr>
-<td><strong>HEADER.PROFILEID</strong></td>
-<td>String</td>
-<td>Faturanın senaryosu. TEMELFATURA, TICARIFATURA,IHRACATFATURA, YOLCUBERABER değerleri olabilir.</td>
-</tr>
-<tr>
-<td><strong>HEADER.INVOICE_TYPE_CODE</strong></td>
-<td>String</td>
-<td>Faturanın tipi. SATIS, IADE, ISTISNA, IHRACAT, OZELMATRAH, TEVKIFAT, IHRACKAYITLI değerleri olabilir.</td>
-</tr>
-<tr>
-<td><strong>HEADER.STATUS</strong></td>
-<td>String</td>
-<td>Faturanın durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
-<td>String</td>
-<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>HEADER.GIB_STATUS_CODE</strong></td>
-<td>String</td>
-<td>Faturanın GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
-<td>String</td>
-<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>HEADER.RESPONSE_CODE</strong></td>
-<td>String</td>
-<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu</td>
-</tr>
-<tr>
-<td><strong>HEADER.RESPONSE_DESC</strong></td>
-<td>String</td>
-<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması</td>
-</tr>
-<tr>
-<td><strong>HEADER.CDATE</strong></td>
-<td>String</td>
-<td>Faturanın sistemimize ulaştığı tarih</td>
-</tr>
-<tr>
-<td><strong>HEADER.ENVELOPE_IDENTIFIER</strong></td>
-<td>String</td>
-<td>Faturanın zarf IDsi.</td>
-</tr>
-<tr>
-<td><strong>INVOICE.CONTENT</strong></td>
-<td>String</td>
-<td>Faturanın içeriği. Eğer <code class="prettyprint">COMPRESSED</code> elemanı <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+<td>Fatura okunurken hata oluştu..Okumaya çalıştığınız UUID: xxxxxxx ile fatura bulunmadı&hellip;</td>
+<td>webservis isteğinde zorunlu olan bir veya birden fazla parametre eksik gönderilmiştir.</td>
 </tr>
 </tbody></table>
 
