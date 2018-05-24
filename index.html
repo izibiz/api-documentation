@@ -113,7 +113,7 @@
 </tr>
 </tbody></table>
 
-          <h1 id="e-fatura-servisi">E-Fatura Servisi</h1>
+          <h1 id="e-fatura-webservisi">E-Fatura Webservisi</h1>
 
 <p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
 
@@ -126,6 +126,26 @@
 <p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
 
 <p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="e-fatura-test-hesaplar">E-Fatura Test Hesapları</h2>
+
+<p>Test sürecinde düzenlenen faturaların göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
+
+<table><thead>
+<tr>
+<th>Gönderici VKN</th>
+<th>Gönderici Etiket</th>
+<th>Alıcı VKN</th>
+<th>Alıcı Etiket</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4840847211</td>
+<td>urn:mail:defaultgb@izibiz.com.tr</td>
+<td>4840847211</td>
+<td>urn:mail:defaultpk@izibiz.com.tr</td>
+</tr>
+</tbody></table>
 
 <h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
 
@@ -144,7 +164,7 @@
 kapatabilirsiniz.</p></li>
 </ol>
 
-<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
+<h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
 
 <p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
@@ -175,6 +195,21 @@ kapatabilirsiniz.</p></li>
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Gümrük İşlemleri Kılavuzu</strong></td>
+<td>Elektronik Fatura Uygulamasında yolcu beraberi eşya ihracı ve mal ihracı faturalarını e-fatura sistemine entegre edecek ve uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>İhracat Faturası Ek Alanlar</strong></td>
+<td>İhracat faturalarında eklenmesi zorunlu ve isteğe bağlı alanların açıklamak için hazırlanmıştır.</td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK E-Fatura Kılavuzu</strong></td>
+<td>Elektronik Fatura Uygulamasında Sosyal Güvenlik Kurumuna (SGK) düzenlenecek  faturaların e-fatura sistemine entegre edecek uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -245,6 +280,16 @@ kapatabilirsiniz.</p></li>
 <td><strong>SGK Faturası</strong></td>
 <td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
 <td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>E-Arşiv Fatura - İnternet</strong></td>
+<td>Internet üzerine yapılan satış için düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilmek zorundadır. Bu faturalar diğer satış faturalarından farklı bir seriden gönderilmeldir.</td>
+<td><a href= "/resource/xml/earsiv_internet.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>E-Arşiv Fatura - Normal</strong></td>
+<td>Internet üzerine yapılan satış dışında düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilebileceği gibi kağıt olarakta teslim edilebilir.</td>
+<td><a href= "/resource/xml/earsiv_normal.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -1907,9 +1952,48 @@ Bu servis kullanımdan kaldırılmıştır. Lütfen MarkInvoice servisini kullan
 Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak verilen yanıt durumunu öğrenebilirsiniz.
 </aside>
 
-          <h1 id="e-ar-iv-fatura-servisi">E-Arşiv Fatura Servisi</h1>
+          <h1 id="e-ar-iv-fatura-webservisi">E-Arşiv Fatura Webservisi</h1>
 
 <p>e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.</p>
+
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ul>
+<li>Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</li>
+<li>WriteToArchieveExtended servisi ile UBL formatlı e-arşiv faturası gönderilir.</li>
+<li>ReadFromArchive servisi ile faturanın ihtiyaç duyulan formatta alınır.</li>
+<li>CancelEArchiveInvoice servisi ile iptal edilen fatura GIB bildirilmek üzere gönderilir.</li>
+<li>GetEArchiveInvoiceStatus serivisi ile izibiz platformuna yüklemiş olduğunuz e-Arşiv faturasanın durumu , email durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
+<li>GetEArchiveReport servisi ile gelir idaresin raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.</li>
+<li>ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.</li>
+<li>GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir</li>
+<li>E-Fatura ve E-Arşiv faturalarda farklı seri ile düzenlenmelidir.</li>
+<li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
+<li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı EARSIVFATURA olarak yazılmalıdır.</li>
+<li>E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) alanı zorunludur.</li>
+<li>E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.</li>
+<li>İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.</li>
+</ul>
+
+<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
+
+<p>E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
 
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
@@ -1934,6 +2018,21 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Gümrük İşlemleri Kılavuzu</strong></td>
+<td>Elektronik Fatura Uygulamasında yolcu beraberi eşya ihracı ve mal ihracı faturalarını e-fatura sistemine entegre edecek ve uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>İhracat Faturası Ek Alanlar</strong></td>
+<td>İhracat faturalarında eklenmesi zorunlu ve isteğe bağlı alanların açıklamak için hazırlanmıştır.</td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK E-Fatura Kılavuzu</strong></td>
+<td>Elektronik Fatura Uygulamasında Sosyal Güvenlik Kurumuna (SGK) düzenlenecek  faturaların e-fatura sistemine entegre edecek uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -2005,46 +2104,17 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 <td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
 <td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
 </tr>
+<tr>
+<td><strong>E-Arşiv Fatura - İnternet</strong></td>
+<td>Internet üzerine yapılan satış için düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilmek zorundadır. Bu faturalar diğer satış faturalarından farklı bir seriden gönderilmeldir.</td>
+<td><a href= "/resource/xml/earsiv_internet.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>E-Arşiv Fatura - Normal</strong></td>
+<td>Internet üzerine yapılan satış dışında düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilebileceği gibi kağıt olarakta teslim edilebilir.</td>
+<td><a href= "/resource/xml/earsiv_normal.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
 </tbody></table>
-
-<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
-
-<p>E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:</p>
-
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></p>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
-
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ul>
-<li>Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.</li>
-<li>WriteToArchieveExtended servisi ile UBL formatlı e-arşiv faturası gönderilir.</li>
-<li>ReadFromArchive servisi ile faturanın ihtiyaç duyulan formatta alınır.</li>
-<li>CancelEArchiveInvoice servisi ile iptal edilen fatura GIB bildirilmek üzere gönderilir.</li>
-<li>GetEArchiveInvoiceStatus serivisi ile izibiz platformuna yüklemiş olduğunuz e-Arşiv faturasanın durumu , email durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
-<li>GetEArchiveReport servisi ile gelir idaresin raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.</li>
-<li>ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.</li>
-<li>GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir</li>
-<li>E-Fatura ve E-Arşiv faturalarda farklı seri ile düzenlenmelidir.</li>
-<li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
-<li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı EARSIVFATURA olarak yazılmalıdır.</li>
-<li>E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) alanı zorunludur.</li>
-<li>E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.</li>
-<li>İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.</li>
-</ul>
-
-<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
-
-<p>E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
-
-<p><a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
-<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
 
 <h2 id="deme-ekilleri">Ödeme Şekilleri</h2>
 
@@ -2107,6 +2177,92 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 <td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>LoadInvoice</li>
+<li>SendInvoice</li>
+<li>SendInvoiceResponse</li>
+</ul>
 
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieve-kullanmay-n-z">E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız</h2>
 
@@ -2364,7 +2520,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>IPTAL_TARIHI</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>faturanın iptal edildiği tarih. <strong>Kullanmayınız</strong></td>
+<td>E-Arşiv platformunda bulunmayan bir faturanın iptal isteğinde gönderilecek. Faturanın iptal tarihi.</td>
 </tr>
 <tr>
 <td><strong>TOPLAM_TUTAR</strong></td>
@@ -2403,7 +2559,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="e-defter-servisi">E-Defter Servisi</h1>
+          <h1 id="e-defter-uygulamas">E-Defter Uygulaması</h1>
 
 <h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
 
