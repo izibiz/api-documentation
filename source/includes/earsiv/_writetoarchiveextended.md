@@ -1,3 +1,8 @@
+## E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız
+<aside class="warning">
+Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
+</aside>
+
 ## E-Arşiv Fatura Gönderme (WriteToArchieveExtended)
 * E-Arşiv faturalarını E-Arşiv sitemine yüklemek için kullanılan servistir.
 * Bir istek içerisinde birden fazla fatura göndermek için ArchiveInvoiceExtendedContent elemanı çoklanmalıdır.
