@@ -1,7 +1,6 @@
-# E-Arşiv Fatura Servisi
+# E-Arşiv Fatura Webservisi
 e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.
 
-<%= partial "includes/efatura/faturasenaryolar" %>
 
 ## WSDL Endpoint Adresi
 
@@ -40,6 +39,7 @@ E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı ist
 <a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a>
 
 
+<%= partial "includes/efatura/faturasenaryolar" %>
 ## Ödeme Şekilleri
 e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.
 
@@ -54,9 +54,8 @@ Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
 * Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
 ** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
 
-
-
 <%= partial "includes/earsiv/hatasonucu" %>
+<%= partial "includes/efatura/ortak" %>
 <%= partial "includes/earsiv/writetoarchiveextended" %>
 <%= partial "includes/earsiv/readfromarchive" %>
 <%= partial "includes/earsiv/cancelinvoice" %>
