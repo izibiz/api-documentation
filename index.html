@@ -127,9 +127,9 @@
 
 <p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
 
-<h2 id="e-fatura-test-hesaplar">E-Fatura Test Hesapları</h2>
+<h2 id="test-hesaplar">Test Hesaplar</h2>
 
-<p>Test sürecinde düzenlenen faturaların göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
+<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
 
 <table><thead>
 <tr>
@@ -2993,7 +2993,137 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="e-defter-uygulamas">E-Defter Uygulaması</h1>
+          <h1 id="e-rsaliye-webservisi">E-İrsaliye Webservisi</h1>
+
+<p>e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.</p>
+
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için (entegrasyon@izibiz.com.tr) adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="test-hesaplar">Test Hesaplar</h2>
+
+<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
+
+<table><thead>
+<tr>
+<th>Gönderici VKN</th>
+<th>Gönderici Etiket</th>
+<th>Alıcı VKN</th>
+<th>Alıcı Etiket</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4840847211</td>
+<td>urn:mail:defaultgb@izibiz.com.tr</td>
+<td>4840847211</td>
+<td>urn:mail:defaultpk@izibiz.com.tr</td>
+</tr>
+</tbody></table>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
+
+<table><thead>
+<tr>
+<th>Doküman</th>
+<th>Açıklama</th>
+<th>İndir</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UBL-TR İrsaliye</strong></td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan sevk irsaliyesi belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR irsaliye - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR İrsaliye Yanıtı</strong></td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan irsaliye Yanıtı belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR irsaliye Yaniti - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Ortak Elemanlar</strong></td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Kod Listeleri</strong></td>
+<td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="ubl-rsaliye-senaryolar">UBL-İrsaliye Senaryoları</h2>
+
+<p>E-İrsaliye sistemi üzerinden düzenlebilecek ve gönderilebilecek e-irsaliye senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
+
+<table><thead>
+<tr>
+<th>Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Temel e-İrsaliye</strong></td>
+<td>Malların sevkiyatını sağlayan taraf e-İrsaliyeyi Malları teslim alan tarafa gönderir.</td>
+<td><a href="/resource/xml/irsaliye_temel_ornek.xml" target = "_blank" > <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Kısmi Gönderim İçeren e-İrsaliye</strong></td>
+<td>Malların sevkiyatını sağlayan taraf sipariş edilen malların bir kısmını gönderdiği durumlarda düzenlediği senaryodur.</td>
+<td><a href="/resource/xml/irsaliye_kismi_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Farklı Tarafların Bulunduğu e-İrsaliye</strong></td>
+<td>Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.</td>
+<td><a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="ubl-rsaliye-yan-t-senaryolar">UBL-İrsaliye Yanıt Senaryoları</h2>
+
+<p>E-İrsaliye sistemi üzerinden gönderilebilecek e-irsaliye yanıt senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
+
+<table><thead>
+<tr>
+<th>Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı</strong></td>
+<td>Malların teslim alan tarafın bütün malları kabul ettiğini bildiren e-İrsaliye yanıt senaryosudur.</td>
+<td><a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Şikayet İçeren e-İrsaliye Yanıtı</strong></td>
+<td>e-İrsaliye&#39;deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur.</td>
+<td><a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı</strong></td>
+<td>Malları teslim alan tarafın gelen e-İrsaliye&#39;deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.</td>
+<td><a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı</strong></td>
+<td>Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.</td>
+<td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+          <h1 id="z-b-z-e-defter-uygulamas">İZİBİZ E-Defter Uygulaması</h1>
 
 <h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
 
