@@ -1,6 +1,6 @@
 ## E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız
 <aside class="warning">
-Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
+Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için bir sonra ki başlık olan E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
 </aside>
 
 ## E-Arşiv Fatura Gönderme (WriteToArchieveExtended)

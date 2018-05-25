@@ -1,5 +1,5 @@
 ## E-Arşiv Fatura Okuma (ReadFromArchive)
-* ReadFromArchive servisi, E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya imzalı PDF dosyasını almak için kullanılır.
+* E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya HTML veya PDF dosyasını almak için kullanılır.
 
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
