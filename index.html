@@ -2267,7 +2267,7 @@ Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak ve
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieve-kullanmay-n-z">E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız</h2>
 
 <aside class="warning">
-Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
+Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için bir sonra ki başlık olan E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
 </aside>
 
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieveextended">E-Arşiv Fatura Gönderme (WriteToArchieveExtended)</h2>
@@ -2373,7 +2373,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="e-ar-iv-fatura-okuma-readfromarchive">E-Arşiv Fatura Okuma (ReadFromArchive)</h2>
 
 <ul>
-<li>ReadFromArchive servisi, E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya imzalı PDF dosyasını almak için kullanılır.</li>
+<li>E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya HTML veya PDF dosyasını almak için kullanılır.</li>
 </ul>
 
 <p><br>
@@ -2459,6 +2459,177 @@ Servisten Dönebilecek Hatalar</p>
 <tr>
 <td>Fatura okunurken hata oluştu..Okumaya çalıştığınız UUID: xxxxxxx ile fatura bulunmadı&hellip;</td>
 <td>webservis isteğinde zorunlu olan bir veya birden fazla parametre eksik gönderilmiştir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-rapor-detay-ekme-readearchivereport">E-Arşiv Rapor Detayı Çekme(ReadEArchiveReport)</h2>
+
+<p>E-Arşiv platformunda mükellef için oluşturulan raporların detayını çekmek için kullanılan servistir.</p>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Durumu sorgulanacak faturanın Evrensel Tekil Tanımlama Numarası (ETTN). GUID formatında. <strong>Birden fazla faturanın durumunu sorgulamak için bu parametre çoklanır.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Kritere uyan faturaların durumlarınını içeren objedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası</td>
+</tr>
+<tr>
+<td><strong>HEADER.UUID</strong></td>
+<td>String</td>
+<td>Faturanın Evrensel Tekil Tanımlama Numarası (ETTN)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILE</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu (EARSIVFATURA)</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Fatura durumu kodu. <strong>Lütfen E-Arşiv Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESC</strong></td>
+<td>String</td>
+<td>Faturanın durum açıklaması <strong>Lütfen E-Arşiv Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS</strong></td>
+<td>String</td>
+<td>E-Posta gönderim durum kodu. <strong>Lütfen E-Arşiv E-Posta Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS_DESC</strong></td>
+<td>String</td>
+<td>E-Posta gönderim durum açıklaması. <strong>Lütfen E-Arşiv E-Posta Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.REPORT_ID</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;e gönderilen rapor numarası. Raporlanmamış faturalarda parametre dönülmez.</td>
+</tr>
+<tr>
+<td><strong>HEADER.WEB_KEY</strong></td>
+<td>String</td>
+<td>Fatura alıcısının e-arşiv platformu üzerinden ulaşabileceği URL.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-ar-iv-durumlar">E-Arşiv Durumları</h3>
+
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>105</td>
+<td>TASLAK OLARAK EKLENDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>115</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>130</td>
+<td>RAPORLANDI</td>
+</tr>
+<tr>
+<td>200</td>
+<td>FATURA ID BULUNAMADI</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-ar-iv-e-posta-g-nderim-durumlar">E-Arşiv E-Posta Gönderim Durumları</h3>
+
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>HENÜZ İŞLENMEDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>130</td>
+<td>E-MAIL GÖNDERİM SONLANDI</td>
 </tr>
 </tbody></table>
 
@@ -2556,6 +2727,269 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
 <td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-faturas-n-e-posta-olarak-tekrar-g-nderme-getemailearchiveinvoice">E-Arşiv Faturasını E-Posta Olarak Tekrar Gönderme (GetEmailEarchiveInvoice)</h2>
+
+<ul>
+<li>E-Arşiv faturasını yükledikten sonra e-posta olarak aynı veya farklı e-postalara tekrar gönderilmesini sağlayan servistir.</li>
+<li>Birden fazla e-postaya göndermek için virgül (,) ile ayırarak gönderilmelidir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>FATURA_UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>E-Posta olarak iletilecek faturanın Evrensel Tekil Tanımlama Numarası (ETTN). GUID formatında.</td>
+</tr>
+<tr>
+<td><strong>FATURA_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Kullanılmamaktadır</strong></td>
+</tr>
+<tr>
+<td><strong>EMAIL</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>E-Arşiv faturasının iletileceği e-posta adresi. E-Posta formatında olmalıdır. Birden fazla e-postaya göndermek için virgül (,) ile ayırarak gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-ar-iv-durumlar">E-Arşiv Durumları</h3>
+
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>105</td>
+<td>TASLAK OLARAK EKLENDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>115</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>130</td>
+<td>RAPORLANDI</td>
+</tr>
+<tr>
+<td>200</td>
+<td>FATURA ID BULUNAMADI</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-ar-iv-e-posta-g-nderim-durumlar">E-Arşiv E-Posta Gönderim Durumları</h3>
+
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>HENÜZ İŞLENMEDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>130</td>
+<td>E-MAIL GÖNDERİM SONLANDI</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-rapor-listesini-ekme-getearchivereport">E-Arşiv Rapor Listesini Çekme (GetEArchiveReport)</h2>
+
+<ul>
+<li>E-Arşiv platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini almak için kullanılır. Servisin döndüğü raporlara ait içerikleri almak için ReadEArchiveReport servisi kullanılır.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>REPORT_PERIOD</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Rapor listesinin alınmak istenilen dönem bilgisi. Örnek: Mayıs 2018 dönemi için 201805</td>
+</tr>
+<tr>
+<td><strong>REPORT_STATUS_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Rapor durumunun sonuca eklenmesi isteniyorsa <code class="prettyprint">Y</code>, değilse <code class="prettyprint">N</code> değeri  gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REPORT</strong></td>
+<td>ComplexType</td>
+<td>Dönem için oluşturulan raporların listesi. Birden fazla rapor varsa REPORT objesi çoklu olur.</td>
+</tr>
+<tr>
+<td><strong>REPORT.REPORT_NO</strong></td>
+<td>String</td>
+<td>Raporun numarası GUID formatında</td>
+</tr>
+<tr>
+<td><strong>REPORT.STATUS</strong></td>
+<td>String</td>
+<td>Raporun durumu. İşlenmiş rapor durumu <code class="prettyprint">SUCCEED</code> olur.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-rapor-ekme-readearchivereport">E-Arşiv Rapor Çekme (ReadEArchiveReport)</h2>
+
+<p>Mükellef için GİB&#39;e gönderilen raporun imzalı XML dosyasını okumayı sağlayan servistir.</p>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>RAPOR_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Detay/içeriği çekilecek raporun IDsi. Rapor IDsine GetEArchiveReport servisini kullanarak erişebilirsiniz.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>EARCHIVEREPORT</strong></td>
+<td>Base64Base64Binary</td>
+<td>GİB&#39;e gönderilen raporun imzalı XML dosyasının sıkıştırılmış/ziplenmiş dosyası.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
 </tr>
 </tbody></table>
 
