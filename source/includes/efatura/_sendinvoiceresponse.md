@@ -9,10 +9,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
-**STATUS** | String | Evet | Faturaya verilecek yanıt. `KABUL` veya `RED` değeri alabilir.
-**INVOICE** | ComplexType | Evet | Yanıt gönderilecek fatura listesi
-**DESCRIPTION** | String | Evet | Yanıt ile beraber gönderilecek mesaj. Ret edilen faturalar için `Red Sebebi` bu alana yazılabilir. `STATUS` KABUL ise ve bu alan gönderilmezse *Fatura kabul edildi*, `STATUS` RED ise **Reddedildi** mesajı varsayılan olarak eklenecektir.
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
+**STATUS** | String | **Evet** | Faturaya verilecek yanıt. `KABUL` veya `RED` değeri alabilir.
+**INVOICE** | ComplexType | **Evet** | Yanıt gönderilecek fatura listesi
+**DESCRIPTION** | String | **Evet** | Yanıt ile beraber gönderilecek mesaj. Ret edilen faturalar için `Red Sebebi` bu alana yazılabilir. `STATUS` KABUL ise ve bu alan gönderilmezse *Fatura kabul edildi*, `STATUS` RED ise **Reddedildi** mesajı varsayılan olarak eklenecektir.
 
 Servisten dönen parametreler şu şekildedir:
 

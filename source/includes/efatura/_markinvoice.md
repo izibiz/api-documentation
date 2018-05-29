@@ -7,7 +7,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
 **MARK.value** | String  | Hayır | Başarı ile alındıysa `READ` gönderilmeli. Daha önce alındı olarak işaretlenen bir faturayı tekrar çekmeden önce `UNREAD` olarak gönderilebilir.
 **INVOICE.ID** | String  | Hayır | İşaretlenecek faturanın numarası. Örnek: FYA2018000000001
 **INVOICE.UUID** | String  | Hayır | İşaretlenecek faturanın ETTNsi. GUID formatında olmalı.

@@ -6,7 +6,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
 **TYPE** | String | Hayır | Listenin dönüleceği dosya tipi. XML ve CSV olabilir. Varsayılan XMLdir.   
 **DOCUMENT_TYPE** | String | Hayır | Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için `INVOICE`, E-İrsaliye için `DESPATCHADVICE` gönderilmelidir. Her iki ürüne ait etiketkleri çekmek için `ALL` değeri gönderilebilir. Eleman gönderilmez veya boş gönderilirse e-fatura ve e-irsaliye ait bütün liste dönülecektir.
-**REGISTER_TIME_START** | DateTime | Hayır| Belirli bir tarihten sonra sisteme dahil olmuş mükellefi çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01
+**REGISTER_TIME_START** | DateTime | Hayır| Belirli bir tarihten sonra sisteme dahil olmuş mükellefleri çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01
 
 <br><br>
 Servisten dönen parametreler şu şekildedir:

@@ -9,11 +9,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. **Bu serviste `COMPRESSED` elemanı dikkate alınmamaktadır.**   Talep edilen formatta sıkıştırılmış/ziplenmiş olarak dönülecektir. İstemciye çektikten sonra unzip edilmelidir.
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. **Bu serviste `COMPRESSED` elemanı dikkate alınmamaktadır.**   Talep edilen formatta sıkıştırılmış/ziplenmiş olarak dönülecektir. İstemciye çektikten sonra unzip edilmelidir.
 **SEARCH_KEY.ID** | String  | Hayır | Fatura numarası ile fatura okumak için kullanılabilir. örnek FYA2018000000001 `UUID` elamanı gönderilmemişse zorunludur.
 **SEARCH_KEY.UUID** | String  | Hayır | Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir. `ID` elamanı gönderilmemişse zorunludur.
-**SEARCH_KEY.TYPE** | String  | Evet | Faturanın çekilmek istenilen tipi: PDF, HTML, XML olabilir.
-**HEADER_ONLY** | String  | Evet | Fatura görseli çekmek için `Y` gönderilmelidir.
+**SEARCH_KEY.TYPE** | String  | **Evet** | Faturanın çekilmek istenilen tipi: PDF, HTML, XML olabilir.
+**HEADER_ONLY** | String  | **Evet** | Fatura görseli çekmek için `Y` gönderilmelidir.
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:

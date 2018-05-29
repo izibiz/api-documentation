@@ -9,7 +9,7 @@ Parametre | Tip        | Açıklama
 **ERROR_TYPE.ERROR_CODE** | String | Hatanın kodu. Detay için hata kodları listesine bakınız.
 **ERROR_TYPE.ERROR_SHORT_DESC** | String | Hatanın kısa açıklaması. Detay için hata kodları listesine bakınız.
 
-<br><br>
+
 Hata Kodu |  Açıklama
 --------- | -----------
 -1    | Sistem Hatası

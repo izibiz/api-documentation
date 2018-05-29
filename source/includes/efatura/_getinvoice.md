@@ -20,6 +20,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama | Örnek
 **SEARCH_KEY.START_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi | YYYY-MM-DD
 **SEARCH_KEY.END_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi | YYYY-MM-DD
 **SEARCH_KEY.READ_INCLUDED** | String  | Hayır | Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. `Y` değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya `N` gönderilirse sadece yeni gelen faturalar dönülür. | Y/N
+**SEARCH_KEY.DIRECTION** | String  | Hayır | Belge yönü. Gelen veya Giden faturaları çekmek için kullanılabilir. Gelen faturaları çekmek için `IN`, giden faturaları çekmek için `OUT` değeri gönderilebilir. Varsayılan değer `IN` olduğu için eğer parametre gönderilmezse sadece gelen faturalar dönülecektir.  Gönderilebilecek değerler: `IN`, `OUT`
 **HEADER_ONLY** | String  | Hayır | Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman **gönderilmezse** veya `N` değeri gönderilirse faturalar XML ile beraber dönülür. `Y` değeri gönderilirse faturaların özeti dönülür.  | Y/N
 <br><br>
 

@@ -7,7 +7,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
 **INVOICE.ID** | String  | Hayır | Durumu sorgulanacak faturanın 16 hane fatura numarası. örnek: FYA2018000000001 **Eğer UUID elemanı gönderilmezse zorunludur.**
 **INVOICE.UUID** | String  | Hayır | Durumu sorgulanacak faturanın GUID formatında ETTN değeri. **Eğer ID elemanı gönderilmezse zorunludur.**
 <br><br>
@@ -68,45 +68,44 @@ REJECTED |	SUCCEED |	Giden Ticari Fatura Red - Başarıyla işlendi |	Gönderilm
 
 ### GİB Durum Kodları
 
-KOD | AÇIKLAMA | ALINACAK AKSİYON
+Kod | Açıklama | Alınacak Aksiyon
 ------ | --------- | -------------
-1000 | 	ZARF KUYRUĞA EKLENDİ  |	Durum kodunun güncellenmesi beklenmelidir.  
+1000 | 	ZARF KUYRUĞA EKLENDİ  |	Durum kodunun güncellenmesi beklenmelidir.
 1100 | 	ZARF İŞLENİYOR 	 | Durum kodunun güncellenmesi beklenmelidir.
-1110 | 	ZIP DOSYASI DEĞİL  |	Faturalar yeniden gönderilmeli
-1111 | 	ZARF ID UZUNLUĞU GEÇERSİZ  |	Faturalar yeniden gönderilmeli
-1120 | 	ZARF ARŞİVDEN KOPYALANAMADI  |	Faturalar yeniden gönderilmeli
-1130 | 	ZIP AÇILAMADI  |	Faturalar yeniden gönderilmeli
-1131 | 	ZIP BİR DOSYA İÇERMELİ  |	Faturalar yeniden gönderilmeli
-1132 | 	XML DOSYASI DEĞİL  |	Faturalar yeniden gönderilmeli
-1133 | 	ZARF ID VE XML DOSYASININ ADI AYNI OLMALI  |	Faturalar yeniden gönderilmeli
-1140 | 	DOKUMAN AYRIŞTIRILAMADI  |	Faturalar yeniden gönderilmeli
-1141 | 	ZARF ID YOK  |	Faturalar yeniden gönderilmeli
-1142 | 	ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI 	 | Faturalar yeniden gönderilmeli
-1143 | 	GEÇERSİZ VERSİYON  |	Faturalar yeniden gönderilmeli
-1150 | 	SCHEMATRON KONTROL SONUCU HATALI  |	Faturalar yeniden gönderilmeli
-1160 | 	XML SEMA KONTROLÜNDEN GEÇEMEDİ 	 | Faturalar yeniden gönderilmeli
-1161 | 	İMZA SAHİBİ TCKN VKN ALINAMADI  |	Faturalar yeniden gönderilmeli
-1162 | 	İMZA KAYDEDİLEMEDİ 	 | Faturalar yeniden gönderilmeli
-1163 | 	GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR 	 | Faturalar yeniden gönderilmeli
-1170 | 	YETKİ KONTROL EDİLEMEDİ   |	Faturalar yeniden gönderilmeli
-1171 | 	GÖNDERİCİ BİRİM YETKİSİ YOK  |	Faturalar yeniden gönderilmeli
-1172 |	POSTA KUTUSU YETKİSİ YOK  |	Faturalar yeniden gönderilmeli
-1175 | 	İMZA YETKİSİ KONTROL EDİLEMEDİ 	 | Faturalar yeniden gönderilmeli
-1176 | 	İMZA SAHİBİ YETKİSİZ 	 | Faturalar yeniden gönderilmeli
-1177 | 	GEÇERSİZ İMZA 	 | Faturalar yeniden gönderilmeli
-1180 | 	ADRES KONTROL EDİLEMEDİ  |	Faturalar yeniden gönderilmeli
-1181 | 	ADRES BULUNAMADI  |	Faturalar yeniden gönderilmeli
-1182 | 	KULLANICI EKLENEMEDİ 	 | Faturalar yeniden gönderilmeli
-1183 | 	KULLANICI SİLİNEMEDİ 	 | Faturalar yeniden gönderilmeli
-1190 | 	SİSTEM YANITI HAZIRLANAMADI  |	Faturalar yeniden gönderilmeli
-1195 | 	SİSTEM HATASI  |	Faturalar yeniden gönderilmeli
-1200 | 	ZARF BAŞARIYLA İŞLENDİ | Özel entegratörden gönderilen faturada sorun tespit edilmedi. Sonra ki aşamalara geçilecek.
-1210 | 	DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ  |	GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise faturalar yeniden gönderilmeli
-1215 | 	DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI  | 	Faturalar yeniden gönderilmeli  
-1220 | 	HEDEFTEN SİSTEM YANITI GELMEDİ  | 	Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Faturalar yeniden gönderilmelidir.
-1230 | 	HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ 	 | Faturalar yeniden gönderilmeli  
-1300 | 	BAŞARIYLA TAMAMLANDI 	| Başarılı olan fatura aynı numara ile gönderilemez.
-
+1110 | 	ZIP DOSYASI DEĞİL  | Belge yeniden gönderilmeli
+1111 | 	ZARF ID UZUNLUĞU GEÇERSİZ  | Belge yeniden gönderilmeli
+1120 | 	ZARF ARŞİVDEN KOPYALANAMADI  |	Belge yeniden gönderilmeli
+1130 | 	ZIP AÇILAMADI  |	Belge yeniden gönderilmeli
+1131 | 	ZIP BİR DOSYA İÇERMELİ  |	Belge yeniden gönderilmeli
+1132 | 	XML DOSYASI DEĞİL  |	Belge yeniden gönderilmeli
+1133 | 	ZARF ID VE XML DOSYASININ ADI AYNI OLMALI  |	Belge yeniden gönderilmeli
+1140 | 	DOKUMAN AYRIŞTIRILAMADI  |	Belge yeniden gönderilmeli
+1141 | 	ZARF ID YOK  |	Belge yeniden gönderilmeli
+1142 | 	ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI 	 | Belge yeniden gönderilmeli
+1143 | 	GEÇERSİZ VERSİYON  |	Belge yeniden gönderilmeli
+1150 | 	SCHEMATRON KONTROL SONUCU HATALI  |	Belge yeniden gönderilmeli
+1160 | 	XML SEMA KONTROLÜNDEN GEÇEMEDİ 	 | Belge yeniden gönderilmeli
+1161 | 	İMZA SAHİBİ TCKN VKN ALINAMADI  |	Belge yeniden gönderilmeli
+1162 | 	İMZA KAYDEDİLEMEDİ 	 | Belge yeniden gönderilmeli
+1163 | 	GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR 	 | Belge yeniden gönderilmeli
+1170 | 	YETKİ KONTROL EDİLEMEDİ   |	Belge yeniden gönderilmeli
+1171 | 	GÖNDERİCİ BİRİM YETKİSİ YOK  |	Belge yeniden gönderilmeli
+1172 |	POSTA KUTUSU YETKİSİ YOK  |	Belge yeniden gönderilmeli
+1175 | 	İMZA YETKİSİ KONTROL EDİLEMEDİ 	 | Belge yeniden gönderilmeli
+1176 | 	İMZA SAHİBİ YETKİSİZ 	 | Belge yeniden gönderilmeli
+1177 | 	GEÇERSİZ İMZA 	 | Belge yeniden gönderilmeli
+1180 | 	ADRES KONTROL EDİLEMEDİ  |	Belge yeniden gönderilmeli
+1181 | 	ADRES BULUNAMADI  |	Belge yeniden gönderilmeli
+1182 | 	KULLANICI EKLENEMEDİ 	 | Belge yeniden gönderilmeli
+1183 | 	KULLANICI SİLİNEMEDİ 	 | Belge yeniden gönderilmeli
+1190 | 	SİSTEM YANITI HAZIRLANAMADI  |	Belge yeniden gönderilmeli
+1195 | 	SİSTEM HATASI  |	Belge yeniden gönderilmeli
+1200 | 	ZARF BAŞARIYLA İŞLENDİ | Özel entegratörden gönderilen Belgede sorun tespit edilmedi. Sonra ki aşamalara geçilecek.
+1210 | 	DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ  |	GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise belgeler yeniden gönderilmeli
+1215 | 	DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI  | 	Belge yeniden gönderilmeli
+1220 | 	HEDEFTEN SİSTEM YANITI GELMEDİ  | 	Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.
+1230 | 	HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ 	 | Belge yeniden gönderilmeli
+1300 | 	BAŞARIYLA TAMAMLANDI 	| Başarılı olan Belge aynı numara ile gönderilemez.
 
 ## Çoklu Fatura Durum Sorgulama - (GetInvoiceStatusAll)
 <aside class="warning">
