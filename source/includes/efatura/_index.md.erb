@@ -6,7 +6,7 @@ e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturalar�
 
 E-Fatura Webservisine aşağıdaki adresten erişilmektedir:
 
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EFaturaOIB](https://efaturatest.izibiz.com.tr/EFaturaOIB)
+Test Sistemi: [https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl](https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl)
 
 Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
 
@@ -39,17 +39,27 @@ kapatabilirsiniz.
 
 ## İstemci (client) Örnek Projeler
 
-E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.
+E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.
 
 <a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
 <a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
 <a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a>
 
+## Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?
+
+.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:
+
+1. http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.
+2. İndirilen dosya unzip edilir.
+3. .Net Framework yüklü olan bir bilgisayarda **başlat>Developer Command Prompt** yazılır ve gelen seçenek tıklanarak komut dosyası açılır
+4. 2.maddedeki unzip yapılan dizine **cd UNZIP_EDILEN_DIZIN** olarak gidilir.
+5. Gelen ekranda aşağıdaki komutu yapıştırıyoruz.<br>
+**xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd**
+6. Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.
+7. Fatura **InvoiceType** sınıfı ile üretilmektedir.
+
 <%= partial "includes/efatura/faturasenaryolar" %>
 <%= partial "includes/efatura/ortak" %>
-<%= partial "includes/efatura/login" %>
-<%= partial "includes/efatura/logout" %>
-<%= partial "includes/efatura/getuserlistbinary" %>
 <%= partial "includes/efatura/sendinvoice" %>
 <%= partial "includes/efatura/loadinvoice" %>
 <%= partial "includes/efatura/getinvoice" %>
@@ -58,3 +68,4 @@ E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı ist
 <%= partial "includes/efatura/getinvoicestatus" %>
 <%= partial "includes/efatura/sendinvoiceresponse" %>
 <%= partial "includes/efatura/envelope" %>
+<%= partial "includes/efatura/moved" %>

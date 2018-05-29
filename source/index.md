@@ -12,6 +12,7 @@ toc_footers:
 
 includes:
   - baslarken
+  - authentication
   - efatura
   - earsiv
   - eirsaliye
