@@ -88,28 +88,430 @@
 <li>E-Mutabakat</li>
 <li>E-Defter</li>
 <li>E-Müstahsil Makbuzu</li>
-<li>E-Serbest Meslek Makbuzu&lt;</li>
+<li>E-Serbest Meslek Makbuzu</li>
 </ul>
 
 <p>Eğer entegrasyona yeni başlıyorsanız Başlarken başlığı altında ki bilgileri okumanızı tavsiye ederiz.</p>
 
 <h2 id="yard-m-talebi">Yardım Talebi</h2>
 
-<h2 id="kavramlar">Kavramlar</h2>
+<p>Entegrasyon süreci ile ilgili her türlü teknik sorularınızı <strong>entegrasyon@izibiz.com.tr</strong> adresine iletebilirsiniz.</p>
+
+<h2 id="yard-m-talebi">Yardım Talebi</h2>
+
+<p>Entegrasyon süreci ile ilgili her türlü teknik sorularınızı <strong>entegrasyon@izibiz.com.tr</strong> adresine iletebilirsiniz.</p>
+
+<h2 id="wsdl-endpoint-url">WSDL Endpoint URL</h2>
 
 <table><thead>
 <tr>
-<th><strong>Kavram</strong></th>
-<th><strong>Açıklama</strong></th>
+<th>Ürün</th>
+<th>Endpoint URL</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>API</td>
-<td>Application Programming Interface</td>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>HTML</td>
-<td>Hyper Text Markup Language.</td>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+</tbody></table>
+
+          <h1 id="kimlik-do-rulama-webservisi">Kimlik Doğrulama Webservisi</h1>
+
+<p>Entegrasyon sürecinin ilk adımı olan kimlik doğrulamayı sağlayan servistir.  Yapılan her işlem mutlaka aktif bir oturum ile yapılmalıdır.
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2></p>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>LoadInvoice</li>
+<li>SendInvoice</li>
+<li>SendInvoiceResponse</li>
+</ul>
+
+<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
+
+<ul>
+<li>Web servis istemcisinin(client) Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar.</li>
+<li>Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır.</li>
+<li>Login işleminden dönen işlem ID parametresi daha sonra çağrılacak tüm metotlarda <code class="prettyprint">HEADER_REQUEST.SESSION_ID</code> elemanı olarak gönderilmelidir.</li>
+</ul>
+
+<aside class="notice">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.
+</aside>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_HEADER.SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde bulunan <code class="prettyprint">SESSION_ID</code> login servisinde -1 olarak gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>USER_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Entegrasyon platformuna tanımlı kullanıcı adı. Test hesabı için entegrasyon@izibiz.com.tr e-posta adresiyle iletişime geçebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>PASSWORD</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Entegrasyon platformuna tanımlı kullanıcıya ait şifre.</td>
+</tr>
+</tbody></table>
+
+<p><br><br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
+</tr>
+</tbody></table>
+
+<h2 id="oturum-kapatma-logout">Oturum Kapatma (Logout)</h2>
+
+<p>Web servis istemcisinin(client)Entegrasyon Platformununda ki oturumu kapatmasını sağlayan servistir.</p>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Oturum kapatılmak istenen session ID değeri</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Oturum başarı ile sonlandırılmışsa <code class="prettyprint">0</code> döner</td>
+</tr>
+</tbody></table>
+
+<h2 id="m-kellef-listesi-ekme-getgibuserlist">Mükellef Listesi Çekme (GetGibUserList)</h2>
+
+<p>E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin sıkıştırılmış olarak istenilen tipte dönüldüğü servistir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td>Evet</td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Listenin dönüleceği dosya tipi. XML ve CSV olabilir. Varsayılan XMLdir.</td>
+</tr>
+<tr>
+<td><strong>DOCUMENT_TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir. Her iki ürüne ait etiketkleri çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Eleman gönderilmez veya boş gönderilirse e-fatura ve e-irsaliye ait bütün liste dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>REGISTER_TIME_START</strong></td>
+<td>DateTime</td>
+<td>Hayır</td>
+<td>Belirli bir tarihten sonra sisteme dahil olmuş mükellefi çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01</td>
+</tr>
+</tbody></table>
+
+<p><br><br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Encoded</td>
+<td>Kriterlere uygun mükelleflere ait GB ve PK adresleri</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Sonuç sıkıştırılmış XML dosyası içerisinde USER tipinde değerler dönmektedir. Sonuç istemci tarafına çekildikten sonra zipten çıkarılmalı ve XML dosya işlenmelidir.
+</aside>
+
+<p><strong>XML dosyasının içerisinde bulunan USER objesinin elamanları şu şekildedir :</strong></p>
+
+<table><thead>
+<tr>
+<th>Eleman</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>USER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Mükellefe ait VKNsı.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS</strong></td>
+<td>String</td>
+<td>Mükellefe ait GB veya PK etiketi. format: urn:mail:defaultgb@firma.com</td>
+</tr>
+<tr>
+<td><strong>USER.TITLE</strong></td>
+<td>String</td>
+<td>Firmanın GİB e-fatura sisteminde tanımlı ünvanı.</td>
+</tr>
+<tr>
+<td><strong>USER.TYPE</strong></td>
+<td>String</td>
+<td>Firmanın GİB e-fatura sisteminde tanımlı tipi. OZEL veya KAMU olabilir.</td>
+</tr>
+<tr>
+<td><strong>USER.UNIT</strong></td>
+<td>String</td>
+<td>Etiketin tipi. GB veya PK</td>
+</tr>
+<tr>
+<td><strong>USER.DOCUMENT_TYPE</strong></td>
+<td>String</td>
+<td>E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>USER.REGISTER_TIME</strong></td>
+<td>Date</td>
+<td>Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
+<td>Date</td>
+<td>Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-fatura-m-kellefi-sorgulama-checkuser-kullanmay-n-z">E-Fatura Mükellefi Sorgulama (CheckUser) - Kullanmayınız</h2>
+
+<ul>
+<li>Mükellefin, Gelir İdaresi Başkanlığı sistemine kayıtlı olup olmadığının kontrol edildiği servistir.</li>
+<li>Sorgulanan VKN GİB sistemine kayıtlıysa, sistemde tanımlanmış etiket listesi dönülmektedir.</li>
+<li>Sorgulanan VKN GİB sistemine kayıtlı değilse liste boş dönülür. <strong>Sonuç boş ise firma mükellef değildir.</strong></li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>USER.IDENTIFIER</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mükellefiyeti sorgulanacak firmanın vergi kimlik numarası</td>
+</tr>
+<tr>
+<td><strong>DOCUMENT_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mükelleffiyet kontrol edilecek ürün tipi. E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br>
+Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>USER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Mükellefe ait VKNsı.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS</strong></td>
+<td>String</td>
+<td>Mükellefe ait GB veya PK etiketi.</td>
+</tr>
+<tr>
+<td><strong>USER.TITLE</strong></td>
+<td>String</td>
+<td>Firmanın GİB sisteminde tanımlı ünvanı.</td>
+</tr>
+<tr>
+<td><strong>USER.TYPE</strong></td>
+<td>String</td>
+<td>Firmanın GİB sisteminde tanımlı tipi. OZEL veya KAMU olabilir.</td>
+</tr>
+<tr>
+<td><strong>USER.REGISTER_TIME</strong></td>
+<td>Date</td>
+<td>Firmanın GİB sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11</td>
+</tr>
+<tr>
+<td><strong>USER.UNIT</strong></td>
+<td>Date</td>
+<td>Etiketin tipi. GB veya PK</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
+<td>DateTime</td>
+<td>Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11</td>
 </tr>
 </tbody></table>
 
@@ -121,7 +523,7 @@
 
 <p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
 
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB">https://efaturatest.izibiz.com.tr/EFaturaOIB</a></p>
+<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></p>
 
 <p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
 
@@ -166,11 +568,26 @@ kapatabilirsiniz.</p></li>
 
 <h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
 
-<p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
+<p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
 <a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
 <a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
+
+<h2 id="fatura-s-n-f-invoicetype-nas-l-retilir">Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?</h2>
+
+<p>.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</p>
+
+<ol>
+<li>http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.</li>
+<li>İndirilen dosya unzip edilir.</li>
+<li>.Net Framework yüklü olan bir bilgisayarda <strong>başlat&gt;Developer Command Prompt</strong> yazılır ve gelen seçenek tıklanarak komut dosyası açılır</li>
+<li>2.maddedeki unzip yapılan dizine <strong>cd UNZIP_EDILEN_DIZIN</strong> olarak gidilir.</li>
+<li>Gelen ekranda aşağıdaki komutu yapıştırıyoruz.<br>
+<strong>xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</strong></li>
+<li>Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
+<li>Fatura <strong>InvoiceType</strong> sınıfı ile üretilmektedir.</li>
+</ol>
 
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
@@ -378,309 +795,6 @@ kapatabilirsiniz.</p></li>
 <li>SendInvoice</li>
 <li>SendInvoiceResponse</li>
 </ul>
-
-<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
-
-<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformuna kimlik doğrulayarak giriş yapmasını sağlar. Webservise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır. Login komutu sonrası dönen session ID parametresi login sonrası çağrılacak tüm metodlarda parameter olarak kullanılmalıdır.</p>
-
-<aside class="notice">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.
-</aside>
-
-<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>REQUEST_HEADER</strong></td>
-<td>ComplexType</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
-</tr>
-<tr>
-<td><strong>REQUEST_HEADER.SESSION_ID</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde bulunan <code class="prettyprint">SESSION_ID</code> login servisinde -1 olarak gönderilmelidir.</td>
-</tr>
-<tr>
-<td><strong>USER_NAME</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>E-Fatura sisteminde tanımlı kullanıcı adı. Test hesabı için entegrasyon@izibiz.com.tr e-posta adresiyle iletişime geçebilirsiniz.</td>
-</tr>
-<tr>
-<td><strong>PASSWORD</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>E-Fatura sisteminde tanımlı kullanıcıya ait şifre.</td>
-</tr>
-</tbody></table>
-
-<p><br><br>
-Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>SESSION_ID</strong></td>
-<td>String</td>
-<td>Sonraki metod çağrılarında kullanılacak oturum bilgisi.</td>
-</tr>
-</tbody></table>
-
-<h2 id="oturum-kapatma-logout">Oturum Kapatma (Logout)</h2>
-
-<p>Web servis istemcisinin(client) EFATURA Entegrasyon Platformununda ki oturumu kapatmasını sağlayan metotdur.</p>
-
-<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>SESSION_ID</strong></td>
-<td>String</td>
-<td>Evet</td>
-<td>Oturum kapatılmak istenen session ID değeri gönderilir.</td>
-</tr>
-</tbody></table>
-
-<p><br>
-<br>
-Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>RETURN_CODE</strong></td>
-<td>String</td>
-<td>Oturum başarı ile sonlandırılmışsa 0 döner</td>
-</tr>
-</tbody></table>
-
-<h2 id="m-kellef-listesi-ekme-getuserlistbinary">Mükellef Listesi Çekme (GetUserListBinary)</h2>
-
-<p>E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin sıkıştırılmış olarak istenilen tipte dönüldüğü servistir.</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>REQUEST_HEADER</strong></td>
-<td>ComplexType</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
-</tr>
-<tr>
-<td><strong>TYPE</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Listenin dönüleceği dosya tipi. XML ve CSV olabilir. Varsayılan XMLdir.</td>
-</tr>
-<tr>
-<td><strong>DOCUMENT_TYPE</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir. Her iki ürüne ait etiketkleri çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Eleman gönderilmez veya boş gönderilirse e-fatura ve e-irsaliye ait bütün liste dönülecektir.</td>
-</tr>
-<tr>
-<td><strong>REGISTER_TIME_START</strong></td>
-<td>DateTime</td>
-<td>Hayır</td>
-<td>Belirli bir tarihten sonra sisteme dahil olmuş mükellefi çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01</td>
-</tr>
-</tbody></table>
-
-<p><br><br>
-Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>CONTENT</strong></td>
-<td>Base64Encoded</td>
-<td>Kriterlere uygun mükelleflere ait GB ve PK adresleri</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Sonuç sıkıştırılmış XML dosyası içerisinde USER tipinde değerler dönmektedir. Sonuç istemci tarafına çekildikten sonra zipten çıkarılmalı ve XML dosya işlenmelidir.
-</aside>
-
-<p><strong>XML dosyasının içerisinde bulunan USER objesinin elamanları şu şekildedir :</strong></p>
-
-<table><thead>
-<tr>
-<th>Eleman</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>USER.IDENTIFIER</strong></td>
-<td>String</td>
-<td>Mükellefe ait VKNsı.</td>
-</tr>
-<tr>
-<td><strong>USER.ALIAS</strong></td>
-<td>String</td>
-<td>Mükellefe ait GB veya PK etiketi. format: urn:mail:defaultgb@firma.com</td>
-</tr>
-<tr>
-<td><strong>USER.TITLE</strong></td>
-<td>String</td>
-<td>Firmanın GİB e-fatura sisteminde tanımlı ünvanı.</td>
-</tr>
-<tr>
-<td><strong>USER.TYPE</strong></td>
-<td>String</td>
-<td>Firmanın GİB e-fatura sisteminde tanımlı tipi. OZEL veya KAMU olabilir.</td>
-</tr>
-<tr>
-<td><strong>USER.UNIT</strong></td>
-<td>String</td>
-<td>Etiketin tipi. GB veya PK</td>
-</tr>
-<tr>
-<td><strong>USER.DOCUMENT_TYPE</strong></td>
-<td>String</td>
-<td>E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> dönülmektedir.</td>
-</tr>
-<tr>
-<td><strong>USER.REGISTER_TIME</strong></td>
-<td>Date</td>
-<td>Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11</td>
-</tr>
-<tr>
-<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
-<td>Date</td>
-<td>Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11</td>
-</tr>
-</tbody></table>
-
-<h2 id="m-kellef-listesi-ekme-getuserlist-kullanmay-n-z">Mükellef Listesi Çekme (GetUserList) - Kullanmayınız</h2>
-
-<p>Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML formatında sıkıştırılmadan toplu çekmeyi sağlamaktadır. E-Fatura sistemine kayıtlı mükellef listesinin arttığından dolayı performans sorunu oluşmuştur. Mükellef listesini sıkıştırılmış/ziplenmiş XML olarak dönen <strong>GetUserListBinary</strong> servisi eklenmiştir. <strong>Bu servis kullanımı sonlandırılmıştır.</strong> Mevcut iş ortaklarımız yeni servise geçince tamamen kapatılacaktır.  <strong>Lütfen Mükellef Listesi Çekme (GetUserListBinary) başlığını inceleyiniz.</strong></p>
-
-<h2 id="e-fatura-m-kellefi-sorgulama-checkuser-kullanmay-n-z">E-Fatura Mükellefi Sorgulama (CheckUser) - Kullanmayınız</h2>
-
-<aside class="warning">
-  Bu servis kullanımı sonlandırılmıştır. Lütfen Uygulama Yanıtı Gönderme (SendInvoiceResponseWithServerSign) başlığını inceleyiniz.
-</aside>
-
-<ul>
-<li>Mükellefin, Gelir İdaresi Başkanlığı E-Fatura sistemine kayıtlı olup olmadığının kontrol edildiği servistir.</li>
-<li>Sorgulanan VKN e-fatura sistemine kayıtlıysa, sistemde tanımlanmış etiket listesi dönülmektedir.</li>
-<li>Sorgulanan VKN e-fatura sistemine kayıtlı değilse liste boş dönülür.</li>
-</ul>
-
-<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>REQUEST_HEADER</strong></td>
-<td>ComplexType</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
-</tr>
-<tr>
-<td><strong>USER.IDENTIFIER</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>E-Fatura mükellefiyeti sorgulanacak firmanın vergi kimlik numarası</td>
-</tr>
-<tr>
-<td><strong>USER.UNIT</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Mükellefe ait bir etiket tipi sorgulanmak istenildiğinde kullanılabilir. Değer olarak GB veya PK gönderilebilir.</td>
-</tr>
-</tbody></table>
-
-<p><br><br>
-Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>USER.IDENTIFIER</strong></td>
-<td>String</td>
-<td>Mükellefe ait VKNsı.</td>
-</tr>
-<tr>
-<td><strong>USER.ALIAS</strong></td>
-<td>String</td>
-<td>Mükellefe ait GB veya PK etiketi.</td>
-</tr>
-<tr>
-<td><strong>USER.TITLE</strong></td>
-<td>String</td>
-<td>Firmanın GİB e-fatura sisteminde tanımlı ünvanı.</td>
-</tr>
-<tr>
-<td><strong>USER.TYPE</strong></td>
-<td>String</td>
-<td>Firmanın GİB e-fatura sisteminde tanımlı tipi. OZEL veya KAMU olabilir.</td>
-</tr>
-<tr>
-<td><strong>USER.REGISTER_TIME</strong></td>
-<td>Date</td>
-<td>Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11</td>
-</tr>
-<tr>
-<td><strong>USER.UNIT</strong></td>
-<td>Date</td>
-<td>Etiketin tipi. GB veya PK</td>
-</tr>
-<tr>
-<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
-<td>Date</td>
-<td>Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11</td>
-</tr>
-</tbody></table>
 
 <h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme (SendInvoice)</h2>
 
@@ -1950,6 +2064,27 @@ Bu servis kullanımdan kaldırılmıştır. Lütfen MarkInvoice servisini kullan
 
 <aside class="warning">
 Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak verilen yanıt durumunu öğrenebilirsiniz.
+</aside>
+
+<h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
+
+<aside class="warning">E-Fatura webservis içerisinde ki OTURUM AÇMA (Login) metodu Authentication webservisine taşınmıştır. Lütfen oturum açmak için Authentication servisini kullanınız.
+</aside>
+
+<h2 id="oturum-kapatma-logout">Oturum Kapatma (Logout)</h2>
+
+<aside class="warning">E-Fatura webservis içerisinde ki OTURUM KAPATMA (Logout) metodu Authentication webservisine taşınmıştır. Lütfen oturum kapatmak için Authentication servisini kullanınız.
+</aside>
+
+<h2 id="m-kellef-listesi-ekme-getuserlistbinary">Mükellef Listesi Çekme (GetUserListBinary)</h2>
+
+<aside class="warning">E-Fatura webservis içerisinde ki MÜKELLEF LİSTESİ ÇEKME (GetUserListBinary) metodu Authentication webservisine taşınmıştır. Lütfen mükellef listesini çekmek (GetGibUserList) için Authentication servisini kullanınız.
+</aside>
+
+<h2 id="m-kellef-listesi-ekme-getuserlist-kullanmay-n-z">Mükellef Listesi Çekme (GetUserList) - Kullanmayınız</h2>
+
+<aside class="warning">
+Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML formatında sıkıştırılmadan toplu çekmek için kullanılmıştır. Ancak E-Fatura sistemine kayıtlı mükellef listesinin artmasından dolayı performans sorunu oluşmuştur. Mükellef listesini sıkıştırılmış/ziplenmiş XML olarak dönen GetGibUserList servisi eklenmiştir. Bu servis kullanımı sonlandırılmıştır. Mevcut iş ortaklarımız yeni servise geçince tamamen kapatılacaktır.  Lütfen Kimlik Doğrulama webservisinde ki Mükellef Listesi Çekme (GetGibUserList) başlığını inceleyiniz.
 </aside>
 
           <h1 id="e-ar-iv-fatura-webservisi">E-Arşiv Fatura Webservisi</h1>
@@ -3299,6 +3434,219 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-okuma-getdespatchadvice">E-İrsaliye Okuma (GetDespatchAdvice)</h2>
+
+<ul>
+<li>E-İrsaliye sisteminden giden imzalı irsaliye veya gelen irsaliyeyi ERP/muhasebe paketine çekmek için kullanılır.</li>
+<li>İrsaliye özet bilgilerini veya irsaliye özet bilgileri ile beraber XML içeriğini de çekmek için kullanılabilir.</li>
+<li>Entegrasyon yapan iş ortaklarımızdan yeni gelen bütün irsaliye içerikleri (XML) beraber müşteri ortamına çekilmesini tavsiye ediyoruz.</li>
+<li>İçerik ile beraber en fazla 100 fatura çekilebilir.</li>
+<li>Fatura özet bilgileri ile en fazla 25000 adet fatura dönülmektedir.</li>
+<li>Alıcı tarafından zamanlanmış fatura çekme özelliği eklenecekse en fazla 15 dakika aralığında olmalıdır.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+<th>Örnek</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
+<td>Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür.</td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.FROM</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Gönderici firma gönderici birim (GB) etiketine göre çekmek için kullanılabilir. Örneğin birden fazla GB etiketi olan bir firmanın sadece muhasebe departmanından gelen faturaları okumak için kullanılabilir.</td>
+<td>urn:mail:muhasebegb@firma.com</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TO</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür.</td>
+<td>urn:mail:muhasebepk@firma.com</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura numarası ile fatura okumak için kullanılabilir.</td>
+<td>FYA2018000000001</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.UUID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.</td>
+<td>GUID formatında</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">Y</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen faturalar dönülür.</td>
+<td>Y/N</td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse faturalar XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse faturaların özeti dönülür.</td>
+<td>Y/N</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-fatura sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Faturaya ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.FROM</strong></td>
+<td>String</td>
+<td>Faturayı gönderen Gönderici Birim (GB)</td>
+</tr>
+<tr>
+<td><strong>HEADER.TO</strong></td>
+<td>String</td>
+<td>Faturanın geldiği Posta Kutusu (PK)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu. TEMELFATURA, TICARIFATURA,IHRACATFATURA, YOLCUBERABER değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_TYPE_CODE</strong></td>
+<td>String</td>
+<td>Faturanın tipi. SATIS, IADE, ISTISNA, IHRACAT, OZELMATRAH, TEVKIFAT, IHRACKAYITLI değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_CODE</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_DESC</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın sistemimize ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>HEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.CONTENT</strong></td>
+<td>String</td>
+<td>Faturanın içeriği. Eğer <code class="prettyprint">COMPRESSED</code> elemanı <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
 </tr>
 </tbody></table>
 
