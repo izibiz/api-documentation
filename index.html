@@ -121,6 +121,10 @@
 <td>E-İrsaliye</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
 </tbody></table>
 
           <h1 id="kimlik-do-rulama-webservisi">Kimlik Doğrulama Webservisi</h1>
@@ -561,6 +565,8 @@ Servisten dönen parametreler şu şekildedir:</p>
 <li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</p></li>
 </ol>
+
+<h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
 
 <h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
 
@@ -3167,7 +3173,21 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
 
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+<p>E-İrsaliye uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-İrsaliy Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
+<li><p><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
 
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
@@ -4138,6 +4158,295 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>1300</td>
 <td>BAŞARIYLA TAMAMLANDI</td>
 <td>Başarılı olan Belge aynı numara ile gönderilemez.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="e-mustahsil-webservisi">E-Mustahsil Webservisi</h1>
+
+<p>e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, hem kağıt hem de elektronik ortamda muhafazası ve ibrazı ile elektronik ortamda raporlamasını kapsayan uygulamadır.</p>
+
+<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+
+<p>E-Müstahisl webservisine aşağıdaki adresten erişilmektedir:</p>
+
+<p>E-Müstahsil Makbuzu Test Servisi <a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></p>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<h2 id="test-hesaplar">Test Hesaplar</h2>
+
+<p>Test hesabı talep etmek için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.
+E-Müstahsil test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 olmalıdır.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>E-Müstahsil uygulamanızı geliştirken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
+<li><p>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendCreditNote</strong> metodu ile müstahsil makbuzu gönderimi yapılmaktadır.</p></li>
+<li><p><strong>GetCreditNoteStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</p></li>
+<li><p><strong>CancelCreditNote</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</p></li>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
+
+<h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
+
+<p>Yakında eklenecektir.</p>
+
+<h2 id="m-stahsil-makbuz-s-n-f-creditnotetype-nas-l-retilir">Müstahsil Makbuz Sınıfı (CreditNoteType) Nasıl Üretilir ?</h2>
+
+<p>.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</p>
+
+<ol>
+<li>http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.</li>
+<li>İndirilen dosya unzip edilir.</li>
+<li>.Net Framework yüklü olan bir bilgisayarda <strong>başlat&gt;Developer Command Prompt</strong> yazılır ve gelen seçenek tıklanarak komut dosyası açılır.</li>
+<li>2.maddedeki unzip yapılan dizine <strong>cd UBLTR_1.2.1_Paketi/xsdrt/maindoc/</strong> olarak gidilir.</li>
+<li>Gelen ekranda aşağıdaki komutu çalıştırılır.<br>
+<strong>xsd /c UBL-CreditNote-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</strong></li>
+<li>Bu işlemin sonunda müstahsil makbuzu oluşturmak için gerekli bütün sınıflar UBL-CreditNote-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
+<li>Müstahsil <strong>CreditNoteType</strong> sınıfı ile üretilmektedir.</li>
+</ol>
+
+<h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
+
+<table><thead>
+<tr>
+<th>Doküman</th>
+<th>Açıklama</th>
+<th>İndir</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UBL-TR Müstahsil Makbuzu</strong></td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Ortak Elemanlar</strong></td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Kod Listeleri</strong></td>
+<td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="ubl-mustahsil-makbuzu-senaryolar">UBL-Mustahsil Makbuzu Senaryoları</h2>
+
+<p>E-Müstahsil Makbuzu sistemi üzerinden düzenlenebilecek ve gönderilebilecek e-müstahsil makbuzu senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
+
+<table><thead>
+<tr>
+<th>Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Vergisiz Müstahsil Makbuzu</strong></td>
+<td>En temel müstahsil makbuzu senaryosudur. İçerisinde hiç bir vergi (merafonu, borsa tescil, sgk prim kesintisi) bulunmamaktadır.</td>
+<td><a href="/resource/xml/mustahsil_vergisiz.xml" target = "_blank" > <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Mera Fonu Vergisi İçeren Müstahsil Makbuzu</strong></td>
+<td>Mera Fonu Vergisi içeren müstahsil makbuzu senaryodur.</td>
+<td><a href="/resource/xml/mustahsil_merafonu.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Borsa Tescil İçeren Müstahsil Makbuzu</strong></td>
+<td>Üreticiden borsa tescili bulunan ürün alımında düzenlenen müstahsil makbuzu senaryosudur.</td>
+<td><a href="/resource/xml/mustahsil_borsatescil.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK Prim (Bağkur) Kesintisi İçeren Müstahsil Makbuzu</strong></td>
+<td>SGK Prim kesinitisi yapıldığı durumlarda düzenlenen müstahsil makbuzu senaryosudur.</td>
+<td><a href="/resource/xml/mustahsil_bagkur.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>LoadInvoice</li>
+<li>SendInvoice</li>
+<li>SendInvoiceResponse</li>
+</ul>
+
+<h2 id="e-m-stahsil-g-nderme-sendcreditnote">E-Müstahsil Gönderme (SendCreditNote)</h2>
+
+<p>E-Müstahsil Makbuzu belgesini özel entegratör sistemlerine gönderilmesini sağlayan servistir. Bu servis ile gönderilen belgeler kuyruğa eklenerek işleme (imzalama ve raporlama) alınacaktır.</p>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. <code class="prettyprint">SESSION_ID</code> değeri <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <code class="prettyprint">Login</code> metodundan alınan değerdir. Belge sıkıştırılarak/ziplenerek gönderiliyorsa <code class="prettyprint">COMPRESSED</code> alanı gönderilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. <strong>XML formatında sıkıştırılmadan yüklemek için mutlaka <code class="prettyprint">COMPRESSED</code> eleman eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>SENDER</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>İrsaliye gönderen tarafın vergi kimlik numarasını <code class="prettyprint">vkn</code> attribute içerisine eklenmelidir. Eğer eleman gönderilmezse oturum açılan kullanıcının bağlı olduğu hesapta ki VKN kullanılacaktır. <strong>Sender elemanı gönderilmesini tavsiye ederiz.</strong></td>
+</tr>
+<tr>
+<td><strong>RECEIVER</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>Belgeyi alan tarafının kimlik numarasını (TCKN) <code class="prettyprint">vkn</code> attribute içerisine eklenmelidir. Eğer eleman gönderilmezse belge içerisinde ki alıcı taraf (AccountingCustomerParty) içerisinde ki TCKN değeri kullanılacaktır.</td>
+</tr>
+<tr>
+<td><strong>ID_ASSIGN_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarasının özel entegratör ortamından atanmasını sağlamak için kullanılacak parametredir. Eğer belge numarası istemci tarafında atanmışsa parametre gönderilmemeli veya <code class="prettyprint">N</code> değeri gönderilmelidir. Belge numarasını sunucuda atamak için <code class="prettyprint">Y</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ID_ASSIGN_PREFIX</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarasının özel entegratör ortamından atanmasını talep edildiği durumlarda atama yapılacak seri ön eki değerinin belirlendiği parametredir. <strong>Seri ön eki 3 hane alfanumerik değer içerebilir.</strong> Gönderilen seri ön eki özel entegratör platformunda tanımlı olmalıdır.   Eğer <code class="prettyprint">ID_ASSIGN_FLAG=Y</code> olarak gönderilmiş ama <code class="prettyprint">ID_ASSIGN_PREFIX</code> parametresi gönderilmemişse, müşterinin özel entegratörde tanımlı varsaylılan serisi kullanılacaktır. Eğer varsayılan seri tanımlanmamışsa işlem başarısız olacak ve hata dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Gönderilecek belgenin numarası <code class="prettyprint">ID</code> attribute içerisine, evrensel tekil tanımlama numarası (ETTN) ise <code class="prettyprint">UUID</code> attribute içerisine eklenmek zorundadır.  Aynı alıcıya düzenlenen bir veya birden fazla müstahsil makbuzu belgeleri tek istek ile entegrasyon platformuna yüklenebilir.  <strong>Birden fazla belge göndermek için CREDITNOTE elemanı çoklanmalıdır.</strong></td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CREDITNOTEHEADER</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>Webservis içerisinde ortak eleman tipi olduğu için şema içerisinde görünmektedir. <strong>Göndermeyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda REQUEST_RETURN objesi dönülmez. ERROR_TYPE objesi dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
 </tr>
 </tbody></table>
 
