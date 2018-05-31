@@ -16,6 +16,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SEARCH_KEY.END_DATE** | String  | Hayır | Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD
 **SEARCH_KEY.READ_INCLUDED** | String  | Hayır | Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir. `Y` değeri gönderilirse daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya `N` gönderilirse sadece yeni gelen belgeler dönülür. Gönderilebilecek değerler: Y/N
 **SEARCH_KEY.DIRECTION** | String  | Hayır | Belge yönü. Giden(OUT), Gelen (IN). Müstahsil için gelen olmadığı için `OUT` değeri gönderilebilir. Varsayılan değer `OUT`.
+**SEARCH_KEY.TYPE** | String  | Hayır | Talep edilen format. Gönderilebilecek değerler: XML, PDF, HTML. Eğer parametre gönderilmezse imzalı UBL-TR XML dosyası dönülecektir.
 **SEARCH_KEY.FROM** | String  | Hayır | **Bu serviste kullanılmaz.**
 **SEARCH_KEY.TO** | String  | Hayır | **Bu serviste kullanılmaz.**
 **SEARCH_KEY.SENDER** | String  | Hayır | **Bu serviste kullanılmaz.**
