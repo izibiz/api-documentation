@@ -6,13 +6,15 @@ e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Ba
 
 E-Müstahisl webservisine aşağıdaki adresten erişilmektedir:
 
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EMustahsil?wsdl](https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl)
+E-Müstahsil Makbuzu Test Servisi [http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl](http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl)
 
 Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
 
-Test portali erişim bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
 
-<%= partial "includes/efatura/testhesaplar" %>
+## Test Hesaplar
+
+Test hesabı talep etmek için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
+E-Müstahsil test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 olmalıdır.
 
 
 ## Dikkat Edilecek Hususlar
@@ -51,14 +53,6 @@ Yakında eklenecektir.
 6. Bu işlemin sonunda müstahsil makbuzu oluşturmak için gerekli bütün sınıflar UBL-CreditNote-2.1.cs dosyası içerisinde oluşturulacaktır.
 7. Müstahsil **CreditNoteType** sınıfı ile üretilmektedir.
 
-<%= partial "includes/efatura/faturasenaryolar" %>
+<%= partial "includes/emustahsil/senaryolar" %>
 <%= partial "includes/efatura/ortak" %>
-<%= partial "includes/efatura/sendinvoice" %>
-<%= partial "includes/efatura/loadinvoice" %>
-<%= partial "includes/efatura/getinvoice" %>
-<%= partial "includes/efatura/getinvoicewithtype" %>
-<%= partial "includes/efatura/markinvoice" %>
-<%= partial "includes/efatura/getinvoicestatus" %>
-<%= partial "includes/efatura/sendinvoiceresponse" %>
-<%= partial "includes/efatura/envelope" %>
-<%= partial "includes/efatura/moved" %>
+<%= partial "includes/emustahsil/sendcreditnote" %>
