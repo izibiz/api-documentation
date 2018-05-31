@@ -9,19 +9,19 @@
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
 
-Parametre | Tip         | Zorunluluk  | Açıklama | Örnek
---------- | ----------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka `COMPRESSED` elemanı eklenmeli ve `N` değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir. | Y/N
-**SEARCH_KEY.LIMIT** | String  | Hayır | Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür. | 100
-**SEARCH_KEY.FROM** | String  | Hayır | Gönderici firma gönderici birim (GB) etiketine göre çekmek için kullanılabilir. Örneğin birden fazla GB etiketi olan bir firmanın sadece muhasebe departmanından gelen faturaları okumak için kullanılabilir. | urn:mail:muhasebegb@firma.com
-**SEARCH_KEY.TO** | String  | Hayır | Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür. | urn:mail:muhasebepk@firma.com
-**SEARCH_KEY.ID** | String  | Hayır | Fatura numarası ile fatura okumak için kullanılabilir. | FYA2018000000001
-**SEARCH_KEY.UUID** | String  | Hayır | Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir. | GUID formatında
-**SEARCH_KEY.START_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi | YYYY-MM-DD
-**SEARCH_KEY.END_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi | YYYY-MM-DD
-**SEARCH_KEY.READ_INCLUDED** | String  | Hayır | Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. `Y` değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya `N` gönderilirse sadece yeni gelen faturalar dönülür. | Y/N
+Parametre | Tip         | Zorunluluk  | Açıklama
+--------- | ----------- | ----------- | -----------
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka `COMPRESSED` elemanı eklenmeli ve `N` değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir. Değerler: Y/N
+**SEARCH_KEY.LIMIT** | String  | Hayır | Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür.
+**SEARCH_KEY.FROM** | String  | Hayır | Gönderici firma gönderici birim (GB) etiketine göre çekmek için kullanılabilir. Örneğin birden fazla GB etiketi olan bir firmanın sadece muhasebe departmanından gelen faturaları okumak için kullanılabilir. format: urn:mail:muhasebegb@firma.com
+**SEARCH_KEY.TO** | String  | Hayır | Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür. format: urn:mail:muhasebepk@firma.com
+**SEARCH_KEY.ID** | String  | Hayır | Fatura numarası ile fatura okumak için kullanılabilir. format: FYA2018000000001
+**SEARCH_KEY.UUID** | String  | Hayır |  Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında
+**SEARCH_KEY.START_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi format: YYYY-MM-DD
+**SEARCH_KEY.END_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD
+**SEARCH_KEY.READ_INCLUDED** | String  | Hayır | Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. `Y` değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya `N` gönderilirse sadece yeni gelen faturalar dönülür. Değerler: Y/N
 **SEARCH_KEY.DIRECTION** | String  | Hayır | Belge yönü. Gelen veya Giden faturaları çekmek için kullanılabilir. Gelen faturaları çekmek için `IN`, giden faturaları çekmek için `OUT` değeri gönderilebilir. Varsayılan değer `IN` olduğu için eğer parametre gönderilmezse sadece gelen faturalar dönülecektir.  Gönderilebilecek değerler: `IN`, `OUT`
-**HEADER_ONLY** | String  | Hayır | Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman **gönderilmezse** veya `N` değeri gönderilirse faturalar XML ile beraber dönülür. `Y` değeri gönderilirse faturaların özeti dönülür.  | Y/N
+**HEADER_ONLY** | String  | Hayır | Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman **gönderilmezse** veya `N` değeri gönderilirse faturalar XML ile beraber dönülür. `Y` değeri gönderilirse faturaların özeti dönülür.  Değerler: Y/N
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:

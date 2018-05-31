@@ -9,7 +9,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
 **INVOICE.ID** | String  | Hayır | Durumu sorgulanacak faturanın 16 hane fatura numarası. örnek: FYA2018000000001 **Eğer UUID elemanı gönderilmezse zorunludur.**
-**INVOICE.UUID** | String  | Hayır | Durumu sorgulanacak faturanın GUID formatında ETTN değeri. **Eğer ID elemanı gönderilmezse zorunludur.**
+**INVOICE.UUID** | String  | Hayır | Durumu sorgulanacak faturanın GUID formatında Evrensel Tekil Tanımlama Numarası. **Eğer ID elemanı gönderilmezse zorunludur.**
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:
@@ -109,5 +109,5 @@ Kod | Açıklama | Alınacak Aksiyon
 
 ## Çoklu Fatura Durum Sorgulama - (GetInvoiceStatusAll)
 <aside class="warning">
-BU METOD DESTEKLENMEMEKTEDİR. LÜTFEN KULLANMAYINIZ.
+BU METOT DESTEKLENMEMEKTEDİR. LÜTFEN KULLANMAYINIZ.
 </aside>

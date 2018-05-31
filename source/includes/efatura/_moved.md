@@ -1,13 +1,13 @@
-## Oturum Açma (Login)
-<aside class="warning">E-Fatura webservis içerisinde ki OTURUM AÇMA (Login) metodu Authentication webservisine taşınmıştır. Lütfen oturum açmak için Authentication servisini kullanınız.
+## Oturum Açma (Login) - Kullanmayınız
+<aside class="warning">E-Fatura webservis içerisinde ki OTURUM AÇMA (Login) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Lütfen oturum açmak için Authentication servisini kullanınız.
 </aside>
 
-## Oturum Kapatma (Logout)
-<aside class="warning">E-Fatura webservis içerisinde ki OTURUM KAPATMA (Logout) metodu Authentication webservisine taşınmıştır. Lütfen oturum kapatmak için Authentication servisini kullanınız.
+## Oturum Kapatma (Logout) - Kullanmayınız
+<aside class="warning">E-Fatura webservis içerisinde ki OTURUM KAPATMA (Logout) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Lütfen oturum kapatmak için Authentication servisini kullanınız.
 </aside>
 
-## Mükellef Listesi Çekme (GetUserListBinary)
-<aside class="warning">E-Fatura webservis içerisinde ki MÜKELLEF LİSTESİ ÇEKME (GetUserListBinary) metodu Authentication webservisine taşınmıştır. Lütfen mükellef listesini çekmek (GetGibUserList) için Authentication servisini kullanınız.
+## Mükellef Listesi Çekme (GetUserListBinary) - Kullanmayınız
+<aside class="warning">E-Fatura webservis içerisinde ki MÜKELLEF LİSTESİ ÇEKME (GetUserListBinary) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Ayrıca servisin ismi GetGibUserList olarak değiştirilmiştir. Lütfen mükellef listesini çekmek için Authentication servisindeki GetGibUserList metodunu kullanınız.
 </aside>
 
 ## Mükellef Listesi Çekme (GetUserList) - Kullanmayınız
