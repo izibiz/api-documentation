@@ -1,4 +1,4 @@
-## E-Fatura Mükellefi Sorgulama (CheckUser) - Kullanmayınız
+## E-Fatura Mükellefi Sorgulama (CheckUser)
 * Mükellefin, Gelir İdaresi Başkanlığı sistemine kayıtlı olup olmadığının kontrol edildiği servistir.
 * Sorgulanan VKN GİB sistemine kayıtlıysa, sistemde tanımlanmış etiket listesi dönülmektedir.
 * Sorgulanan VKN GİB sistemine kayıtlı değilse liste boş dönülür. **Sonuç boş ise firma mükellef değildir.**
@@ -20,7 +20,7 @@ Parametre | Tip        | Açıklama
 **USER.IDENTIFIER** | String | Mükellefe ait VKNsı.
 **USER.ALIAS** | String | Mükellefe ait GB veya PK etiketi.
 **USER.TITLE** | String | Firmanın GİB sisteminde tanımlı ünvanı.
-**USER.TYPE** | String | Firmanın GİB sisteminde tanımlı tipi. OZEL veya KAMU olabilir.
+**USER.TYPE** | String | Firmanın GİB sisteminde tanımlı tipi. `OZEL` veya `KAMU` olabilir.
 **USER.REGISTER_TIME** | Date | Firmanın GİB sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11
-**USER.UNIT** | Date | Etiketin tipi. GB veya PK
+**USER.UNIT** | String | Etiketin tipi. `GB` veya `PK` 
 **USER.ALIAS_CREATION_TIME** | DateTime | Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11

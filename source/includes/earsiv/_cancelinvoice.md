@@ -1,5 +1,6 @@
 ## E-Arşiv Fatura İptal (CancelEArchiveInvoice)
-* CancelEArchiveInvoice servisi, E-Arşiv sunucularına gönderilen e-arşiv faturasının iptal ederek GIB'e iptal fatura durumunda raporlanmasını sağlar.
+* Özel entegratör platformuna gönderildikten veya GİB'e raporlandıktan sonra eksik veya hata tespit edilen veya müşteri tarafından iade edilen belgenin GIB'e iptal fatura durumunda raporlanmasını sağlayan servistir.
+* GİB'e raporlamadan tespit edilmiş bir hata sebebi ile hiç raporlanmamasını istenildiği durumlarda belge numarası farklı bir faturaya atanarak gönderilebilir.
 * İptal edilen değil ama silinen fatura müteselsilliği bozmamak için tekrar yüklenmelidir.
 
 <br>

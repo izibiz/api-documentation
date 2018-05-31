@@ -1,5 +1,5 @@
 ## Oturum Kapatma (Logout)
-Web servis istemcisinin(client)Entegrasyon Platformununda ki oturumu kapatmasını sağlayan servistir.
+Web servis istemcisinin özel entegratör platformunda ki oturumu kapatmasını sağlayan servistir.
 
 
 Servise gönderilmesi gereken parametreler şu şekildedir:

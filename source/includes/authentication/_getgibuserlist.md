@@ -4,8 +4,8 @@ E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin s�
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
 **REQUEST_HEADER** | ComplexType | Evet | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
-**TYPE** | String | Hayır | Listenin dönüleceği dosya tipi. XML ve CSV olabilir. Varsayılan XMLdir.   
-**DOCUMENT_TYPE** | String | Hayır | Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için `INVOICE`, E-İrsaliye için `DESPATCHADVICE` gönderilmelidir. Her iki ürüne ait etiketkleri çekmek için `ALL` değeri gönderilebilir. Eleman gönderilmez veya boş gönderilirse e-fatura ve e-irsaliye ait bütün liste dönülecektir.
+**TYPE** | String | Hayır | Listenin dönüleceği dosya tipi. `XML` ve `CSV` olabilir. Varsayılan `XML`dir.   
+**DOCUMENT_TYPE** | String | Hayır | Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için `INVOICE`, E-İrsaliye için `DESPATCHADVICE` gönderilmelidir. Her iki ürüne ait etiketleri çekmek için `ALL` değeri gönderilebilir. Parametre gönderilmez veya boş gönderilirse bütün liste dönülecektir.
 **REGISTER_TIME_START** | DateTime | Hayır| Belirli bir tarihten sonra sisteme dahil olmuş mükellefleri çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01
 
 <br><br>
@@ -16,7 +16,7 @@ Parametre | Tip        | Açıklama
 **CONTENT** | Base64Encoded | Kriterlere uygun mükelleflere ait GB ve PK adresleri
 
 <aside class="success">
-Sonuç sıkıştırılmış XML dosyası içerisinde USER tipinde değerler dönmektedir. Sonuç istemci tarafına çekildikten sonra zipten çıkarılmalı ve XML dosya işlenmelidir.
+Sonuç sıkıştırılmış XML dosyası içerisinde `USER` tipinde değer dönülmektedir. Sonuç istemci tarafına çekildikten sonra zipten çıkarılmalı ve XML dosya işlenmelidir.
 </aside>
 
 
@@ -27,8 +27,8 @@ Eleman | Tip        | Açıklama
 **USER.IDENTIFIER** | String | Mükellefe ait VKNsı.
 **USER.ALIAS** | String | Mükellefe ait GB veya PK etiketi. format: urn:mail:defaultgb@firma.com
 **USER.TITLE** | String | Firmanın GİB e-fatura sisteminde tanımlı ünvanı.
-**USER.TYPE** | String | Firmanın GİB e-fatura sisteminde tanımlı tipi. OZEL veya KAMU olabilir.
-**USER.UNIT** | String | Etiketin tipi. GB veya PK
+**USER.TYPE** | String | Firmanın GİB e-fatura sisteminde tanımlı tipi. `OZEL` veya `KAMU` olabilir.
+**USER.UNIT** | String | Etiketin tipi. `GB` veya `PK`
 **USER.DOCUMENT_TYPE** | String | E-Fatura için `INVOICE`, E-İrsaliye için `DESPATCHADVICE` dönülmektedir.
-**USER.REGISTER_TIME** | Date | Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11
-**USER.ALIAS_CREATION_TIME** | Date | Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11
+**USER.REGISTER_TIME** | DateTime | Firmanın GİB e-fatura sistemine ilk kayıt olduğu tarih. formatı: 2013-07-01T15:22:11
+**USER.ALIAS_CREATION_TIME** | DateTime | Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11

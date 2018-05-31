@@ -1,5 +1,5 @@
-## E-Arşiv Rapor Detayı Çekme(ReadEArchiveReport)
-E-Arşiv platformunda mükellef için oluşturulan raporların detayını çekmek için kullanılan servistir.
+## E-Arşiv Durum Sorgulama (GetEArchiveStatus)
+Özel entegratör platformuna gönderilen bir veya birden çok faturanın durumunu sorgulamayı sağlayan servistir.
 
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
@@ -17,7 +17,7 @@ Parametre | Tip        | Açıklama
 **INVOICE.HEADER** | ComplexType | Kritere uyan faturaların durumlarınını içeren objedir.
 **HEADER.INVOICE_ID** | String | Fatura numarası
 **HEADER.UUID** | String | Faturanın Evrensel Tekil Tanımlama Numarası (ETTN)
-**HEADER.PROFILE** | String | Faturanın senaryosu (EARSIVFATURA)
+**HEADER.PROFILE** | String | Faturanın senaryosu (`EARSIVFATURA`)
 **HEADER.INVOICE_DATE** | String | Fatura tarihi
 **HEADER.STATUS** | String | Fatura durumu kodu. **Lütfen E-Arşiv Durum başlığını inceleyiniz.**
 **HEADER.STATUS_DESC** | String | Faturanın durum açıklaması **Lütfen E-Arşiv Durum başlığını inceleyiniz.**

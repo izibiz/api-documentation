@@ -1,5 +1,5 @@
 ## E-Arşiv Rapor Listesini Çekme (GetEArchiveReport)
-* E-Arşiv platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini almak için kullanılır. Servisin döndüğü raporlara ait içerikleri almak için ReadEArchiveReport servisi kullanılır.
+Özel entegratör platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini çekmek için kullanılır. Bu servis sadece rapor listesini döndecektir. Servisin döndüğü raporlara ait içerikleri almak için **ReadEArchiveReport** servisi kullanılabilir.
 
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:

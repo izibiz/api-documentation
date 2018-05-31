@@ -1,5 +1,5 @@
 ## E-Arşiv Fatura Okuma (ReadFromArchive)
-* E-Arşiv sunucularına gönderilen e-arşiv faturasının imzalı XML veya HTML veya PDF dosyasını almak için kullanılır.
+Özel entegratör sistemine gönderilen e-arşiv faturalarının farklı formatlarda (XML,HTML,PDF) okumasını sağlayan servistir.
 
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
@@ -7,10 +7,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka `COMPRESSED` elemanı eklenmeli ve `N` değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.
-**INVOICE_ID** | String  | **Evet** | Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında
+**INVOICE_ID** | String  | **Evet** |  Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında
 **PORTAL_DIRECTION** | String  | **Evet** | `OUT` değeri gönderilecek.
 **EXTERNAL_ID** | String  | Hayır | **Kullanmayınız**
-**PROFILE** | String  | Evet | faturayı almak istediğini formattır. PDF, HTML, XML değeri alabilir. XML değeri gönderilirse faturanın imzalı UBL-TR XML dosyası dönülecektir.
+**PROFILE** | String  | Evet | faturayı almak istediğini formattır. PDF, HTML, XML değeri alabilir. XML değeri gönderilmezse faturanın imzalı UBL-TR XML dosyası dönülecektir.
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:

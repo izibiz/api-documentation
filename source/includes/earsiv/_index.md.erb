@@ -1,32 +1,24 @@
 # E-Arşiv Fatura Webservisi
-e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.
+E-Fatura mükellefi olmayan firma veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesi ve raporlamasını sağlayan webservis uygulamasıdır.
 
 
-## WSDL Endpoint Adresi
-
-E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:
-
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl](https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl)
-
-
-
-Test portali erişim bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
+<%= partial "includes/ortak/url" %>
 
 ## Dikkat Edilecek Hususlar
 Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 
-* Login servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz. Portal tarafında sessionlar 30 dk timeout süresi bulunuyor.
-* WriteToArchieveExtended servisi ile UBL formatlı e-arşiv faturası gönderilir.
-* ReadFromArchive servisi ile faturanın ihtiyaç duyulan formatta alınır.
-* CancelEArchiveInvoice servisi ile iptal edilen fatura GIB bildirilmek üzere gönderilir.
-* GetEArchiveInvoiceStatus serivisi ile izibiz platformuna yüklemiş olduğunuz e-Arşiv faturasanın durumu , email durumu ve raporlanma durumunu sorgulayabilirsiniz.
-* GetEArchiveReport servisi ile gelir idaresin raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.
-* ReadEArchiveReport serivisi ile gelir idaresinde gönderilen rapor detayını sorgulayabilirsiniz.
-* GetEmailEarchiveInvoice servisi ile izibiz platformuna daha önceden yüklenen e-arşiv faturasının tekrardan mail gönderilmesini tetiklenmektedir
-* E-Fatura ve E-Arşiv faturalarda farklı seri ile düzenlenmelidir.
+* **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Login** servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.
+* **WriteToArchieveExtended** servisi ile UBL formatlı e-arşiv faturası gönderilir.
+* **ReadFromArchive** servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.
+* **CancelEArchiveInvoice** servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.
+* **GetEArchiveInvoiceStatus** servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.
+* **GetEArchiveReport** servisi ile GİBe raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.
+* **ReadEArchiveReport** serivisi ile GİBe gönderilen rapor detayını sorgulayabilirsiniz.
+* **GetEmailEarchiveInvoice** servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.
+* E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.
 * İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.
-* UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı EARSIVFATURA olarak yazılmalıdır.
-* E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) alanı zorunludur.
+* UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı `EARSIVFATURA` olarak yazılmalıdır.
+* E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) zorunludur.
 * E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.
 * İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.
 
@@ -38,22 +30,7 @@ E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı ist
 <a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
 <a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a>
 
-
 <%= partial "includes/efatura/faturasenaryolar" %>
-## Ödeme Şekilleri
-e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.
-
-KOD | AÇIKLAMASI
------- | ----------
-48 | KREDIKARTI/BANKAKARTI
-46 | EFT/HAVALE
-10 | KAPIDAODEME
-1 | Diğerleri
-
-Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
-* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
-** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
-
 <%= partial "includes/ortak/errortype" %>
 <%= partial "includes/ortak/requestheader" %>
 <%= partial "includes/earsiv/writetoarchiveextended" %>

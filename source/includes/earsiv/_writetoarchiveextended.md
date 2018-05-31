@@ -4,10 +4,11 @@ Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek
 </aside>
 
 ## E-Arşiv Fatura Gönderme (WriteToArchieveExtended)
-* E-Arşiv faturalarını E-Arşiv sitemine yüklemek için kullanılan servistir.
-* Bir istek içerisinde birden fazla fatura göndermek için ArchiveInvoiceExtendedContent elemanı çoklanmalıdır.
-* Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi `INTERNET` olmak zorundadır. Diğerleri fatura tipleri için `NORMAL` olacaktır.
+* E-Fatura mükellefi olmayan firmalara veya nihai tüketicilere düzenlenen faturaların özel entegratör sistemine gönderilmesini sağlayan servistir.
+* Bir istek içerisinde birden fazla fatura göndermek için **ArchiveInvoiceExtendedContent** elemanı çoklanmalıdır.
+* Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi `INTERNET` olmak zorundadır. Diğer faturalar için `NORMAL` olacaktır.
 * Eğer E-Arşiv sisteminde müşterinin e-posta gönderme hizmeti yoksa ve e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmetini aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini `N` olarak gönderiniz.
+
 
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
@@ -17,7 +18,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama |
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka `COMPRESSED` elemanı eklenmeli ve `N` değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.
 **INVOICE_PROPERTIES.EARSIV_FLAG** | String  | **Evet** | E-Arşiv fatura için `Y` olmalıdır.
 **INVOICE_PROPERTIES.EARSIV_PROPERTIES** | ComplexType  | Evet | E-Arşiv faturaları için kullanılabilecek parametreler
-**EARSIV_PROPERTIES.EARSIV_TYPE** | String  | **Evet**| Gönderilen e-arşiv faturasının tipi: `NORMAL` veya `INTERNET` değerleri olabilir. Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi `INTERNET` olmak zorundadır. Diğerleri fatura tipleri için `NORMAL` olacaktır.
+**EARSIV_PROPERTIES.EARSIV_TYPE** | String  | **Evet** | Gönderilen e-arşiv faturasının tipi: `NORMAL` veya `INTERNET` değerleri olabilir. Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi `INTERNET` olmak zorundadır. Diğerleri fatura tipleri için `NORMAL` olacaktır.
 **EARSIV_PROPERTIES.EARSIV_EMAIL_FLAG** | String  | Hayır | E-Arşiv faturasının alıcı tarafa e-posta olarak gönderilmek isteniyorsa `Y` değeri gönderilmelidir. Varsayılan değer `N` dir. DİKKAT: Eğer E-Arşiv sisteminde müşterinin e-posta gönderme hizmeti yoksa `Y` değeri gönderilince hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmetini aktiflemesi talep edilmelidir.
 **EARSIV_PROPERTIES.EARSIV_EMAIL** | String  | Hayır | E-Arşiv faturasının iletileceği e-posta adresi. E-Posta formatında olmalıdır.  `EARSIV_EMAIL_FLAG= Y` olarak gönderilmişse bu alan zorunludur. DİKKAT: Eğer `EARSIV_EMAIL_FLAG` gönderilmemiş veya `N` olarak gönderilmişse bu alanda ki değer veritabanına kaydedilecek ama e-posta gönderilmeyecektir.
 **EARSIV_PROPERTIES.SUB_STATUS** | String  | **Evet** | E-Arşiv faturası için `NEW` değeri gönderilmelidir.
@@ -27,3 +28,17 @@ Parametre | Tip         | Zorunluluk  | Açıklama |
 **INVOICE_PROPERTIES.PDF_PROPERTIES** | ComplexType  | Hayır | E-Arşiv faturalara UBL-TR XML yanında üretilen PDF dosyasını da göndermek için kullanılacak parametredir.
 **INVOICE_PROPERTIES.ARCHIVE_NOTE** | String  | Hayır | E-Arşiv faturalara not eklenebilecek parametredir.
 **INVOICE_PROPERTIES.INVOICE_CONTENT** | Base64Binary | **Evet** | Faturanın UBL-TR formatında ki dosyasının Base64Binary tipinde sıkıştırılmış/ziplenmiş içeriği.
+
+## Ödeme Şekilleri
+e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.
+
+KOD | AÇIKLAMASI
+------ | ----------
+48 | KREDIKARTI/BANKAKARTI
+46 | EFT/HAVALE
+10 | KAPIDAODEME
+1 | Diğerleri
+
+Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
+* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
+** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
