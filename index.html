@@ -4649,6 +4649,378 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h2 id="e-m-stahsil-okuma-getcreditnote">E-Müstahsil Okuma (GetCreditNote)</h2>
+
+<ul>
+<li>Özel entegratör platformundan e-müstahsil belegelerini okumayı sağlayan servistir.</li>
+<li>E-Müstahsil belgesinin imzalı UBL-TR XML, PDF veya HTML olarak okumayı sağlar.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse irsaliyeler XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse irsaliyelerin özeti dönülür.  Gönderilebilecek değerler: Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Kaç kayıt okunmak istendiği. Eğer eleman gönderilmezse 10 adet kayıt dönülür. İçerikleri (XML) ile beraber en fazla 100 adet kayıt dönülür. Sadece özet/başlıklarını çekildiğinde ise en fazla 25.000 adet kayıt dönülür.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarası ile okumak için kullanılabilir. örnek: FYA2018000000001</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.UUID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılabilir.  GUID formatında</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem başlangıç tarihi. format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir. <code class="prettyprint">Y</code> değeri gönderilirse daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen belgeler dönülür. Gönderilebilecek değerler: Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.DIRECTION</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge yönü. Giden(OUT), Gelen (IN). Müstahsil için gelen olmadığı için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">OUT</code>.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Talep edilen format. Gönderilebilecek değerler: XML, PDF, HTML. Eğer parametre gönderilmezse imzalı UBL-TR XML dosyası dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.FROM</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TO</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.SENDER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.RECEIVER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan belgelerin listesi. Müstahsil numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Belgeye ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alanın TCKNsi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Belgeyi alanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">EARSIVBELGE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">MUSTAHSILMAKBUZ</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Belgenin sisteme ulaştığı tarih.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-m-stahsil-durum-sorgulama-getcreditnotestatus">E-Müstahsil Durum Sorgulama (GetCreditNoteStatus)</h2>
+
+<ul>
+<li>Özel entegratör platformuna gönderilen bir veya birden fazla belgenin durumunu sorgulamayı sağlayan servistir.</li>
+<li>Birden fazla belge durumu sorgulamak için <code class="prettyprint">CREDITNOTEINFO</code> parametresi çoklanabilir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEINFO</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Sorgulanacak belge numarası <code class="prettyprint">ID</code> attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise <code class="prettyprint">UUID</code> attribute eklenmelidir.</td>
+</tr>
+</tbody></table>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan belgelerin listesi. Belge numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CREDITNOTEHEADER</strong></td>
+<td>ComplexType</td>
+<td>Belgeye ait özet bilgiler içermektedir. Parametre listesi aşağıdadır.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ID</strong></td>
+<td>String</td>
+<td>Belgenin numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Belgenin evrensel tekil tanımlama numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">EARSIVBELGE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">MUSTAHSILMAKBUZ</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+</tbody></table>
+
+<p><strong>CREDITNOTEHEADER.DIRECTION</strong> | String | Belge yönü. Gelen irsaliye için <code class="prettyprint">IN</code>, giden irsaliye için <code class="prettyprint">OUT</code> değeri dönülür.
+<strong>CREDITNOTEHEADER.STATUS</strong> | String | Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için <code class="prettyprint">STATUS_CODE</code> alanını kullanınız.
+<strong>CREDITNOTEHEADER.STATUS_CODE</strong> | String | Belgenin durum kodu. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.
+<strong>CREDITNOTEHEADER.STATUS_DESCRIPTION</strong> | String | Belgenin durum açıklaması. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.
+<strong>CREDITNOTEHEADER.REPORT_ID</strong> | String | Belgenin rapor numarası. GİBe raporlandıktan sonra dönülmektedir.
+<strong>CREDITNOTEHEADER.CDATE</strong> | DateTime | Belgenin sisteme ulaştığı/yüklendiği tarih.</p>
+
+<h2 id="e-m-stahsil-durumlar">E-Müstahsil Durumları</h2>
+
+<table><thead>
+<tr>
+<th>Durum</th>
+<th>Kod</th>
+<th>Detaylı Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DURUM_HENUZ_GUNCELLENMEDI</td>
+<td>100</td>
+<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
+</tr>
+<tr>
+<td>LOAD_SUCCEED</td>
+<td>101</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>LOAD_PROCESSİNG</td>
+<td>102</td>
+<td>TASLAK İŞLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_PROCESSING</td>
+<td>103</td>
+<td>PAKETLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_SUCCEED</td>
+<td>104</td>
+<td>PAKETLENDİ</td>
+</tr>
+<tr>
+<td>PACKAGE_FAILED</td>
+<td>105</td>
+<td>PAKETLEME_HATASI</td>
+</tr>
+<tr>
+<td>SIGN_PROCESSING</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_FAILED</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_SUCCEED</td>
+<td>107</td>
+<td>İMZALANDI</td>
+</tr>
+<tr>
+<td>RECEIVE_SUCCEED</td>
+<td>133</td>
+<td>BAŞARIYLA ALINDI</td>
+</tr>
+<tr>
+<td>SEND_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>RECEIVE_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>SEND_PROCESSING</td>
+<td>135</td>
+<td>GÖNDERİLİYOR</td>
+</tr>
+<tr>
+<td>SEND_FAILED</td>
+<td>136</td>
+<td>GÖNDERME İŞLEMİ BAŞARISIZ</td>
+</tr>
+<tr>
+<td>SEND_SUCCEED</td>
+<td>137</td>
+<td>GÖNDERME İŞLEMİ BAŞARILI</td>
+</tr>
+</tbody></table>
+
           <h1 id="z-b-z-e-defter-uygulamas">İZİBİZ E-Defter Uygulaması</h1>
 
 <h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
