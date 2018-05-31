@@ -1,18 +1,7 @@
 # E-İrsaliye Webservisi
 e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.
 
-
-## WSDL Endpoint Adresi
-
-E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:
-
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl](https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl)
-
-Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
-
-Test portali erişim bilgileri için (entegrasyon@izibiz.com.tr) adresi ile iletişime geçebilirsiniz.
-
-
+<%= partial "includes/ortak/url" %>
 <%= partial "includes/efatura/testhesaplar" %>
 
 ## Dikkat Edilecek Hususlar
@@ -40,7 +29,9 @@ kapatabilirsiniz.
 
 
 <%= partial "includes/eirsaliye/senaryolar" %>
-<%= partial "includes/eirsaliye/hatasonucu" %>
+<%= partial "includes/ortak/errortype" %>
+<%= partial "includes/eirsaliye/irsaliyehatalari" %>
+<%= partial "includes/ortak/requestheader" %>
 <%= partial "includes/eirsaliye/loaddespatch" %>
 <%= partial "includes/eirsaliye/senddespatch" %>
 <%= partial "includes/eirsaliye/getdespatch" %>

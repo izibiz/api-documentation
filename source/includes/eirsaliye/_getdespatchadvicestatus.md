@@ -40,7 +40,7 @@ Parametre | Tip        | Açıklama
 
 
 
-### İrsaliye Durumları
+### E-İrsaliye Durumları
 
 
 Durum	| Kod | Detaylı Açıklama

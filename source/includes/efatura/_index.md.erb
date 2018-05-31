@@ -1,17 +1,7 @@
 # E-Fatura Webservisi
 e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.
 
-
-## WSDL Endpoint Adresi
-
-E-Fatura Webservisine aşağıdaki adresten erişilmektedir:
-
-Test Sistemi: [https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl](https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl)
-
-Test Portal Adresimiz: [https://portaltest.izibiz.com.tr] (https://portaltest.izibiz.com.tr)
-
-Test portali erişim bilgileri için **entegrasyon@izibiz.com.tr** adresi ile iletişime geçebilirsiniz.
-
+<%= partial "includes/ortak/url" %>
 <%= partial "includes/efatura/testhesaplar" %>
 
 
@@ -61,7 +51,7 @@ E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı ist
 7. Fatura **InvoiceType** sınıfı ile üretilmektedir.
 
 <%= partial "includes/efatura/faturasenaryolar" %>
-<%= partial "includes/efatura/ortak" %>
+<%= partial "includes/ortak/requestheader" %>
 <%= partial "includes/efatura/sendinvoice" %>
 <%= partial "includes/efatura/loadinvoice" %>
 <%= partial "includes/efatura/getinvoice" %>

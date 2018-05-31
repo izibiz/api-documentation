@@ -42,8 +42,8 @@ Parametre | Tip        | Açıklama
 **HEADER.TO** | String | Belgenin gönderildiği Posta Kutusu (PK)
 **HEADER.PROFILEID** | String | Belge senaryosu. `TEMELIRSALIYE` değeri olabilir.
 **HEADER.INVOICE_TYPE_CODE** | String | Belgenin tipi. `SEVK` değeri olabilir.
-**HEADER.STATUS** | String | Belgenin durumu. Detay için **İrsaliye Durumları** başlığını inceleyiniz.
-**HEADER.STATUS_DESCRIPTION** | String | Belge durum açıklaması. Detay için **İrsaliye Durumları** başlığını inceleyiniz.
+**HEADER.STATUS** | String | Belgenin durumu. Detay için **E-İrsaliye Durumları** başlığını inceleyiniz.
+**HEADER.STATUS_DESCRIPTION** | String | Belge durum açıklaması. Detay için **E-İrsaliye Durumları** başlığını inceleyiniz.
 **HEADER.GIB_STATUS_CODE** | String | Belgenin GİB'de ki durum kodu. Detay için **GİB Durum Kodları** başlığını inceleyiniz.
 **HEADER.GIB_STATUS_DESCRIPTION** | String | Belgenin GİB'de ki durum kodunun açıklaması. Detay için **GİB Durum Kodları** başlığını inceleyiniz.  
 **HEADER.CDATE** | String | Belgenin sisteme ulaştığı tarih
