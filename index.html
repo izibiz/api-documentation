@@ -36,7 +36,7 @@
           }
         );
         $(function() {
-          setupLanguages(["csharp","php","delphi","java"]);
+          setupLanguages(["csharp"]);
         });
       </script>
   </head>
@@ -55,9 +55,6 @@
       </div>
         <div class="lang-selector">
               <a href="#" data-language-name="csharp">C#</a>
-              <a href="#" data-language-name="php">PHP</a>
-              <a href="#" data-language-name="delphi">Delphi</a>
-              <a href="#" data-language-name="java">Java</a>
         </div>
      <!-- <div class="key-replace">
         <input type="text" class="key-replace" placeholder="Your API Key (optional)">
@@ -97,7 +94,7 @@
 
 <p>Entegrasyon süreci ile ilgili her türlü teknik sorularınızı <strong>entegrasyon@izibiz.com.tr</strong> adresine iletebilirsiniz.</p>
 
-<h2 id="wsdl-endpoint-url">WSDL Endpoint URL</h2>
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
 <table><thead>
 <tr>
@@ -127,6 +124,20 @@
 </tr>
 </tbody></table>
 
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
           <h1 id="kimlik-do-rulama-webservisi">Kimlik Doğrulama Webservisi</h1>
 
 <p>Entegrasyon sürecinin ilk adımı olan kimlik doğrulamayı sağlayan servistir.  Yapılan her işlem mutlaka aktif bir oturum ile yapılmalıdır.
@@ -147,6 +158,18 @@
 <td>String</td>
 <td><strong>Evet</strong></td>
 <td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
 </tr>
 <tr>
 <td><strong>CLIENT_TXN_ID</strong></td>
@@ -179,12 +202,6 @@
 <td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
 </tr>
 <tr>
-<td><strong>APPLICATION_NAME</strong></td>
-<td>String</td>
-<td><strong>Evet</strong></td>
-<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
-</tr>
-<tr>
 <td><strong>HOST_NAME</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -202,19 +219,7 @@
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
 </tr>
-<tr>
-<td><strong>COMPRESSED</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
-</tr>
 </tbody></table>
-
-<ul>
-<li>LoadInvoice</li>
-<li>SendInvoice</li>
-<li>SendInvoiceResponse</li>
-</ul>
 
 <h2 id="oturum-a-ma-login">Oturum Açma (Login)</h2>
 
@@ -519,11 +524,45 @@ Servisten dönen parametreler şu şekildedir:</p>
 
 <p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
-<p>E-Fatura Webservisine aşağıdaki adresten erişilmektedir:</p>
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
 
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></p>
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
 
 <p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
 
@@ -731,6 +770,18 @@ kapatabilirsiniz.</p></li>
 <td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -761,12 +812,6 @@ kapatabilirsiniz.</p></li>
 <td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
 </tr>
 <tr>
-<td><strong>APPLICATION_NAME</strong></td>
-<td>String</td>
-<td><strong>Evet</strong></td>
-<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
-</tr>
-<tr>
 <td><strong>HOST_NAME</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -784,19 +829,7 @@ kapatabilirsiniz.</p></li>
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
 </tr>
-<tr>
-<td><strong>COMPRESSED</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
-</tr>
 </tbody></table>
-
-<ul>
-<li>LoadInvoice</li>
-<li>SendInvoice</li>
-<li>SendInvoiceResponse</li>
-</ul>
 
 <h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme (SendInvoice)</h2>
 
@@ -2106,8 +2139,6 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 
 <p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></p>
 
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
 <p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
 
 <h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
@@ -2341,6 +2372,18 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -2371,12 +2414,6 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
 </tr>
 <tr>
-<td><strong>APPLICATION_NAME</strong></td>
-<td>String</td>
-<td><strong>Evet</strong></td>
-<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
-</tr>
-<tr>
 <td><strong>HOST_NAME</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -2394,19 +2431,7 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
 </tr>
-<tr>
-<td><strong>COMPRESSED</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
-</tr>
 </tbody></table>
-
-<ul>
-<li>LoadInvoice</li>
-<li>SendInvoice</li>
-<li>SendInvoiceResponse</li>
-</ul>
 
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieve-kullanmay-n-z">E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız</h2>
 
@@ -3141,15 +3166,49 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
-<p>E-Arşiv Webservisine aşağıdaki adresten erişilmektedir:</p>
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
 
-<p>Test Sistemi: <a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></p>
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
 
 <p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
 
-<p>Test portali erişim bilgileri için (entegrasyon@izibiz.com.tr) adresi ile iletişime geçebilirsiniz.</p>
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
 
 <h2 id="test-hesaplar">Test Hesaplar</h2>
 
@@ -3302,14 +3361,16 @@ kapatabilirsiniz.</p></li>
 <tr>
 <td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
 <td>String</td>
-<td>Hatanın kodu. Detay için hata kodları listesine bakınız.</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
 </tr>
 <tr>
 <td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
 <td>String</td>
-<td>Hatanın kısa açıklaması. Detay için hata kodları listesine bakınız.</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
+
+<h2 id="hata-kodlar">Hata Kodları</h2>
 
 <table><thead>
 <tr>
@@ -3388,6 +3449,86 @@ kapatabilirsiniz.</p></li>
 <tr>
 <td>10017</td>
 <td>Yetkisiz erişim tepit edildi!</td>
+</tr>
+</tbody></table>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
 </tr>
 </tbody></table>
 
@@ -3708,12 +3849,12 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td><strong>HEADER.STATUS</strong></td>
 <td>String</td>
-<td>Belgenin durumu. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+<td>Belgenin durumu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
 <td>String</td>
-<td>Belge durum açıklaması. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+<td>Belge durum açıklaması. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.GIB_STATUS_CODE</strong></td>
@@ -3884,7 +4025,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<h3 id="rsaliye-durumlar">İrsaliye Durumları</h3>
+<h3 id="e-rsaliye-durumlar">E-İrsaliye Durumları</h3>
 
 <table><thead>
 <tr>
@@ -4165,13 +4306,49 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, hem kağıt hem de elektronik ortamda muhafazası ve ibrazı ile elektronik ortamda raporlamasını kapsayan uygulamadır.</p>
 
-<h2 id="wsdl-endpoint-adresi">WSDL Endpoint Adresi</h2>
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
-<p>E-Müstahisl webservisine aşağıdaki adresten erişilmektedir:</p>
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
 
-<p>E-Müstahsil Makbuzu Test Servisi <a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></p>
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
 
 <p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
 
 <h2 id="test-hesaplar">Test Hesaplar</h2>
 
@@ -4183,23 +4360,34 @@ E-Müstahsil test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 
 <p>E-Müstahsil uygulamanızı geliştirken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
-<li><p>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
-<li><p><strong>SendCreditNote</strong> metodu ile müstahsil makbuzu gönderimi yapılmaktadır.</p></li>
-<li><p><strong>GetCreditNoteStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></p></li>
-<li><p><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</p></li>
-<li><p><strong>CancelCreditNote</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</p></li>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
-kapatabilirsiniz.</p></li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendCreditNote</strong> metodu ile müstahsil makbuzu gönderimi yapılmaktadır.</li>
+<li><strong>GetCreditNoteStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>CancelCreditNote</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</li>
 </ol>
 
 <h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
+
+<p>Yakında</p>
 
 <h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
 
 <p>Yakında eklenecektir.</p>
 
 <h2 id="m-stahsil-makbuz-s-n-f-creditnotetype-nas-l-retilir">Müstahsil Makbuz Sınıfı (CreditNoteType) Nasıl Üretilir ?</h2>
+
+<ul>
+<li>Müstahsil makubuzu GİB tarafından belirlenen UBL-TR CreditNote belgesi ile ürütilmekte ve saklanmaktadır.</li>
+<li>GİB teknik kılavuzları içerisinde belgeye ait XML Schema Definition (XSD) dosyası bulunmaktadır.</li>
+<li>Hazırlanan belgeler XSDye uygun olmalıdır.</li>
+<li>Geliştirme ortamına bağlı olarak XSD dosyalarından sınıflar türütülerek belgeler oluşturulabilir.</li>
+</ul>
+
+<h3 id="net-ortam">.NET Ortamı</h3>
 
 <p>.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</p>
 
@@ -4213,6 +4401,10 @@ kapatabilirsiniz.</p></li>
 <li>Bu işlemin sonunda müstahsil makbuzu oluşturmak için gerekli bütün sınıflar UBL-CreditNote-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
 <li>Müstahsil <strong>CreditNoteType</strong> sınıfı ile üretilmektedir.</li>
 </ol>
+
+<h3 id="java">JAVA</h3>
+
+<h3 id="php">PHP</h3>
 
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
@@ -4292,6 +4484,18 @@ kapatabilirsiniz.</p></li>
 <td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -4322,12 +4526,6 @@ kapatabilirsiniz.</p></li>
 <td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
 </tr>
 <tr>
-<td><strong>APPLICATION_NAME</strong></td>
-<td>String</td>
-<td><strong>Evet</strong></td>
-<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
-</tr>
-<tr>
 <td><strong>HOST_NAME</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -4345,19 +4543,7 @@ kapatabilirsiniz.</p></li>
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
 </tr>
-<tr>
-<td><strong>COMPRESSED</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Bu parametre aşağıda ki servislerde kullanılmaktadır:</td>
-</tr>
 </tbody></table>
-
-<ul>
-<li>LoadInvoice</li>
-<li>SendInvoice</li>
-<li>SendInvoiceResponse</li>
-</ul>
 
 <h2 id="e-m-stahsil-g-nderme-sendcreditnote">E-Müstahsil Gönderme (SendCreditNote)</h2>
 
@@ -4697,9 +4883,6 @@ Elektronik defter tutanlar, elektronik defterlerini oluşturdukları ve muhafaza
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="csharp">C#</a>
-                <a href="#" data-language-name="php">PHP</a>
-                <a href="#" data-language-name="delphi">Delphi</a>
-                <a href="#" data-language-name="java">Java</a>
           </div>
       </div>
     </div>
