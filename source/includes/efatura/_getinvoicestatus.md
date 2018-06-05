@@ -1,4 +1,9 @@
 ## Fatura Durum Sorgulama (GetInvoiceStatus)
+<aside class="warning">
+Bu servis birden fazla fatura için durum sorgulamasını desteklemediği için kullanımdan kaldırılmıştır. Lütfen birden fazla faturanın durumunu sorgulayı destekleyen GetInvoiceStatusAll servisini kullanınız.
+</aside>
+
+## Fatura Durum Sorgulama (GetInvoiceStatusAll)
 * E-Fatura sisteminde bulunan bir veya birden fazla taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.
 
 

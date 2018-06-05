@@ -26,7 +26,6 @@ Parametre | Tip        | Açıklama
 **CREDITNOTEHEADER.RECEIVER** | String |  Belgeyi alan firmanın VKNsi `VKN` attribute içerisinde, firma ünvanı ise `IDENTIFIER` attribute içerisinde dönülmektedir.
 **CREDITNOTEHEADER.ISSUE_DATE** | Date | Belge tarihi.
 **CREDITNOTEHEADER.ISSUE_TIME** | String | Belge düzenleme zamanı.
-
 **CREDITNOTEHEADER.DIRECTION** | String | Belge yönü. Gelen irsaliye için `IN`, giden irsaliye için `OUT` değeri dönülür.
 **CREDITNOTEHEADER.STATUS** | String | Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için `STATUS_CODE` alanını kullanınız.
 **CREDITNOTEHEADER.STATUS_CODE** | String | Belgenin durum kodu. Detay için **İrsaliye Durumları** başlığını inceleyiniz.
