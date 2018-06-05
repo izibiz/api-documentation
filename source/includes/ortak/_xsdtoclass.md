@@ -3,16 +3,21 @@
 Özel Entegeratör webservislerine gönderilecek belgelerin (fatura, irsaliye, müstahsil vs) UBL-TR formatında istemci ortamında oluşturulması gerekmektedir. UBL-TR XML belge oluşturmak için iki yöntem kullanılabilir :
 
 
-1. Gelir İdaresi Başkanlığı tarafından yayınlan UBL-TR paketinde bulunan belgelere ait şema (XSD) dosyasında uygulama geliştirme ortamına uygun sınıflar üretilebilir. Üretilen sınıftan obje oluşturarak fieldleri doldurarak belge hazırlanır. Hazırlanan belge webservise parametre olarak gönderilebiir. http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden pakete ulaşılabilir.
+* Gelir İdaresi Başkanlığı tarafından yayınlan UBL-TR paketinde bulunan belgelere ait şema (XSD) dosyasında uygulama geliştirme ortamına uygun sınıflar üretilebilir. Üretilen sınıftan obje oluşturarak fieldleri doldurarak belge hazırlanır. Hazırlanan belge webservise parametre olarak gönderilebiir.
 
-Belge Tipi | Çalıştırılacak Komut | Sonucunda Oluşacak Sınıf | Belge Tipi
+Öncelikle http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden indirilip unzip edilmelidir.
+
+.Net Framework yüklü olan bir bilgisayarda **Developer Command Prompt** UBL-TR paketinin unzip edildiği dizinde başlatılmalı ve aşağıda ki belgeye uygun komut  çalıştırılır.
+
+Belge Tipi | Çalıştırılacak Komut | Oluşacak Sınıf | Belge Tipi
 ---------- | -------- | -------- | ---------
 E-Fatura / E-Arşiv Fatura |  xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd | UBL-Invoice-2.1.cs | InvoiceType
 E-İrsaliye |  xsd /c UBL-DespatchAdvice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd | UBL-DespatchAdvice-2.1.cs | DespatchAdviceType
 E-İrsaliye Yanıtı |  xsd /c UBL-ReceiptAdvice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd | UBL-ReceiptAdvice-2.1.cs | ReceiptAdviceType  
 Müstahsil Makbuzu |  xsd /c UBL-CreditNote-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd | UBL-CreditNote-2.1.cs | CreditNoteType
 
-2. Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.
+
+* Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.
 
 
 ### .NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:
