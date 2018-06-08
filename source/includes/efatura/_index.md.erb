@@ -23,31 +23,35 @@ Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 ## E-Fatura Entegrasyon Kontrol Listesi
  Durum | Kontrol  
  -------| ----------
-**Evet / Hayır** | Oturum Açmak için **Authetication** webservisinde ki **Login** metodu kullanıldı.
+**Evet / Hayır** | Oturum Açmak için **Kimlik Doğrulama (Authentication)** webservisinde ki **Login** metodu kullanıldı.
 **Evet / Hayır** | Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.
-**Evet / Hayır** | E-Fatura mükellef listesi çekmek için **Authentication** webservisinde ki **GetGibUserList** metodu kullanıldı.
+**Evet / Hayır** | E-Fatura mükellef listesi çekmek için **Kimlik Doğrulama (Authentication)** webservisinde ki **GetGibUserList** metodu kullanılıyor.
 **Evet / Hayır** | Gönderilen her istek ile REQUEST_HEADER objesinde ki `SESSION_ID` ve `APPLICATION_NAME` alanları dolu gönderiliyor.
 **Evet / Hayır** | Fatura numarası ataması müteselsilliği sağlıyor.
 **Evet / Hayır** | Her türlü fatura senaryosuna göre fatura **SendInvoice** metodu kullanılarak gönderildi (TEMEL, TICARI, IHRACAT, YOLCUBERABERI,SGK)
 **Evet / Hayır** | Her türlü fatura tipinden örnek fatura gönderildi. (Satış, Iade, Tevkifat, Özel Matrah vs)
-**Evet / Hayır** | 7 günden geriye fatura düzenlenmesi engellendi.
-**Evet / Hayır** | **GetInvoice** metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) çekildi.
+**Evet / Hayır** | Özel entegratöre iletilen faturalar için muhasebe paketi/ERP'de değişiklik yapılamıyor. Kayıt kitleniyor.
+**Evet / Hayır** | Alıcı tarafında hata almış faturalar **aynı fatura numarası ama farklı ETTN** ile tekrar **SendInvoice** servisi kullanılarak gönderilebiliyor.
+**Evet / Hayır** | 7 günden geriye fatura düzenlenemiyor.
+**Evet / Hayır** | **GetInvoice** metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) müşteri ortamına çekiliyor.
 **Evet / Hayır** | Özel entegratörden fatura çekme özelliği ekranda bir butona değilde zamanlayıcı ile belirli aralıkta otomatik yapılıyorsa bu süre konfiguratif ve en az 15dk olarak belirlendi.
-**Evet / Hayır** | Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık tıklasa bile 5 dk bir yapılıyor.
-**Evet / Hayır** | Özel entegratörden **GetInvoice** metodu ile çekilen faturaların XMLleri (filesistem veya veritabanına) kaydedildi.
+**Evet / Hayır** | Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık butona tıklasa bile 5 dakika da bir yapılıyor.
+**Evet / Hayır** | Özel entegratörden **GetInvoice** metodu ile çekilen faturaların XMLleri (file sisteme veya veritabanına) kaydediliyor.
 **Evet / Hayır** | Başarı ile kaydedilen faturalar için **MarkInvoice** kullanılarak alındı mesajı gönderildi.
-**Evet / Hayır** | Alınan bütün faturalar için toplu alındı mesajı gönderilmek için **GetInvoice** metodu ile dönülen INVOICE listesi **MarkInvoice** metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu `INVOICE.CONTENT` alanı boşaltıldı. Böylece network trafik oluşturulması önlendi.
-**Evet / Hayır** | Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa en az 4 saatte bir güncelleniyor.
-**Evet / Hayır** | Nihai duruma ulaşmış olan (GIB Durum Kodu `1300`, `1230`, `1215` olan veya `1220` olup üzerinden 48 saat geçmiş) faturaların durumları sorgulanmıyor.
+**Evet / Hayır** | Alınan bütün faturalar için toplu alındı mesajı gönderilmek için **GetInvoice** metodu ile dönülen INVOICE listesi **MarkInvoice** metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu `INVOICE.CONTENT` alanı boşaltılıyor. Böylece network trafik oluşturulması önleniyor.
+**Evet / Hayır** | Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa bu süre konfiguratif ve en az 4 saat olarak belirlendi.
+**Evet / Hayır** | Nihai duruma ulaşmış **giden** faturaların (GetInvoiceStatus servisi ile dönülen SUBSTATUS parametresinin değeri `SUCCEED` veya `FAILED` ise) durumları sorgulanmıyor.
+**Evet / Hayır** | **Gelen** temel faturaların durumları sorgulanmıyor.
+**Evet / Hayır** | **Gelen** ticari faturaların durumları yanıt verildikten sonra sorugulanmaya başlanıyor ve GetInvoiceStatus servisi ile dönülen STATUS parametresinin değeri `SUCCEED` veya `FAILED` olana kadar sorgulanıyor.
 **Evet / Hayır** | Alıcı sisteme ulaştıktan sonra üzerinden **8 gün geçmiş** gelen veya giden faturaların durumları sorgulanmıyor.
 **Evet / Hayır** | Nihai duruma ulaşmamış faturalar için durum sorgulaması **GetInvoiceStatus** metodu ile yapılıyor.
 **Evet / Hayır** | Durum sorgulaması yapılacak fatura birden fazla ise **GetInvoiceStatus** metodunda `UUID` parametresi çoklanarak tek bir istek ile yapılıyor. Yani her fatura için ayrı ayrı durum sorgulaması yapılmıyor.
+**Evet / Hayır** | İhracat faturaların durumları sorgulanınca GTB numarası vs alınıp müşteriye gösteriliyor.
 **Evet / Hayır** | Gelen temel fatura senaryosunda ki faturalara kabul veya ret yanıtı gönderilemiyor.
 **Evet / Hayır** | Gelen ticari fatura senaryosunda ki faturalara kabul veya red yanıtı **SendInvoiceResponseWithServerSign** metodu ile gönderildi.
-**Evet / Hayır** | Ret edilen ticari faturalar için red sebebi gönderiliyor.
-**Evet / Hayır** | Ret edilen ticari faturalar için red sebebi gönderiliyor.
+**Evet / Hayır** | Ret edilen ticari faturalar için red sebebi **mutlaka** gönderiliyor.
 **Evet / Hayır** | Fatura görüntülemek için indirdilen fatura XML içerisinde ki XSLT ile transform edip HTML görüntüsünü oluşturuluyor.
-**Evet / Hayır** | Kullanıcı uygulamayı kapattığında **Authetication** webservisinde ki **Logout** metodu kullanarak oturum kapatıldı.
+**Evet / Hayır** | Kullanıcı uygulamayı kapattığında **Kimlik Doğrulama (Authentication)** webservisinde ki **Logout** metodu kullanarak oturum kapatıldı.
 
 
 ## İstemci (client) Örnek Projeler
