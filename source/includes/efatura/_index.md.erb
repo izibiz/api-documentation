@@ -12,33 +12,42 @@ Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 2. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **GetGibUserList** servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.
 3. E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.
 4. **SendInvoice** metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.
-5. **GetInvoiceStatus** metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu İzibiz sunucularından minumum 4 saatte bir sorgulanmalıdır. **Sık sorgulama yapmayınız.**
-6. **GetInvoice** metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur.
+5. **GetInvoiceStatus** metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. **Sık sorgulama yapmayınız.**
+6. **GetInvoice** metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.  
 7. **MarkInvoice** metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.
-8. **SendInvoiceResponseWithServerSign** metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. **8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.**
-9. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Logout** metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.
+8. **SendInvoiceResponseWithServerSign** metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz.
+9. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. **8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.**
+10. Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.
+11. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Logout** metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.
 
-## E-Fatura Entegrasyon Testleri
- Test  | Test Açıklama
- ---------- | ---------
-Oturum Açma | Authetication webservi test senaryolarını inceleyiniz.
-E-Fatura Mükellef Listesi Çekme |
-Taslak Fatura Yükleme |
-Temel Fatura Gönderme  | Fatura senaryoları bölümünden Temel fatura örnek faturayı indirip SendInvoice metodu ile gönderme.
-Ticari Fatura Gönderme  | Fatura senaryoları bölümünden Temel fatura örnek faturayı indirip SendInvoice metodu ile gönderme.
-İhracat Faturası Gönderme  | İhracat faturasını SendInvoice metodu ile gönderme.
-İrsaliyeli Fatura Gönderme |
-İmzalı Fatura Gönderme (İhtiyaç Varsa)|
-7 Günden Geriye Fatura Düzenleme Kısıtlama| VUK’un 231/5. maddesinde faturanın 7 gün içersinde düzenlenmelidir. Bundan dolayı özel entegratör entegrasyon sistemi 7 günden geriye fatura düzenlenmesine izin vermemektedir. 7 günden geriye fatura düzenleyip gönderilir ve hata mesajı aldığı görülür.
-7 Günden Geriye Fatura Düzenleme - Ayarı Açarak | VUK’un 231/5. maddesinde faturanın 7 gün içersinde düzenlenmelidir. Bundan dolayı özel entegratör entegrasyon sistemi 7 günden geriye fatura düzenlenmesine izin vermektedir.  Eğer mükellef gerçekten müteselsiliği bozacağını bilerek ve VUK göre oluşacak cezayı kabul ederek göndermek isterse Portal uygulamasında Sistem ayarları ekranından "Fatura Numaralarımı Otomatik Olarak Düzenle" seçeneğini kapatabilir. Bu durumda webservis müteselsillik kontrolü yapmayacaktır. Seçeneği açarak 7 gün geriye fatura gönderilebileceği test edilir. Not: Yapılan test sonrası ilgili seçeneği tekrar açınız.
-Gelen Fatura Çekme | Yeni gelen faturaları çekme
-Gelen Fatura Okundu İşaretleme |
-Fatura Durum Sorgulama |
-Gelen Temel Faturaya Yanıt Kısıtlaması  | Gelen Temel faturaya onay verilmesi engellenmelidir. Eğer istemci tarafından engellenmez ve webservise iste gönderilirse özel entegratör webservis tarafından engellenecektir.
-Gelen Ticari Faturaya KABUL Yanıtı Gönderme  | Gelen ticari faturaya KABUL yanıtı SendInvoiceResponseWithServerSign metodu ile gönderilir. Yanıt ile beraber açıklama gönderilebileceği için ekran buna uygun olarak tasarlanmalıdır.
-Gelen Ticari faturaya RET Yanıtı Gönderme  | Gelen TICARIFATURA senaryosunda ki bir faturaya RED yanıtı SendInvoiceResponseWithServerSign metodu ile gönderilir. İsteğe red sebebi eklenmesi zorunludur. Eğer ret sebebi gönderilmezse sistem Reddedildi açıklaması eklenecektir.
-Üzerinden 8 Gün Geçmiş Ticari Faturaya Yanıt Kısıtlaması  | Gelen Ticari bir faturaya 8 gün içerisinde red yanıtı verilebilir. 8 gün geçtikten sonra ret yanıtı gönderilmesi kısıtlanmalıdır. 8 gün hesaplaması şu şekilde yapılır. GetInvoiceStatus servisi veya GetInvoice servisi ile dönülen faturanın sisteme ulaştığı tarih (CDATE) üzerine 8 gün eklenir ve bu tarihten sonra işlem yapılmasına izin verilmez. Kabul yanıtı her zaman verilebilir.
-
+## E-Fatura Entegrasyon Kontrol Listesi
+ Durum | Kontrol  
+ -------| ----------
+**Evet / Hayır** | Oturum Açmak için **Authetication** webservisinde ki **Login** metodu kullanıldı.
+**Evet / Hayır** | Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.
+**Evet / Hayır** | E-Fatura mükellef listesi çekmek için **Authentication** webservisinde ki **GetGibUserList** metodu kullanıldı.
+**Evet / Hayır** | Gönderilen her istek ile REQUEST_HEADER objesinde ki `SESSION_ID` ve `APPLICATION_NAME` alanları dolu gönderiliyor.
+**Evet / Hayır** | Fatura numarası ataması müteselsilliği sağlıyor.
+**Evet / Hayır** | Her türlü fatura senaryosuna göre fatura **SendInvoice** metodu kullanılarak gönderildi (TEMEL, TICARI, IHRACAT, YOLCUBERABERI,SGK)
+**Evet / Hayır** | Her türlü fatura tipinden örnek fatura gönderildi. (Satış, Iade, Tevkifat, Özel Matrah vs)
+**Evet / Hayır** | 7 günden geriye fatura düzenlenmesi engellendi.
+**Evet / Hayır** | **GetInvoice** metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) çekildi.
+**Evet / Hayır** | Özel entegratörden fatura çekme özelliği ekranda bir butona değilde zamanlayıcı ile belirli aralıkta otomatik yapılıyorsa bu süre konfiguratif ve en az 15dk olarak belirlendi.
+**Evet / Hayır** | Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık tıklasa bile 5 dk bir yapılıyor.
+**Evet / Hayır** | Özel entegratörden **GetInvoice** metodu ile çekilen faturaların XMLleri (filesistem veya veritabanına) kaydedildi.
+**Evet / Hayır** | Başarı ile kaydedilen faturalar için **MarkInvoice** kullanılarak alındı mesajı gönderildi.
+**Evet / Hayır** | Alınan bütün faturalar için toplu alındı mesajı gönderilmek için **GetInvoice** metodu ile dönülen INVOICE listesi **MarkInvoice** metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu `INVOICE.CONTENT` alanı boşaltıldı. Böylece network trafik oluşturulması önlendi.
+**Evet / Hayır** | Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa en az 4 saatte bir güncelleniyor.
+**Evet / Hayır** | Nihai duruma ulaşmış olan (GIB Durum Kodu `1300`, `1230`, `1215` olan veya `1220` olup üzerinden 48 saat geçmiş) faturaların durumları sorgulanmıyor.
+**Evet / Hayır** | Alıcı sisteme ulaştıktan sonra üzerinden **8 gün geçmiş** gelen veya giden faturaların durumları sorgulanmıyor.
+**Evet / Hayır** | Nihai duruma ulaşmamış faturalar için durum sorgulaması **GetInvoiceStatus** metodu ile yapılıyor.
+**Evet / Hayır** | Durum sorgulaması yapılacak fatura birden fazla ise **GetInvoiceStatus** metodunda `UUID` parametresi çoklanarak tek bir istek ile yapılıyor. Yani her fatura için ayrı ayrı durum sorgulaması yapılmıyor.
+**Evet / Hayır** | Gelen temel fatura senaryosunda ki faturalara kabul veya ret yanıtı gönderilemiyor.
+**Evet / Hayır** | Gelen ticari fatura senaryosunda ki faturalara kabul veya red yanıtı **SendInvoiceResponseWithServerSign** metodu ile gönderildi.
+**Evet / Hayır** | Ret edilen ticari faturalar için red sebebi gönderiliyor.
+**Evet / Hayır** | Ret edilen ticari faturalar için red sebebi gönderiliyor.
+**Evet / Hayır** | Fatura görüntülemek için indirdilen fatura XML içerisinde ki XSLT ile transform edip HTML görüntüsünü oluşturuluyor.
+**Evet / Hayır** | Kullanıcı uygulamayı kapattığında **Authetication** webservisinde ki **Logout** metodu kullanarak oturum kapatıldı.
 
 
 ## İstemci (client) Örnek Projeler

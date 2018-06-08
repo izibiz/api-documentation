@@ -1,9 +1,4 @@
 ## Fatura Durum Sorgulama (GetInvoiceStatus)
-<aside class="warning">
-Bu servis birden fazla fatura için durum sorgulamasını desteklemediği için kullanımdan kaldırılmıştır. Lütfen birden fazla faturanın durumunu sorgulayı destekleyen GetInvoiceStatusAll servisini kullanınız.
-</aside>
-
-## Fatura Durum Sorgulama (GetInvoiceStatusAll)
 * E-Fatura sisteminde bulunan bir veya birden fazla taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.
 
 
@@ -111,8 +106,3 @@ Kod | Açıklama | Alınacak Aksiyon
 1220 | 	HEDEFTEN SİSTEM YANITI GELMEDİ  | 	Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.
 1230 | 	HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ 	 | Belge yeniden gönderilmeli
 1300 | 	BAŞARIYLA TAMAMLANDI 	| Başarılı olan Belge aynı numara ile gönderilemez.
-
-## Çoklu Fatura Durum Sorgulama - (GetInvoiceStatusAll)
-<aside class="warning">
-BU METOT DESTEKLENMEMEKTEDİR. LÜTFEN KULLANMAYINIZ.
-</aside>
