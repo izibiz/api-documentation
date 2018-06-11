@@ -258,6 +258,10 @@
 <td>Fatura Net Tutar</td>
 <td>KDV Tutarı / Toplam Tutarı</td>
 </tr>
+<tr>
+<td>GTB</td>
+<td>Gümrük ve Ticaret Bakanlığı</td>
+</tr>
 </tbody></table>
 
 <h2 id="belge-olu-turma">Belge Oluşturma</h2>
@@ -859,7 +863,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Oturum Açmak için <strong>Authetication</strong> webservisinde ki <strong>Login</strong> metodu kullanıldı.</td>
+<td>Oturum Açmak için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Login</strong> metodu kullanıldı.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -867,7 +871,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>E-Fatura mükellef listesi çekmek için <strong>Authentication</strong> webservisinde ki <strong>GetGibUserList</strong> metodu kullanıldı.</td>
+<td>E-Fatura mükellef listesi çekmek için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>GetGibUserList</strong> metodu kullanılıyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -887,11 +891,19 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>7 günden geriye fatura düzenlenmesi engellendi.</td>
+<td>Özel entegratöre iletilen faturalar için muhasebe paketi/ERP&#39;de değişiklik yapılamıyor. Kayıt kitleniyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td><strong>GetInvoice</strong> metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) çekildi.</td>
+<td>Alıcı tarafında hata almış faturalar <strong>aynı fatura numarası ama farklı ETTN</strong> ile tekrar <strong>SendInvoice</strong> servisi kullanılarak gönderilebiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>7 günden geriye fatura düzenlenemiyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>GetInvoice</strong> metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) müşteri ortamına çekiliyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -899,11 +911,11 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık tıklasa bile 5 dk bir yapılıyor.</td>
+<td>Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık butona tıklasa bile 5 dakika da bir yapılıyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratörden <strong>GetInvoice</strong> metodu ile çekilen faturaların XMLleri (filesistem veya veritabanına) kaydedildi.</td>
+<td>Özel entegratörden <strong>GetInvoice</strong> metodu ile çekilen faturaların XMLleri (file sisteme veya veritabanına) kaydediliyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -911,15 +923,23 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Alınan bütün faturalar için toplu alındı mesajı gönderilmek için <strong>GetInvoice</strong> metodu ile dönülen INVOICE listesi <strong>MarkInvoice</strong> metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu <code class="prettyprint">INVOICE.CONTENT</code> alanı boşaltıldı. Böylece network trafik oluşturulması önlendi.</td>
+<td>Alınan bütün faturalar için toplu alındı mesajı gönderilmek için <strong>GetInvoice</strong> metodu ile dönülen INVOICE listesi <strong>MarkInvoice</strong> metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu <code class="prettyprint">INVOICE.CONTENT</code> alanı boşaltılıyor. Böylece network trafik oluşturulması önleniyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa en az 4 saatte bir güncelleniyor.</td>
+<td>Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa bu süre konfiguratif ve en az 4 saat olarak belirlendi.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Nihai duruma ulaşmış olan (GIB Durum Kodu <code class="prettyprint">1300</code>, <code class="prettyprint">1230</code>, <code class="prettyprint">1215</code> olan veya <code class="prettyprint">1220</code> olup üzerinden 48 saat geçmiş) faturaların durumları sorgulanmıyor.</td>
+<td>Nihai duruma ulaşmış <strong>giden</strong> faturaların (GetInvoiceStatus servisi ile dönülen SUBSTATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> ise) durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>Gelen</strong> temel faturaların durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>Gelen</strong> ticari faturaların durumları yanıt verildikten sonra sorugulanmaya başlanıyor ve GetInvoiceStatus servisi ile dönülen STATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> olana kadar sorgulanıyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -935,6 +955,10 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
+<td>İhracat faturaların durumları sorgulanınca GTB numarası vs alınıp müşteriye gösteriliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
 <td>Gelen temel fatura senaryosunda ki faturalara kabul veya ret yanıtı gönderilemiyor.</td>
 </tr>
 <tr>
@@ -943,11 +967,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Ret edilen ticari faturalar için red sebebi gönderiliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Ret edilen ticari faturalar için red sebebi gönderiliyor.</td>
+<td>Ret edilen ticari faturalar için red sebebi <strong>mutlaka</strong> gönderiliyor.</td>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
@@ -955,7 +975,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Evet / Hayır</strong></td>
-<td>Kullanıcı uygulamayı kapattığında <strong>Authetication</strong> webservisinde ki <strong>Logout</strong> metodu kullanarak oturum kapatıldı.</td>
+<td>Kullanıcı uygulamayı kapattığında <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Logout</strong> metodu kullanarak oturum kapatıldı.</td>
 </tr>
 </tbody></table>
 
@@ -1845,6 +1865,21 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_STATUS.RESPONSE_DESC</strong></td>
 <td>String</td>
 <td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması. Eğer faturanın senaryosu TICARIFATURA değilse eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_REFNO</strong></td>
+<td>String</td>
+<td>Gümrük Sistemine alınan ihracat faturaları için, Gümrük ve Ticaret Bakanlığı tarafından üretilen 23 haneli bir referans numarasıdır.  23 haneli bir referans numarası ile belge tarihi yükümlü tarafından gümrük beyannamesinin 44 no’lu kutusunda “Belge Referans No” ve “Belge Tarihi” alanlarında beyan edilecektir. <strong>İhracat faturası değilse dönülmez.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_GCB_TESCILNO</strong></td>
+<td>String</td>
+<td>Gümrük İdaresi fiili ihracatı tamamlanan eşyanın kabul uygulama yanıtı ile ilgilisine dönülen Gümrük Çıkış Belgesi (GÇB) tescil numarasıdır. <strong>İhracat faturası değilse dönülmez.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_FIILI_IHRACAT_TARIHI</strong></td>
+<td>String</td>
+<td>Gümrük İdaresi tarafından fiili ihracatı tamamlanan ihracat faturaları için döndüğü fiili ihraç tarihi bilgisidir.  Gümrük İdaresi bu bilgiyi fiili ihracat (intaç) gerçekleştiğinde dönecektir. Eğer ihracat faturası için bu alan dönülmemişse hala fiili ihracat yapılmamıştır. <strong>İhracat faturası değilse dönülmez.</strong></td>
 </tr>
 <tr>
 <td><strong>INVOICE_STATUS.CDATE</strong></td>
