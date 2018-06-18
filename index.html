@@ -262,19 +262,32 @@
 <td>GTB</td>
 <td>Gümrük ve Ticaret Bakanlığı</td>
 </tr>
+<tr>
+<td>GÇB</td>
+<td>Gümrük Çıkış Belgesi</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>Veri sıkıştırma ve arşivleme formatı</td>
+</tr>
 </tbody></table>
 
 <h2 id="belge-olu-turma">Belge Oluşturma</h2>
 
-<p>Özel Entegeratör webservislerine gönderilecek belgelerin (fatura, irsaliye, müstahsil vs) UBL-TR formatında istemci ortamında oluşturulması gerekmektedir. UBL-TR XML belge oluşturmak için iki yöntem kullanılabilir :</p>
+<p>Özel Entegeratör webservislerine gönderilecek belgelerin (fatura, irsaliye, müstahsil vs) UBL-TR formatında istemci ortamında oluşturulması gerekmektedir. UBL-TR XML belge oluşturmak için <strong>iki yöntem kullanılabilir</strong> :</p>
+
+<aside class="notice">
+1. Gelir İdaresi Başkanlığı tarafından yayınlan UBL-TR paketinde bulunan belgelere ait şema (XSD) dosyasında uygulama geliştirme ortamına uygun sınıflar üretilebilir. Üretilen sınıftan obje oluşturarak fieldleri doldurarak belge hazırlanır. Hazırlanan belge webservise parametre olarak gönderilebiir.
+</aside>
 
 <ul>
-<li>Gelir İdaresi Başkanlığı tarafından yayınlan UBL-TR paketinde bulunan belgelere ait şema (XSD) dosyasında uygulama geliştirme ortamına uygun sınıflar üretilebilir. Üretilen sınıftan obje oluşturarak fieldleri doldurarak belge hazırlanır. Hazırlanan belge webservise parametre olarak gönderilebiir.</li>
+<li><p><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip">GİB UBL-TR Paketi</a> indirilip unzip edilir.</p></li>
+<li><p>Unzip edilen UBL-TR paketi içerisinde ki <strong>xsdrt\common</strong> klasöründe bulunan bütün dosyalar <strong>xsdrt\maindoc</strong> klasörüne taşınır. <br><strong>Örneğin:</strong> mv %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\common\* %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\maindoc\</p></li>
+<li><p>Eğer <strong>Visual Studio 2015 öncesi</strong> yüklü olan bir bilgisayar kullanılıyorsa <strong>V(StudioVersiyonu) Command Prompt</strong> komutu çalıştırılır. Örneğin Visual studio 2013 kurulu bir bilgisayarda <strong>V2013 Command Prompt</strong> şeklinde çalıştırılır.</p></li>
+<li><p>Eğer <strong>Visual Studio 2015 ve sonrası</strong> yüklü olan bir bilgisayar kullanılıyorsa <strong>Developer Command Prompt</strong> komut çalıştırılır.</p></li>
+<li><p>Açılan komut satırında UBL-TR paketinin unzip edildiği dizinde bulunan <strong>maindoc</strong> klasörüne geçiş yapılır. <br> <strong>Örneğin:</strong> cd %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\maindoc\</p></li>
+<li><p>Sınıfı oluşturulacak belge türüne uygun komut aşağıda ki listeye göre çalıştırılır.</p></li>
 </ul>
-
-<p>Öncelikle http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden indirilip unzip edilmelidir.</p>
-
-<p>.Net Framework yüklü olan bir bilgisayarda <strong>Developer Command Prompt</strong> UBL-TR paketinin unzip edildiği dizinde başlatılmalı ve aşağıda ki belgeye uygun komut  çalıştırılır.</p>
 
 <table><thead>
 <tr>
@@ -310,22 +323,10 @@
 </tr>
 </tbody></table>
 
-<ul>
-<li>Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.</li>
-</ul>
-
-<h3 id="net-zerinden-xsd-dosyas-ndan-s-n-f-retmek-i-in-u-ad-mlar-uygulay-n-z">.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</h3>
-
-<ol>
-<li>http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.</li>
-<li>İndirilen dosya unzip edilir.</li>
-<li>.Net Framework yüklü olan bir bilgisayarda <strong>başlat&gt;Developer Command Prompt</strong> yazılır ve gelen seçenek tıklanarak komut dosyası açılır</li>
-<li>2.maddedeki unzip yapılan dizine <strong>cd UNZIP_EDILEN_DIZIN</strong> olarak gidilir.</li>
-<li>Gelen ekranda aşağıdaki komutu yapıştırıyoruz.<br>
-<strong>xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</strong></li>
-<li>Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
-<li>Fatura <strong>InvoiceType</strong> sınıfı ile üretilmektedir.</li>
-</ol>
+<p><br>
+<aside class="notice">
+2. Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.
+</aside></p>
 
 <h2 id="belge-numaras-y-netimi">Belge Numarası Yönetimi</h2>
 
@@ -5761,6 +5762,25 @@ Elektronik defter tutanlar, elektronik defterlerini oluşturdukları ve muhafaza
 <h3 id="serbest-meslek-makbuzu">Serbest Meslek Makbuzu</h3>
 
 <p>Serbest meslek erbabının, mesleki faaliyetlerine ilişkin her türlü tahsilatı için düzenlediği belge serbest meslek makbuzudur. Bu makbuz e-Defter kılavuzunda sayılan belgeler arasında yer alan makbuz ile karıştırılmamalıdır. Serbest meslek makbuzu sayılan belgeler arasında yer almadığı için belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“serbest meslek makbuzu”</strong> olarak kaydı yapılır. Ayrıca belgenin numarası ve tarihinin de girilmesi zorunludur.</p>
+
+<h2 id="e-defter-ematron-kontrol">E-Defter Şematron Kontrolü</h2>
+
+<ul>
+<li>Uygulamamız tarafından hazırlanan defterler Gelir İdaresi Başkanlığı tarafından yayınlanan şematron kurallarından, iş kurallarından, mali mühür ya da imza kontrolünden geçmektedir. Oluşturulan defterlerin şematron kontrolünde hata
+almaması için aşağıdaki kurallara uygun olarak veri hazırlanmalıdır.</li>
+<li>Oluşturulacak defterlerin boyutunun 200 MB’ı geçmesi halinde bölünmesi gerekmektedir. Bölme işlemi uygulama
+tarafından Gelir İdaresi Başkanlığı tarafından belirlenen kurallara göre otomatik olarak yapılmaktadır.</li>
+<li>Bir yevmiyenin satır kalemleri aynı defter parçasında olmak durumundadır. Bir yevmiye kaydı 200 MB’ı geçerse
+belirli icmal yöntemleriyle yevmiye kaydı gruplandırılmalıdır. Firmaların veri büyüklüklerine göre farklılık
+göstermekle birlikte 200 MB‘lık parça yaklaşık 100.000 yevmiye satırına denk gelmektedir.</li>
+<li>Defterler sıra ile aylık olarak yüklenmelidir. Örneğin, Temmuz ayının defteri GİB’e yüklenmemişse ya da GİB’den
+onaylı beratları alınıp ay kapatılmamışsa mükellef bir sonraki ayın yani Ağustos’un defterini sistemde oluşturamaz.
+Uygulama bu durumda hata verir.</li>
+<li>GİB’e yüklenmiş, GİB’den onaylı beratları alınmış bir tarih aralığı için bir daha defter oluşturulamaz, aynı yolla ileri
+bir tarihi de kapsayacak şekilde defter oluşturulamaz.</li>
+<li>Defter kaynak verilerindeki zorunlu alanların kontrolü yapılır, kaynak veri detayları için destek@efinans.com.tr
+adresinden detaylı bilgi talep edilebilir.</li>
+</ul>
 
       </div>
       <div class="dark-box">
