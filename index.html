@@ -293,7 +293,7 @@
 <li><p>Bilindiği gibi e-dönüşüm sisteminde düzenlenen ve saklanan belgeler UBL-TR XML formatındadır. Düzenlenmiş her XML belgenin içerisinde görüntüsünü sağlayacak bir şablon (XSLT) dosya bulunmak zorundadır. Şablon belgesinin formatı XSLT (Extensible Stylesheet Language Transformations) Genişletilebilir Biçimlendirme Dili Dönüşümleridir. Bu dosya XML dokümanlarını insanların anlayacağı formata (HTML/PDF) dönüştürmek için kullanılır.</p></li>
 <li><p>Belge şablon dosyası XML dosya içerisinde ki <strong>AdditionalDocumentReference</strong> elemanına eklenmek zorundadır.
 <img src="/images/xslt_ekleme.png" height="200" width="400"/></p></li>
-<li><p>GİB, Türkiye’deki e-Fatura uygulamasında mükelleflerin kendilerine gelen ya da gönderdikleri e-Fatura’ların şema-şematron uygunluk kontrollerini yapan, görüntüleyen ve imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
+<li><p>Gelir İdaresi Başkanlığı tarafından mükellefler arasında ki anlaşmazlıklarda kullanabilecekleri ortak bir uygulama olan E-Belge Görüntüleyici uygulaması yayınlamıştır. Bu uygula UBL-TR formatında ki belgenin içerisinde ki şablon ile görüntülemesini sağlar, şema ve şematron kontrolü yapar, belgenin içerisinde ki imzanın geçerliliğini kontrol eder ve belgenin GİB&#39;de ki durumunu  mükelleflerin kendilerine gelen ya da gönderdikleri belgelerin görüntülemesinde ki hataların tespitini, şema ve şematron kontrollerini , görüntüleyen, imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
 <a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.6 İndir</a><br>
 <a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/Java17/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.7 İndir</a></p></li>
 </ul>
@@ -802,237 +802,6 @@ Servisten dönen parametreler şu şekildedir:</p>
 
 <p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
-
-<table><thead>
-<tr>
-<th>Ürün</th>
-<th>Endpoint URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Kimlik Doğrulama</td>
-<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Fatura</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Arşiv</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
-</tr>
-<tr>
-<td>E-İrsaliye</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Müstahsil Makbuzu</td>
-<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
-</tr>
-</tbody></table>
-
-<h3 id="portal-uygulamas">Portal Uygulaması</h3>
-
-<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
-
-<ul>
-<li>Belgelerin durumunu kontrol</li>
-<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
-<li>Alıcı firmanın mükellefiyet sorgulaması</li>
-</ul>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="test-hesaplar">Test Hesaplar</h2>
-
-<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
-
-<table><thead>
-<tr>
-<th>Gönderici VKN</th>
-<th>Gönderici Etiket</th>
-<th>Alıcı VKN</th>
-<th>Alıcı Etiket</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>4840847211</td>
-<td>urn:mail:defaultgb@izibiz.com.tr</td>
-<td>4840847211</td>
-<td>urn:mail:defaultpk@izibiz.com.tr</td>
-</tr>
-</tbody></table>
-
-<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
-
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</li>
-<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
-<li><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
-<li><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.<br></li>
-<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
-<li><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz.</li>
-<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
-<li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
-</ol>
-
-<h2 id="e-fatura-entegrasyon-kontrol-listesi">E-Fatura Entegrasyon Kontrol Listesi</h2>
-
-<table><thead>
-<tr>
-<th>Durum</th>
-<th>Kontrol</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Oturum Açmak için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Login</strong> metodu kullanıldı.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>E-Fatura mükellef listesi çekmek için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>GetGibUserList</strong> metodu kullanılıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Gönderilen her istek ile REQUEST_HEADER objesinde ki <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanları dolu gönderiliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Fatura numarası ataması müteselsilliği sağlıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Her türlü fatura senaryosuna göre fatura <strong>SendInvoice</strong> metodu kullanılarak gönderildi (TEMEL, TICARI, IHRACAT, YOLCUBERABERI,SGK)</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Her türlü fatura tipinden örnek fatura gönderildi. (Satış, Iade, Tevkifat, Özel Matrah vs)</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratöre iletilen faturalar için muhasebe paketi/ERP&#39;de değişiklik yapılamıyor. Kayıt kitleniyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Alıcı tarafında hata almış faturalar <strong>aynı fatura numarası ama farklı ETTN</strong> ile tekrar <strong>SendInvoice</strong> servisi kullanılarak gönderilebiliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>7 günden geriye fatura düzenlenemiyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td><strong>GetInvoice</strong> metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) müşteri ortamına çekiliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratörden fatura çekme özelliği ekranda bir butona değilde zamanlayıcı ile belirli aralıkta otomatik yapılıyorsa bu süre konfiguratif ve en az 15dk olarak belirlendi.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık butona tıklasa bile 5 dakika da bir yapılıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Özel entegratörden <strong>GetInvoice</strong> metodu ile çekilen faturaların XMLleri (file sisteme veya veritabanına) kaydediliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Başarı ile kaydedilen faturalar için <strong>MarkInvoice</strong> kullanılarak alındı mesajı gönderildi.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Alınan bütün faturalar için toplu alındı mesajı gönderilmek için <strong>GetInvoice</strong> metodu ile dönülen INVOICE listesi <strong>MarkInvoice</strong> metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu <code class="prettyprint">INVOICE.CONTENT</code> alanı boşaltılıyor. Böylece network trafik oluşturulması önleniyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa bu süre konfiguratif ve en az 4 saat olarak belirlendi.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Nihai duruma ulaşmış <strong>giden</strong> faturaların (GetInvoiceStatus servisi ile dönülen SUBSTATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> ise) durumları sorgulanmıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td><strong>Gelen</strong> temel faturaların durumları sorgulanmıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td><strong>Gelen</strong> ticari faturaların durumları yanıt verildikten sonra sorugulanmaya başlanıyor ve GetInvoiceStatus servisi ile dönülen STATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> olana kadar sorgulanıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Alıcı sisteme ulaştıktan sonra üzerinden <strong>8 gün geçmiş</strong> gelen veya giden faturaların durumları sorgulanmıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Nihai duruma ulaşmamış faturalar için durum sorgulaması <strong>GetInvoiceStatus</strong> metodu ile yapılıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Durum sorgulaması yapılacak fatura birden fazla ise <strong>GetInvoiceStatus</strong> metodunda <code class="prettyprint">UUID</code> parametresi çoklanarak tek bir istek ile yapılıyor. Yani her fatura için ayrı ayrı durum sorgulaması yapılmıyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>İhracat faturaların durumları sorgulanınca GTB numarası vs alınıp müşteriye gösteriliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Gelen temel fatura senaryosunda ki faturalara kabul veya ret yanıtı gönderilemiyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Gelen ticari fatura senaryosunda ki faturalara kabul veya red yanıtı <strong>SendInvoiceResponseWithServerSign</strong> metodu ile gönderildi.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Ret edilen ticari faturalar için red sebebi <strong>mutlaka</strong> gönderiliyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Fatura görüntülemek için indirdilen fatura XML içerisinde ki XSLT ile transform edip HTML görüntüsünü oluşturuluyor.</td>
-</tr>
-<tr>
-<td><strong>Evet / Hayır</strong></td>
-<td>Kullanıcı uygulamayı kapattığında <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Logout</strong> metodu kullanarak oturum kapatıldı.</td>
-</tr>
-</tbody></table>
-
-<h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
-
-<p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
-
-<p><a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
-<a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
-
-<h2 id="fatura-s-n-f-invoicetype-nas-l-retilir">Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?</h2>
-
-<p>.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</p>
-
-<ol>
-<li>http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.</li>
-<li>İndirilen dosya unzip edilir.</li>
-<li>.Net Framework yüklü olan bir bilgisayarda <strong>başlat&gt;Developer Command Prompt</strong> yazılır ve gelen seçenek tıklanarak komut dosyası açılır</li>
-<li>2.maddedeki unzip yapılan dizine <strong>cd UNZIP_EDILEN_DIZIN</strong> olarak gidilir.</li>
-<li>Gelen ekranda aşağıdaki komutu yapıştırıyoruz.<br>
-<strong>xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</strong></li>
-<li>Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
-<li>Fatura <strong>InvoiceType</strong> sınıfı ile üretilmektedir.</li>
-</ol>
-
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
 <table><thead>
@@ -1209,6 +978,237 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><a href="/resource/xml/FATURA_22.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="test-hesaplar">Test Hesaplar</h2>
+
+<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
+
+<table><thead>
+<tr>
+<th>Gönderici VKN</th>
+<th>Gönderici Etiket</th>
+<th>Alıcı VKN</th>
+<th>Alıcı Etiket</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4840847211</td>
+<td>urn:mail:defaultgb@izibiz.com.tr</td>
+<td>4840847211</td>
+<td>urn:mail:defaultpk@izibiz.com.tr</td>
+</tr>
+</tbody></table>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</li>
+<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
+<li><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
+<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
+<li><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz.</li>
+<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
+<li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="e-fatura-entegrasyon-kontrol-listesi">E-Fatura Entegrasyon Kontrol Listesi</h2>
+
+<table><thead>
+<tr>
+<th>Durum</th>
+<th>Kontrol</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Oturum Açmak için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Login</strong> metodu kullanıldı.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>E-Fatura mükellef listesi çekmek için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>GetGibUserList</strong> metodu kullanılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Gönderilen her istek ile REQUEST_HEADER objesinde ki <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanları dolu gönderiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Fatura numarası ataması müteselsilliği sağlıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Her türlü fatura senaryosuna göre fatura <strong>SendInvoice</strong> metodu kullanılarak gönderildi (TEMEL, TICARI, IHRACAT, YOLCUBERABERI,SGK)</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Her türlü fatura tipinden örnek fatura gönderildi. (Satış, Iade, Tevkifat, Özel Matrah vs)</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Özel entegratöre iletilen faturalar için muhasebe paketi/ERP&#39;de değişiklik yapılamıyor. Kayıt kitleniyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Alıcı tarafında hata almış faturalar <strong>aynı fatura numarası ama farklı ETTN</strong> ile tekrar <strong>SendInvoice</strong> servisi kullanılarak gönderilebiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>7 günden geriye fatura düzenlenemiyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>GetInvoice</strong> metodu kullanılarak yeni gelen bütün faturalar içerikleri ile beraber (XML) müşteri ortamına çekiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Özel entegratörden fatura çekme özelliği ekranda bir butona değilde zamanlayıcı ile belirli aralıkta otomatik yapılıyorsa bu süre konfiguratif ve en az 15dk olarak belirlendi.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Özel entegratörden fatura çekme ekranda bir buton ile kullanıcıya bırakıldıysa kullanıcı çok sık butona tıklasa bile 5 dakika da bir yapılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Özel entegratörden <strong>GetInvoice</strong> metodu ile çekilen faturaların XMLleri (file sisteme veya veritabanına) kaydediliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Başarı ile kaydedilen faturalar için <strong>MarkInvoice</strong> kullanılarak alındı mesajı gönderildi.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Alınan bütün faturalar için toplu alındı mesajı gönderilmek için <strong>GetInvoice</strong> metodu ile dönülen INVOICE listesi <strong>MarkInvoice</strong> metoduna parametre olarak gönderiliyorsa fatura içeriğinin (Base64Binary) bulunduğu <code class="prettyprint">INVOICE.CONTENT</code> alanı boşaltılıyor. Böylece network trafik oluşturulması önleniyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Faturaların durumu zamanlayıcı ile otomatik sorgulanıyorsa bu süre konfiguratif ve en az 4 saat olarak belirlendi.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Nihai duruma ulaşmış <strong>giden</strong> faturaların (GetInvoiceStatus servisi ile dönülen SUBSTATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> ise) durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>Gelen</strong> temel faturaların durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td><strong>Gelen</strong> ticari faturaların durumları yanıt verildikten sonra sorugulanmaya başlanıyor ve GetInvoiceStatus servisi ile dönülen STATUS parametresinin değeri <code class="prettyprint">SUCCEED</code> veya <code class="prettyprint">FAILED</code> olana kadar sorgulanıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Alıcı sisteme ulaştıktan sonra üzerinden <strong>8 gün geçmiş</strong> gelen veya giden faturaların durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Nihai duruma ulaşmamış faturalar için durum sorgulaması <strong>GetInvoiceStatus</strong> metodu ile yapılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Durum sorgulaması yapılacak fatura birden fazla ise <strong>GetInvoiceStatus</strong> metodunda <code class="prettyprint">UUID</code> parametresi çoklanarak tek bir istek ile yapılıyor. Yani her fatura için ayrı ayrı durum sorgulaması yapılmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>İhracat faturaların durumları sorgulanınca GTB numarası vs alınıp müşteriye gösteriliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Gelen temel fatura senaryosunda ki faturalara kabul veya ret yanıtı gönderilemiyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Gelen ticari fatura senaryosunda ki faturalara kabul veya red yanıtı <strong>SendInvoiceResponseWithServerSign</strong> metodu ile gönderildi.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Ret edilen ticari faturalar için red sebebi <strong>mutlaka</strong> gönderiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Fatura görüntülemek için indirdilen fatura XML içerisinde ki XSLT ile transform edip HTML görüntüsünü oluşturuluyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Kullanıcı uygulamayı kapattığında <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Logout</strong> metodu kullanarak oturum kapatıldı.</td>
+</tr>
+</tbody></table>
+
+<h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
+
+<p>E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
+
+<h2 id="fatura-s-n-f-invoicetype-nas-l-retilir">Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?</h2>
+
+<p>.NET üzerinden XSD dosyasından sınıf üretmek için şu adımları uygulayınız:</p>
+
+<ol>
+<li>http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip adresinden paket indirilir.</li>
+<li>İndirilen dosya unzip edilir.</li>
+<li>.Net Framework yüklü olan bir bilgisayarda <strong>başlat&gt;Developer Command Prompt</strong> yazılır ve gelen seçenek tıklanarak komut dosyası açılır</li>
+<li>2.maddedeki unzip yapılan dizine <strong>cd UNZIP_EDILEN_DIZIN</strong> olarak gidilir.</li>
+<li>Gelen ekranda aşağıdaki komutu yapıştırıyoruz.<br>
+<strong>xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</strong></li>
+<li>Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
+<li>Fatura <strong>InvoiceType</strong> sınıfı ile üretilmektedir.</li>
+</ol>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -2589,173 +2589,6 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 
 <p>E-Fatura mükellefi olmayan firma veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesi ve raporlamasını sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
-
-<table><thead>
-<tr>
-<th>Ürün</th>
-<th>Endpoint URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Kimlik Doğrulama</td>
-<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Fatura</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Arşiv</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
-</tr>
-<tr>
-<td>E-İrsaliye</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Müstahsil Makbuzu</td>
-<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
-</tr>
-</tbody></table>
-
-<h3 id="portal-uygulamas">Portal Uygulaması</h3>
-
-<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
-
-<ul>
-<li>Belgelerin durumunu kontrol</li>
-<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
-<li>Alıcı firmanın mükellefiyet sorgulaması</li>
-</ul>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
-
-<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ul>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li><strong>WriteToArchieveExtended</strong> servisi ile UBL formatlı e-arşiv faturası gönderilir.</li>
-<li><strong>ReadFromArchive</strong> servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.</li>
-<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
-<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
-<li><strong>GetEArchiveReport</strong> servisi ile GİBe raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.</li>
-<li><strong>ReadEArchiveReport</strong> serivisi ile GİBe gönderilen rapor detayını sorgulayabilirsiniz.</li>
-<li><strong>GetEmailEarchiveInvoice</strong> servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.</li>
-<li>E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.</li>
-<li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
-<li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı <code class="prettyprint">EARSIVFATURA</code> olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.</li>
-<li>E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) zorunludur.</li>
-<li>E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.</li>
-<li>İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.</li>
-</ul>
-
-<h2 id="e-ar-iv-entegrasyon-testleri">E-Arşiv Entegrasyon Testleri</h2>
-
-<table><thead>
-<tr>
-<th>Test</th>
-<th>Test Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Oturum Açma</td>
-<td></td>
-</tr>
-<tr>
-<td>Nihai Tüketiciye Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Firmaya Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Satış Faturası Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>İade Faturası Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Tevkifatlı Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Alıcısına Kağıt Ortamda Teslim Edilecek Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Alıcısına Kağıt Ortamda Teslim Edilecek ve Ayrıca Elektronik Ortamda İletilecek Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Alıcısına Elektronik Ortamda İletilecek Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>İnternet Üzerinden Yapılan Satış İçin Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>İrsaliyeli Fatura Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>Raporlanmadan Önce Fatura İptal Etme</td>
-<td></td>
-</tr>
-<tr>
-<td>Raporlandıktan Sonra Fatura İptal Etme</td>
-<td></td>
-</tr>
-<tr>
-<td>Hatalı Düzenlenmiş Faturayı Tekrar Yüklemek Üzere İptal Etme</td>
-<td></td>
-</tr>
-<tr>
-<td>Faturayı Tekrar E-Posta Olarak İletme Talebi Gönderme</td>
-<td></td>
-</tr>
-<tr>
-<td>İmzalı Fatura Çekme</td>
-<td></td>
-</tr>
-<tr>
-<td>Fatura Görselini Çekme</td>
-<td></td>
-</tr>
-<tr>
-<td>Bir Faturanın Durumunu Sorgulama</td>
-<td></td>
-</tr>
-<tr>
-<td>Birden Fazla Faturanın Durumunu Sorgulama</td>
-<td></td>
-</tr>
-<tr>
-<td>Rapor Listesi Çekme</td>
-<td></td>
-</tr>
-<tr>
-<td>Rapor İçeriği Çekme</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
-
-<p>E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
-
-<p><a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
-<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
-
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
 <table><thead>
@@ -2932,6 +2765,173 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td><a href="/resource/xml/FATURA_22.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ul>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>WriteToArchieveExtended</strong> servisi ile UBL formatlı e-arşiv faturası gönderilir.</li>
+<li><strong>ReadFromArchive</strong> servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.</li>
+<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
+<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
+<li><strong>GetEArchiveReport</strong> servisi ile GİBe raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.</li>
+<li><strong>ReadEArchiveReport</strong> serivisi ile GİBe gönderilen rapor detayını sorgulayabilirsiniz.</li>
+<li><strong>GetEmailEarchiveInvoice</strong> servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.</li>
+<li>E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.</li>
+<li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
+<li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı <code class="prettyprint">EARSIVFATURA</code> olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.</li>
+<li>E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) zorunludur.</li>
+<li>E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.</li>
+<li>İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.</li>
+</ul>
+
+<h2 id="e-ar-iv-entegrasyon-testleri">E-Arşiv Entegrasyon Testleri</h2>
+
+<table><thead>
+<tr>
+<th>Test</th>
+<th>Test Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Oturum Açma</td>
+<td></td>
+</tr>
+<tr>
+<td>Nihai Tüketiciye Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Firmaya Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Satış Faturası Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>İade Faturası Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Tevkifatlı Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Alıcısına Kağıt Ortamda Teslim Edilecek Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Alıcısına Kağıt Ortamda Teslim Edilecek ve Ayrıca Elektronik Ortamda İletilecek Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Alıcısına Elektronik Ortamda İletilecek Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>İnternet Üzerinden Yapılan Satış İçin Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>İrsaliyeli Fatura Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>Raporlanmadan Önce Fatura İptal Etme</td>
+<td></td>
+</tr>
+<tr>
+<td>Raporlandıktan Sonra Fatura İptal Etme</td>
+<td></td>
+</tr>
+<tr>
+<td>Hatalı Düzenlenmiş Faturayı Tekrar Yüklemek Üzere İptal Etme</td>
+<td></td>
+</tr>
+<tr>
+<td>Faturayı Tekrar E-Posta Olarak İletme Talebi Gönderme</td>
+<td></td>
+</tr>
+<tr>
+<td>İmzalı Fatura Çekme</td>
+<td></td>
+</tr>
+<tr>
+<td>Fatura Görselini Çekme</td>
+<td></td>
+</tr>
+<tr>
+<td>Bir Faturanın Durumunu Sorgulama</td>
+<td></td>
+</tr>
+<tr>
+<td>Birden Fazla Faturanın Durumunu Sorgulama</td>
+<td></td>
+</tr>
+<tr>
+<td>Rapor Listesi Çekme</td>
+<td></td>
+</tr>
+<tr>
+<td>Rapor İçeriği Çekme</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="stmeci-client-rnek-projeler">İstmeci (client) Örnek Projeler</h2>
+
+<p>E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
 
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
@@ -3803,91 +3803,8 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
           <h1 id="e-rsaliye-webservisi">E-İrsaliye Webservisi</h1>
 
-<p>e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.</p>
-
-<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
-
-<table><thead>
-<tr>
-<th>Ürün</th>
-<th>Endpoint URL</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Kimlik Doğrulama</td>
-<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Fatura</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Arşiv</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
-</tr>
-<tr>
-<td>E-İrsaliye</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
-</tr>
-<tr>
-<td>E-Müstahsil Makbuzu</td>
-<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
-</tr>
-</tbody></table>
-
-<h3 id="portal-uygulamas">Portal Uygulaması</h3>
-
-<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
-
-<ul>
-<li>Belgelerin durumunu kontrol</li>
-<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
-<li>Alıcı firmanın mükellefiyet sorgulaması</li>
-</ul>
-
-<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
-
-<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
-
-<h2 id="test-hesaplar">Test Hesaplar</h2>
-
-<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
-
-<table><thead>
-<tr>
-<th>Gönderici VKN</th>
-<th>Gönderici Etiket</th>
-<th>Alıcı VKN</th>
-<th>Alıcı Etiket</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>4840847211</td>
-<td>urn:mail:defaultgb@izibiz.com.tr</td>
-<td>4840847211</td>
-<td>urn:mail:defaultpk@izibiz.com.tr</td>
-</tr>
-</tbody></table>
-
-<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
-
-<p>E-İrsaliye uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
-
-<ol>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</p></li>
-<li><p>E-İrsaliy Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
-<li><p><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
-<li><p><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
-<li><p><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
-<li><p><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</p></li>
-<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
-kapatabilirsiniz.</p></li>
-</ol>
-
-<h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
-
-<h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
+<p>e-Arşiv servisi, e-arşiv mükellefinin fatura gönderimini sağlayan webservis uygulamasıdır.
+<h2 id="g-b-dok-manlar">GİB Dokümanları</h2></p>
 
 <table><thead>
 <tr>
@@ -3978,6 +3895,88 @@ kapatabilirsiniz.</p></li>
 <td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Makbuzu</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="test-hesaplar">Test Hesaplar</h2>
+
+<p>Test sürecinde düzenlenen faturaların/irsaliyelerin göndericisi, alıcısı ve etiketler için aşağıda ki bilgiler kullanılmalıdır.</p>
+
+<table><thead>
+<tr>
+<th>Gönderici VKN</th>
+<th>Gönderici Etiket</th>
+<th>Alıcı VKN</th>
+<th>Alıcı Etiket</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4840847211</td>
+<td>urn:mail:defaultgb@izibiz.com.tr</td>
+<td>4840847211</td>
+<td>urn:mail:defaultpk@izibiz.com.tr</td>
+</tr>
+</tbody></table>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>E-İrsaliye uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-İrsaliy Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
+<li><p><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
+<li><p><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</p></li>
+</ol>
+
+<h2 id="entegrasyon-test-senaryolar">Entegrasyon Test Senaryoları</h2>
 
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
@@ -4945,6 +4944,65 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, hem kağıt hem de elektronik ortamda muhafazası ve ibrazı ile elektronik ortamda raporlamasını kapsayan uygulamadır.</p>
 
+<h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
+
+<table><thead>
+<tr>
+<th>Doküman</th>
+<th>Açıklama</th>
+<th>İndir</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UBL-TR Müstahsil Makbuzu</strong></td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Ortak Elemanlar</strong></td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>UBL-TR Kod Listeleri</strong></td>
+<td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="ubl-mustahsil-makbuzu-senaryolar">UBL-Mustahsil Makbuzu Senaryoları</h2>
+
+<p>E-Müstahsil Makbuzu sistemi üzerinden düzenlenebilecek ve gönderilebilecek e-müstahsil makbuzu senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
+
+<table><thead>
+<tr>
+<th>Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Vergisiz Müstahsil Makbuzu</strong></td>
+<td>En temel müstahsil makbuzu senaryosudur. İçerisinde hiç bir vergi (merafonu, borsa tescil, sgk prim kesintisi) bulunmamaktadır.</td>
+<td><a href="/resource/xml/mustahsil_vergisiz.xml" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Mera Fonu Vergisi İçeren Müstahsil Makbuzu</strong></td>
+<td>Mera Fonu Vergisi içeren müstahsil makbuzu senaryodur.</td>
+<td><a href="/resource/xml/mustahsil_merafonu.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Borsa Tescil İçeren Müstahsil Makbuzu</strong></td>
+<td>Üreticiden borsa tescili bulunan ürün alımında düzenlenen müstahsil makbuzu senaryosudur.</td>
+<td><a href="/resource/xml/mustahsil_borsatescil.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>SGK Prim (Bağkur) Kesintisi İçeren Müstahsil Makbuzu</strong></td>
+<td>SGK Prim kesinitisi yapıldığı durumlarda düzenlenen müstahsil makbuzu senaryosudur.</td>
+<td><a href="/resource/xml/mustahsil_bagkur.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
 <table><thead>
@@ -5036,65 +5094,6 @@ kapatabilirsiniz.</li>
 <li>Bu işlemin sonunda müstahsil makbuzu oluşturmak için gerekli bütün sınıflar UBL-CreditNote-2.1.cs dosyası içerisinde oluşturulacaktır.</li>
 <li>Müstahsil <strong>CreditNoteType</strong> sınıfı ile üretilmektedir.</li>
 </ol>
-
-<h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
-
-<table><thead>
-<tr>
-<th>Doküman</th>
-<th>Açıklama</th>
-<th>İndir</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>UBL-TR Müstahsil Makbuzu</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>UBL-TR Ortak Elemanlar</strong></td>
-<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>UBL-TR Kod Listeleri</strong></td>
-<td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
-</tr>
-</tbody></table>
-
-<h2 id="ubl-mustahsil-makbuzu-senaryolar">UBL-Mustahsil Makbuzu Senaryoları</h2>
-
-<p>E-Müstahsil Makbuzu sistemi üzerinden düzenlenebilecek ve gönderilebilecek e-müstahsil makbuzu senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
-
-<table><thead>
-<tr>
-<th>Senaryosu</th>
-<th>Açıklama</th>
-<th>XML</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>Vergisiz Müstahsil Makbuzu</strong></td>
-<td>En temel müstahsil makbuzu senaryosudur. İçerisinde hiç bir vergi (merafonu, borsa tescil, sgk prim kesintisi) bulunmamaktadır.</td>
-<td><a href="/resource/xml/mustahsil_vergisiz.xml" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>Mera Fonu Vergisi İçeren Müstahsil Makbuzu</strong></td>
-<td>Mera Fonu Vergisi içeren müstahsil makbuzu senaryodur.</td>
-<td><a href="/resource/xml/mustahsil_merafonu.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>Borsa Tescil İçeren Müstahsil Makbuzu</strong></td>
-<td>Üreticiden borsa tescili bulunan ürün alımında düzenlenen müstahsil makbuzu senaryosudur.</td>
-<td><a href="/resource/xml/mustahsil_borsatescil.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>SGK Prim (Bağkur) Kesintisi İçeren Müstahsil Makbuzu</strong></td>
-<td>SGK Prim kesinitisi yapıldığı durumlarda düzenlenen müstahsil makbuzu senaryosudur.</td>
-<td><a href="/resource/xml/mustahsil_bagkur.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
-</tr>
-</tbody></table>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
