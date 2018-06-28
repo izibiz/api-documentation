@@ -1,4 +1,4 @@
-## E-Dönüşümde Belge Numarası Yönetimi
+## Belge Numarası Yönetimi
 * E-Dönüşüm sisteminde düzenlenen bir belgeyi tanımlayan iki önemli bilgi vardır. Bir tanesi Evrensel Tekil Tanımlama Numarası (ETTN), diğeri ise belge numarasıdır.
 * ETTN numarası GUID formatında olurken, belge numarası aşağıda açıklanmış formata olması zorunludur.
 * Belge numarası toplam 16 haneden oluşmak zorundadır.
