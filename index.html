@@ -272,6 +272,49 @@
 </tr>
 </tbody></table>
 
+<h2 id="e-d-n-mde-belge-numaras-y-netimi">E-Dönüşümde Belge Numarası Yönetimi</h2>
+
+<ul>
+<li>E-Dönüşüm sisteminde düzenlenen bir belgeyi tanımlayan iki önemli bilgi vardır. Bir tanesi Evrensel Tekil Tanımlama Numarası (ETTN), diğeri ise belge numarasıdır.</li>
+<li>ETTN numarası GUID formatında olurken, belge numarası aşağıda açıklanmış formata olması zorunludur.</li>
+<li>Belge numarası toplam 16 haneden oluşmak zorundadır.</li>
+<li>3 hane alfanumerik seri ön eki  + 4 hane belgenin düzenlendiği yılı + 9 hane müteselsil sıra numarasını ifade etmektedir.  <strong>Örnek: IZI+2018+000000001</strong></li>
+<li>Her yıl sıra numarası 1 den başlamak zorundadır.</li>
+<li>Ser ön eki (ilk 3 hane) Türkçe karakter içermemeli ve büyük harfler yada sayılardan oluşmalıdr.</li>
+<li>İlk 3 Karakter firmalar tarafından serbestçe belirlebilir. Her firma İstediği kadar seri kullanabilir. Her seri kendi içerisinde 1’den başlayarak sıralı devam etmelidir.</li>
+<li>E-Fatura, E-İhracat fatura, E-Arşiv normal satış ve E-Arşiv internet üzerinden yapılan satışlar için düzenlenen faturalar  <strong>mutlaka</strong> farklı seriden düzenlenmelidir.</li>
+<li>Belge numarası takibi gönderici sistemde yapılmalıdır.</li>
+<li>Fatura düzenleyen bünyesinde aynı fatura numarası birden fazla kullanılamaz.</li>
+</ul>
+
+<h2 id="belge-g-r-nt-leme">Belge Görüntüleme</h2>
+
+<ul>
+<li><p>Bilindiği gibi e-dönüşüm sisteminde düzenlenen ve saklanan belgeler UBL-TR XML formatındadır. Düzenlenmiş her XML belgenin içerisinde görüntüsünü sağlayacak bir şablon (XSLT) dosya bulunmak zorundadır. Şablon belgesinin formatı XSLT (Extensible Stylesheet Language Transformations) Genişletilebilir Biçimlendirme Dili Dönüşümleridir. Bu dosya XML dokümanlarını insanların anlayacağı formata (HTML/PDF) dönüştürmek için kullanılır.</p></li>
+<li><p>Belge şablon dosyası XML dosya içerisinde ki <strong>AdditionalDocumentReference</strong> elemanına eklenmek zorundadır.
+<img src="/images/xslt_ekleme.png" height="200" width="400"/></p></li>
+<li><p>GİB, Türkiye’deki e-Fatura uygulamasında mükelleflerin kendilerine gelen ya da gönderdikleri e-Fatura’ların şema-şematron uygunluk kontrollerini yapan, görüntüleyen ve imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
+<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.6 İndir</a><br>
+<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/Java17/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.7 İndir</a></p></li>
+</ul>
+
+<h2 id="belge-g-nderme-kontrolleri">Belge Gönderme Kontrolleri</h2>
+
+<p>Özel entegratör sistemi senkron çalışmaktadır. Yani herhangi bir servise gönderilen istek sunucu tarafından anlık olarak işlenerek sonuç dönülür. Yüklenen belgelerde hatalı durum tespit edilmesi durumunda webservis hata (SOAP Fault) dönülmektedir.</p>
+
+<p>Belge gönderiminde aşağıda ki kontroller yapılmaktadır:</p>
+
+<ul>
+<li>Webservis parametre kontrolü</li>
+<li>İşlem yapılacak aktif oturum kontrolü</li>
+<li>Gönderici firmanın özel entegratör sisteminde ki tanımlama kontrolü</li>
+<li>Gönderici ve alıcı firmaların mükellefiyet ve etiket kontrolü</li>
+<li>Göndericilerin Bulut e-Fatura platformuna kayıtlarının kontrolü</li>
+<li>Belgenin UBL-TR şemasına uygunluk kontrolü</li>
+<li>Belgenin UBL-TR şematronuna uygunluk kontrolü</li>
+<li>Gönderilen belge(lerin) özel entegratör sisteminde tekillik kontrolü</li>
+</ul>
+
 <h2 id="belge-olu-turma">Belge Oluşturma</h2>
 
 <p>Özel Entegeratör webservislerine gönderilecek belgelerin (fatura, irsaliye, müstahsil vs) UBL-TR formatında istemci ortamında oluşturulması gerekmektedir. UBL-TR XML belge oluşturmak için <strong>iki yöntem kullanılabilir</strong> :</p>
@@ -327,19 +370,6 @@
 <aside class="notice">
 2. Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.
 </aside></p>
-
-<h2 id="belge-numaras-y-netimi">Belge Numarası Yönetimi</h2>
-
-<ul>
-<li>Belge numarası toplam 16 haneden oluşmak zorundadır.</li>
-<li>3 hane alfanumerik seri ön eki  + 4 hane belgenin düzenlendiği yılı + 9 hane müteselsil sıra numarasını ifade etmektedir.  <strong>Örnek: IZI+2018+000000001</strong></li>
-<li>Her yıl sıra numarası 1 den başlamak zorundadır.</li>
-<li>Ser ön eki (ilk 3 hane) Türkçe karakter içermemeli ve büyük harfler yada sayılardan oluşmalıdr.</li>
-<li>İlk 3 Karakter firmalar tarafından serbestçe belirlebilir. Her firma İstediği kadar seri kullanabilir. Her seri kendi içerisinde 1’den başlayarak sıralı devam etmelidir.</li>
-<li>E-Fatura, E-İhracat fatura, E-Arşiv normal satış ve E-Arşiv internet üzerinden yapılan satışlar için düzenlenen faturalar  <strong>mutlaka</strong> farklı seriden düzenlenmelidir.</li>
-<li>Belge numarası takibi gönderici sistemde yapılmalıdır.</li>
-<li>Fatura düzenleyen bünyesinde aynı fatura numarası birden fazla kullanılamaz.</li>
-</ul>
 
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
@@ -1015,32 +1045,32 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>UBL-TR Fatura</strong></td>
 <td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
 <td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Gümrük İşlemleri Kılavuzu</strong></td>
 <td>Elektronik Fatura Uygulamasında yolcu beraberi eşya ihracı ve mal ihracı faturalarını e-fatura sistemine entegre edecek ve uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
-<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhracat Faturası Ek Alanlar</strong></td>
 <td>İhracat faturalarında eklenmesi zorunlu ve isteğe bağlı alanların açıklamak için hazırlanmıştır.</td>
-<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>SGK E-Fatura Kılavuzu</strong></td>
 <td>Elektronik Fatura Uygulamasında Sosyal Güvenlik Kurumuna (SGK) düzenlenecek  faturaların e-fatura sistemine entegre edecek uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
-<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -1055,72 +1085,128 @@ Servisten dönen parametreler şu şekildedir:</p>
 <th>Fatura Senaryosu</th>
 <th>Açıklama</th>
 <th>XML</th>
+<th>HTML</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>Temel Fatura</strong></td>
+<td><strong>Temel Satış Faturası</strong></td>
 <td>Alıcısı tarafından elektronik ortamda kabul veya reddedilemeyen fatura tipidir.</td>
-<td><a href="/resource/xml/temel_fatura_ornek.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_2.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_2.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
-<td><strong>Ticari Fatura</strong></td>
+<td><strong>Ticari Satış Faturası</strong></td>
 <td>Alıcısı tarafından elektronik ortamda kabul veya reddedilebilen fatura tipidir.</td>
-<td><a href="/resource/xml/ticari_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>Satış Faturası</strong></td>
-<td>Mal satışı veya hizmet ifası sonrası alıcıya düzenlenen fatura tipidir.</td>
-<td><a href="/resource/xml/satis_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_1.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_1.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İade Faturası</strong></td>
 <td>Alınan bir fatura üzerinde ki yanlış tutar veya eksik bilgi sebebi ile düzenlenen fatura tipidir. <strong>İade faturası TEMELFATURA olarak gönderilmesi zorunludur.</strong></td>
-<td><a href="/resource/xml/iade_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_4.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_4.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Farklı KDV Oranlarına Sahip Fatura</strong></td>
+<td>Fatura satırında farklı KDV oranlarının bulunduğu fatura örneğidir. Her satırda farklı KDV oranı vardır.</td>
+<td><a href="/resource/xml/FATURA_5.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_5.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>0 KDV Fatura</strong></td>
+<td>Fatura satırında KDV oranı 0 olan satış faturası örneğidir. KDV 0 olduğu durumlarda muafiyet sebebi belirtilmelidir.</td>
+<td><a href="/resource/xml/FATURA_6.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_6.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Dövizli Satış Faturası</strong></td>
+<td>Fatura para birimi TL dışında farklı bir para birimi ile düzenlenen fatura örneğidir. Faturanın içerisinde tutarlar döviz cinsindendir.  TL karşlıkları XML içerisinde bulunmaz. TL karşılıkları görsel üzerinde tutar ile kur çarpılarak gösterilir.</td>
+<td><a href="/resource/xml/FATURA_7.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_7.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Bedelsiz (%100 İskontolu) Satış Faturası</strong></td>
+<td>Promosyon, Eşantiyon veya Numune Ürün Teslimlerinde bedelsiz düzenlenen fatura örneğidir. Bu faturalarda KDV 0 hesaplandığı için muafiyet sebebi belirtilmelidir.  Bu faturaların muafiyet kodu 351 olur. Muafiyet sebebi ise müşteri tarafından girilebilir.</td>
+<td><a href="/resource/xml/FATURA_10.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_10.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Satırda Çoklu İskontolu Satış Faturası</strong></td>
+<td>Bir fatura satırında birden fazla iskonto içeren fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_9.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_9.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İstisna Faturası</strong></td>
 <td>İstisna Faturası</td>
-<td><a href="/resource/xml/istisna_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_11.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_11.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Özel Mathrah Faturası</strong></td>
 <td>Özel Matrah Faturası</td>
-<td><a href="/resource/xml/ozelmatrah_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_12.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_12.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Tevkifat Faturası</strong></td>
 <td>Tevkifat Faturası</td>
-<td><a href="/resource/xml/tevkifat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_13.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_13.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhraç Kayıtlı Fatura</strong></td>
 <td>İhraç Kayıtlı Fatura</td>
-<td><a href="/resource/xml/ihrackayitli_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_17.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_17.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhracat Faturası</strong></td>
 <td>İhracat Faturası</td>
-<td><a href="/resource/xml/ihracat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_18.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_18.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Yolcu Beraberi (Taxfree)</strong></td>
 <td>Yolcu Beraberi (Taxfree)</td>
-<td><a href="/resource/xml/taxfree_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_19.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_19.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>SGK Faturası</strong></td>
 <td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
-<td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_20.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_20.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Gelir Vergisi(GV) Stopajlı Fatura</strong></td>
+<td>Gelir vergisi stopajı uygulanan fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_14.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_14.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Kurumlar Vergisi(KV) Stopajlı Fatura</strong></td>
+<td>Kurumlar vergisi stopajı uygulanan fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_15.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_15.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Ek Belge İçeren Fatura</strong></td>
+<td>Faturanın ekinde belge gönderildiği durumlarda düzenlenecek fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_16.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_16.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>E-Arşiv Fatura - İnternet</strong></td>
 <td>Internet üzerine yapılan satış için düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilmek zorundadır. Bu faturalar diğer satış faturalarından farklı bir seriden gönderilmeldir.</td>
-<td><a href= "/resource/xml/earsiv_internet.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href= "/resource/xml/FATURA_21.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_21.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>E-Arşiv Fatura - Normal</strong></td>
 <td>Internet üzerine yapılan satış dışında düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilebileceği gibi kağıt olarakta teslim edilebilir.</td>
-<td><a href= "/resource/xml/earsiv_normal.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href= "/resource/xml/FATURA_22.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_22.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -2682,32 +2768,32 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <tr>
 <td><strong>UBL-TR Fatura</strong></td>
 <td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
 <td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Gümrük İşlemleri Kılavuzu</strong></td>
 <td>Elektronik Fatura Uygulamasında yolcu beraberi eşya ihracı ve mal ihracı faturalarını e-fatura sistemine entegre edecek ve uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
-<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhracat Faturası Ek Alanlar</strong></td>
 <td>İhracat faturalarında eklenmesi zorunlu ve isteğe bağlı alanların açıklamak için hazırlanmıştır.</td>
-<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/GUMRUK/Gumruk_Islemleri_Kilavuzu_Versiyon_1_8.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>SGK E-Fatura Kılavuzu</strong></td>
 <td>Elektronik Fatura Uygulamasında Sosyal Güvenlik Kurumuna (SGK) düzenlenecek  faturaların e-fatura sistemine entegre edecek uygulamaya ilişkin yazılım geliştireceklerin teknik konularda ihtiyaç duyabilecekleri bilgileri vermek amacıyla hazırlanmıştır.</td>
-<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/SGK_e-FATURA_UYGULAMA_KILAVUZU.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -2722,72 +2808,128 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <th>Fatura Senaryosu</th>
 <th>Açıklama</th>
 <th>XML</th>
+<th>HTML</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>Temel Fatura</strong></td>
+<td><strong>Temel Satış Faturası</strong></td>
 <td>Alıcısı tarafından elektronik ortamda kabul veya reddedilemeyen fatura tipidir.</td>
-<td><a href="/resource/xml/temel_fatura_ornek.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_2.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_2.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
-<td><strong>Ticari Fatura</strong></td>
+<td><strong>Ticari Satış Faturası</strong></td>
 <td>Alıcısı tarafından elektronik ortamda kabul veya reddedilebilen fatura tipidir.</td>
-<td><a href="/resource/xml/ticari_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
-</tr>
-<tr>
-<td><strong>Satış Faturası</strong></td>
-<td>Mal satışı veya hizmet ifası sonrası alıcıya düzenlenen fatura tipidir.</td>
-<td><a href="/resource/xml/satis_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_1.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_1.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İade Faturası</strong></td>
 <td>Alınan bir fatura üzerinde ki yanlış tutar veya eksik bilgi sebebi ile düzenlenen fatura tipidir. <strong>İade faturası TEMELFATURA olarak gönderilmesi zorunludur.</strong></td>
-<td><a href="/resource/xml/iade_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_4.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_4.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Farklı KDV Oranlarına Sahip Fatura</strong></td>
+<td>Fatura satırında farklı KDV oranlarının bulunduğu fatura örneğidir. Her satırda farklı KDV oranı vardır.</td>
+<td><a href="/resource/xml/FATURA_5.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_5.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>0 KDV Fatura</strong></td>
+<td>Fatura satırında KDV oranı 0 olan satış faturası örneğidir. KDV 0 olduğu durumlarda muafiyet sebebi belirtilmelidir.</td>
+<td><a href="/resource/xml/FATURA_6.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_6.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Dövizli Satış Faturası</strong></td>
+<td>Fatura para birimi TL dışında farklı bir para birimi ile düzenlenen fatura örneğidir. Faturanın içerisinde tutarlar döviz cinsindendir.  TL karşlıkları XML içerisinde bulunmaz. TL karşılıkları görsel üzerinde tutar ile kur çarpılarak gösterilir.</td>
+<td><a href="/resource/xml/FATURA_7.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_7.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Bedelsiz (%100 İskontolu) Satış Faturası</strong></td>
+<td>Promosyon, Eşantiyon veya Numune Ürün Teslimlerinde bedelsiz düzenlenen fatura örneğidir. Bu faturalarda KDV 0 hesaplandığı için muafiyet sebebi belirtilmelidir.  Bu faturaların muafiyet kodu 351 olur. Muafiyet sebebi ise müşteri tarafından girilebilir.</td>
+<td><a href="/resource/xml/FATURA_10.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_10.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Satırda Çoklu İskontolu Satış Faturası</strong></td>
+<td>Bir fatura satırında birden fazla iskonto içeren fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_9.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_9.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İstisna Faturası</strong></td>
 <td>İstisna Faturası</td>
-<td><a href="/resource/xml/istisna_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_11.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_11.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Özel Mathrah Faturası</strong></td>
 <td>Özel Matrah Faturası</td>
-<td><a href="/resource/xml/ozelmatrah_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_12.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_12.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Tevkifat Faturası</strong></td>
 <td>Tevkifat Faturası</td>
-<td><a href="/resource/xml/tevkifat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_13.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_13.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhraç Kayıtlı Fatura</strong></td>
 <td>İhraç Kayıtlı Fatura</td>
-<td><a href="/resource/xml/ihrackayitli_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_17.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_17.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>İhracat Faturası</strong></td>
 <td>İhracat Faturası</td>
-<td><a href="/resource/xml/ihracat_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_18.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_18.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Yolcu Beraberi (Taxfree)</strong></td>
 <td>Yolcu Beraberi (Taxfree)</td>
-<td><a href="/resource/xml/taxfree_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_19.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_19.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>SGK Faturası</strong></td>
 <td>SGK Faturası TEMELFATURA senaryosunda gönderilmek zorundadır.</td>
-<td><a href="/resource/xml/sgk_fatura_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_20.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_20.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Gelir Vergisi(GV) Stopajlı Fatura</strong></td>
+<td>Gelir vergisi stopajı uygulanan fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_14.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_14.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Kurumlar Vergisi(KV) Stopajlı Fatura</strong></td>
+<td>Kurumlar vergisi stopajı uygulanan fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_15.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_15.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Ek Belge İçeren Fatura</strong></td>
+<td>Faturanın ekinde belge gönderildiği durumlarda düzenlenecek fatura örneğidir.</td>
+<td><a href="/resource/xml/FATURA_16.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_16.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>E-Arşiv Fatura - İnternet</strong></td>
 <td>Internet üzerine yapılan satış için düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilmek zorundadır. Bu faturalar diğer satış faturalarından farklı bir seriden gönderilmeldir.</td>
-<td><a href= "/resource/xml/earsiv_internet.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href= "/resource/xml/FATURA_21.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_21.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>E-Arşiv Fatura - Normal</strong></td>
 <td>Internet üzerine yapılan satış dışında düzenlenen fatura tipidir. Bu faturalar alıcısına elektronik ortamda iletilebileceği gibi kağıt olarakta teslim edilebilir.</td>
-<td><a href= "/resource/xml/earsiv_normal.xml" target="_blank"><img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href= "/resource/xml/FATURA_22.xml" target="_blank"><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/FATURA_22.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -3757,22 +3899,22 @@ kapatabilirsiniz.</p></li>
 <tr>
 <td><strong>UBL-TR İrsaliye</strong></td>
 <td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan sevk irsaliyesi belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR irsaliye - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR irsaliye - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR İrsaliye Yanıtı</strong></td>
 <td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan irsaliye Yanıtı belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR irsaliye Yaniti - V 1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR irsaliye Yaniti - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
 <td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -3790,17 +3932,17 @@ kapatabilirsiniz.</p></li>
 <tr>
 <td><strong>Temel e-İrsaliye</strong></td>
 <td>Malların sevkiyatını sağlayan taraf e-İrsaliyeyi Malları teslim alan tarafa gönderir.</td>
-<td><a href="/resource/xml/irsaliye_temel_ornek.xml" target = "_blank" > <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliye_temel_ornek.xml" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Kısmi Gönderim İçeren e-İrsaliye</strong></td>
 <td>Malların sevkiyatını sağlayan taraf sipariş edilen malların bir kısmını gönderdiği durumlarda düzenlediği senaryodur.</td>
-<td><a href="/resource/xml/irsaliye_kismi_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliye_kismi_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Farklı Tarafların Bulunduğu e-İrsaliye</strong></td>
 <td>Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.</td>
-<td><a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -3818,22 +3960,22 @@ kapatabilirsiniz.</p></li>
 <tr>
 <td><strong>Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı</strong></td>
 <td>Malların teslim alan tarafın bütün malları kabul ettiğini bildiren e-İrsaliye yanıt senaryosudur.</td>
-<td><a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Şikayet İçeren e-İrsaliye Yanıtı</strong></td>
 <td>e-İrsaliye&#39;deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur.</td>
-<td><a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı</strong></td>
 <td>Malları teslim alan tarafın gelen e-İrsaliye&#39;deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.</td>
-<td><a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı</strong></td>
 <td>Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.</td>
-<td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -4907,17 +5049,17 @@ kapatabilirsiniz.</li>
 <tr>
 <td><strong>UBL-TR Müstahsil Makbuzu</strong></td>
 <td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
 <td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Kod Listeleri</strong></td>
 <td>UBL-TR kapsamında kullanılan Kodlama Sistemleri ve Kimlik Şemaları hakkında bilgi vermek amacı ile hazırlanmıştır.</td>
-<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/pdf-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
@@ -4935,22 +5077,22 @@ kapatabilirsiniz.</li>
 <tr>
 <td><strong>Vergisiz Müstahsil Makbuzu</strong></td>
 <td>En temel müstahsil makbuzu senaryosudur. İçerisinde hiç bir vergi (merafonu, borsa tescil, sgk prim kesintisi) bulunmamaktadır.</td>
-<td><a href="/resource/xml/mustahsil_vergisiz.xml" target = "_blank" > <img src = "/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/mustahsil_vergisiz.xml" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Mera Fonu Vergisi İçeren Müstahsil Makbuzu</strong></td>
 <td>Mera Fonu Vergisi içeren müstahsil makbuzu senaryodur.</td>
-<td><a href="/resource/xml/mustahsil_merafonu.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/mustahsil_merafonu.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Borsa Tescil İçeren Müstahsil Makbuzu</strong></td>
 <td>Üreticiden borsa tescili bulunan ürün alımında düzenlenen müstahsil makbuzu senaryosudur.</td>
-<td><a href="/resource/xml/mustahsil_borsatescil.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/mustahsil_borsatescil.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>SGK Prim (Bağkur) Kesintisi İçeren Müstahsil Makbuzu</strong></td>
 <td>SGK Prim kesinitisi yapıldığı durumlarda düzenlenen müstahsil makbuzu senaryosudur.</td>
-<td><a href="/resource/xml/mustahsil_bagkur.xml" target="_blank"> <img src="/images/xml-icon.png" height="40" width="35"/></a></td>
+<td><a href="/resource/xml/mustahsil_bagkur.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 </tr>
 </tbody></table>
 
