@@ -4,6 +4,6 @@
 * Belge şablon dosyası XML dosya içerisinde ki **AdditionalDocumentReference** elemanına eklenmek zorundadır.
 <img src="/images/xslt_ekleme.png" height="200" width="400"/>
 
-* GİB, Türkiye’deki e-Fatura uygulamasında mükelleflerin kendilerine gelen ya da gönderdikleri e-Fatura’ların şema-şematron uygunluk kontrollerini yapan, görüntüleyen ve imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
+* Gelir İdaresi Başkanlığı tarafından mükellefler arasında ki anlaşmazlıklarda kullanabilecekleri ortak bir uygulama olan E-Belge Görüntüleyici uygulaması yayınlamıştır. Bu uygula UBL-TR formatında ki belgenin içerisinde ki şablon ile görüntülemesini sağlar, şema ve şematron kontrolü yapar, belgenin içerisinde ki imzanın geçerliliğini kontrol eder ve belgenin GİB'de ki durumunu  mükelleflerin kendilerine gelen ya da gönderdikleri belgelerin görüntülemesinde ki hataların tespitini, şema ve şematron kontrollerini , görüntüleyen, imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
 [E-Belge Görüntüleyici Java 1.6 İndir](http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/EFaturaGoruntuleyici.jnlp)<br>
 [E-Belge Görüntüleyici Java 1.7 İndir](http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/Java17/EFaturaGoruntuleyici.jnlp)

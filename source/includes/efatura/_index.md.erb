@@ -1,6 +1,7 @@
 # E-Fatura Webservisi
 e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasıdır.
 
+<%= partial "includes/efatura/faturasenaryolar" %>
 <%= partial "includes/ortak/url" %>
 <%= partial "includes/efatura/testhesaplar" %>
 
@@ -13,7 +14,7 @@ Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 3. E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.
 4. **SendInvoice** metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.
 5. **GetInvoiceStatus** metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. **Sık sorgulama yapmayınız.**
-6. **GetInvoice** metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.  
+6. **GetInvoice** metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.
 7. **MarkInvoice** metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.
 8. **SendInvoiceResponseWithServerSign** metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz.
 9. Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. **8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.**
@@ -21,7 +22,7 @@ Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
 11. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Logout** metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.
 
 ## E-Fatura Entegrasyon Kontrol Listesi
- Durum | Kontrol  
+ Durum | Kontrol
  -------| ----------
 **Evet / Hayır** | Oturum Açmak için **Kimlik Doğrulama (Authentication)** webservisinde ki **Login** metodu kullanıldı.
 **Evet / Hayır** | Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.
@@ -75,7 +76,6 @@ E-Fatura entegrasyonu için sunucu taraflı programlama diline uygun farklı ist
 6. Bu işlemin sonunda e-Fatura/E-Arşiv fatura oluşturmak için gerekli bütün sınıflar UBL-Invoice-2.1.cs dosyası içerisinde oluşturulacaktır.
 7. Fatura **InvoiceType** sınıfı ile üretilmektedir.
 
-<%= partial "includes/efatura/faturasenaryolar" %>
 <%= partial "includes/ortak/requestheader" %>
 <%= partial "includes/efatura/sendinvoice" %>
 <%= partial "includes/efatura/loadinvoice" %>
