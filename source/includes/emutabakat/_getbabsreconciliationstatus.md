@@ -1,14 +1,15 @@
-## BA/BS Mutabakat Durum Sorgulama (GetReconciliationStatus)
-* Entegrasyon platformunda bulunan bir veya birden fazla taslak, gelen ve giden irsaliyenin durumunu sorgulamayı sağlayan servistir.
-* Birden fazla belge durumu sorgulamak için `DESPATCHADVICEINFO` parametresi çoklanabilir.
+## BA/BS Mutabakat Durum Sorgulama (GetBABSReconciliationStatus)
+* Entegrasyon platformunda bulunan BA/BS mutabakatın durumunu sorgulamayı sağlayan servistir.
 
 
 Servise gönderilmesi gereken parametreler şu şekildedir:
 
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
-**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
-**DESPATCHADVICEINFO** | String  | **Evet** | Sorgulanacak belge numarası `ID` attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise `UUID` attribute eklenmelidir. `DIRECTION` attribute kullanılmamaktadır.
+**REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME`, `CHANNEL_NAME` alanı zorunludur.
+**RECONCILIATION_SEARCHING** | ComplexType  | **Evet** | Sorgulanacak mutabakatlara ait kriterleri belirlemek için kullanılır.
+**SEARCH_KEY.CUSTOMER_IDENTIFIER** | String  | Hayır | Durumu sorgulanacak müşteri VKN/TCKN. Bir dönemde sadece bir cari/mükellefe ait mutabakatın durumunu sorgulamak için kullanılabilir.
+**SEARCH_KEY.ACCOUNTING_PERIOD** | String  | **Evet** | Durumu sorgulanacak mutabakat dönemi. Bir dönemde ki bütün mutabakatların durumunu sorgulamak için kullanılır.
 
 
 Servisten dönen parametreler şu şekildedir:
@@ -16,89 +17,36 @@ Servisten dönen parametreler şu şekildedir:
 
 Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
-**DESPATCHADVICE** | ComplexType | Sorgu kriterine uyan irsaliyelerin listesi. İrsaliye numarası `ID`, evrensel tekil tanımlama numarası  `UUID` ve e-irsaliye sisteminde tanımlı tekil numara değeri  `LIST_ID` attribute içerisinde dönülmektedir.
-**DESPATCHADVICE.DESPATCHADVICEHEADER** | ComplexType | İrsaliyeye ait özet bilgiler içermektedir.
-**DESPATCHADVICEHEADER.ID** | String | Belgenin numarası.
-**DESPATCHADVICEHEADER.UUID** | String | Belgenin evrensel tekil tanımlama numarası.
-**DESPATCHADVICEHEADER.PROFILEID** | String | Belge senaryosu. `TEMELIRSALIYE` değeri olabilir.
-**DESPATCHADVICEHEADER.TYPE_CODE** | String | Belgenin tipi. `SEVK` değeri olabilir.
-**DESPATCHADVICEHEADER.SENDER** | String |  Belgeyi gönderen firmanın VKNsi `VKN` attribute içerisinde, firma ünvanı ise `IDENTIFIER` attribute içerisinde dönülmektedir.
-**DESPATCHADVICEHEADER.RECEIVER** | String |  Belgeyi alan firmanın VKNsi `VKN` attribute içerisinde, firma ünvanı ise `IDENTIFIER` attribute içerisinde dönülmektedir.
-**DESPATCHADVICEHEADER.ISSUE_DATE** | Date | Belge tarihi.
-**DESPATCHADVICEHEADER.ISSUE_TIME** | String | Belge düzenleme zamanı.
-**DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE** | Date | Fiili sevk tarihi.
-**DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_TIME** | String | Fiili sevk zamanı.
-**DESPATCHADVICEHEADER.DIRECTION** | String | Belge yönü. Gelen irsaliye için `IN`, giden irsaliye için `OUT` değeri dönülür.
-**DESPATCHADVICEHEADER.STATUS** | String | Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için `STATUS_CODE` alanını kullanınız.
-**DESPATCHADVICEHEADER.STATUS_CODE** | String | Belgenin durum kodu. Detay için **İrsaliye Durumları** başlığını inceleyiniz.
-**DESPATCHADVICEHEADER.STATUS_DESCRIPTION** | String | Belgenin durum açıklaması. Detay için **İrsaliye Durumları** başlığını inceleyiniz.
-**DESPATCHADVICEHEADER.GIB_STATUS_CODE** | int | Belgenin GİB'de ki durum kodu. Detay için **GİB Durum Kodları** başlığını inceleyiniz.
-**DESPATCHADVICEHEADER.GIB_STATUS_DESCRIPTION** | String | Belgenin GİB'de ki durum kodunun açıklaması. Detay için **GİB Durum Kodları** başlığını inceleyiniz.  
-**DESPATCHADVICEHEADER.CDATE** | DateTime | Belgenin sisteme ulaştığı/yüklendiği tarih
-**DESPATCHADVICEHEADER.ENVELOPE_IDENTIFIER** | String | Belgenin zarf IDsi.
+**RECONCILIATION_STATUS** | ComplexType | Mutabakat durum sonuç objesi. Eğer aranan kritere uygun mutabakat bulunmuyorsa sonuç boş kayıt döner.
+**RECONCILIATION_STATUS.RECONCILATION** | ComplexType | Durumu sorgulaması kriterine uyan mutabakat objesi.
+**RECONCILATION.CUSTOMER_IDENTIFIER** | String | Mutabakat gönderilen mükellef VKN/TCKN.
+**RECONCILIATION.ACCOUNTING_PERIOD** | String  | Mutabakat dönemi. **Format: 201807**
+**RECONCILIATION.STATUS_CODE** | String  | Mutabakat durum kodu. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.
+**RECONCILIATION.STATUS_DESCRIPTION** | String  | Mutabakat durum açıklaması. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.
+**RECONCILIATION.CREATE_DATE** | DateTime  | Mutabakatın özel entegratör sistemine yüklendiği tarih.
+**RECONCILIATION.EMAIL** | ComplexType  | Mutabakatın e-posta durum sonuç objesi
+**RECONCILIATION.EMAIL_STATUS_CODE** | String  | Mutabakatın e-posta durum kodu. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.
+**RECONCILIATION.EMAIL_STATUS_DESCRIPTION** | String  | Mutabakatın e-posta durum açıklaması. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.
+**RECONCILIATION.EMAIL_STATUS_DATE** | DateTime  | Mutabakatın e-posta durum tarihi.
 
 
 
+### E-Mutabakat Durumları
 
-### E-İrsaliye Durumları
+Durum Kodu | Durum Açıklaması       
+--------- | -----------
+100 | KUYRUĞA EKLENDİ
+105 | TASLAK OLARAK EKLENDİ
+110 | İŞLENİYOR
+120 | İŞLENDİ
+125 | MUTABIK
+126 | MUTABIK DEĞİL
 
+### E-Mutabakat E-Posta Gönderim Durumları
 
-Durum	| Kod | Detaylı Açıklama
-------- |---------- | --------------
-DURUM_HENUZ_GUNCELLENMEDI	| 100	| DURUM HENÜZ GÜNCELLENMEDİ
-LOAD_SUCCEED	| 101	| KUYRUĞA EKLENDİ
-LOAD_PROCESSİNG	| 102	|TASLAK İŞLENİYOR
-PACKAGE_PROCESSING |	103	 |	PAKETLENİYOR
-PACKAGE_SUCCEED	 |	104	 |	PAKETLENDİ
-PACKAGE_FAILED	 |	105	 |	PAKETLEME_HATASI
-SIGN_PROCESSING	 |	106	 |	İMZALANIYOR
-SIGN_FAILED |		106 |	İMZALANIYOR
-SIGN_SUCCEED	 |	107	 |	İMZALANDI
-RECEIVE_SUCCEED	 |	133	 |	BAŞARIYLA ALINDI
-SEND_TIMEOUT	 |	134	 |	GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR
-RECEIVE_TIMEOUT	 |	134	 |	GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR
-SEND_PROCESSING	 |	135 |		GÖNDERİLİYOR
-SEND_FAILED	 |	136	 |	GÖNDERME İŞLEMİ BAŞARISIZ
-SEND_SUCCEED	 |	137	 |	GÖNDERME İŞLEMİ BAŞARILI
-
-
-### GİB Durum Kodları
-
-Kod | Açıklama | Alınacak Aksiyon
------- | --------- | -------------
-1000 | 	ZARF KUYRUĞA EKLENDİ  |	Durum kodunun güncellenmesi beklenmelidir.
-1100 | 	ZARF İŞLENİYOR 	 | Durum kodunun güncellenmesi beklenmelidir.
-1110 | 	ZIP DOSYASI DEĞİL  | Belge yeniden gönderilmeli
-1111 | 	ZARF ID UZUNLUĞU GEÇERSİZ  | Belge yeniden gönderilmeli
-1120 | 	ZARF ARŞİVDEN KOPYALANAMADI  |	Belge yeniden gönderilmeli
-1130 | 	ZIP AÇILAMADI  |	Belge yeniden gönderilmeli
-1131 | 	ZIP BİR DOSYA İÇERMELİ  |	Belge yeniden gönderilmeli
-1132 | 	XML DOSYASI DEĞİL  |	Belge yeniden gönderilmeli
-1133 | 	ZARF ID VE XML DOSYASININ ADI AYNI OLMALI  |	Belge yeniden gönderilmeli
-1140 | 	DOKUMAN AYRIŞTIRILAMADI  |	Belge yeniden gönderilmeli
-1141 | 	ZARF ID YOK  |	Belge yeniden gönderilmeli
-1142 | 	ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI 	 | Belge yeniden gönderilmeli
-1143 | 	GEÇERSİZ VERSİYON  |	Belge yeniden gönderilmeli
-1150 | 	SCHEMATRON KONTROL SONUCU HATALI  |	Belge yeniden gönderilmeli
-1160 | 	XML SEMA KONTROLÜNDEN GEÇEMEDİ 	 | Belge yeniden gönderilmeli
-1161 | 	İMZA SAHİBİ TCKN VKN ALINAMADI  |	Belge yeniden gönderilmeli
-1162 | 	İMZA KAYDEDİLEMEDİ 	 | Belge yeniden gönderilmeli
-1163 | 	GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR 	 | Belge yeniden gönderilmeli
-1170 | 	YETKİ KONTROL EDİLEMEDİ   |	Belge yeniden gönderilmeli
-1171 | 	GÖNDERİCİ BİRİM YETKİSİ YOK  |	Belge yeniden gönderilmeli
-1172 |	POSTA KUTUSU YETKİSİ YOK  |	Belge yeniden gönderilmeli
-1175 | 	İMZA YETKİSİ KONTROL EDİLEMEDİ 	 | Belge yeniden gönderilmeli
-1176 | 	İMZA SAHİBİ YETKİSİZ 	 | Belge yeniden gönderilmeli
-1177 | 	GEÇERSİZ İMZA 	 | Belge yeniden gönderilmeli
-1180 | 	ADRES KONTROL EDİLEMEDİ  |	Belge yeniden gönderilmeli
-1181 | 	ADRES BULUNAMADI  |	Belge yeniden gönderilmeli
-1182 | 	KULLANICI EKLENEMEDİ 	 | Belge yeniden gönderilmeli
-1183 | 	KULLANICI SİLİNEMEDİ 	 | Belge yeniden gönderilmeli
-1190 | 	SİSTEM YANITI HAZIRLANAMADI  |	Belge yeniden gönderilmeli
-1195 | 	SİSTEM HATASI  |	Belge yeniden gönderilmeli
-1200 | 	ZARF BAŞARIYLA İŞLENDİ | Özel entegratörden gönderilen Belgede sorun tespit edilmedi. Sonra ki aşamalara geçilecek.
-1210 | 	DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ  |	GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise belgeler yeniden gönderilmeli
-1215 | 	DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI  | 	Belge yeniden gönderilmeli
-1220 | 	HEDEFTEN SİSTEM YANITI GELMEDİ  | 	Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.
-1230 | 	HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ 	 | Belge yeniden gönderilmeli
-1300 | 	BAŞARIYLA TAMAMLANDI 	| Başarılı olan Belge aynı numara ile gönderilemez.
+Durum Kodu | Durum Açıklaması       
+--------- | -----------
+100 | HENÜZ İŞLENMEDİ
+110 | İŞLENİYOR
+120 | İŞLENDİ
+130 | E-POSTA GÖNDERİM SONLANDI

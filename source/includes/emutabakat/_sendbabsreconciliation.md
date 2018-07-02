@@ -21,7 +21,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **RECONCILIATION.ACCOUNTING_PERIOD** | String  | Hayır | Mutabakat dönemi. **Format: 201807**
 **RECONCILIATION.BA_DOCUMENT_COUNT** | String  | Hayır | BA mutabakat belge adeti.
 **RECONCILIATION.BA_DOCUMENT_AMAOUT** | Decimal  | Hayır | BA mutabakat belgelerinin toplam tutarı.
-**RECONCILIATION.Bs_DOCUMENT_COUNT** | String  | Hayır | BS mutabakat belge adeti.
+**RECONCILIATION.BS_DOCUMENT_COUNT** | String  | Hayır | BS mutabakat belge adeti.
 **RECONCILIATION.BA_DOCUMENT_AMAOUT** | Decimal  | Hayır | BS mutabakat belgelerinin toplam tutarı.
 <br><br>
 
@@ -32,12 +32,13 @@ Parametre | Tip        | Açıklama
 **REQUEST_RETURN.INT_TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
 **REQUEST_RETURN.RETURN_CODE** | String | Başarılı durumlarda `0` değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.
 
+### E-Mutabakat Hata Kodları
 
-
-
-
-### E-Mutabakat Durumları
-Eklenecek
-
-### E-Mutabakat E-Posta Durumları
-Eklenecek
+Hata Kodu | Hata Açıklaması       
+--------- | -----------
+200	| EKSİK VEYA HATALI PARAMETRE (PARAMETRE ADI)
+210	| YETKİ HATASI(xxx.xxx.xxx.xxx adresinin bu işleme yetkisi yoktur)
+220	| GÜNLÜK İSTEK LİTİMİ AŞILDI
+230	| MUTABAKAT SİSTEMDE MEVCUT ( VKN/TCKN:XXXXX, DÖNEM:yyyymm)
+240	| BELGE KONTROL HATASI (MEVZUATA UYGUN OLMAYAN MUTABAKAT KAYDI MEVCUT (5000 TL Limiti)
+250	| GEÇERSİZ E-POSTA FORMATI( eposta@adfads.com)
