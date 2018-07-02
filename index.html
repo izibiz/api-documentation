@@ -5975,7 +5975,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>BA mutabakat belgelerinin toplam tutarı.</td>
 </tr>
 <tr>
-<td><strong>RECONCILIATION.Bs_DOCUMENT_COUNT</strong></td>
+<td><strong>RECONCILIATION.BS_DOCUMENT_COUNT</strong></td>
 <td>String</td>
 <td>Hayır</td>
 <td>BS mutabakat belge adeti.</td>
@@ -6011,19 +6011,44 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<h3 id="e-mutabakat-durumlar">E-Mutabakat Durumları</h3>
+<h3 id="e-mutabakat-hata-kodlar">E-Mutabakat Hata Kodları</h3>
 
-<p>Eklenecek</p>
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Hata Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>EKSİK VEYA HATALI PARAMETRE (PARAMETRE ADI)</td>
+</tr>
+<tr>
+<td>210</td>
+<td>YETKİ HATASI(xxx.xxx.xxx.xxx adresinin bu işleme yetkisi yoktur)</td>
+</tr>
+<tr>
+<td>220</td>
+<td>GÜNLÜK İSTEK LİTİMİ AŞILDI</td>
+</tr>
+<tr>
+<td>230</td>
+<td>MUTABAKAT SİSTEMDE MEVCUT ( VKN/TCKN:XXXXX, DÖNEM:yyyymm)</td>
+</tr>
+<tr>
+<td>240</td>
+<td>BELGE KONTROL HATASI (MEVZUATA UYGUN OLMAYAN MUTABAKAT KAYDI MEVCUT (5000 TL Limiti)</td>
+</tr>
+<tr>
+<td>250</td>
+<td>GEÇERSİZ E-POSTA FORMATI( eposta@adfads.com)</td>
+</tr>
+</tbody></table>
 
-<h3 id="e-mutabakat-e-posta-durumlar">E-Mutabakat E-Posta Durumları</h3>
-
-<p>Eklenecek</p>
-
-<h2 id="ba-bs-mutabakat-durum-sorgulama-getreconciliationstatus">BA/BS Mutabakat Durum Sorgulama (GetReconciliationStatus)</h2>
+<h2 id="ba-bs-mutabakat-durum-sorgulama-getbabsreconciliationstatus">BA/BS Mutabakat Durum Sorgulama (GetBABSReconciliationStatus)</h2>
 
 <ul>
-<li>Entegrasyon platformunda bulunan bir veya birden fazla taslak, gelen ve giden irsaliyenin durumunu sorgulamayı sağlayan servistir.</li>
-<li>Birden fazla belge durumu sorgulamak için <code class="prettyprint">DESPATCHADVICEINFO</code> parametresi çoklanabilir.</li>
+<li>Entegrasyon platformunda bulunan BA/BS mutabakatın durumunu sorgulamayı sağlayan servistir.</li>
 </ul>
 
 <p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
@@ -6040,13 +6065,25 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>REQUEST_HEADER</strong></td>
 <td>ComplexType</td>
 <td><strong>Evet</strong></td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code>, <code class="prettyprint">CHANNEL_NAME</code> alanı zorunludur.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEINFO</strong></td>
+<td><strong>RECONCILIATION_SEARCHING</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Sorgulanacak mutabakatlara ait kriterleri belirlemek için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Durumu sorgulanacak müşteri VKN/TCKN. Bir dönemde sadece bir cari/mükellefe ait mutabakatın durumunu sorgulamak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ACCOUNTING_PERIOD</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Sorgulanacak belge numarası <code class="prettyprint">ID</code> attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise <code class="prettyprint">UUID</code> attribute eklenmelidir. <code class="prettyprint">DIRECTION</code> attribute kullanılmamaktadır.</td>
+<td>Durumu sorgulanacak mutabakat dönemi. Bir dönemde ki bütün mutabakatların durumunu sorgulamak için kullanılır.</td>
 </tr>
 </tbody></table>
 
@@ -6060,381 +6097,119 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>DESPATCHADVICE</strong></td>
+<td><strong>RECONCILIATION_STATUS</strong></td>
 <td>ComplexType</td>
-<td>Sorgu kriterine uyan irsaliyelerin listesi. İrsaliye numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-irsaliye sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+<td>Mutabakat durum sonuç objesi. Eğer aranan kritere uygun mutabakat bulunmuyorsa sonuç boş kayıt döner.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICE.DESPATCHADVICEHEADER</strong></td>
+<td><strong>RECONCILIATION_STATUS.RECONCILATION</strong></td>
 <td>ComplexType</td>
-<td>İrsaliyeye ait özet bilgiler içermektedir.</td>
+<td>Durumu sorgulaması kriterine uyan mutabakat objesi.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.ID</strong></td>
+<td><strong>RECONCILATION.CUSTOMER_IDENTIFIER</strong></td>
 <td>String</td>
-<td>Belgenin numarası.</td>
+<td>Mutabakat gönderilen mükellef VKN/TCKN.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.UUID</strong></td>
+<td><strong>RECONCILIATION.ACCOUNTING_PERIOD</strong></td>
 <td>String</td>
-<td>Belgenin evrensel tekil tanımlama numarası.</td>
+<td>Mutabakat dönemi. <strong>Format: 201807</strong></td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.PROFILEID</strong></td>
+<td><strong>RECONCILIATION.STATUS_CODE</strong></td>
 <td>String</td>
-<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+<td>Mutabakat durum kodu. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.TYPE_CODE</strong></td>
+<td><strong>RECONCILIATION.STATUS_DESCRIPTION</strong></td>
 <td>String</td>
-<td>Belgenin tipi. <code class="prettyprint">SEVK</code> değeri olabilir.</td>
+<td>Mutabakat durum açıklaması. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.SENDER</strong></td>
-<td>String</td>
-<td>Belgeyi gönderen firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.RECEIVER</strong></td>
-<td>String</td>
-<td>Belgeyi alan firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.ISSUE_DATE</strong></td>
-<td>Date</td>
-<td>Belge tarihi.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.ISSUE_TIME</strong></td>
-<td>String</td>
-<td>Belge düzenleme zamanı.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
-<td>Date</td>
-<td>Fiili sevk tarihi.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
-<td>String</td>
-<td>Fiili sevk zamanı.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.DIRECTION</strong></td>
-<td>String</td>
-<td>Belge yönü. Gelen irsaliye için <code class="prettyprint">IN</code>, giden irsaliye için <code class="prettyprint">OUT</code> değeri dönülür.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.STATUS</strong></td>
-<td>String</td>
-<td>Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için <code class="prettyprint">STATUS_CODE</code> alanını kullanınız.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.STATUS_CODE</strong></td>
-<td>String</td>
-<td>Belgenin durum kodu. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.STATUS_DESCRIPTION</strong></td>
-<td>String</td>
-<td>Belgenin durum açıklaması. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_CODE</strong></td>
-<td>int</td>
-<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
-<td>String</td>
-<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICEHEADER.CDATE</strong></td>
+<td><strong>RECONCILIATION.CREATE_DATE</strong></td>
 <td>DateTime</td>
-<td>Belgenin sisteme ulaştığı/yüklendiği tarih</td>
+<td>Mutabakatın özel entegratör sistemine yüklendiği tarih.</td>
 </tr>
 <tr>
-<td><strong>DESPATCHADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td><strong>RECONCILIATION.EMAIL</strong></td>
+<td>ComplexType</td>
+<td>Mutabakatın e-posta durum sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_CODE</strong></td>
 <td>String</td>
-<td>Belgenin zarf IDsi.</td>
+<td>Mutabakatın e-posta durum kodu. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Mutabakatın e-posta durum açıklaması. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_DATE</strong></td>
+<td>DateTime</td>
+<td>Mutabakatın e-posta durum tarihi.</td>
 </tr>
 </tbody></table>
 
-<h3 id="e-rsaliye-durumlar">E-İrsaliye Durumları</h3>
+<h3 id="e-mutabakat-durumlar">E-Mutabakat Durumları</h3>
 
 <table><thead>
 <tr>
-<th>Durum</th>
-<th>Kod</th>
-<th>Detaylı Açıklama</th>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>DURUM_HENUZ_GUNCELLENMEDI</td>
 <td>100</td>
-<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
-</tr>
-<tr>
-<td>LOAD_SUCCEED</td>
-<td>101</td>
 <td>KUYRUĞA EKLENDİ</td>
 </tr>
 <tr>
-<td>LOAD_PROCESSİNG</td>
-<td>102</td>
-<td>TASLAK İŞLENİYOR</td>
-</tr>
-<tr>
-<td>PACKAGE_PROCESSING</td>
-<td>103</td>
-<td>PAKETLENİYOR</td>
-</tr>
-<tr>
-<td>PACKAGE_SUCCEED</td>
-<td>104</td>
-<td>PAKETLENDİ</td>
-</tr>
-<tr>
-<td>PACKAGE_FAILED</td>
 <td>105</td>
-<td>PAKETLEME_HATASI</td>
+<td>TASLAK OLARAK EKLENDİ</td>
 </tr>
 <tr>
-<td>SIGN_PROCESSING</td>
-<td>106</td>
-<td>İMZALANIYOR</td>
+<td>110</td>
+<td>İŞLENİYOR</td>
 </tr>
 <tr>
-<td>SIGN_FAILED</td>
-<td>106</td>
-<td>İMZALANIYOR</td>
+<td>120</td>
+<td>İŞLENDİ</td>
 </tr>
 <tr>
-<td>SIGN_SUCCEED</td>
-<td>107</td>
-<td>İMZALANDI</td>
+<td>125</td>
+<td>MUTABIK</td>
 </tr>
 <tr>
-<td>RECEIVE_SUCCEED</td>
-<td>133</td>
-<td>BAŞARIYLA ALINDI</td>
-</tr>
-<tr>
-<td>SEND_TIMEOUT</td>
-<td>134</td>
-<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
-</tr>
-<tr>
-<td>RECEIVE_TIMEOUT</td>
-<td>134</td>
-<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
-</tr>
-<tr>
-<td>SEND_PROCESSING</td>
-<td>135</td>
-<td>GÖNDERİLİYOR</td>
-</tr>
-<tr>
-<td>SEND_FAILED</td>
-<td>136</td>
-<td>GÖNDERME İŞLEMİ BAŞARISIZ</td>
-</tr>
-<tr>
-<td>SEND_SUCCEED</td>
-<td>137</td>
-<td>GÖNDERME İŞLEMİ BAŞARILI</td>
+<td>126</td>
+<td>MUTABIK DEĞİL</td>
 </tr>
 </tbody></table>
 
-<h3 id="g-b-durum-kodlar">GİB Durum Kodları</h3>
+<h3 id="e-mutabakat-e-posta-g-nderim-durumlar">E-Mutabakat E-Posta Gönderim Durumları</h3>
 
 <table><thead>
 <tr>
-<th>Kod</th>
-<th>Açıklama</th>
-<th>Alınacak Aksiyon</th>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>1000</td>
-<td>ZARF KUYRUĞA EKLENDİ</td>
-<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+<td>100</td>
+<td>HENÜZ İŞLENMEDİ</td>
 </tr>
 <tr>
-<td>1100</td>
-<td>ZARF İŞLENİYOR</td>
-<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+<td>110</td>
+<td>İŞLENİYOR</td>
 </tr>
 <tr>
-<td>1110</td>
-<td>ZIP DOSYASI DEĞİL</td>
-<td>Belge yeniden gönderilmeli</td>
+<td>120</td>
+<td>İŞLENDİ</td>
 </tr>
 <tr>
-<td>1111</td>
-<td>ZARF ID UZUNLUĞU GEÇERSİZ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1120</td>
-<td>ZARF ARŞİVDEN KOPYALANAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1130</td>
-<td>ZIP AÇILAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1131</td>
-<td>ZIP BİR DOSYA İÇERMELİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1132</td>
-<td>XML DOSYASI DEĞİL</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1133</td>
-<td>ZARF ID VE XML DOSYASININ ADI AYNI OLMALI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1140</td>
-<td>DOKUMAN AYRIŞTIRILAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1141</td>
-<td>ZARF ID YOK</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1142</td>
-<td>ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1143</td>
-<td>GEÇERSİZ VERSİYON</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1150</td>
-<td>SCHEMATRON KONTROL SONUCU HATALI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1160</td>
-<td>XML SEMA KONTROLÜNDEN GEÇEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1161</td>
-<td>İMZA SAHİBİ TCKN VKN ALINAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1162</td>
-<td>İMZA KAYDEDİLEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1163</td>
-<td>GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1170</td>
-<td>YETKİ KONTROL EDİLEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1171</td>
-<td>GÖNDERİCİ BİRİM YETKİSİ YOK</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1172</td>
-<td>POSTA KUTUSU YETKİSİ YOK</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1175</td>
-<td>İMZA YETKİSİ KONTROL EDİLEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1176</td>
-<td>İMZA SAHİBİ YETKİSİZ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1177</td>
-<td>GEÇERSİZ İMZA</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1180</td>
-<td>ADRES KONTROL EDİLEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1181</td>
-<td>ADRES BULUNAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1182</td>
-<td>KULLANICI EKLENEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1183</td>
-<td>KULLANICI SİLİNEMEDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1190</td>
-<td>SİSTEM YANITI HAZIRLANAMADI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1195</td>
-<td>SİSTEM HATASI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1200</td>
-<td>ZARF BAŞARIYLA İŞLENDİ</td>
-<td>Özel entegratörden gönderilen Belgede sorun tespit edilmedi. Sonra ki aşamalara geçilecek.</td>
-</tr>
-<tr>
-<td>1210</td>
-<td>DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ</td>
-<td>GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise belgeler yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1215</td>
-<td>DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1220</td>
-<td>HEDEFTEN SİSTEM YANITI GELMEDİ</td>
-<td>Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.</td>
-</tr>
-<tr>
-<td>1230</td>
-<td>HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ</td>
-<td>Belge yeniden gönderilmeli</td>
-</tr>
-<tr>
-<td>1300</td>
-<td>BAŞARIYLA TAMAMLANDI</td>
-<td>Başarılı olan Belge aynı numara ile gönderilemez.</td>
+<td>130</td>
+<td>E-POSTA GÖNDERİM SONLANDI</td>
 </tr>
 </tbody></table>
 
