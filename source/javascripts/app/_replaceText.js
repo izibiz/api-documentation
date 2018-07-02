@@ -15,7 +15,7 @@ $(document).ready(function () {
     // We have a special exception so that if people empty the field, it reverts to the first value
     if (newKey.length > 0) {
       if (newKey.length < 12 || !/^\w+$/.test(newKey)) {
-        alert('Best Buy API keys are at least 12 characters long, and only contain letters & numbers');
+        alert('IZIBIZ API keys are at least 12 characters long, and only contain letters & numbers');
         $('input.key-replace').focus();
         return false;
       }

@@ -3,10 +3,11 @@
 Ürün | Endpoint URL
 --------- | -----------
 Kimlik Doğrulama | [https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl](https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl)
-E-Fatura | [https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl](https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl)
-E-Arşiv | [https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl](https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl)
-E-İrsaliye | [https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl](https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl)
-E-Müstahsil Makbuzu | [http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl](http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl)
+E-Fatura Webservis | [https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl](https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl)
+E-Arşiv Fatura Webservis | [https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl](https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl)
+E-İrsaliye Webservis | [https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl](https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl)
+E-Müstahsil Webservis | [http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl](http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl)
+E-Mutabakat Webservis | [http://efaturatest.izibiz.com.tr/Reconciliation?wsdl](http://efaturatest.izibiz.com.tr/Reconciliation?wsdl)
 
 
 
