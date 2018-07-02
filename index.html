@@ -293,10 +293,12 @@
 <li><p>Bilindiği gibi e-dönüşüm sisteminde düzenlenen ve saklanan belgeler UBL-TR XML formatındadır. Düzenlenmiş her XML belgenin içerisinde görüntüsünü sağlayacak bir şablon (XSLT) dosya bulunmak zorundadır. Şablon belgesinin formatı XSLT (Extensible Stylesheet Language Transformations) Genişletilebilir Biçimlendirme Dili Dönüşümleridir. Bu dosya XML dokümanlarını insanların anlayacağı formata (HTML/PDF) dönüştürmek için kullanılır.</p></li>
 <li><p>Belge şablon dosyası XML dosya içerisinde ki <strong>AdditionalDocumentReference</strong> elemanına eklenmek zorundadır.
 <img src="/images/xslt_ekleme.png" height="200" width="400"/></p></li>
-<li><p>Gelir İdaresi Başkanlığı tarafından mükellefler arasında ki anlaşmazlıklarda kullanabilecekleri ortak bir uygulama olan E-Belge Görüntüleyici uygulaması yayınlamıştır. Bu uygula UBL-TR formatında ki belgenin içerisinde ki şablon ile görüntülemesini sağlar, şema ve şematron kontrolü yapar, belgenin içerisinde ki imzanın geçerliliğini kontrol eder ve belgenin GİB&#39;de ki durumunu  mükelleflerin kendilerine gelen ya da gönderdikleri belgelerin görüntülemesinde ki hataların tespitini, şema ve şematron kontrollerini , görüntüleyen, imza kontrollerini yapan GİB e-Fatura Görüntüleyici isminde Java tabanlı bir uygulama yayınlamıştır (internet bağlantısı gerekmektedir). Uygulama UBL-TR fatura XML’leri ile çalışmaktadır: <br>
-<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.6 İndir</a><br>
-<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/Java17/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.7 İndir</a></p></li>
+<li><p>Gelir İdaresi Başkanlığı tarafından mükellefler arasında ki anlaşmazlıklarda kullanabilecekleri ortak bir uygulama olan <strong>E-Belge Görüntüleyici</strong> uygulaması yayınlamıştır. Bu uygulama UBL-TR formatında ki belgenin içerisinde ki şablon ile görüntülemesini sağlar, şema ve şematron kontrolü yapar, belgenin içerisinde ki imzanın geçerliliğini kontrol eder ve belgenin GİB&#39;de ki durumunu kontrol eder.</p></li>
 </ul>
+
+<p>Kullandığınız Java Versiyonuna Göre E-Belge Görüntüleyici İndirebilirsiniz:
+<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.6 İndir</a><br>
+<a href="http://www.efatura.gov.tr/EFaturaGoruntuleyici/Windows/Java17/EFaturaGoruntuleyici.jnlp">E-Belge Görüntüleyici Java 1.7 İndir</a></p>
 
 <h2 id="belge-g-nderme-kontrolleri">Belge Gönderme Kontrolleri</h2>
 
@@ -384,20 +386,24 @@
 <td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Fatura</td>
+<td>E-Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Arşiv</td>
+<td>E-Arşiv Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
 </tr>
 <tr>
-<td>E-İrsaliye</td>
+<td>E-İrsaliye Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Müstahsil Makbuzu</td>
+<td>E-Müstahsil Webservis</td>
 <td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -444,6 +450,12 @@
 <td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
 </tr>
 <tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
 <td><strong>COMPRESSED</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -484,12 +496,6 @@
 <td>String</td>
 <td>Hayır</td>
 <td>Metodu çağıran sunucunun host bilgisi.</td>
-</tr>
-<tr>
-<td><strong>CHANNEL_NAME</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Metodun çağrıldığı kanal adı.</td>
 </tr>
 <tr>
 <td><strong>SIMULATION_FLAG</strong></td>
@@ -992,20 +998,24 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Fatura</td>
+<td>E-Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Arşiv</td>
+<td>E-Arşiv Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
 </tr>
 <tr>
-<td>E-İrsaliye</td>
+<td>E-İrsaliye Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Müstahsil Makbuzu</td>
+<td>E-Müstahsil Webservis</td>
 <td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -1235,6 +1245,12 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
 </tr>
 <tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
 <td><strong>COMPRESSED</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -1275,12 +1291,6 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td>String</td>
 <td>Hayır</td>
 <td>Metodu çağıran sunucunun host bilgisi.</td>
-</tr>
-<tr>
-<td><strong>CHANNEL_NAME</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Metodun çağrıldığı kanal adı.</td>
 </tr>
 <tr>
 <td><strong>SIMULATION_FLAG</strong></td>
@@ -2779,20 +2789,24 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Fatura</td>
+<td>E-Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Arşiv</td>
+<td>E-Arşiv Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
 </tr>
 <tr>
-<td>E-İrsaliye</td>
+<td>E-İrsaliye Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Müstahsil Makbuzu</td>
+<td>E-Müstahsil Webservis</td>
 <td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -2988,6 +3002,12 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
 </tr>
 <tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
 <td><strong>COMPRESSED</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -3028,12 +3048,6 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <td>String</td>
 <td>Hayır</td>
 <td>Metodu çağıran sunucunun host bilgisi.</td>
-</tr>
-<tr>
-<td><strong>CHANNEL_NAME</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Metodun çağrıldığı kanal adı.</td>
 </tr>
 <tr>
 <td><strong>SIMULATION_FLAG</strong></td>
@@ -3909,20 +3923,24 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Fatura</td>
+<td>E-Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Arşiv</td>
+<td>E-Arşiv Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
 </tr>
 <tr>
-<td>E-İrsaliye</td>
+<td>E-İrsaliye Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Müstahsil Makbuzu</td>
+<td>E-Müstahsil Webservis</td>
 <td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -4115,6 +4133,12 @@ kapatabilirsiniz.</p></li>
 <td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
 </tr>
 <tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
 <td><strong>COMPRESSED</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -4155,12 +4179,6 @@ kapatabilirsiniz.</p></li>
 <td>String</td>
 <td>Hayır</td>
 <td>Metodu çağıran sunucunun host bilgisi.</td>
-</tr>
-<tr>
-<td><strong>CHANNEL_NAME</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Metodun çağrıldığı kanal adı.</td>
 </tr>
 <tr>
 <td><strong>SIMULATION_FLAG</strong></td>
@@ -5016,20 +5034,24 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Fatura</td>
+<td>E-Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Arşiv</td>
+<td>E-Arşiv Fatura Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
 </tr>
 <tr>
-<td>E-İrsaliye</td>
+<td>E-İrsaliye Webservis</td>
 <td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
 </tr>
 <tr>
-<td>E-Müstahsil Makbuzu</td>
+<td>E-Müstahsil Webservis</td>
 <td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -5120,6 +5142,12 @@ kapatabilirsiniz.</li>
 <td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
 </tr>
 <tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
 <td><strong>COMPRESSED</strong></td>
 <td>String</td>
 <td>Hayır</td>
@@ -5160,12 +5188,6 @@ kapatabilirsiniz.</li>
 <td>String</td>
 <td>Hayır</td>
 <td>Metodu çağıran sunucunun host bilgisi.</td>
-</tr>
-<tr>
-<td><strong>CHANNEL_NAME</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Metodun çağrıldığı kanal adı.</td>
 </tr>
 <tr>
 <td><strong>SIMULATION_FLAG</strong></td>
@@ -5658,6 +5680,761 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>SEND_SUCCEED</td>
 <td>137</td>
 <td>GÖNDERME İŞLEMİ BAŞARILI</td>
+</tr>
+</tbody></table>
+
+          <h1 id="e-mutabakat-webservis">E-Mutabakat Webservis</h1>
+
+<p>e-Mutabakat servisi, mükelleflerin BA/BS ve Cari mutabakatlarını yönetmlerini sağlayan webservis uygulamasıdır.</p>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>SendReconciliation</strong> metodu ile BA/BS ve Cari mutabakat gönderimi yapılabilmektedir. Detaylar için <strong>E-Mutabakat Gönderme</strong> bölümünü inceleyiniz.</li>
+<li><strong>GetReconciliationStatus</strong> metodu ile gönderilen mutabakatların durumları sorgulanabilir. Nihai duruma erişene kadar mutabakatların durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.</li>
+</ol>
+
+<h2 id="e-mutabakat-entegrasyon-kontrol-listesi">E-Mutabakat Entegrasyon Kontrol Listesi</h2>
+
+<table><thead>
+<tr>
+<th>Durum</th>
+<th>Kontrol</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Oturum Açmak için <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Login</strong> metodu kullanıldı.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Oturum açıldıktan sonra bütün isteklerde aynı Session ID kullanılıyor. Eğer Aktif session bulunamadı hatası dönülürse yeni oturum açılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Gönderilen her istek ile REQUEST_HEADER objesinde ki <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code>, <code class="prettyprint">CHANNEL_NAME</code> alanları dolu gönderiliyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>BA/BS ve Cari Mutabakat için <strong>SendBABSReconciliation</strong> metodu kullanılarak örnek gönderim yapıldı.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Özel entegratöre iletilen mutabakat muhasebe paketi/ERP&#39;de değişiklik yapılamıyor. Kayıt kitleniyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Gönderilen mutabakatların durum sorgulaması <strong>GetBABSReconciliationStatus</strong> metodu ile yapılıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Mutabakatların durumu zamanlayıcı ile otomatik sorgulanıyorsa bu süre konfiguratif ve en az 4 saat olarak belirlendi.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Nihai duruma ulaşmış mutabakatların durumları sorgulanmıyor.</td>
+</tr>
+<tr>
+<td><strong>Evet / Hayır</strong></td>
+<td>Kullanıcı uygulamayı kapattığında <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <strong>Logout</strong> metodu kullanarak oturum kapatıldı.</td>
+</tr>
+</tbody></table>
+
+<h2 id="stemci-client-rnek-projeler">İstemci (client) Örnek Projeler</h2>
+
+<p>E-Mutabakat entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
+
+<p><a href="/resource/client/izibiz-emutabakat-soapui-client.zip" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+</tbody></table>
+
+<h2 id="ba-bs-mutabakat-g-nderme-sendbabsreconciliation">BA/BS Mutabakat Gönderme (SendBABSReconciliation)</h2>
+
+<ul>
+<li>Özel entegratör sistemi üzerinden toplu BA/BS mutabakat gönderimini sağlayan servistir.</li>
+<li>Toplu mutabakat göndermek için <code class="prettyprint">RECONCILIATION</code> parametresi çoklanabilir.</li>
+<li>BA/BS mutabakat için cariye düzenlenen belge tutarı 5000 TL ve üzeri olmalıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code>, <code class="prettyprint">CHANNEL_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>En az bir mutabakat bulunmalıdır. Toplu gönderim için bu eleman çoklanır.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın vergi kimlik nuarası. VKN doğrulaması yapılmadığı için gönderilen verinin doğruluğu mükellefe aittir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.COMMERCIAL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın ünvanı. Alıcı firmaya gönderilen e-posta üzerinde görünecektir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.TAX_OFFICE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın vergi dairesi.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CUSTOMER_ADDRESS</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın adresi.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.TELEFONE_NO</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın telefon numarası. <strong>Format: 0 (212) 555 55 55</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.FAX_NO</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mutabakat gönderilecek firmanın faks numarası. <strong>Format: 0 (212) 555 55 55</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mutabakat gönderilecek firmanın e-posta adresi. E-posta adresinin formatı kontrol edilir ancak doğruluğu ve geçerliliği mükellefin sorumluluğundadır. <strong>Format: muhasebe@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.NOTE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mutabakat gönderilecek firmaya iletilmek istenilen not metni. Maksimum 250 karakter gönderilebilir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.ACCOUNTING_PERIOD</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mutabakat dönemi. <strong>Format: 201807</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.BA_DOCUMENT_COUNT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>BA mutabakat belge adeti.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.BA_DOCUMENT_AMAOUT</strong></td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>BA mutabakat belgelerinin toplam tutarı.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.Bs_DOCUMENT_COUNT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>BS mutabakat belge adeti.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.BA_DOCUMENT_AMAOUT</strong></td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>BS mutabakat belgelerinin toplam tutarı.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-mutabakat-durumlar">E-Mutabakat Durumları</h3>
+
+<p>Eklenecek</p>
+
+<h3 id="e-mutabakat-e-posta-durumlar">E-Mutabakat E-Posta Durumları</h3>
+
+<p>Eklenecek</p>
+
+<h2 id="ba-bs-mutabakat-durum-sorgulama-getreconciliationstatus">BA/BS Mutabakat Durum Sorgulama (GetReconciliationStatus)</h2>
+
+<ul>
+<li>Entegrasyon platformunda bulunan bir veya birden fazla taslak, gelen ve giden irsaliyenin durumunu sorgulamayı sağlayan servistir.</li>
+<li>Birden fazla belge durumu sorgulamak için <code class="prettyprint">DESPATCHADVICEINFO</code> parametresi çoklanabilir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEINFO</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Sorgulanacak belge numarası <code class="prettyprint">ID</code> attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise <code class="prettyprint">UUID</code> attribute eklenmelidir. <code class="prettyprint">DIRECTION</code> attribute kullanılmamaktadır.</td>
+</tr>
+</tbody></table>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>DESPATCHADVICE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan irsaliyelerin listesi. İrsaliye numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-irsaliye sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE.DESPATCHADVICEHEADER</strong></td>
+<td>ComplexType</td>
+<td>İrsaliyeye ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ID</strong></td>
+<td>String</td>
+<td>Belgenin numarası.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Belgenin evrensel tekil tanımlama numarası.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">SEVK</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
+<td>Date</td>
+<td>Fiili sevk tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
+<td>String</td>
+<td>Fiili sevk zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye için <code class="prettyprint">IN</code>, giden irsaliye için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için <code class="prettyprint">STATUS_CODE</code> alanını kullanınız.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin durum açıklaması. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_CODE</strong></td>
+<td>int</td>
+<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.CDATE</strong></td>
+<td>DateTime</td>
+<td>Belgenin sisteme ulaştığı/yüklendiği tarih</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgenin zarf IDsi.</td>
+</tr>
+</tbody></table>
+
+<h3 id="e-rsaliye-durumlar">E-İrsaliye Durumları</h3>
+
+<table><thead>
+<tr>
+<th>Durum</th>
+<th>Kod</th>
+<th>Detaylı Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DURUM_HENUZ_GUNCELLENMEDI</td>
+<td>100</td>
+<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
+</tr>
+<tr>
+<td>LOAD_SUCCEED</td>
+<td>101</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>LOAD_PROCESSİNG</td>
+<td>102</td>
+<td>TASLAK İŞLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_PROCESSING</td>
+<td>103</td>
+<td>PAKETLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_SUCCEED</td>
+<td>104</td>
+<td>PAKETLENDİ</td>
+</tr>
+<tr>
+<td>PACKAGE_FAILED</td>
+<td>105</td>
+<td>PAKETLEME_HATASI</td>
+</tr>
+<tr>
+<td>SIGN_PROCESSING</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_FAILED</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_SUCCEED</td>
+<td>107</td>
+<td>İMZALANDI</td>
+</tr>
+<tr>
+<td>RECEIVE_SUCCEED</td>
+<td>133</td>
+<td>BAŞARIYLA ALINDI</td>
+</tr>
+<tr>
+<td>SEND_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>RECEIVE_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>SEND_PROCESSING</td>
+<td>135</td>
+<td>GÖNDERİLİYOR</td>
+</tr>
+<tr>
+<td>SEND_FAILED</td>
+<td>136</td>
+<td>GÖNDERME İŞLEMİ BAŞARISIZ</td>
+</tr>
+<tr>
+<td>SEND_SUCCEED</td>
+<td>137</td>
+<td>GÖNDERME İŞLEMİ BAŞARILI</td>
+</tr>
+</tbody></table>
+
+<h3 id="g-b-durum-kodlar">GİB Durum Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Kod</th>
+<th>Açıklama</th>
+<th>Alınacak Aksiyon</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1000</td>
+<td>ZARF KUYRUĞA EKLENDİ</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>ZARF İŞLENİYOR</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>ZIP DOSYASI DEĞİL</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>ZARF ID UZUNLUĞU GEÇERSİZ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1120</td>
+<td>ZARF ARŞİVDEN KOPYALANAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1130</td>
+<td>ZIP AÇILAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1131</td>
+<td>ZIP BİR DOSYA İÇERMELİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1132</td>
+<td>XML DOSYASI DEĞİL</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1133</td>
+<td>ZARF ID VE XML DOSYASININ ADI AYNI OLMALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1140</td>
+<td>DOKUMAN AYRIŞTIRILAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1141</td>
+<td>ZARF ID YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1142</td>
+<td>ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1143</td>
+<td>GEÇERSİZ VERSİYON</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1150</td>
+<td>SCHEMATRON KONTROL SONUCU HATALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1160</td>
+<td>XML SEMA KONTROLÜNDEN GEÇEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1161</td>
+<td>İMZA SAHİBİ TCKN VKN ALINAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1162</td>
+<td>İMZA KAYDEDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1163</td>
+<td>GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1170</td>
+<td>YETKİ KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1171</td>
+<td>GÖNDERİCİ BİRİM YETKİSİ YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1172</td>
+<td>POSTA KUTUSU YETKİSİ YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1175</td>
+<td>İMZA YETKİSİ KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1176</td>
+<td>İMZA SAHİBİ YETKİSİZ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1177</td>
+<td>GEÇERSİZ İMZA</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1180</td>
+<td>ADRES KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1181</td>
+<td>ADRES BULUNAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1182</td>
+<td>KULLANICI EKLENEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1183</td>
+<td>KULLANICI SİLİNEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1190</td>
+<td>SİSTEM YANITI HAZIRLANAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1195</td>
+<td>SİSTEM HATASI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1200</td>
+<td>ZARF BAŞARIYLA İŞLENDİ</td>
+<td>Özel entegratörden gönderilen Belgede sorun tespit edilmedi. Sonra ki aşamalara geçilecek.</td>
+</tr>
+<tr>
+<td>1210</td>
+<td>DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ</td>
+<td>GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise belgeler yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1215</td>
+<td>DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1220</td>
+<td>HEDEFTEN SİSTEM YANITI GELMEDİ</td>
+<td>Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.</td>
+</tr>
+<tr>
+<td>1230</td>
+<td>HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>BAŞARIYLA TAMAMLANDI</td>
+<td>Başarılı olan Belge aynı numara ile gönderilemez.</td>
 </tr>
 </tbody></table>
 
