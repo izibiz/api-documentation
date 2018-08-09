@@ -8,6 +8,8 @@ E-Arşiv Fatura Webservis | [https://efaturatest.izibiz.com.tr/EIArchiveWS/EFatu
 E-İrsaliye Webservis | [https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl](https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl)
 E-Müstahsil Webservis | [http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl](http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl)
 E-Mutabakat Webservis | [http://efaturatest.izibiz.com.tr/Reconciliation?wsdl](http://efaturatest.izibiz.com.tr/Reconciliation?wsdl)
+E-Serbest Meslek Webservis | [https://efaturatest.izibiz.com.tr/SmmWS?wsdl](https://efaturatest.izibiz.com.tr/SmmWS?wsdl)
+E-ZRapor Webservis | [https://efaturatest.izibiz.com.tr/ZReportWS?wsdl](https://efaturatest.izibiz.com.tr/ZReportWS?wsdl)
 
 
 
