@@ -16,6 +16,5 @@ includes:
   - emustahsil
   - emutabakat
   - zrapor
-  - edefter
 search: true
 ---
