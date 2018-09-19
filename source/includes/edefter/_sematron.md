@@ -11,5 +11,5 @@ onaylı beratları alınıp ay kapatılmamışsa mükellef bir sonraki ayın yan
 Uygulama bu durumda hata verir.
 * GİB’e yüklenmiş, GİB’den onaylı beratları alınmış bir tarih aralığı için bir daha defter oluşturulamaz, aynı yolla ileri
 bir tarihi de kapsayacak şekilde defter oluşturulamaz.
-* Defter kaynak verilerindeki zorunlu alanların kontrolü yapılır, kaynak veri detayları için destek@efinans.com.tr
+* Defter kaynak verilerindeki zorunlu alanların kontrolü yapılır, kaynak veri detayları için destek@izibiz.com.tr
 adresinden detaylı bilgi talep edilebilir.
