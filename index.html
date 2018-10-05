@@ -15,14 +15,18 @@
     <script src="javascripts/fakeloader.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122965680-2"></script>
     <script>
-/*    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-6257094-15', 'auto');
-    ga('send', 'pageview');
-*/    $(document).ready(function() {
+        /* Google Analytics start*/
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-122965680-2');
+        /* Google Analytics end*/
+
+ $(document).ready(function() {
       $('.tocify-item a').on('click', function(){
         ga('send', 'pageview', {'page': location.pathname + location.search  + location.hash});
       });
@@ -86,6 +90,7 @@
 <li>E-Defter</li>
 <li>E-Müstahsil Makbuzu</li>
 <li>E-Serbest Meslek Makbuzu</li>
+<li>Z-Rapor</li>
 </ul>
 
 <p>Eğer entegrasyona yeni başlıyorsanız <code class="prettyprint">Başlarken</code> başlığı altında ki bilgileri okumanızı tavsiye ederiz.</p>
@@ -311,7 +316,6 @@
 <li>İşlem yapılacak aktif oturum kontrolü</li>
 <li>Gönderici firmanın özel entegratör sisteminde ki tanımlama kontrolü</li>
 <li>Gönderici ve alıcı firmaların mükellefiyet ve etiket kontrolü</li>
-<li>Göndericilerin Bulut e-Fatura platformuna kayıtlarının kontrolü</li>
 <li>Belgenin UBL-TR şemasına uygunluk kontrolü</li>
 <li>Belgenin UBL-TR şematronuna uygunluk kontrolü</li>
 <li>Gönderilen belge(lerin) özel entegratör sisteminde tekillik kontrolü</li>
@@ -326,8 +330,7 @@
 </aside>
 
 <ul>
-<li><p><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip">GİB UBL-TR Paketi</a> indirilip unzip edilir.</p></li>
-<li><p>Unzip edilen UBL-TR paketi içerisinde ki <strong>xsdrt\common</strong> klasöründe bulunan bütün dosyalar <strong>xsdrt\maindoc</strong> klasörüne taşınır. <br><strong>Örneğin:</strong> mv %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\common\* %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\maindoc\</p></li>
+<li><p>Güncel <a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR1.2.1_Paketi.zip">GİB UBL-TR Paketi</a> indirilip yerel C: disizine çıkarılır (unzip/extract).</p></li>
 <li><p>Eğer <strong>Visual Studio 2015 öncesi</strong> yüklü olan bir bilgisayar kullanılıyorsa <strong>V(StudioVersiyonu) Command Prompt</strong> komutu çalıştırılır. Örneğin Visual studio 2013 kurulu bir bilgisayarda <strong>V2013 Command Prompt</strong> şeklinde çalıştırılır.</p></li>
 <li><p>Eğer <strong>Visual Studio 2015 ve sonrası</strong> yüklü olan bir bilgisayar kullanılıyorsa <strong>Developer Command Prompt</strong> komut çalıştırılır.</p></li>
 <li><p>Açılan komut satırında UBL-TR paketinin unzip edildiği dizinde bulunan <strong>maindoc</strong> klasörüne geçiş yapılır. <br> <strong>Örneğin:</strong> cd %UNZIP_EDILEN_KLASOR%\UBLTR_1.2.1_Paketi\xsdrt\maindoc\</p></li>
@@ -344,25 +347,25 @@
 </thead><tbody>
 <tr>
 <td>E-Fatura / E-Arşiv Fatura</td>
-<td>xsd /c UBL-Invoice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</td>
+<td>xsd /c UBL-Invoice-2.1.xsd ../common/UBL-CommonExtensionComponents-2.1.xsd ../common/UBL-CommonBasicComponents-2.1.xsd ../common/UBL-UnqualifiedDataTypes-2.1.xsd ../common/UBL-CoreComponentParameters-2.1.xsd ../common/CCTS_CCT_SchemaModule-2.1.xsd ../common/UBL-CommonAggregateComponents-2.1.xsd</td>
 <td>UBL-Invoice-2.1.cs</td>
 <td>InvoiceType</td>
 </tr>
 <tr>
 <td>E-İrsaliye</td>
-<td>xsd /c UBL-DespatchAdvice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</td>
+<td>xsd /c UBL-DespatchAdvice-2.1.xsd ../common/UBL-CommonExtensionComponents-2.1.xsd ../common/UBL-CommonBasicComponents-2.1.xsd ../common/UBL-UnqualifiedDataTypes-2.1.xsd ../common/UBL-CoreComponentParameters-2.1.xsd ../common/CCTS_CCT_SchemaModule-2.1.xsd ../common/UBL-CommonAggregateComponents-2.1.xsd</td>
 <td>UBL-DespatchAdvice-2.1.cs</td>
 <td>DespatchAdviceType</td>
 </tr>
 <tr>
 <td>E-İrsaliye Yanıtı</td>
-<td>xsd /c UBL-ReceiptAdvice-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</td>
+<td>xsd /c UBL-ReceiptAdvice-2.1.xsd ../common/UBL-CommonExtensionComponents-2.1.xsd ../common/UBL-CommonBasicComponents-2.1.xsd ../common/UBL-UnqualifiedDataTypes-2.1.xsd ../common/UBL-CoreComponentParameters-2.1.xsd ../common/CCTS_CCT_SchemaModule-2.1.xsd ../common/UBL-CommonAggregateComponents-2.1.xsd</td>
 <td>UBL-ReceiptAdvice-2.1.cs</td>
 <td>ReceiptAdviceType</td>
 </tr>
 <tr>
 <td>Müstahsil Makbuzu</td>
-<td>xsd /c UBL-CreditNote-2.1.xsd UBL-CommonExtensionComponents-2.1.xsd UBL-CommonBasicComponents-2.1.xsd UBL-UnqualifiedDataTypes-2.1.xsd UBL-CoreComponentParameters-2.1.xsd CCTS_CCT_SchemaModule-2.1.xsd UBL-CommonAggregateComponents-2.1.xsd</td>
+<td>xsd /c UBL-CreditNote-2.1.xsd ../common/UBL-CommonExtensionComponents-2.1.xsd ../common/UBL-CommonBasicComponents-2.1.xsd ../common/UBL-UnqualifiedDataTypes-2.1.xsd ../common/UBL-CoreComponentParameters-2.1.xsd ../common/CCTS_CCT_SchemaModule-2.1.xsd ../common/UBL-CommonAggregateComponents-2.1.xsd</td>
 <td>UBL-CreditNote-2.1.cs</td>
 <td>CreditNoteType</td>
 </tr>
@@ -411,7 +414,7 @@
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -1031,7 +1034,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -1523,9 +1526,15 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td>Boolean</td>
+<td>Hayır</td>
+<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">true</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">false</code> gönderilirse sadece yeni gelen faturalar dönülür. Değerler: true/false</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.DRAFT_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">Y</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen faturalar dönülür. Değerler: Y/N</td>
+<td>Taslak faturaları sonuca eklenmesi için kullanılan parametredir. <code class="prettyprint">Y</code> değeri gönderilirse taslak faturalar diğer kriterlere uyan faturalarla beraber sonuca eklenir. Parametre gönderilmezse veya <code class="prettyprint">N</code> gönderilirse taslak faturalar sonuca eklenmez. Değerler: Y/N</td>
 </tr>
 <tr>
 <td><strong>SEARCH_KEY.DIRECTION</strong></td>
@@ -1615,17 +1624,17 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td><strong>HEADER.STATUS</strong></td>
 <td>String</td>
-<td>Faturanın durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+<td>Faturanın durumu. Detay için Fatura durum sorgulama ekranında bulunan <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
 <td>String</td>
-<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+<td>Fatura durum açıklaması. Detay için Fatura durum sorgulama ekranında bulunan <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.GIB_STATUS_CODE</strong></td>
 <td>String</td>
-<td>Faturanın GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Detay için Fatura durum sorgulama ekranında bulunan <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
@@ -2136,14 +2145,14 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>LOAD</td>
 <td>SUCCEED</td>
 <td>Fatura Yükleme - Başarılı</td>
-<td>Fatura Yükleme Başarılı</td>
+<td>Fatura Yükleme Başarılı. Taslak olarak sisteme yüklenmiş faturadır.</td>
 <td>Nihai Aşama</td>
 </tr>
 <tr>
 <td>LOAD</td>
 <td>FAILED</td>
-<td>Fatura Yükleme - Başarısız</td>
-<td>Oldu   Fatura Yükleme Hatalı</td>
+<td>Fatura Yükleme - Başarısız Oldu</td>
+<td>Fatura Yükleme Hatalı</td>
 <td>Nihai Aşama</td>
 </tr>
 <tr>
@@ -2830,7 +2839,7 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -3972,7 +3981,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -5091,7 +5100,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -5723,6 +5732,703 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+          <h1 id="e-serbest-meslek-makbuzu-webservisi">E-Serbest Meslek Makbuzu Webservisi</h1>
+
+<p>487 Sıra No.lu Vergi Usul Kanunu Genel Tebliği ile yürürlüğe giren e-Serbest Meslek Makbuzu (e-SMM) Uygulaması, Serbest Meslek Makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, muhafazası, ibrazı ve raporlanmasını kapsayan uygulamadır.</p>
+
+<p>01/01/2018 tarihi itibariyle dileyen serbest meslek erbapları uygulamaya dahil olarak mesleki faaliyetlerine ilişkin tahsilatları için kağıt ortamda düzenlemiş oldukları Serbest Meslek Makbuzunu elektronik belge olarak elektronik ortamda düzenleyebilir, muhatabının talebi doğrultusunda elektronik veya kağıt ortamda iletilebilir, elektronik ortamda muhafaza edip Gelir İdaresi Başkanlığı’na elektronik ortamda raporlayabilirler.</p>
+
+<h2 id="e-serbest-meslek-makbuzu-senaryolar">E-Serbest Meslek Makbuzu Senaryoları</h2>
+
+<p>E-SMM sistemi üzerinden düzenlenebilecek ve gönderilebilecek makbuz senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
+
+<table><thead>
+<tr>
+<th>Senaryosu</th>
+<th>Açıklama</th>
+<th>XML</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Nihai Tüketiciye (Şahıslara) Düzenlenen E-SMM</strong></td>
+<td>Alıcısının vergi mükellefi olmayıp şahıslara düzenlenen serbest meslek makbuzu senaryosudur. Nihai tüketiciye düzenlen makbuzlarda Gelir Vergisi (GV) stopajı uygulanır.</td>
+<td><a href="/resource/xml/esmm_nihaituketici.xml" target = "_blank" ><img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>Vergi Mükelleflerine Düzenlenen E-SMM</strong></td>
+<td>Alıcısının vergi mükellefi olduğu durumlarda düzenenlen serbest meslek makbuzu senaryosudur. Bu durumda KDV eklenmek zorundadır. KDV Tevkifatı uygulanabilir. <strong>KDV tevkifatı için aşağıda ki senaryoyı inceleyiniz.</strong></td>
+<td><a href="/resource/xml/esmm_vergimukellefi.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+<tr>
+<td><strong>KDV Tevkifatı İçeren E-SMM</strong></td>
+<td>Alıcısının vergi mükellefi olduğu durumlarda düzenenlen serbest meslek makbuzu senaryosudur. Bu durumda KDV eklenmek zorundadır. KDV Tevkifatı uygulanabilir.</td>
+<td><a href="/resource/xml/esmm_vergimullefikdvtevkifati.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
+</tr>
+</tbody></table>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Serbest Meslek Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/SmmWS?wsdl">https://efaturatest.izibiz.com.tr/SmmWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-ZRapor Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="test-hesaplar">Test Hesaplar</h2>
+
+<p>Test hesabı talep etmek için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.
+Test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 olmalıdır.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>E-SMM uygulamanızı geliştirken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendSMM</strong> metodu ile belge gönderimi yapılmaktadır.</li>
+<li><strong>GetSMMStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>CancelSMM</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
+
+<p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodu çağıran uygulamanın adı. Mutlaka uygulama adının yazılması gerekmektedir.</td>
+</tr>
+<tr>
+<td><strong>CHANNEL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Metodun çağrıldığı kanal adı.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İçerikte taşınan bilginin ZIP formatında sıkıştırılmış mı gönderildiği/talep edildiği bilgisi. Belge gönderim ve belge okuma servislerinde gönderilen değere göre işlem yapılmaktadır.</td>
+</tr>
+<tr>
+<td><strong>CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>INT_PARENT_TXN_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+</tr>
+<tr>
+<td><strong>ACTION_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodun çağrılma tarihi</td>
+</tr>
+<tr>
+<td><strong>CHANGE_INFO</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Bu eleman ile eğer verilerde bir değişiklik yapılacak ise o değişikliği ait bilgi.</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İşlem sebebi. Fatura gönderme, fatura alma vs.</td>
+</tr>
+<tr>
+<td><strong>HOST_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metodu çağıran sunucunun host bilgisi.</td>
+</tr>
+<tr>
+<td><strong>SIMULATION_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-serbest-meslek-makbuzu-g-nderme-sendsmm">E-Serbest Meslek Makbuzu Gönderme (SendSMM)</h2>
+
+<p>E-SMM belgesini özel entegratör sistemlerine gönderilmesini sağlayan servistir. Bu servis ile gönderilen belgeler kuyruğa eklenerek işleme (imzalama, e-posta/sms gönderme ve raporlama) alınacaktır.</p>
+
+<ul>
+<li>Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti sözleşmesi imzalanmalı ve e-posta gönderim hizmetinin aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini <code class="prettyprint">N</code> olarak gönderiniz.
+<br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. <code class="prettyprint">SESSION_ID</code> değeri <strong>Kimlik Doğrulama (Authentication)</strong> webservisinde ki <code class="prettyprint">Login</code> metodundan alınan değerdir. Belge sıkıştırılarak/ziplenerek gönderiliyorsa <code class="prettyprint">COMPRESSED</code> alanı gönderilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. <strong>XML formatında sıkıştırılmadan yüklemek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>SMM</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>En az bir SMM elementi bulunmalıdır. Toplu SMM göndermek bu eleman çoklanır. Atanan belge numarası <code class="prettyprint">ID</code> attribute içerisine, Evrensel tekil tanımlama numarasını (ETTN) <code class="prettyprint">UUID</code> attribute eklenmek zorundadır.</td>
+</tr>
+<tr>
+<td><strong>SMM.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. XML formatında sıkıştırılmadan göndermek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. <strong>Daha hızlı iletişim sağlamak için belgelerin sıkıştırılarak gönderilmesini öneriyoruz.</strong></td>
+</tr>
+<tr>
+<td><strong>SMM_PROPERTIES</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>SMM belgesi ile ilgili parametrelerin belirlendiği elemandır. Belgenin alıcısına e-posta veya SMS olarak iletme isteği belirlenebilir.</td>
+</tr>
+<tr>
+<td><strong>SMM_PROPERTIES.SMS_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge alıcısına SMS olarak göndermek için <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">SMS_NUMBER</code> dolu olsa dahi SMS gönderilmez. <strong>DİKKAT: Eğer müşterinin özel entegratör ile SMS gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek SMS gönderim hizmeti satın alınmalı veya SMS gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>SMM_PROPERTIES.SMS_NUMBER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belgenin SMS olarak iletileceği telefon numarası. Eğer <code class="prettyprint">SMS_FLAG</code> elemanına <code class="prettyprint">Y</code> gönderilirse bu alan zorunludur. <code class="prettyprint">SMS_FLAG</code> elemanı <code class="prettyprint">Y</code> gönderilmezse bu elaman dolu olsa dahi SMS gönderilmez.</td>
+</tr>
+<tr>
+<td><strong>SMM_PROPERTIES.EMAIL_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. *<em>DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir. *</em></td>
+</tr>
+<tr>
+<td><strong>SMM_PROPERTIES.EMAIL</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belgenin e-posta olarak iletileceği e-posta adresi. E-Posta formatında olmak zorundadır. E-Posta gönderimini özel entegratör sisteminden yapılması isteniyorsa <code class="prettyprint">Y</code> değeri gönderilmelidir. Varsayılan değer <code class="prettyprint">N</code> dir. <code class="prettyprint">EMAIL_FLAG</code> alanı <code class="prettyprint">Y</code> gönderildiği zaman bu elaman zorunludur. <code class="prettyprint">EMAIL_FLAG</code> gönderilmemiş veya <code class="prettyprint">N</code> değeri gönderilmişse bu elaman dolu olsa dahi e-posta gönderilmeyecektir.</td>
+</tr>
+<tr>
+<td><strong>SERIES_PROPERTIES</strong></td>
+<td>ComplexType</td>
+<td>Hayır</td>
+<td>Belge numarasının özel entegratör tarafından atanmasının belirleyen parametredir. <strong>Belge numarasının istemci tarafından atanmasını tavsiye ederiz.</strong></td>
+</tr>
+<tr>
+<td><strong>SERIES_PROPERTIES.SERIES_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarasının özel entegratör tarafından atanması için <code class="prettyprint">Y</code> değeri gönderilmelidir. DİKKAT: <code class="prettyprint">SERIES_PREFIX</code> elemanında belirlenen ön ek ile belge numarası atanacak ve belge içerisinde ki değer ezilecektir.</td>
+</tr>
+<tr>
+<td><strong>SERIES_PROPERTIES.SERIES_PREFIX</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarası atanacak ön ek. 3 hane alfanumerik değer içermelidir. Belge numarası yönetimi hakkında daha detaylı bilgi almak için <strong>Başlarken -&gt; Belge Numarası Yönetimi</strong> başlığını inceleyiniz. Belge numarasının özel entegratör tarafından atanması için <code class="prettyprint">Y</code> değeri gönderilmelidir. DİKKAT: <code class="prettyprint">SERIES_FLAG</code> elemanı <code class="prettyprint">Y</code> değeri gönderilmemişse bu alan dolu olsa dahi belge numarası atanmayacaktır.</td>
+</tr>
+</tbody></table>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda REQUEST_RETURN objesi dönülmez. ERROR_TYPE objesi dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-serbest-meslek-makbuzu-okuma-getsmm">E-Serbest Meslek Makbuzu Okuma (GetSMM)</h2>
+
+<ul>
+<li>Özel entegratör platformundan imzalanmış belgeleri okumayı sağlayan servistir.</li>
+<li>E-SMM belgesinin imzalı UBL-TR XML, PDF veya HTML olarak okumayı sağlar.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse irsaliyeler XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse irsaliyelerin özeti dönülür.  Gönderilebilecek değerler: Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Kaç kayıt okunmak istendiği. Eğer eleman gönderilmezse 10 adet kayıt dönülür. İçerikleri (XML) ile beraber en fazla 100 adet kayıt dönülür. Sadece özet/başlıklarını çekildiğinde ise en fazla 25.000 adet kayıt dönülür.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge numarası ile okumak için kullanılabilir. örnek: FYA2018000000001</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.UUID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılabilir.  GUID formatında</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem başlangıç tarihi. format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir. <code class="prettyprint">Y</code> değeri gönderilirse daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen belgeler dönülür. Gönderilebilecek değerler: Y/N</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.DIRECTION</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belge yönü. Giden(OUT), Gelen (IN). Müstahsil için gelen olmadığı için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">OUT</code>.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Talep edilen format. Gönderilebilecek değerler: XML, PDF, HTML. Eğer parametre gönderilmezse imzalı UBL-TR XML dosyası dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.FROM</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.TO</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.SENDER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.RECEIVER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Bu serviste kullanılmaz.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan belgelerin listesi. Müstahsil numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Belgeye ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alanın TCKNsi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Belgeyi alanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">EARSIVBELGE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">MUSTAHSILMAKBUZ</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Belgenin sisteme ulaştığı tarih.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-m-stahsil-durum-sorgulama-getcreditnotestatus">E-Müstahsil Durum Sorgulama (GetCreditNoteStatus)</h2>
+
+<ul>
+<li>Özel entegratör platformuna gönderilen bir veya birden fazla belgenin durumunu sorgulamayı sağlayan servistir.</li>
+<li>Birden fazla belge durumu sorgulamak için <code class="prettyprint">CREDITNOTEINFO</code> parametresi çoklanabilir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEINFO</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Sorgulanacak belge numarası <code class="prettyprint">ID</code> attribute içerisine, Evrensel Tekil Tanımlama Numarası (ETTN) ise <code class="prettyprint">UUID</code> attribute eklenmelidir.</td>
+</tr>
+</tbody></table>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan belgelerin listesi. Belge numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CREDITNOTEHEADER</strong></td>
+<td>ComplexType</td>
+<td>Belgeye ait özet bilgiler içermektedir. Parametre listesi aşağıdadır.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ID</strong></td>
+<td>String</td>
+<td>Belgenin numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Belgenin evrensel tekil tanımlama numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">EARSIVBELGE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">MUSTAHSILMAKBUZ</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firmanın VKNsi <code class="prettyprint">VKN</code> attribute içerisinde, firma ünvanı ise <code class="prettyprint">IDENTIFIER</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye için <code class="prettyprint">IN</code>, giden irsaliye için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Lütfen bu alanı kullanarak karar vermeyin. Karar vermek için <code class="prettyprint">STATUS_CODE</code> alanını kullanınız.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin durum açıklaması. Detay için <strong>İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.REPORT_ID</strong></td>
+<td>String</td>
+<td>Belgenin rapor numarası. GİBe raporlandıktan sonra dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.CDATE</strong></td>
+<td>DateTime</td>
+<td>Belgenin sisteme ulaştığı/yüklendiği tarih.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-m-stahsil-durumlar">E-Müstahsil Durumları</h2>
+
+<table><thead>
+<tr>
+<th>Durum</th>
+<th>Kod</th>
+<th>Detaylı Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DURUM_HENUZ_GUNCELLENMEDI</td>
+<td>100</td>
+<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
+</tr>
+<tr>
+<td>LOAD_SUCCEED</td>
+<td>101</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>LOAD_PROCESSİNG</td>
+<td>102</td>
+<td>TASLAK İŞLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_PROCESSING</td>
+<td>103</td>
+<td>PAKETLENİYOR</td>
+</tr>
+<tr>
+<td>PACKAGE_SUCCEED</td>
+<td>104</td>
+<td>PAKETLENDİ</td>
+</tr>
+<tr>
+<td>PACKAGE_FAILED</td>
+<td>105</td>
+<td>PAKETLEME_HATASI</td>
+</tr>
+<tr>
+<td>SIGN_PROCESSING</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_FAILED</td>
+<td>106</td>
+<td>İMZALANIYOR</td>
+</tr>
+<tr>
+<td>SIGN_SUCCEED</td>
+<td>107</td>
+<td>İMZALANDI</td>
+</tr>
+<tr>
+<td>RECEIVE_SUCCEED</td>
+<td>133</td>
+<td>BAŞARIYLA ALINDI</td>
+</tr>
+<tr>
+<td>SEND_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>RECEIVE_TIMEOUT</td>
+<td>134</td>
+<td>GÖNDERME İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENENECEKTİR</td>
+</tr>
+<tr>
+<td>SEND_PROCESSING</td>
+<td>135</td>
+<td>GÖNDERİLİYOR</td>
+</tr>
+<tr>
+<td>SEND_FAILED</td>
+<td>136</td>
+<td>GÖNDERME İŞLEMİ BAŞARISIZ</td>
+</tr>
+<tr>
+<td>SEND_SUCCEED</td>
+<td>137</td>
+<td>GÖNDERME İŞLEMİ BAŞARILI</td>
+</tr>
+</tbody></table>
+
           <h1 id="e-mutabakat-webservis">E-Mutabakat Webservis</h1>
 
 <p>e-Mutabakat servisi, mükelleflerin BA/BS ve Cari mutabakatlarını yönetmlerini sağlayan webservis uygulamasıdır.</p>
@@ -5765,7 +6471,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
@@ -6303,7 +7009,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-ZRapor Webservis</td>
-<td><a href="https://efaturadev.izibiz.com.tr/ZReportWS?wsdl">https://efaturadev.izibiz.com.tr/ZReportWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
 </tr>
 </tbody></table>
 
