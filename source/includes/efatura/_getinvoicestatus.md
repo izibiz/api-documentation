@@ -56,8 +56,8 @@ REJECT	| FAILED	| Gelen Ticari Fatura Red - Başarısız oldu	| Gelen Ticari Fat
 ### Giden Fatura Durumları
 STATUS |	SUBSTATUS	| PORTAL STATUS	| Detaylı Açıklama	| Aşama Durumu
 ------- | -------- | ------------| ---------- | -------------
-LOAD |	SUCCEED |	Fatura Yükleme - Başarılı |	Fatura Yükleme Başarılı	 | Nihai Aşama
-LOAD |	FAILED |	Fatura Yükleme - Başarısız | Oldu	Fatura Yükleme Hatalı |	Nihai Aşama
+LOAD |	SUCCEED |	Fatura Yükleme - Başarılı |	Fatura Yükleme Başarılı. Taslak olarak sisteme yüklenmiş faturadır. 	 | Nihai Aşama
+LOAD |	FAILED |	Fatura Yükleme - Başarısız Oldu | 	Fatura Yükleme Hatalı |	Nihai Aşama
 PACKAGE |	FAILED |	Fatura Paketleme - Başarısız oldu |	Fatura paketleme sırasında hata oluştu.  Sistem tarafından tekrar paketle işlemi yapılarak gönderilecektir. |	Ara aşama
 PACKAGE |	SUCCEED |	Fatura Paketleme - Başarıyla işlendi |	Fatura paketleme başarılı |	Ara aşama
 SEND |	PROCESSING |	Fatura Gönderimi - İşleniyor |	Fatura Gönderimi Yapılıyor |	Ara aşama

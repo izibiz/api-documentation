@@ -14,6 +14,7 @@ includes:
   - earsiv
   - eirsaliye
   - emustahsil
+  - esmm
   - emutabakat
   - zrapor
   - edefter

@@ -7,7 +7,6 @@ Belge gönderiminde aşağıda ki kontroller yapılmaktadır:
 * İşlem yapılacak aktif oturum kontrolü
 * Gönderici firmanın özel entegratör sisteminde ki tanımlama kontrolü
 * Gönderici ve alıcı firmaların mükellefiyet ve etiket kontrolü
-* Göndericilerin Bulut e-Fatura platformuna kayıtlarının kontrolü
 * Belgenin UBL-TR şemasına uygunluk kontrolü
 * Belgenin UBL-TR şematronuna uygunluk kontrolü
 * Gönderilen belge(lerin) özel entegratör sisteminde tekillik kontrolü
