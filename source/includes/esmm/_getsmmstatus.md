@@ -1,4 +1,4 @@
-## E-Müstahsil Durum Sorgulama (GetCreditNoteStatus)
+## E-SMM Durum Sorgulama (GetSMMStatus)
 * Özel entegratör platformuna gönderilen bir veya birden fazla belgenin durumunu sorgulamayı sağlayan servistir.
 * Birden fazla belge durumu sorgulamak için `CREDITNOTEINFO` parametresi çoklanabilir.
 

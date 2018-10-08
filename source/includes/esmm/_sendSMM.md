@@ -1,7 +1,7 @@
-## E-Serbest Meslek Makbuzu Gönderme (SendSMM)
+## E-SMM Gönderme (SendSMM)
 E-SMM belgesini özel entegratör sistemlerine gönderilmesini sağlayan servistir. Bu servis ile gönderilen belgeler kuyruğa eklenerek işleme (imzalama, e-posta/sms gönderme ve raporlama) alınacaktır.
 
-* Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti sözleşmesi imzalanmalı ve e-posta gönderim hizmetinin aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini `N` olarak gönderiniz.
+* Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve webservis isteğinde e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti sözleşmesi imzalanmalı ve e-posta gönderim hizmetinin aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini `N` olarak gönderiniz.
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:
 
@@ -27,3 +27,6 @@ Parametre | Tip        | Açıklama
 **REQUEST_RETURN.INTL_TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
 **REQUEST_RETURN.RETURN_CODE** | String | Başarılı durumlarda `0` değeri döner. Başarısız olduğunda REQUEST_RETURN objesi dönülmez. ERROR_TYPE objesi dönülecektir.
 **REQUEST_RETURN.CLIENT_TXN_ID** | String | İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.
+
+
+### Karşılaşılabilecek Hatalar

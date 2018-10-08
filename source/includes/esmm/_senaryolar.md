@@ -1,4 +1,4 @@
-## E-Serbest Meslek Makbuzu Senaryoları
+## E-Serbest Meslek Senaryoları
 E-SMM sistemi üzerinden düzenlenebilecek ve gönderilebilecek makbuz senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.
 
 Senaryosu | Açıklama         | XML  
