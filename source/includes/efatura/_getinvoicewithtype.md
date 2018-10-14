@@ -13,7 +13,8 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SEARCH_KEY.ID** | String  | Hayır | Fatura numarası ile fatura okumak için kullanılabilir. örnek FYA2018000000001 `UUID` elamanı gönderilmemişse zorunludur.
 **SEARCH_KEY.UUID** | String  | Hayır | Fatura Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir. `ID` elamanı gönderilmemişse zorunludur.
 **SEARCH_KEY.TYPE** | String  | **Evet** | Faturanın çekilmek istenilen tipi: PDF, HTML, XML olabilir.
-**HEADER_ONLY** | String  | **Evet** | Fatura görseli çekmek için `Y` gönderilmelidir.
+**SEARCH_KEY.DIRECTION** | String  | **Evet** | Belge yönü. Gelen veya Giden faturaları çekmek için kullanılabilir. Gelen faturaları çekmek için `IN`, giden faturaları çekmek için `OUT` değeri gönderilebilir. Varsayılan değer `IN` olduğu için eğer parametre gönderilmezse sadece gelen faturalar dönülecektir.  Gönderilebilecek değerler: `IN`, `OUT`
+**HEADER_ONLY** | String  | **Evet** | Fatura görseli çekmek için `N` gönderilmelidir.
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:
