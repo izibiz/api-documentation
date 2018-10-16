@@ -1222,7 +1222,8 @@ Servisten dönen parametreler şu şekildedir:</p>
 
 <p><a href="/resource/client/izibiz-efatura-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
 <a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
-<a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a></p>
+<a href="/resource/client/izibiz-efatura-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a>
+<a href="/resource/client/izibiz-delphi-client.zip" target="_blank"><img src="/images/icon_delphi.png"/></a></p>
 
 <h2 id="fatura-s-n-f-invoicetype-nas-l-retilir">Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?</h2>
 
@@ -1713,10 +1714,16 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>Faturanın çekilmek istenilen tipi: PDF, HTML, XML olabilir.</td>
 </tr>
 <tr>
+<td><strong>SEARCH_KEY.DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belge yönü. Gelen veya Giden faturaları çekmek için kullanılabilir. Gelen faturaları çekmek için <code class="prettyprint">IN</code>, giden faturaları çekmek için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">IN</code> olduğu için eğer parametre gönderilmezse sadece gelen faturalar dönülecektir.  Gönderilebilecek değerler: <code class="prettyprint">IN</code>, <code class="prettyprint">OUT</code></td>
+</tr>
+<tr>
 <td><strong>HEADER_ONLY</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Fatura görseli çekmek için <code class="prettyprint">Y</code> gönderilmelidir.</td>
+<td>Fatura görseli çekmek için <code class="prettyprint">N</code> gönderilmelidir.</td>
 </tr>
 </tbody></table>
 
@@ -5732,13 +5739,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="e-serbest-meslek-makbuzu-webservisi">E-Serbest Meslek Makbuzu Webservisi</h1>
+          <h1 id="e-serbest-meslek-webservisi">E-Serbest Meslek Webservisi</h1>
 
 <p>487 Sıra No.lu Vergi Usul Kanunu Genel Tebliği ile yürürlüğe giren e-Serbest Meslek Makbuzu (e-SMM) Uygulaması, Serbest Meslek Makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, muhafazası, ibrazı ve raporlanmasını kapsayan uygulamadır.</p>
 
 <p>01/01/2018 tarihi itibariyle dileyen serbest meslek erbapları uygulamaya dahil olarak mesleki faaliyetlerine ilişkin tahsilatları için kağıt ortamda düzenlemiş oldukları Serbest Meslek Makbuzunu elektronik belge olarak elektronik ortamda düzenleyebilir, muhatabının talebi doğrultusunda elektronik veya kağıt ortamda iletilebilir, elektronik ortamda muhafaza edip Gelir İdaresi Başkanlığı’na elektronik ortamda raporlayabilirler.</p>
 
-<h2 id="e-serbest-meslek-makbuzu-senaryolar">E-Serbest Meslek Makbuzu Senaryoları</h2>
+<h2 id="e-serbest-meslek-senaryolar">E-Serbest Meslek Senaryoları</h2>
 
 <p>E-SMM sistemi üzerinden düzenlenebilecek ve gönderilebilecek makbuz senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
 
@@ -5922,12 +5929,12 @@ kapatabilirsiniz.</li>
 </tr>
 </tbody></table>
 
-<h2 id="e-serbest-meslek-makbuzu-g-nderme-sendsmm">E-Serbest Meslek Makbuzu Gönderme (SendSMM)</h2>
+<h2 id="e-smm-g-nderme-sendsmm">E-SMM Gönderme (SendSMM)</h2>
 
 <p>E-SMM belgesini özel entegratör sistemlerine gönderilmesini sağlayan servistir. Bu servis ile gönderilen belgeler kuyruğa eklenerek işleme (imzalama, e-posta/sms gönderme ve raporlama) alınacaktır.</p>
 
 <ul>
-<li>Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti sözleşmesi imzalanmalı ve e-posta gönderim hizmetinin aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini <code class="prettyprint">N</code> olarak gönderiniz.
+<li>Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve webservis isteğinde e-posta gönderme seçeneği seçilmişse işlem hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti sözleşmesi imzalanmalı ve e-posta gönderim hizmetinin aktiflemesi talep edilmelidir. Eğer e-posta gönderimi farklı kanallardan yapılacaksa e-posta gönderim parametresini <code class="prettyprint">N</code> olarak gönderiniz.
 <br>
 Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </ul>
@@ -6034,11 +6041,15 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </tr>
 </tbody></table>
 
-<h2 id="e-serbest-meslek-makbuzu-okuma-getsmm">E-Serbest Meslek Makbuzu Okuma (GetSMM)</h2>
+<h3 id="kar-la-labilecek-hatalar">Karşılaşılabilecek Hatalar</h3>
+
+<h2 id="e-smm-okuma-getsmm">E-SMM Okuma (GetSMM)</h2>
 
 <ul>
 <li>Özel entegratör platformundan imzalanmış belgeleri okumayı sağlayan servistir.</li>
-<li>E-SMM belgesinin imzalı UBL-TR XML, PDF veya HTML olarak okumayı sağlar.</li>
+<li>E-SMM belgesinin PDF formatında okunabilir.</li>
+<li>Belirlenen kritere uygun kayıt bulunamamışsa sonuç boş dönecektir. Hata fırlatılmaz.</li>
+<li>Sonuç tek veya çoklu dönülmesine bakılmaksızın liste olarak dönülür.</li>
 </ul>
 
 <p><br>
@@ -6059,82 +6070,70 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. Faturaları XML formatında sıkıştırılmadan çekmek için mutlaka <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir. Eğer gönderilmezse faturalar sıkıştırılmış/ziplenmiş olarak dönülecektir.</td>
 </tr>
 <tr>
-<td><strong>HEADER_ONLY</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td>Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse irsaliyeler XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse irsaliyelerin özeti dönülür.  Gönderilebilecek değerler: Y/N</td>
+<td><strong>SMM_SEARCH_KEY</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Belge okumak için kullanılabilecek filtre kritirleri</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.LIMIT</strong></td>
+<td><strong>SMM_SEARCH_KEY.LIMIT</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Kaç kayıt okunmak istendiği. Eğer eleman gönderilmezse 10 adet kayıt dönülür. İçerikleri (XML) ile beraber en fazla 100 adet kayıt dönülür. Sadece özet/başlıklarını çekildiğinde ise en fazla 25.000 adet kayıt dönülür.</td>
+<td>Kaç kayıt okunmak istendiği. Eğer eleman gönderilmezse 10 adet kayıt dönülür. İçerikleri (PDF) ile beraber en fazla 100 adet kayıt dönülür. Sadece özet/başlıklarını çekildiğinde ise en fazla 25.000 adet kayıt dönülür.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.ID</strong></td>
+<td><strong>SMM_SEARCH_KEY.ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Belge numarası ile okumak için kullanılabilir. örnek: FYA2018000000001</td>
+<td>Belge numarası ile okumak için kullanılabilir. örnek: SMM2018000000001</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.UUID</strong></td>
+<td><strong>SMM_SEARCH_KEY.UUID</strong></td>
 <td>String</td>
 <td>Hayır</td>
 <td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılabilir.  GUID formatında</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.START_DATE</strong></td>
+<td><strong>SMM_SEARCH_KEY.START_DATE</strong></td>
 <td>String</td>
 <td>Hayır</td>
 <td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem başlangıç tarihi. format: YYYY-MM-DD</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.END_DATE</strong></td>
+<td><strong>SMM_SEARCH_KEY.END_DATE</strong></td>
 <td>String</td>
 <td>Hayır</td>
 <td>Belirli tarih aralığında ki belgeleri çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.READ_INCLUDED</strong></td>
+<td><strong>SMM_SEARCH_KEY.READ_INCLUDED</strong></td>
 <td>String</td>
 <td>Hayır</td>
 <td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir. <code class="prettyprint">Y</code> değeri gönderilirse daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">N</code> gönderilirse sadece yeni gelen belgeler dönülür. Gönderilebilecek değerler: Y/N</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.DIRECTION</strong></td>
+<td><strong>SMM_SEARCH_KEY.FROM</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Belge yönü. Giden(OUT), Gelen (IN). Müstahsil için gelen olmadığı için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">OUT</code>.</td>
+<td>Gönderici vergi kimlik/TC kimlik numarası ile sorgulamak için kullanılabilir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.TYPE</strong></td>
+<td><strong>SMM_SEARCH_KEY.TO</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Talep edilen format. Gönderilebilecek değerler: XML, PDF, HTML. Eğer parametre gönderilmezse imzalı UBL-TR XML dosyası dönülecektir.</td>
+<td>Alıcı vergi kimlik/TC kimlik numarası ile sadece belirli bir müşteriye gönderilen belgeleri okumak için kullanılabilir.</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.FROM</strong></td>
+<td><strong>HEADER_ONLY</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td><strong>Bu serviste kullanılmaz.</strong></td>
+<td>Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse belgenin içeriği ile (XML) ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse belgenin özeti dönülür.  Gönderilebilecek değerler: Y/N</td>
 </tr>
 <tr>
-<td><strong>SEARCH_KEY.TO</strong></td>
-<td>String</td>
+<td><strong>CONTENT_TYPE</strong></td>
+<td>Enum</td>
 <td>Hayır</td>
-<td><strong>Bu serviste kullanılmaz.</strong></td>
-</tr>
-<tr>
-<td><strong>SEARCH_KEY.SENDER</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td><strong>Bu serviste kullanılmaz.</strong></td>
-</tr>
-<tr>
-<td><strong>SEARCH_KEY.RECEIVER</strong></td>
-<td>String</td>
-<td>Hayır</td>
-<td><strong>Bu serviste kullanılmaz.</strong></td>
+<td>Talep edilen format. Gönderilebilecek değerler: PDF</td>
 </tr>
 </tbody></table>
 
@@ -6150,78 +6149,83 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>CREDITNOTE</strong></td>
+<td><strong>SMM</strong></td>
+<td>ComplexType/Array</td>
+<td>Sorgu kriterine uyan tekil belge. Belge numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>SMM.HEADER</strong></td>
 <td>ComplexType</td>
-<td>Sorgu kriterine uyan belgelerin listesi. Müstahsil numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
-</tr>
-<tr>
-<td><strong>CREDITNOTE.HEADER</strong></td>
-<td>ComplexType</td>
-<td>Belgeye ait özet bilgiler içermektedir.</td>
-</tr>
-<tr>
-<td><strong>HEADER.SENDER</strong></td>
-<td>String</td>
-<td>Belgeyi gönderen firma VKN&#39;si.</td>
-</tr>
-<tr>
-<td><strong>HEADER.RECEIVER</strong></td>
-<td>String</td>
-<td>Belgeyi alanın TCKNsi.</td>
-</tr>
-<tr>
-<td><strong>HEADER.SUPPLIER</strong></td>
-<td>String</td>
-<td>Belgeyi gönderen firma ünvanı.</td>
+<td>Belgeye ait özet bilgileri içerir.</td>
 </tr>
 <tr>
 <td><strong>HEADER.CUSTOMER</strong></td>
-<td>String</td>
-<td>Belgeyi alanın ünvanı.</td>
+<td>ComplexType</td>
+<td>Belge düzenlenen alıcı bilgisi. <code class="prettyprint">identifier</code> attribute ile VKN/TCKN bilgisi, <code class="prettyprint">name</code> attribute ile ünvan bilgisi dönülür.</td>
 </tr>
 <tr>
 <td><strong>HEADER.ISSUE_DATE</strong></td>
-<td>String</td>
-<td>Belge tarihi.</td>
+<td>DateTime</td>
+<td>Belge düzenlenme tarihi. YYYY-MM-DD HH:MM:SS formatında</td>
 </tr>
 <tr>
 <td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
-<td>String</td>
+<td>AmountType</td>
 <td>Toplam ödenecek tutar.</td>
-</tr>
-<tr>
-<td><strong>HEADER.PROFILEID</strong></td>
-<td>String</td>
-<td>Belge senaryosu. <code class="prettyprint">EARSIVBELGE</code> değeri olabilir.</td>
-</tr>
-<tr>
-<td><strong>HEADER.TYPE_CODE</strong></td>
-<td>String</td>
-<td>Belgenin tipi. <code class="prettyprint">MUSTAHSILMAKBUZ</code> değeri olabilir.</td>
 </tr>
 <tr>
 <td><strong>HEADER.STATUS</strong></td>
 <td>String</td>
-<td>Belgenin durumu. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+<td>Belgenin durumu. Detay için <strong>E-SMM Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
 <td>String</td>
-<td>Belge durum açıklaması. Detay için <strong>Müstahsil Durumları</strong> başlığını inceleyiniz.</td>
+<td>Belge durum açıklaması. Detay için <strong>E-SMM Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SMS_STATUS</strong></td>
+<td>String</td>
+<td>Belgenin SMS durumu. Detay için <strong>E-SMM SMS Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SMS_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin SMS durum açıklaması. Detay için <strong>E-SMM SMS Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS</strong></td>
+<td>String</td>
+<td>Belgenin E-Posta durumu. Detay için <strong>E-SMM E-Posta Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin E-Posta durum açıklaması. Detay için <strong>E-SMM E-Posta Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.REPORT_DATE</strong></td>
+<td>String</td>
+<td>Belgenin E-Posta durumu. Detay için <strong>E-SMM E-Posta Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin E-Posta durum açıklaması. Detay için <strong>E-SMM E-Posta Durumları</strong> başlığını inceleyiniz.</td>
 </tr>
 <tr>
 <td><strong>HEADER.CDATE</strong></td>
 <td>String</td>
-<td>Belgenin sisteme ulaştığı tarih.</td>
+<td>Belgenin sisteme yüklendiği tarih.</td>
 </tr>
 <tr>
-<td><strong>CREDITNOTE.CONTENT</strong></td>
+<td><strong>SMM.CONTENT</strong></td>
 <td>Base64Binary</td>
-<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+<td>Belgenin içeriği. PDF formatında. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse PDF dosya sıkıştırılmadan, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş PDF dosyası dönülür.</td>
 </tr>
 </tbody></table>
 
-<h2 id="e-m-stahsil-durum-sorgulama-getcreditnotestatus">E-Müstahsil Durum Sorgulama (GetCreditNoteStatus)</h2>
+<h2 id="e-smm-durum-sorgulama-getsmmstatus">E-SMM Durum Sorgulama (GetSMMStatus)</h2>
 
 <ul>
 <li>Özel entegratör platformuna gönderilen bir veya birden fazla belgenin durumunu sorgulamayı sağlayan servistir.</li>
