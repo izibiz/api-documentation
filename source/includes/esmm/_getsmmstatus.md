@@ -35,7 +35,7 @@ Parametre | Tip        | Açıklama
 
 
 
-## E-Müstahsil Durumları
+## E-SMM Durumları
 
 
 Durum	| Kod | Detaylı Açıklama
