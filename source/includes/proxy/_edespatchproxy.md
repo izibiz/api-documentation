@@ -1,0 +1,25 @@
+## E-İrsaliye Metodları
+Özel entegratör sistemi üzerinde E-İrsaliyelerin yollanması, okunması ve yüklenmesi durumlarını yapabilmek için kullanılır. Aşağıdaki metodlari içerir.
+
+* SendDespatchAdvice
+* LoadDespatchAdvice
+* GetDespatchAdviceStatus
+* GetDespatchAdvice
+* MarkDespatchAdvice
+* SendReceiptAdvice
+* LoadReceiptAdvice
+* GetReceiptAdviceStatus
+* GetReceiptAdvice
+* MarkReceiptAdvice
+
+## Dikkat Edilecek Hususlar(E-İrsaliye)
+
+1. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Login** metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.
+2. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **GetGibUserList** metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.
+3. E-İrsaliye Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.
+4. **SendDespatchAdvice** metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.
+5. **GetDespatchAdviceStatus** metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. **Sık sorgulama yapmayınız.**
+6. **GetDespatchAdvice** metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden **GetDespatchAdvice** servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.
+7. **MarkDespatchAdvice** metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki **GetDespatchAdvice** servisi çağrılınca aynı kayıt dönülmez.
+8. **Logout** metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.

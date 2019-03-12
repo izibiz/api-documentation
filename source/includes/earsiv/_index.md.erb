@@ -1,0 +1,69 @@
+# E-Arşiv Fatura Webservisi
+E-Fatura mükellefi olmayan firma veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesi ve raporlamasını sağlayan webservis uygulamasıdır.
+
+<%= partial "includes/efatura/faturasenaryolar" %>
+<%= partial "includes/ortak/url" %>
+
+## Dikkat Edilecek Hususlar
+Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
+
+* **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Login** servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.
+* **WriteToArchieveExtended** servisi ile UBL formatlı e-arşiv faturası gönderilir.
+* **ReadFromArchive** servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.
+* **CancelEArchiveInvoice** servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.
+* **GetEArchiveInvoiceStatus** servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.
+* **GetEArchiveReport** servisi ile GİBe raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.
+* **ReadEArchiveReport** serivisi ile GİBe gönderilen rapor detayını sorgulayabilirsiniz.
+* **GetEmailEarchiveInvoice** servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.
+* E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.
+* İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.
+* UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı `EARSIVFATURA` olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.
+* E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) zorunludur.
+* E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.
+* İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.
+
+## E-Arşiv Entegrasyon Testleri
+Test  | Test Açıklama |
+---------- | --------- |
+Oturum Açma |
+Nihai Tüketiciye Fatura Gönderme |
+Firmaya Fatura Gönderme |
+Satış Faturası Gönderme |
+İade Faturası Gönderme |
+Tevkifatlı Fatura Gönderme |
+Alıcısına Kağıt Ortamda Teslim Edilecek Fatura Gönderme |
+Alıcısına Kağıt Ortamda Teslim Edilecek ve Ayrıca Elektronik Ortamda İletilecek Fatura Gönderme |
+Alıcısına Elektronik Ortamda İletilecek Fatura Gönderme |
+İnternet Üzerinden Yapılan Satış İçin Fatura Gönderme |
+İrsaliyeli Fatura Gönderme |
+Raporlanmadan Önce Fatura İptal Etme |
+Raporlandıktan Sonra Fatura İptal Etme |
+Hatalı Düzenlenmiş Faturayı Tekrar Yüklemek Üzere İptal Etme |
+Faturayı Tekrar E-Posta Olarak İletme Talebi Gönderme |
+İmzalı Fatura Çekme |
+Fatura Görselini Çekme |
+Bir Faturanın Durumunu Sorgulama |
+Birden Fazla Faturanın Durumunu Sorgulama |
+Rapor Listesi Çekme |
+Rapor İçeriği Çekme |
+
+
+
+## İstmeci (client) Örnek Projeler
+
+E-Arşiv entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip sandbox(test) bilgileri ile kullanmaya başlayabilirsiniz.
+
+<a href="/resource/client/izibiz-earsiv-dotnet-client.zip" target="_blank"><img src="/images/icon_dotnet.png"/></a>
+<a href="/resource/client/izibiz-php-client.zip" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="/resource/client/izibiz-earsiv-java-client.zip" target="_blank"><img src="/images/icon_java.png"/></a>
+
+
+<%= partial "includes/ortak/errortype" %>
+<%= partial "includes/ortak/requestheader" %>
+<%= partial "includes/earsiv/writetoarchiveextended" %>
+<%= partial "includes/earsiv/readfromarchive" %>
+<%= partial "includes/earsiv/getearchivestatus" %>
+<%= partial "includes/earsiv/cancelinvoice" %>
+<%= partial "includes/earsiv/resendemail" %>
+<%= partial "includes/earsiv/getearchivereport" %>
+<%= partial "includes/earsiv/readearchivereport" %>
