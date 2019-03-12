@@ -1,5 +1,5 @@
-## Mutabakat Durum Sorgulama (GetReconciliationStatus)
-* Entegrasyon platformunda bulunan `BA/BS Mutabakat` veya `Cari Mutabakat` durumunu sorgulamayı sağlayan servistir.
+## BA/BS Mutabakat Durum Sorgulama (GetBABSReconciliationStatus)
+* Entegrasyon platformunda bulunan BA/BS mutabakatın durumunu sorgulamayı sağlayan servistir.
 
 
 Servise gönderilmesi gereken parametreler şu şekildedir:
@@ -8,7 +8,8 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME`, `CHANNEL_NAME` alanı zorunludur.
 **RECONCILIATION_SEARCHING** | ComplexType  | **Evet** | Sorgulanacak mutabakatlara ait kriterleri belirlemek için kullanılır.
-**SEARCH_KEY.ETTN** | String  | **Evet** | Mutabakat Evrensel Tekil Tanımlama Numarası (ETTN) mutabakatın durumunu sorgulamak için kullanılabilir. 
+**SEARCH_KEY.CUSTOMER_IDENTIFIER** | String  | Hayır | Durumu sorgulanacak müşteri VKN/TCKN. Bir dönemde sadece bir cari/mükellefe ait mutabakatın durumunu sorgulamak için kullanılabilir.
+**SEARCH_KEY.ACCOUNTING_PERIOD** | String  | **Evet** | Durumu sorgulanacak mutabakat dönemi. Bir dönemde ki bütün mutabakatların durumunu sorgulamak için kullanılır.
 
 
 Servisten dönen parametreler şu şekildedir:
@@ -18,12 +19,10 @@ Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
 **RECONCILIATION_STATUS** | ComplexType | Mutabakat durum sonuç objesi. Eğer aranan kritere uygun mutabakat bulunmuyorsa sonuç boş kayıt döner.
 **RECONCILIATION_STATUS.RECONCILATION** | ComplexType | Durumu sorgulaması kriterine uyan mutabakat objesi.
-**RECONCILIATION.TYPE** | Enum | Durumu sorgulanan mutabakat tipi için kullanılır: BA/BS Mutabakat için `EM`,Cari Mutabakat için `CM` olur.
-**RECONCILIATION.ETTN** | String | Durumu sorgulanan Evrensel Tekil Tanımlama Numarasıdır.
- **RECONCILATION.CUSTOMER_IDENTIFIER** | String | Mutabakat gönderilen mükellef VKN/TCKN.
-**RECONCILIATION.BABS_ACCOUNTING_PERIOD** | String  | BA/BS Mutabakatlar için  dönem bilgisi. **Format: 201807**
-**RECONCILIATION.CM_DATE** | String  | Cari Mutabakatlar için tarih bilgisi. **Format: 2019-01-04T00:00:00.000+02:00**
-**RECONCILIATION.STATUS** | String  | Mutabakat durum bilgisi.  
+**RECONCILATION.CUSTOMER_IDENTIFIER** | String | Mutabakat gönderilen mükellef VKN/TCKN.
+**RECONCILIATION.ACCOUNTING_PERIOD** | String  | Mutabakat dönemi. **Format: 201807**
+**RECONCILIATION.STATUS_CODE** | String  | Mutabakat durum kodu. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.
+**RECONCILIATION.STATUS_DESCRIPTION** | String  | Mutabakat durum açıklaması. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.
 **RECONCILIATION.CREATE_DATE** | DateTime  | Mutabakatın özel entegratör sistemine yüklendiği tarih.
 **RECONCILIATION.EMAIL** | ComplexType  | Mutabakatın e-posta durum sonuç objesi
 **RECONCILIATION.EMAIL_STATUS_CODE** | String  | Mutabakatın e-posta durum kodu. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.
