@@ -1,0 +1,62 @@
+# E-Dönüşüm Proxy
+Tüm e-Dönüşüm modüllerin içerisinde bulunduran webservistir.
+
+<%= partial "includes/ortak/url" %>
+
+## Dikkat Edilecek Hususlar
+Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
+
+1. Proxy servisinde bulunan **Login** servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.
+2. Proxy servisinde bulunan **Logout** metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.
+3. Proxy servisinde bulunan **SendInvoice**, **SendEInvoice**, **LoadInvoice**, **GetInvoice**, **GetUserList**, **CheckUser**, **MarkInvoice**, **GetInvoiceStatus**, **GetUserListBinary**, **GetAllUserListBinary** metodlarına dair detaylar için **E-Fatura** kısmına bakınız.
+4. Proxy servisinde bulunan **SendEArchiveInvoice**, **CancelEArchiveInvoice**, **ReadFromArchive**, **GetEArchiveReport**, **GetEArchiveInvoiceStatus**, **SendInvoiceByXml** metodlarına dair detaylar için **E-Arşiv Fatura** kısmına bakınız.
+5. Proxy servisinde bulunan **SendDespatchAdvice**, **LoadDespatchAdvice**, **GetDespatchAdviceStatus**, **GetDespatchAdvice**, **MarkDespatchAdvice**, **SendReceiptAdvice**, **LoadReceiptAdvice**, **GetReceiptAdviceStatus**, **GetReceiptAdvice**, **MarkReceiptAdvice** metodlarına dair detaylar için **E-İrsaliye** kısmına bakınız.
+6. Proxy servisinde bulunan **GetSmm**, **GetSmmStatus**, **SendSmm**, **CancelSmm**, **LoadSmm** metodlarına dair detaylar için **E-Serbest Meslek Makbuzu** kısmına bakınız.
+7. Proxy servisinde bulunan **CancelCreditNote**, **GetCreditNote**, **GetCreditNoteReport**, **GetCreditNoteStatus**, **LoadCreditNote**, **MarkCreditNote**, **SendCreditNote** metodlarına dair detaylar için **E-Müstahsil** kısmına bakınız.
+8. Proxy servisinde bulunan **GetReconciliationStatus**, **SendMailReconciliation**, **SendReconciliation** metodlarına dair detaylar için **E-Mutabakat** kısmına bakınız.
+
+<%= partial "includes/proxy/einvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/sendinvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/sendeinvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/loadinvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/getinvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/getuserlistproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/checkuserproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/markinvoiceproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/getinvoicestatusproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/getuserlistbinaryproxy" %>
+<%= partial "includes/proxy/einvoiceproxy/getalluserlistbinaryproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy/sendearchiveinvoiceproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy/cancelearchiveinvoiceproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy/readfromarchiveproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy/getearchivereportproxy" %>
+<%= partial "includes/proxy/earchiveinvoiceproxy/getearchiveinvoicestatusproxy" %>
+<%= partial "includes/proxy/edespatchproxy" %>
+<%= partial "includes/proxy/edespatchproxy/senddespatchadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/loaddespatchadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/getdespatchadvicestatusproxy" %>
+<%= partial "includes/proxy/edespatchproxy/getdespatchadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/markdespatchadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/sendreceiptadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/loadreceiptadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/getreceiptadvicestatusproxy" %>
+<%= partial "includes/proxy/edespatchproxy/getreceiptadviceproxy" %>
+<%= partial "includes/proxy/edespatchproxy/markreceiptadviceproxy" %>
+<%= partial "includes/proxy/esmmproxy" %>
+<%= partial "includes/proxy/esmmproxy/getsmmproxy" %>
+<%= partial "includes/proxy/esmmproxy/getsmmstatusproxy" %>
+<%= partial "includes/proxy/esmmproxy/sendsmmproxy" %>
+<%= partial "includes/proxy/esmmproxy/cancelsmmproxy" %>
+<%= partial "includes/proxy/esmmproxy/loadsmmproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/cancelcreditnoteproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/getcreditnoteproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/getcreditnotestatusproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/loadcreditnoteproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/markcreditnoteproxy" %>
+<%= partial "includes/proxy/ecreditnoteproxy/sendcreditnoteproxy" %>
+<%= partial "includes/proxy/ereconciliationproxy" %>
+<%= partial "includes/proxy/ereconciliationproxy/getreconciliationstatusproxy" %>
+<%= partial "includes/proxy/ereconciliationproxy/sendmailreconciliationproxy" %>
+<%= partial "includes/proxy/ereconciliationproxy/sendreconciliationproxy" %>
