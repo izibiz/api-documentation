@@ -14,12 +14,12 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME`, `CHANNEL_NAME` alanı zorunludur.
 **RECONCILIATION** | ComplexType   | **Evet** | En az bir mutabakat bulunmalıdır. Toplu gönderim için bu eleman çoklanır.
 **RECONCILIATION.TYPE** | Enum  | **Evet** | Gönderilmek istenilen mutabakat tipi için kullanılır: BA/BAS Mutabakat için `EM`,Cari Mutabakat için `CM` olabilir.
-**RECONCILIATION.UUID** | String  | Hayır | Evrensel Tekil Tanımlama Numarası (ETTN) ile mutabakat okumak için kullanılabilir. GUID formatındadır.
+**RECONCILIATION.UUID** | String  | Hayır | Evrensel Tekil Tanımlama Numarası (ETTN) ile her mutabakat için oluşturulması gerekir. Daha sonra getReconciliationStatus metodu ile mutabakat okumak için kullanılabilir. GUID formatındadır.
 **RECONCILIATION.CUSTOMER_IDENTIFIER** | String  | **Evet** | Mutabakat gönderilecek firmanın vergi kimlik numarası. VKN doğrulaması yapılmadığı için gönderilen verinin doğruluğu mükellefe aittir.
 **RECONCILIATION.COMMERCIAL_NAME** | String  | **Evet** | Mutabakat gönderilecek firmanın ünvanı. Alıcı firmaya gönderilen e-posta üzerinde görünecektir.
 **RECONCILIATION.TAX_OFFICE** | String  | Hayır | Mutabakat gönderilecek firmanın vergi dairesi.
 **RECONCILIATION.CUSTOMER_ADDRESS** | String  | **Evet** | Mutabakat gönderilecek firmanın adresi.
-**RECONCILIATION.TELEFONE_NO** | String  | Hayır | Mutabakat gönderilecek firmanın telefon numarası. **Format: 0 (212) 555 55 55**
+**RECONCILIATION.TELEPHONE_NO** | String  | Hayır | Mutabakat gönderilecek firmanın telefon numarası. **Format: 0 (212) 555 55 55**
 **RECONCILIATION.FAX_NO** | String  | Hayır | Mutabakat gönderilecek firmanın faks numarası. **Format: 0 (212) 555 55 55**
 **RECONCILIATION.EMAIL** | String  | **Evet** | Mutabakat gönderilecek firmanın e-posta adresi. E-posta adresinin formatı kontrol edilir ancak doğruluğu ve geçerliliği mükellefin sorumluluğundadır. **Format: muhasebe@firma.com.tr**
 **RECONCILIATION.CURRENCY_CODE** | Enum  | **Evet** |  Mutabakat içerisinde kullanılacak para birimidir. `TRY`, `USD`, `EUR`, `GBP` ve `CAD` değerleri gönderilebilir.

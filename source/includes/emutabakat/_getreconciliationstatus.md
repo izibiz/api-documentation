@@ -19,7 +19,7 @@ Parametre | Tip        | Açıklama
 **RECONCILIATION_STATUS** | ComplexType | Mutabakat durum sonuç objesi. Eğer aranan kritere uygun mutabakat bulunmuyorsa sonuç boş kayıt döner.
 **RECONCILIATION_STATUS.RECONCILATION** | ComplexType | Durumu sorgulaması kriterine uyan mutabakat objesi.
 **RECONCILIATION.TYPE** | Enum | Durumu sorgulanan mutabakat tipi için kullanılır: BA/BS Mutabakat için `EM`,Cari Mutabakat için `CM` olur.
-**RECONCILIATION.ETTN** | String | Durumu sorgulanan Evrensel Tekil Tanımlama Numarasıdır.
+**RECONCILIATION.UUID** | String | Durumu sorgulanan Evrensel Tekil Tanımlama Numarasıdır.
  **RECONCILATION.CUSTOMER_IDENTIFIER** | String | Mutabakat gönderilen mükellef VKN/TCKN.
 **RECONCILIATION.BABS_ACCOUNTING_PERIOD** | String  | BA/BS Mutabakatlar için  dönem bilgisi. **Format: 201807**
 **RECONCILIATION.CM_DATE** | String  | Cari Mutabakatlar için tarih bilgisi. **Format: 2019-01-04T00:00:00.000+02:00**
