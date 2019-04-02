@@ -18,5 +18,6 @@ includes:
   - emutabakat
   - zrapor
   - edefter
+  - faturalama
 search: true
 ---

@@ -1,0 +1,18 @@
+# E-Dönüşüm Faturalama Webservisi
+E-Dönüşüm hizmeti alan kullanıcıların Kontör ve Bakiye durumlarını, Borç durumlarını ve Kullanım durumlarını sorgulayabilecekleri webservistir.
+
+<%= partial "includes/ortak/url" %>
+
+## Dikkat Edilecek Hususlar
+Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:
+
+1. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Login** servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.
+2. **Borç Sorgulama(GetBalance)** ile ne kadar borçlarının olduğu sorgulanabilinir. Detaylar için ilgili bölümü inceleyiniz.
+3. **Kontör Bakiye Sorgulama(GetCredit)** ile yüklenen toplam kontör, mevcut kalan kontör miktarı ve son kontör kullanımı sorgulanılabilinir. **CREDIT_DETAIL_FLAG** ile kullanıcıya tanımlanmış olan aktif kontörler detaylı olarak öğrenmek için kullanılmaktadır.
+4. **Kullanım Sorgulama(GetUsage)** ile kullanıcının belirlediği periyotta, seçilen ürüne ve gönderim yönüne göre kullanım miktarı sorgulaması yapılır.
+5. **Kimlik Doğrulama (Authentication)** Webservisinde bulunan **Logout** metodu ile kullanıcı oturum kapatılabilir.
+
+<%= partial "includes/ortak/requestheader" %>
+<%= partial "includes/faturalama/getbalance" %>
+<%= partial "includes/faturalama/getcredit" %>
+<%= partial "includes/faturalama/getusage" %>
