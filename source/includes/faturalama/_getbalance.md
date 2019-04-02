@@ -23,5 +23,5 @@ Parametre | Tip        | Açıklama
 **BALANCE_DETAIL.INVOICE** | ComplexType | Borçlu olunan faturalara dair detayı içerisinde bulundurur.
 **INVOICE.INVOICE_NO** | String | Borçlu olunan faturanın numarası.
 **INVOICE.INVOICE_DATE** | String | Borçlu olunan fatura tarihi.
-**INVOICE.PERIOD** | String | Borçlu olunan faturanın yer aldığı ay/yıl değeri.
+**INVOICE.PERIOD** | String | Borçlu olunan faturanın yer aldığı yıl/ay değeri.
 **INVOICE.PAYABLE_AMOUNT** | String | Ödenmesi gereken tutar.

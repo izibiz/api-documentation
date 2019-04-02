@@ -11,7 +11,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:
 Parametre | Tip         | Zorunluluk  | Açıklama
 --------- | ----------- | ----------- | -----------
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur.
-**PERIOD** | String | **Hayır** | Kullanım sorgulanacak ay/yıl değeri girilir. Değer girilmediği zaman son 6 aylık kullanımlar dönülür. **Format : 122018**
+**PERIOD** | String | **Hayır** | Kullanım sorgulanacak yıl/ay değeri girilir. Değer girilmediği zaman son 6 aylık kullanımlar dönülür. **Format : 201812**
 **PRODUCT_TYPE** | Enum | **Hayır** | Kullanımı sorgulanmak istenen ürün bilgisi girilir. **Alabileceği değerler :** `ALL`, `EFATURA`, `EARSIV`, `EIRSALIYE`, `ESMM`, `EMM`, `EMUTABAKAT`, `SMS` ve `MAIL`.
 **DIRECTION** | Enum | **Evet** | Kullanımı sorgulanmak istenen ürünün hangi yönde gönderildiği bilgisi girilir. **Alabileceği değerler :** `ALL`, `INBOX` ve `OUTBOX`.
 
@@ -23,7 +23,7 @@ Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
 **LAST_PROCESS_TIME** | ComplexType | Kullanımları bulunduran yapıdır.
 **LAST_PROCESS_TIME.USAGE** | ComplexType | Kullanım aylarını bulunduran yapıdır.
-**USAGE.PERIOD** | String | Kullanımların ait olduğu ay/yıl değeridir.
+**USAGE.PERIOD** | String | Kullanımların ait olduğu yıl/ay değeridir.
 **USAGE.TOTAL_USAGE** | String | Tüm ürünlerin o ay içerisindeki toplam kullanım adetidir.
 **USAGE.PRODUCT** | ComplexType | Ürünlere göre kullanım adetlerinin tutulduğu yapıdır.
 **PRODUCT.EFATURA** | String | E-Fatura kullanım adeti.
