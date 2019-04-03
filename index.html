@@ -90,7 +90,8 @@
 <li>E-Defter</li>
 <li>E-Müstahsil Makbuzu</li>
 <li>E-Serbest Meslek Makbuzu</li>
-<li>Z-Rapor</li>
+<li>E-ZRapor</li>
+<li>Faturalama (Kontör, Bakiye, Kullanım vs)</li>
 </ul>
 
 <p>Eğer entegrasyona yeni başlıyorsanız <code class="prettyprint">Başlarken</code> başlığı altında ki bilgileri okumanızı tavsiye ederiz.</p>
@@ -7127,9 +7128,9 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="z-rapor-webservis">Z-Rapor Webservis</h1>
+          <h1 id="e-zrapor-webservisi">E-ZRapor Webservisi</h1>
 
-<p>ZRapor servisi, mükelleflerin yeni veya eski nesil ÖKC cihazlarından alınan Z-Raporlarınını Gelir İdaresi Başkanlığına raporlanmasını sağlayan servistir.</p>
+<p>E-ZRapor servisi, mükelleflerin yeni veya eski nesil ÖKC cihazlarından alınan Z-Raporlarınını Gelir İdaresi Başkanlığına raporlanmasını sağlayan servistir.</p>
 
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
@@ -7614,267 +7615,173 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="z-b-z-e-defter-uygulamas">İZİBİZ E-Defter Uygulaması</h1>
-
-<h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
+<h2 id="ba-bs-mutabakat-durum-sorgulama-getbabsreconciliationstatus">BA/BS Mutabakat Durum Sorgulama (GetBABSReconciliationStatus)</h2>
 
 <ul>
-<li>Platform bağımsız özelliği ile veritabanına erişerek doğrudan veya CSV formatında veri aktarımı desteklenmektedir</li>
-<li>Yaygın kullanılan muhasebe sistemleri ile tam uyumludur. Veritabanına erişilebilen bütün senaryoları desteklemektedir</li>
-<li>Yevmiye ve sıra numaralandırmasını ERP&#39;den veya E-Defter programından yapabilme</li>
-<li>Kullanıcı yönetim ve yetkilendirme modülü ile sınırsız kullanıcı oluşturma ve yetkilendirme</li>
-<li>Defter Oluşturma</li>
-<li>Defter İmzalama</li>
-<li>Berat Oluşturma</li>
-<li>Berat İmzalama</li>
-<li>GIB’e Otomatik Berat Yükleme</li>
-<li>GIB’den Otomatik Berat İndirme</li>
-<li>Birden fazla firmanın e-Defter ihtiyacını tek kurulum ile yönetebilme</li>
-<li>Organizasyon yönetimi ile çoklu firma ve çoklu şube yönetimi desteklenmektedir</li>
-<li>Kolay arayüzü ve yüksek performans sayesinde hızlı e-defter üretme ve takip</li>
-<li>Doğrudan GİB entegrasyonu sayesinde program içerisinden online berat yükleme ve indirme</li>
-<li>Oluşturulan E-Defterlerin İzibiz sunucularında saklama özelliği</li>
-<li>Mali mühürün ortak bir sunucuda kurulumu yapılarak bir çok bilgisayarda kullanılması</li>
-<li>İmzalama yönteminde mali mühür yanında zaman damgası kullanımı tercih ederek verinin değişmezliğinin sağlanması</li>
-<li>Dönemde tarih aralığına göre defter oluşturma ve boyuta göre parçalama özelliği</li>
-<li>Kullanıcı hatalarını önleyen arayüzü sayesinde iş akışına göre butonların aktif olması</li>
-<li>Entegrasyon kaynağından aktarılan verilerin GİB standartlarına uygunluk kontrolü ve hatalı kayıt bazında kullanıcının uyarılması</li>
+<li>Entegrasyon platformunda bulunan BA/BS mutabakatın durumunu sorgulamayı sağlayan servistir.</li>
 </ul>
 
-<h2 id="rnek-verideseni">Örnek Verideseni</h2>
-
-<p>İZİBİZ E-Defter uygulaması platform bağımsızdır. Bundan dolayı verilerin kaynak ortamda programın beklediği formatta hazırlanması beklemektedir. Beklenen veri desen hakkında aşağıda detaylı bilgi paylaşılmıştır.</p>
-
-<p>Hazırlanan veriler <strong>CSV formatında</strong> olarak veya <strong>veritabanında View (Görünüm)</strong> hazırlanarak programa aktarılabilir.</p>
-
-<p><strong>Örnek Dosya İndir:</strong> <a href="/resource/edefter/verideseni_ornek.csv" target="_blank">
-                            <img src="/images/csv-icon.png" height="40" width="35"/>
-                        </a>
-<br><br></p>
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <table><thead>
 <tr>
-<th><strong>Alan Adı</strong></th>
-<th><strong>Açıklama</strong></th>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>detailref</strong></td>
-<td>Detay satır referansı</td>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code>, <code class="prettyprint">CHANNEL_NAME</code> alanı zorunludur.</td>
 </tr>
 <tr>
-<td><strong>entryref</strong></td>
-<td>Bu alan muhasebe fişlerini gruplamak için kullandığımız bir alandır, bulunması zorunludur.</td>
+<td><strong>RECONCILIATION_SEARCHING</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Sorgulanacak mutabakatlara ait kriterleri belirlemek için kullanılır.</td>
 </tr>
 <tr>
-<td><strong>Fişler</strong></td>
-<td>hesaplanırken bu referans numarasına göre gruplanmaktadır. Bu alana, eğer ERP’de muhasebe fiş satır referans numaraları varsa onların yazılması gerekmekte. Eğer yoksa yevmiye madde numarası yani linenumbercounter yazılması gerekmekte.</td>
+<td><strong>SEARCH_KEY.CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Durumu sorgulanacak müşteri VKN/TCKN. Bir dönemde sadece bir cari/mükellefe ait mutabakatın durumunu sorgulamak için kullanılabilir.</td>
 </tr>
 <tr>
-<td><strong>linenumber</strong></td>
-<td>Yevmiye madde numarası haricinde dönem başında 1’den başlayacak ve arada boşluk olmaksızın ardışık olacak şekilde yevmiye madde satır numarası</td>
-</tr>
-<tr>
-<td><strong>linenumbercounter</strong></td>
-<td>Yevmiye madde no</td>
-</tr>
-<tr>
-<td><strong>accmainid</strong></td>
-<td>Kebir kodu (muhasebe kodu ilk 3 hane)</td>
-</tr>
-<tr>
-<td><strong>accmainiddesc</strong></td>
-<td>Kebir kodu (muhasebe kodu ilk 3 hane) açıklaması</td>
-</tr>
-<tr>
-<td><strong>accsubid</strong></td>
-<td>Muhasebe kodu</td>
-</tr>
-<tr>
-<td><strong>accsubdesc</strong></td>
-<td>Muhasebe kod açıklaması</td>
-</tr>
-<tr>
-<td><strong>amount</strong></td>
-<td>Tutar (negatif değer olmamalı)</td>
-</tr>
-<tr>
-<td><strong>debitcreditcode</strong></td>
-<td>Borç ise D, Alacak ise C</td>
-</tr>
-<tr>
-<td><strong>postingdate</strong></td>
-<td>Muhasebe fiş tarihi</td>
-</tr>
-<tr>
-<td><strong>documenttype</strong></td>
-<td><strong>invoice:</strong> Fatura <strong>check:</strong> Çek  <strong>voucher:</strong> Senet  ** other:** other : Yukarıda sayılanların dışında varolan belgeler için <strong>“other”</strong> belge türü kullanılır ve bununda açıklaması (documenttypedescription) alanında yapılır.  Belgeler hakkında detaylı bilgi için <strong>Önemli Hususlar</strong> başlığını inceleyebilirsiniz.</td>
-</tr>
-<tr>
-<td><strong>documenttypedesc</strong></td>
-<td><em>Doküman tipinin other olması durumunda bazı örnekler;</em> <strong>Paymentmethod Banka;</strong> Gelen Havaleler, Gönderilen Havaleler <strong>Paymentmethod Nakit;</strong> CH Tahsilat, CH Ödeme, Bankaya Yatırılan, Bankadan Çekilen, Gider Pusulası, Verilen Serbest Meslek Makbuzu, Alınan Serbest Meslek Makbuzu <strong>Paymentmethod Teminat Mektubu;</strong> Teminat Girişi,Teminat Çıkışı</td>
-</tr>
-<tr>
-<td><strong>documentnumber</strong></td>
-<td>İlişkili belgenin numarası (Örn: Fatura numarası)</td>
-</tr>
-<tr>
-<td><strong>documentreference</strong></td>
-<td>Muhasebe fiş referans numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
-</tr>
-<tr>
-<td><strong>entrynumbercounter</strong></td>
-<td>Yevmiye madde no</td>
-</tr>
-<tr>
-<td><strong>documentdate</strong></td>
-<td>İlişkili belgenin tarihi (Örn: Fatura tarihi) yyyy-aa-gg formatında</td>
-</tr>
-<tr>
-<td><strong>paymentmethod</strong></td>
-<td>Çek, Senet, Nakit, Banka, Teminat Mektubu ya da boş</td>
-</tr>
-<tr>
-<td><strong>detailcomment</strong></td>
-<td>Muhasebe fişi satır açıklaması</td>
-</tr>
-<tr>
-<td><strong>erpno</strong></td>
-<td>Kullanılan sistemde firmaları birbirinden ayırt eden firma numarası, yoksa 001</td>
-</tr>
-<tr>
-<td><strong>divisionno</strong></td>
-<td>Kullanılan sistemde işyerlerini birbirinden ayıran işyeri numarası, kağıt ortamında basılan defterlerde ayrı olarak basılıyorsa e-defter’de farklı bir işyeri numarasına sahip olmalı yoksa 0</td>
-</tr>
-<tr>
-<td><strong>enteredby</strong></td>
-<td>Muhasebe fişini giren kişinin ad soyad ilk harfi yada açık halde adı soyadı</td>
-</tr>
-<tr>
-<td><strong>entereddate</strong></td>
-<td>Muhasebe fişi kayıt tarihi</td>
-</tr>
-<tr>
-<td><strong>entrynumber</strong></td>
-<td>Muhasebe fiş numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
-</tr>
-<tr>
-<td><strong>entrycomment</strong></td>
-<td>Muhasebe fişi açıklaması</td>
+<td><strong>SEARCH_KEY.ACCOUNTING_PERIOD</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Durumu sorgulanacak mutabakat dönemi. Bir dönemde ki bütün mutabakatların durumunu sorgulamak için kullanılır.</td>
 </tr>
 </tbody></table>
 
-<aside class="warning">
-  Platform bağımsız e-defter uygulaması olduğumuz için Gelir İdaresi Başkanlığına gönderilecek verilerin hazırlanması mükellefin sorumluluğundadır.
-Muhasebe programında GİB’in belirlediği doküman tipleri haricinde belge türü olması durumunda, bu belgelerin hangi belge türü ile ilişkilendirileceği konusunda mali müşavirinizden bilgi alabilirsiniz.
-</aside>
-
-<h2 id="nemli-hususlar">Önemli Hususlar</h2>
-
-<p>E-defter uygulamasına geçen mükelleflerin e-defteri oluşturacak kayıtların oluşturulması esnasında dikkat etmesi gereken konuları, e-defter belge tiplerinin neler olduğunu, e-defter alanlarının nasıl doldurulması gerektiğine değineceğiz.
-Elektronik defter tutanlar, elektronik defterlerini oluşturdukları ve muhafaza ettikleri bilgi işlem sistemlerinin haczedilmesi veya bu sistemlere yetkili mercilerce el konulması halinde, durumu en geç üç iş günü içerisinde Başkanlık’a bildirmek zorundadırlar.</p>
-
-<aside class="notice">DİKKAT: Elektronik defter uygulamasında her bir belgeye ait bilgilerin, tek bir yevmiye kaydında gösterilmesi esastır.
-</aside>
-
-<h3 id="belge-tipi">Belge Tipi</h3>
-
-<p>Muhasebe kaydına esas teşkil eden işlem bir belgeye dayanıyorsa, mutlaka belge tipi alanının kullanılması gerekmektedir. Ancak muhasebe kaydına esas teşkil eden işlem bir belgeye dayanmıyorsa belge tipi alanı kullanılmamalıdır. Dolayısıyla muhasebe kaydına esas teşkil eden işlem bir belgeye dayanmıyorsa, belge türü, tarihi veya numarası gibi bilgiler verilemez. Örneğin, açılış-kapanış işlemleri belgeye dayalı olmayabilir.</p>
-
-<p>Gelir İdaresi Başkanlığının yayımlandığı Yevmiye Defteri kılavuzunda aşağıdaki sekiz belge tipi tanımlanmıştır. Tabloda sayılan yedi belge tipinin dışında ki belgeler için <strong>“Diğer”</strong> belge türü kullanılır.</p>
+<p>Servisten dönen parametreler şu şekildedir:</p>
 
 <table><thead>
 <tr>
-<th><strong>Belge Tipi</strong></th>
-<th><strong>Esas Belge</strong></th>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>invoice</strong></td>
-<td>Fatura</td>
+<td><strong>RECONCILIATION_STATUS</strong></td>
+<td>ComplexType</td>
+<td>Mutabakat durum sonuç objesi. Eğer aranan kritere uygun mutabakat bulunmuyorsa sonuç boş kayıt döner.</td>
 </tr>
 <tr>
-<td><strong>check</strong></td>
-<td>Çek</td>
+<td><strong>RECONCILIATION_STATUS.RECONCILATION</strong></td>
+<td>ComplexType</td>
+<td>Durumu sorgulaması kriterine uyan mutabakat objesi.</td>
 </tr>
 <tr>
-<td><strong>voucher</strong></td>
-<td>Senet</td>
+<td><strong>RECONCILATION.CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Mutabakat gönderilen mükellef VKN/TCKN.</td>
 </tr>
 <tr>
-<td><strong>receipt</strong></td>
-<td>Makbuz</td>
+<td><strong>RECONCILIATION.ACCOUNTING_PERIOD</strong></td>
+<td>String</td>
+<td>Mutabakat dönemi. <strong>Format: 201807</strong></td>
 </tr>
 <tr>
-<td><strong>shipment</strong></td>
-<td>Navlun</td>
+<td><strong>RECONCILIATION.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Mutabakat durum kodu. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>order-vendor</strong></td>
-<td>Satıcı Sipariş Belgesi</td>
+<td><strong>RECONCILIATION.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Mutabakat durum açıklaması. Detaylar için E-Mutabakat durum kodları başlığını inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>order-customer</strong></td>
-<td>Müşteri Sipariş Belgesi</td>
+<td><strong>RECONCILIATION.CREATE_DATE</strong></td>
+<td>DateTime</td>
+<td>Mutabakatın özel entegratör sistemine yüklendiği tarih.</td>
 </tr>
 <tr>
-<td><strong>other</strong></td>
-<td>Diğer</td>
+<td><strong>RECONCILIATION.EMAIL</strong></td>
+<td>ComplexType</td>
+<td>Mutabakatın e-posta durum sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Mutabakatın e-posta durum kodu. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Mutabakatın e-posta durum açıklaması. Detaylar için E-Mutabakat e-posta durum kodları başlığını inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.EMAIL_STATUS_DATE</strong></td>
+<td>DateTime</td>
+<td>Mutabakatın e-posta durum tarihi.</td>
 </tr>
 </tbody></table>
 
-<h3 id="perakende-sat-fi-i">Perakende Satışı Fişi</h3>
+<h3 id="e-mutabakat-durumlar">E-Mutabakat Durumları</h3>
 
-<p>Perakende satış fişi sayılan 7 belge içerisinde olmadığı için belge tipi diğer olarak, belge açıklaması da perakende satış fişi olarak seçilmelidir.</p>
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>KUYRUĞA EKLENDİ</td>
+</tr>
+<tr>
+<td>105</td>
+<td>TASLAK OLARAK EKLENDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>125</td>
+<td>MUTABIK</td>
+</tr>
+<tr>
+<td>126</td>
+<td>MUTABIK DEĞİL</td>
+</tr>
+</tbody></table>
 
-<h3 id="banka-lemleri">Banka İşlemleri</h3>
+<h3 id="e-mutabakat-e-posta-g-nderim-durumlar">E-Mutabakat E-Posta Gönderim Durumları</h3>
 
-<p>Bilindiği üzere bankaya ait işlemlerde muhasebe kaydına esas belge bankadan verilen dekont olmaktadır. Dekontların e-Defter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“dekont”</strong> olarak kaydı yapılır ve dekontun numara ve tarihinin de girilmesi zorunludur. Ancak dekont üzerinde belge numarası-tarihi yok ise, kullanılan muhasebe programının söz konusu işleme vermiş olduğu tarih ve numara, belge numarası ve tarihi olarak yazılabilir.</p>
-
-<p>Eğer bankaya ait işlemler dekont bazında tek tek muhasebeleştirilemiyorsa, bu banka işlemleri günlük olarak, banka banka ayrıştırmak koşuluyla, her bir bankadan yapılan işlemler birer muhasebe fişinde işlenebilir. e-Defterde bu kayda esas belge olarak muhasebe fişi gösterilebilir. Bu muhasebe fişi e-defter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Muhasebe Fişi”</strong> olarak kaydı yapılır ve fişin numarası ve tarihi girilir.</p>
-
-<h3 id="masraf-listeleri">Masraf Listeleri</h3>
-
-<p>Gün içinde işletmenin ya da personelin yapmış olduğu giderlere ilişkin alınmış belgeler teknik kılavuzlarda sayılan belgelerden biriyse mutlaka belge tipi kılavuzda belirtildiği gibi olmalıdır. Örneğin, personelin yapmış olduğu giderler arasında belge olarak fatura varsa, bu fatura ayrı bir yevmiye kaydında belge türü <strong>“invoice”</strong> yani fatura olarak fatura belge tarih-numarası da yazılmak şartıyla kaydedilmelidir. Eğer yapılan giderle ilgili belge tipi, tablo 1’de sayılan ilk yedi belge tipinden biri değil ise bir masraf formu oluşturulup eDefter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“masraf formu”</strong> olarak kaydı yapılır. Ayrıca bu masraf formunun numarası ve tarihinin de girilmesi zorunludur. Bu masraf formlarında matbu bir numara ve tarih olmadığı için, oluşturulacak her bir form için müteselsil bir numara ve formun oluşturulduğu günün tarihi üzerine yazılmalıdır. Bu masraf formunda yapılan giderlere ait belgelerin detayları yer almak zorundadır. Ayrıca bu masraf formu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
-
-<h3 id="z-raporu">Z raporu</h3>
-
-<p>Gün sonunda her bir yazar kasadan alınan Z raporu, muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Z Raporu”</strong> olarak kaydı yapılır. Ayrıca bu Z Raporu’nun numarası ve tarihinin de girilmesi zorunludur. Ancak gün içinde yapılan satışlarda Z Raporunun üzerinde yer alan ödeme yöntemlerine (nakit, kredi kartı, vb.) göre ayrıştırılmalıdır. Ödeme yöntemine isabet edecek KDV tutarlarının da ayrıştırılması ve her bir ödeme yönteminin farklı yevmiye maddelerinde gösterilmesi gerekmektedir.</p>
-
-<h3 id="ek-bordrosu">Çek Bordrosu</h3>
-
-<p>e-Defter uygulamasında kılavuzda sayılan tüm belge tiplerinde olduğu gibi, her bir çek belgesinin de ayrı yevmiye maddelerine kaydedilmesi esastır. Ancak çek bordrosuyla da kaydı mümkün olduğundan e-Defter uygulamasında da bu bordolar üzerinden, aynı alıcı veya satıcıya ait olmak şartıyla, birden fazla çek aynı yevmiye maddesinde kaydedilebilir. Ayrıca muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Çek bordrosu”</strong> olarak kaydı yapılır ve bu çek bordrosunun numarası ve tarihinin girilmesi zorunludur. Bu çek bordrosunda matbu bir numara ve tarih olmadığı için, oluşturulacak her bir bordro için müteselsil bir numara verilmeli ve bordronun oluşturulduğu günün tarihi üzerine yazılmalıdır. Her bir çek bordrosunda, çeklerin detayları yer almak zorundadır. Bu çek bordrosu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
-
-<h3 id="senet-bordrosu">Senet Bordrosu</h3>
-
-<p>e-Defter uygulamasında kılavuzda sayılan tüm belge türlerinde olduğu gibi, her bir senet belgesinin de ayrı yevmiye maddelerine kaydedilmesi esastır. Ancak senet bordrosuyla da kaydı mümkün olduğundan e-Defter uygulamasında da bu bordolar üzerinden, aynı alıcı veya satıcıya ait olmak şartıyla, birden fazla senet aynı yevmiye maddesinde kaydedilebilir. Ayrıca muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Senet bordrosu”</strong> olarak kaydı yapılır ve bu senet bordrosunun numarası ve tarihinin girilmesi zorunludur. Bu senet bordrosunda matbu bir numara ve tarih olmadığı için, oluşturulacak her bir bordro için müteselsil bir numara verilmeli ve bordronun oluşturulduğu günün tarihi üzerine yazılmalıdır. Senet bordrolarında, senetlerin detayları yer almak zorundadır. Bu senet bordrosu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur</p>
-
-<h3 id="cret-bordrosu">Ücret Bordrosu</h3>
-
-<p>Firmalar çalışanları için aylık olarak oluşturacakları ücret bordrolarını, e-Defter uygulamasına aktarırken, tüm personel için oluşan bordroları bir listeye bağlayıp, belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Ücret Bordrosu İcmali”</strong> olarak kaydedebilir. Ücret bordrosu icmalinin numara ve tarihinin girilmesi zorunludur. Ancak Ücret bordrosu icmalinde matbu bir numara ve tarih olmadığı için, oluşturulacak her bir icmal listesi için müteselsil bir numara verilmeli ve icmalin oluşturulduğu günün tarihi üzerine yazılmalıdır. Bu ücret bordrosu icmalinde her bir ücret bordrosunun detayları yer almalıdır. Ayrıca bu icmaller firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
-
-<h3 id="serbest-meslek-makbuzu">Serbest Meslek Makbuzu</h3>
-
-<p>Serbest meslek erbabının, mesleki faaliyetlerine ilişkin her türlü tahsilatı için düzenlediği belge serbest meslek makbuzudur. Bu makbuz e-Defter kılavuzunda sayılan belgeler arasında yer alan makbuz ile karıştırılmamalıdır. Serbest meslek makbuzu sayılan belgeler arasında yer almadığı için belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“serbest meslek makbuzu”</strong> olarak kaydı yapılır. Ayrıca belgenin numarası ve tarihinin de girilmesi zorunludur.</p>
-
-<h2 id="e-defter-ematron-kontrol">E-Defter Şematron Kontrolü</h2>
-
-<ul>
-<li>Uygulamamız tarafından hazırlanan defterler Gelir İdaresi Başkanlığı tarafından yayınlanan şematron kurallarından, iş kurallarından, mali mühür ya da imza kontrolünden geçmektedir. Oluşturulan defterlerin şematron kontrolünde hata
-almaması için aşağıdaki kurallara uygun olarak veri hazırlanmalıdır.</li>
-<li>Oluşturulacak defterlerin boyutunun 200 MB’ı geçmesi halinde bölünmesi gerekmektedir. Bölme işlemi uygulama
-tarafından Gelir İdaresi Başkanlığı tarafından belirlenen kurallara göre otomatik olarak yapılmaktadır.</li>
-<li>Bir yevmiyenin satır kalemleri aynı defter parçasında olmak durumundadır. Bir yevmiye kaydı 200 MB’ı geçerse
-belirli icmal yöntemleriyle yevmiye kaydı gruplandırılmalıdır. Firmaların veri büyüklüklerine göre farklılık
-göstermekle birlikte 200 MB‘lık parça yaklaşık 100.000 yevmiye satırına denk gelmektedir.</li>
-<li>Defterler sıra ile aylık olarak yüklenmelidir. Örneğin, Temmuz ayının defteri GİB’e yüklenmemişse ya da GİB’den
-onaylı beratları alınıp ay kapatılmamışsa mükellef bir sonraki ayın yani Ağustos’un defterini sistemde oluşturamaz.
-Uygulama bu durumda hata verir.</li>
-<li>GİB’e yüklenmiş, GİB’den onaylı beratları alınmış bir tarih aralığı için bir daha defter oluşturulamaz, aynı yolla ileri
-bir tarihi de kapsayacak şekilde defter oluşturulamaz.</li>
-<li>Defter kaynak verilerindeki zorunlu alanların kontrolü yapılır, kaynak veri detayları için destek@izibiz.com.tr
-adresinden detaylı bilgi talep edilebilir.</li>
-</ul>
+<table><thead>
+<tr>
+<th>Durum Kodu</th>
+<th>Durum Açıklaması</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>HENÜZ İŞLENMEDİ</td>
+</tr>
+<tr>
+<td>110</td>
+<td>İŞLENİYOR</td>
+</tr>
+<tr>
+<td>120</td>
+<td>İŞLENDİ</td>
+</tr>
+<tr>
+<td>130</td>
+<td>E-POSTA GÖNDERİM SONLANDI</td>
+</tr>
+</tbody></table>
 
           <h1 id="faturalama-webservisi">Faturalama Webservisi</h1>
 
@@ -8348,6 +8255,4279 @@ adresinden detaylı bilgi talep edilebilir.</li>
 <td>Mail kullanım adeti.</td>
 </tr>
 </tbody></table>
+
+          <h1 id="e-d-n-m-proxy">E-Dönüşüm Proxy</h1>
+
+<p>Tüm e-Dönüşüm modüllerin içerisinde bulunduran webservistir. Lütfen bu servisi Özel entegratör ile kararlaştırmadan kullanmayınız.</p>
+
+<h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
+
+<table><thead>
+<tr>
+<th>Ürün</th>
+<th>Endpoint URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Kimlik Doğrulama</td>
+<td><a href="https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl">https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Arşiv Fatura Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl">https://efaturatest.izibiz.com.tr/EIArchiveWS/EFaturaArchive?wsdl</a></td>
+</tr>
+<tr>
+<td>E-İrsaliye Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl">https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Müstahsil Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl">http://efaturatest.izibiz.com.tr/CreditNoteWS/CreditNote?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Mutabakat Webservis</td>
+<td><a href="http://efaturatest.izibiz.com.tr/Reconciliation?wsdl">http://efaturatest.izibiz.com.tr/Reconciliation?wsdl</a></td>
+</tr>
+<tr>
+<td>E-Serbest Meslek Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/SmmWS?wsdl">https://efaturatest.izibiz.com.tr/SmmWS?wsdl</a></td>
+</tr>
+<tr>
+<td>E-ZRapor Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/ZReportWS?wsdl">https://efaturatest.izibiz.com.tr/ZReportWS?wsdl</a></td>
+</tr>
+<tr>
+<td>Faturalama Webservis</td>
+<td><a href="https://efaturatest.izibiz.com.tr/BillingWS?wsdl">https://efaturatest.izibiz.com.tr/BillingWS?wsdl</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="portal-uygulamas">Portal Uygulaması</h3>
+
+<p>Entegrasyon sürecinde Portal uygulamamızı aşağıda ki durumlar için kullanabilirsiniz:</p>
+
+<ul>
+<li>Belgelerin durumunu kontrol</li>
+<li>Farklı senaryolar için belge düzenleyerek XML içeriğini kontrol</li>
+<li>Alıcı firmanın mükellefiyet sorgulaması</li>
+</ul>
+
+<p>Test Portal Adresimiz: <a href="https://portaltest.izibiz.com.tr">https://portaltest.izibiz.com.tr</a></p>
+
+<p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
+
+<h2 id="dikkat-edilecek-hususlar">Dikkat Edilecek Hususlar</h2>
+
+<p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
+
+<ol>
+<li>Proxy servisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>Proxy servisinde bulunan <strong>Logout</strong> metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.</li>
+<li>Proxy servisinde bulunan <strong>SendInvoice</strong>, <strong>SendEInvoice</strong>, <strong>LoadInvoice</strong>, <strong>GetInvoice</strong>, <strong>GetUserList</strong>, <strong>CheckUser</strong>, <strong>MarkInvoice</strong>, <strong>GetInvoiceStatus</strong>, <strong>GetUserListBinary</strong>, <strong>GetAllUserListBinary</strong> metodlarına dair detaylar için <strong>E-Fatura</strong> kısmına bakınız.</li>
+<li>Proxy servisinde bulunan <strong>SendEArchiveInvoice</strong>, <strong>CancelEArchiveInvoice</strong>, <strong>ReadFromArchive</strong>, <strong>GetEArchiveReport</strong>, <strong>GetEArchiveInvoiceStatus</strong>, <strong>SendInvoiceByXml</strong> metodlarına dair detaylar için <strong>E-Arşiv Fatura</strong> kısmına bakınız.</li>
+<li>Proxy servisinde bulunan <strong>SendDespatchAdvice</strong>, <strong>LoadDespatchAdvice</strong>, <strong>GetDespatchAdviceStatus</strong>, <strong>GetDespatchAdvice</strong>, <strong>MarkDespatchAdvice</strong>, <strong>SendReceiptAdvice</strong>, <strong>LoadReceiptAdvice</strong>, <strong>GetReceiptAdviceStatus</strong>, <strong>GetReceiptAdvice</strong>, <strong>MarkReceiptAdvice</strong> metodlarına dair detaylar için <strong>E-İrsaliye</strong> kısmına bakınız.</li>
+<li>Proxy servisinde bulunan <strong>GetSmm</strong>, <strong>GetSmmStatus</strong>, <strong>SendSmm</strong>, <strong>CancelSmm</strong>, <strong>LoadSmm</strong> metodlarına dair detaylar için <strong>E-Serbest Meslek Makbuzu</strong> kısmına bakınız.</li>
+<li>Proxy servisinde bulunan <strong>CancelCreditNote</strong>, <strong>GetCreditNote</strong>, <strong>GetCreditNoteReport</strong>, <strong>GetCreditNoteStatus</strong>, <strong>LoadCreditNote</strong>, <strong>MarkCreditNote</strong>, <strong>SendCreditNote</strong> metodlarına dair detaylar için <strong>E-Müstahsil</strong> kısmına bakınız.</li>
+<li>Proxy servisinde bulunan <strong>GetReconciliationStatus</strong>, <strong>SendMailReconciliation</strong>, <strong>SendReconciliation</strong> metodlarına dair detaylar için <strong>E-Mutabakat</strong> kısmına bakınız.</li>
+</ol>
+
+<h2 id="e-fatura-metodlar">E-Fatura Metodları</h2>
+
+<p>e-Fatura servisi, e-fatura mükellefinin fatura gönderimini ve gelen faturaları kendisi sistemine çekmesini sağlayan webservis uygulamasının clientıdır.</p>
+
+<ul>
+<li>Şu metodları içerir.</li>
+<li>SendInvoice</li>
+<li>SendEInvoice</li>
+<li>LoadInvoice</li>
+<li>GetInvoice</li>
+<li>GetUserList</li>
+<li>CheckUser</li>
+<li>MarkInvoice</li>
+<li>GetInvoiceStatus</li>
+<li>SendInvoiceResp</li>
+<li>GetUserListBinary</li>
+<li>GetAllUserListBinary</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-fatura">Dikkat Edilecek Hususlar(E-Fatura)</h2>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
+<li><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
+<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
+<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
+<li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme(SendInvoice)</h2>
+
+<ul>
+<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Göndericinin VKNsi.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Göndericinin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Binary Fatura içeriği sıkıştırılmış/sıkıştırılmamış bilgisi. Varsayılan değer Y olduğu için gönderilmediği durumda fatura sıkıştırılarak/ziplenerek gönderilmesi beklenmektedir. <strong>Faturayı XML olarak göndermek için mutlaka eleman eklenmeli ve N değeri gönderilmelidir.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="fatura-g-nderme-sendeinvoice">Fatura Gönderme(SendEInvoice)</h2>
+
+<ul>
+<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Göndericinin VKNsi.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Göndericinin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_EMAIL</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının e-posta adresi. <strong>Format: invoice@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_TYPE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>E-Faturanın tipi. <code class="prettyprint">INTERNET</code> veya <code class="prettyprint">NORMAL</code> girilir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-fatura-y-kleme-loadinvoice">Taslak Fatura Yükleme (LoadInvoice)</h2>
+
+<ul>
+<li>Fatura Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_FORMAT</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-fatura-okuma-getinvoice">E-Fatura Okuma (GetInvoice)</h2>
+
+<ul>
+<li>E-Fatura sisteminden giden imzalı faturaları veya gelen faturaları muhasebe paketine çekmek için kullanılır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge yönü. Gelen veya Giden faturaları çekmek için kullanılabilir. Gelen faturaları çekmek için <code class="prettyprint">IN</code>, giden faturaları çekmek için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">IN</code> olduğu için eğer parametre gönderilmezse sadece gelen faturalar dönülecektir. <strong>Gönderilebilecek değerler: <code class="prettyprint">IN</code>, <code class="prettyprint">OUT</code></strong></td>
+</tr>
+<tr>
+<td><strong>LIMIT</strong></td>
+<td>Integer</td>
+<td><strong>Hayır</strong></td>
+<td>Kaç fatura okunmak istendiği. Eğer eleman gönderilmezse 10 adet fatura, fatura içerikleri (XML) ile beraber en fazla 100 adet fatura, sadece fatura başlıklarını çekildiğindeise en fazla 25.000 adet fatura dönülür.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Faturayı gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Faturayı alan firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.</td>
+</tr>
+<tr>
+<td><strong>START_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi <strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>END_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi <strong>Format: 2019-12-31</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Fatura içerik ile beraber mi yoksa sadece özet bilgisi mi okunmak istenildiğini belirler. Eleman <strong>gönderilmezse</strong> veya <code class="prettyprint">N</code> değeri gönderilirse faturalar XML ile beraber dönülür. <code class="prettyprint">Y</code> değeri gönderilirse faturaların özeti dönülür. <strong>Değerler: Y/N</strong></td>
+</tr>
+<tr>
+<td><strong>READ_INCLUDED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. <code class="prettyprint">true</code> değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya <code class="prettyprint">false</code> gönderilirse sadece yeni gelen faturalar dönülür. <strong>Değerler: <code class="prettyprint">true</code>/<code class="prettyprint">false</code></strong></td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Binary Fatura içeriği sıkıştırılmış/sıkıştırılmamış bilgisi. Varsayılan değer Y olduğu için gönderilmediği durumda fatura sıkıştırılarak/ziplenerek gönderilmesi beklenmektedir. <strong>Faturayı XML olarak göndermek için mutlaka eleman eklenmeli ve N değeri gönderilmelidir.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> ve e-fatura sisteminde tanımlı tekil numara değeri  <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>Complex</td>
+<td>Faturaya ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SENDER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>HEADER.SUPPLIER</strong></td>
+<td>String</td>
+<td>Faturayı gönderen firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>String</td>
+<td>Faturayı alan firma ünvanı.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>String</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.FROM</strong></td>
+<td>String</td>
+<td>Faturayı gönderen Gönderici Birim (GB)</td>
+</tr>
+<tr>
+<td><strong>HEADER.TO</strong></td>
+<td>String</td>
+<td>Faturanın geldiği Posta Kutusu (PK)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu. TEMELFATURA, TICARIFATURA,IHRACATFATURA, YOLCUBERABER değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_TYPE_CODE</strong></td>
+<td>String</td>
+<td>Faturanın tipi. SATIS, IADE, ISTISNA, IHRACAT, OZELMATRAH, TEVKIFAT, IHRACKAYITLI değerleri olabilir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın durumu. Detay için Fatura durum sorgulama ekranında bulunan <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için Fatura durum sorgulama ekranında bulunan <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Detay için Fatura durum sorgulama ekranında bulunan <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_CODE</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu</td>
+</tr>
+<tr>
+<td><strong>HEADER.RESPONSE_DESC</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın sistemimize ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>HEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.CONTENT</strong></td>
+<td>String</td>
+<td>Faturanın içeriği. Eğer <code class="prettyprint">COMPRESSED</code> elemanı <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="m-kellef-listesi-ekme-getuserlist">Mükellef Listesi Çekme(GetUserList)</h2>
+
+<ul>
+<li>Kayıt zamanı kullanılarak mükellef listesi çekiminde kullanılır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>REGISTER_TIME_START</strong></td>
+<td>DateFormat</td>
+<td><strong>Evet</strong></td>
+<td>Kayıt başlangıç tarihini belirtir. <strong>Format: 2019-12-31T23:59:59</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>USER</strong></td>
+<td>Complex</td>
+<td>Kullanıcı bilgilerini içeren yapı.</td>
+</tr>
+<tr>
+<td><strong>USER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Kullanıcının tanımlayıcı numarası.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS</strong></td>
+<td>String</td>
+<td><strong>Format: urn:mail:defaultpk@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>USER.TITLE</strong></td>
+<td>String</td>
+<td>Firmanın Ünvanı</td>
+</tr>
+<tr>
+<td><strong>USER.TYPE</strong></td>
+<td>String</td>
+<td>Kullanıcı tipi</td>
+</tr>
+<tr>
+<td><strong>USER.REGISTER_TIME</strong></td>
+<td>DateFormat</td>
+<td>Kullanıcı kayıt zamanı. <strong>Format: 2019-12-31T23:59:59</strong></td>
+</tr>
+<tr>
+<td><strong>USER.UNIT</strong></td>
+<td>String</td>
+<td>Unite değeri.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
+<td>DateFormat</td>
+<td>Kullanıcı <code class="prettyprint">ALIAS</code> üretilme zamanı. <strong>Format: 2019-12-31T23:59:59</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="m-kellef-kontrol-checkuser">Mükellef Kontrol(CheckUser)</h2>
+
+<ul>
+<li>Mükellef VKN veya TCKN yada ismi kullanarak mükellef çekiminde ve kontrolünde kullanılır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>IDENTIFIER_VKN_TCKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Firmanın VKN veya TCKN si.</td>
+</tr>
+<tr>
+<td><strong>TITLE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Firmanın ismi.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>USER</strong></td>
+<td>Complex</td>
+<td>Kullanıcı bilgilerini içeren yapı.</td>
+</tr>
+<tr>
+<td><strong>USER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Kullanıcının tanımlayıcı numarası.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS</strong></td>
+<td>String</td>
+<td><strong>Format: urn:mail:defaultpk@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>USER.TITLE</strong></td>
+<td>String</td>
+<td>Firmanın İsmi</td>
+</tr>
+<tr>
+<td><strong>USER.TYPE</strong></td>
+<td>String</td>
+<td>Kullanıcı tipi</td>
+</tr>
+<tr>
+<td><strong>USER.REGISTER_TIME</strong></td>
+<td>DateFormat</td>
+<td>Kullanıcı kayıt zamanı. <strong>Format: 2019-12-31T23:59:59</strong></td>
+</tr>
+<tr>
+<td><strong>USER.UNIT</strong></td>
+<td>String</td>
+<td>Unite değeri.</td>
+</tr>
+<tr>
+<td><strong>USER.ALIAS_CREATION_TIME</strong></td>
+<td>DateFormat</td>
+<td>Kullanıcı <code class="prettyprint">ALIAS</code> üretilme zamanı. <strong>Format: 2019-12-31T23:59:59</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="fatura-okundu-aretleme-markinvoice">Fatura Okundu İşaretleme (MarkInvoice)</h2>
+
+<ul>
+<li>E-Fatura sisteminde faturayı alındı/alınmadı olarak işaretlemek için geliştirilmiş servistir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>ACTION</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Başarı ile alındıysa <code class="prettyprint">READ</code> gönderilmeli. Daha önce alındı olarak işaretlenen bir faturayı tekrar çekmeden önce <code class="prettyprint">UNREAD</code> olarak gönderilebilir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="fatura-durum-sorgulama-getinvoicestatus">Fatura Durum Sorgulama (GetInvoiceStatus)</h2>
+
+<ul>
+<li>E-Fatura sisteminde bulunan taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE_STATUS</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın e-fatura sisteminde ki durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Faturanın GİB&#39;de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Faturanın GİB&#39;de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h2 id="m-kellef-listesi-ekme-getuserlistbinary">Mükellef Listesi Çekme(GetUserListBinary)</h2>
+
+<ul>
+<li>Mükellef Listesini Çekmek için kullanılır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>TYPE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin hangi türde geleceği.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="t-m-m-kelleflerin-listesini-ekme-getalluserlistbinary">Tüm Mükelleflerin Listesini Çekme(GetAllUserListBinary)</h2>
+
+<ul>
+<li>Tüm Mükellef Listesini Çekmek için kullanılır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>TYPE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin hangi türde geleceği.</td>
+</tr>
+<tr>
+<td><strong>DOCUMENT_TYPE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Dökümanın tipi.</td>
+</tr>
+<tr>
+<td><strong>REGISTER_TIME_START</strong></td>
+<td>GregorianCalendar</td>
+<td><strong>Hayır</strong></td>
+<td>Tarih bilgisi girilir. <strong>Format: 2018-01-01</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-metodlar">E-Arşiv Fatura Metodları</h2>
+
+<p>E-Fatura mükellefi olmayan firma veya nihai tüketiciye düzenlenen faturaların özel entegratör sistemine gönderilmesi ve raporlamasını sağlayan webservis uygulamasının clientıdır.</p>
+
+<ul>
+<li>Aşağıdaki metodlari içerir.</li>
+<li>SendEArchiveInvoice</li>
+<li>CancelEArchiveInvoice</li>
+<li>ReadFromArchive</li>
+<li>GetEArchiveReport</li>
+<li>GetEArchiveInvoiceStatus</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-ar-iv-fatura">Dikkat Edilecek Hususlar(E-Arşiv Fatura)</h2>
+
+<ul>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>ReadFromArchive</strong> servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.</li>
+<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
+<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
+<li>E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.</li>
+<li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
+<li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı <code class="prettyprint">EARSIVFATURA</code> olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.</li>
+<li>E-Arşiv faturalarda faturanın düzenlenme zamanı(IssueTime) zorunludur.</li>
+<li>E-Arşiv faturalarda AdditionalDocumentReference alanında DocumentTypeCode ve DocumentType alanları zorunlu alandır.</li>
+<li>İnternet üzerinden yapılan satış için düzenlenen faturalar için Ödeme Şekli (PaymentMeans) ve Kargo bilgileri (Delivery) zorunludur.</li>
+</ul>
+
+<h2 id="e-ar-iv-fatura-g-nderme-sendearchiveinvoice">E-Arşiv Fatura Gönderme (SendEArchiveInvoice)</h2>
+
+<ul>
+<li>E-Arşiv Fatura belgesini özel entegratör sistemlerine gönderilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_EMAIL_FLAG</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_EMAIL</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin e-posta olarak iletileceği e-posta adresi. E-Posta formatında olmak zorundadır. <code class="prettyprint">EARSIV_EMAIL_FLAG</code> parametresi <code class="prettyprint">N</code> verilirse, değer verilse bile dikkate alınmaz. <strong>Format: archive@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>EARSIV_TYPE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>E-Arşiv Faturanın tipi. <code class="prettyprint">INTERNET</code> veya <code class="prettyprint">NORMAL</code> girilir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş içeriği.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-ptal-cancelearchiveinvoice">E-Arşiv Fatura İptal (CancelEArchiveInvoice)</h2>
+
+<ul>
+<li>Mevcut E-Arşiv Fatura belgesinin iptalini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-okuma-readfromarchive">E-Arşiv Fatura Okuma (ReadFromArchive)</h2>
+
+<ul>
+<li>E-Arşiv Fatura içeriğinin fatura UUID ve içerik tipi kullanılarak çekilmesini sağlar.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>DOCUMENT_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>E-Arşiv Fatura içeriğinin nasıl yollanacağını belirler. <code class="prettyprint">XML</code>, <code class="prettyprint">HTML</code> ve <code class="prettyprint">PDF</code> olabilir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin Base64Binary formatında gelen içeriği.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-rapor-listesini-ekme-getearchivereport">E-Arşiv Rapor Listesini Çekme (GetEArchiveReport)</h2>
+
+<ul>
+<li>E-Arşiv Fatura raporların dönem bilgisi kullanılarak çekilmesini sağlar.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>RAPOR_DONEMI</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Rapor listesinin alınmak istenilen dönem bilgisi. <strong>Format: 201805</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REPORT</strong></td>
+<td>Complex</td>
+<td>Dönem için oluşturulan raporların listesi.</td>
+</tr>
+<tr>
+<td><strong>REPORT.REPORT_NO</strong></td>
+<td>String</td>
+<td>Raporun numarası GUID formatında.</td>
+</tr>
+<tr>
+<td><strong>REPORT.STATUS</strong></td>
+<td>String</td>
+<td>Raporun durumu. İşlenmiş rapor durumu <code class="prettyprint">SUCCEED</code> olur.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-ar-iv-fatura-durum-sorgulama-getearchiveinvoicestatus">E-Arşiv Fatura Durum Sorgulama (GetEArchiveInvoiceStatus)</h2>
+
+<ul>
+<li>Özel entegratör platformundan E-Arşiv Fatura belgelerinin durumunu okumayı sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE.HEADER</strong></td>
+<td>ComplexType</td>
+<td>Kritere uyan faturaların durumlarınını içeren objedir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası</td>
+</tr>
+<tr>
+<td><strong>HEADER.UUID</strong></td>
+<td>String</td>
+<td>Faturanın Evrensel Tekil Tanımlama Numarası (ETTN)</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILE</strong></td>
+<td>String</td>
+<td>Faturanın senaryosu (<code class="prettyprint">EARSIVFATURA</code>)</td>
+</tr>
+<tr>
+<td><strong>HEADER.INVOICE_DATE</strong></td>
+<td>String</td>
+<td>Fatura tarihi</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Fatura durumu kodu. <strong>Lütfen E-Arşiv Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESC</strong></td>
+<td>String</td>
+<td>Faturanın durum açıklaması <strong>Lütfen E-Arşiv Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS</strong></td>
+<td>String</td>
+<td>E-Posta gönderim durum kodu. <strong>Lütfen E-Arşiv E-Posta Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.EMAIL_STATUS_DESC</strong></td>
+<td>String</td>
+<td>E-Posta gönderim durum açıklaması. <strong>Lütfen E-Arşiv E-Posta Durum başlığını inceleyiniz.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.REPORT_ID</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;e gönderilen rapor numarası. Raporlanmamış faturalarda parametre dönülmez.</td>
+</tr>
+<tr>
+<td><strong>HEADER.WEB_KEY</strong></td>
+<td>String</td>
+<td>Fatura alıcısının e-arşiv platformu üzerinden ulaşabileceği URL.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-metodlar">E-İrsaliye Metodları</h2>
+
+<p>Özel entegratör sistemi üzerinde E-İrsaliyelerin yollanması, okunması ve yüklenmesi durumlarını yapabilmek için kullanılır. Aşağıdaki metodlari içerir.</p>
+
+<ul>
+<li>SendDespatchAdvice</li>
+<li>LoadDespatchAdvice</li>
+<li>GetDespatchAdviceStatus</li>
+<li>GetDespatchAdvice</li>
+<li>MarkDespatchAdvice</li>
+<li>SendReceiptAdvice</li>
+<li>LoadReceiptAdvice</li>
+<li>GetReceiptAdviceStatus</li>
+<li>GetReceiptAdvice</li>
+<li>MarkReceiptAdvice</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-rsaliye">Dikkat Edilecek Hususlar(E-İrsaliye)</h2>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</li>
+<li>E-İrsaliye Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
+<li><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</li>
+<li><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</li>
+<li><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="e-rsaliye-g-nderme-senddespatchadvice">E-İrsaliye Gönderme (SendDespatchAdvice)</h2>
+
+<ul>
+<li>E-İrsaliye belgesini özel entegratör sistemlerine gönderilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin VKNsi.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-e-rsaliye-y-kleme-loaddespatchadvice">Taslak E-İrsaliye Yükleme (LoadDespatchAdvice)</h2>
+
+<ul>
+<li>Taslak E-İrsaliye belgelerini yüklemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-durumunu-okuma-getdespatchadvicestatus">E-İrsaliye Durumunu Okuma (GetDespatchAdviceStatus)</h2>
+
+<ul>
+<li>Sistemde bulunan irsaliyelerin durumlarını okumak için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>DESPATCHADVICE_STATUS</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan irsaliye yanıtlarının listesi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE_STATUS.DESPATCHADVICEHEADER</strong></td>
+<td>Complex</td>
+<td>İrsaliye yanıtına ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ID</strong></td>
+<td>String</td>
+<td>İrsaliye yanıtı numarası.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Evrensel tekil tanımlama numarası.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
+<td>Date</td>
+<td>Fiili sevk tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
+<td>String</td>
+<td>Fiili sevk zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye yanıtı için <code class="prettyprint">IN</code>, giden irsaliye yanıtı için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgenin zarf IDsi.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-okuma-getdespatchadvice">E-İrsaliye Okuma (GetDespatchAdvice)</h2>
+
+<ul>
+<li>Sistemde bulunan irsaliyeleri okumak için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belge yönü. Gelen veya Giden irsaliyeleri çekmek için kullanılabilir. Gelen irsaliyeleleri çekmek için <code class="prettyprint">IN</code>, giden irsaliyeleleri çekmek için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">IN</code> olduğu için eğer parametre gönderilmezse sadece gelen irsaliyeler dönülecektir. Gönderilebilecek değerler: <code class="prettyprint">IN</code>, <code class="prettyprint">OUT</code></td>
+</tr>
+<tr>
+<td><strong>LIMIT</strong></td>
+<td>Integer</td>
+<td><strong>Hayır</strong></td>
+<td>Gelen cevapta en fazla kaç adet irsaliye olabileceğini belirtir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>START_DATE</strong></td>
+<td>Date</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında başlangıç tarihi ataması yapılır. <strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>END_DATE</strong></td>
+<td>Date</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında bitiş tarihi ataması yapılır. <strong>Format: 2019-12-31</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">Y</code> verildiğinde irsaliye özeti döner. <code class="prettyprint">N</code> verildiğinde ise <code class="prettyprint">CONTENT</code>i de yollanır.</td>
+</tr>
+<tr>
+<td><strong>READ_INCLUDED</strong></td>
+<td>Boolean</td>
+<td><strong>Hayır</strong></td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir.<code class="prettyprint">true</code> değeri atanırsa okunmuş belgeler de gelir, <code class="prettyprint">false</code> atamasında iste sadece okunmamış belgeler gelecektir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>DESPATCHADVICE</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan irsaliyelerin listesi. İrsaliye numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası <code class="prettyprint">UUID</code> ve e-irsaliye sisteminde tanımlı tekil numara değeri <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE.DESPATCHADVICEHEADER</strong></td>
+<td>Complex</td>
+<td>İrsaliyeye ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
+<td>Date</td>
+<td>Fiili sevk tarihi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
+<td>String</td>
+<td>Fiili sevk zamanı.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">SEVK</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye için <code class="prettyprint">IN</code>, giden irsaliye için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_CODE</strong></td>
+<td>Integer</td>
+<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.CDATE</strong></td>
+<td>DateTime</td>
+<td>Belgenin sisteme ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgenin zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliyeyi-okundu-aretleme-markdespatchadvice">E-İrsaliyeyi Okundu İşaretleme (MarkDespatchAdvice)</h2>
+
+<ul>
+<li>E-İrsaliye belgelerini okundu/okunmadı olarak işaretlemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ACTION</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Başarı ile alındıysa <code class="prettyprint">READ</code> gönderilmeli. Daha önce alındı olarak işaretlenen bir faturayı tekrar çekmeden önce <code class="prettyprint">UNREAD</code> olarak gönderilebilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İşaretlenecek belgenin Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-yan-t-g-nderme-sendreceiptadvice">E-İrsaliye Yanıtı Gönderme (SendReceiptAdvice)</h2>
+
+<ul>
+<li>E-İrsaliye Yanıtı belgesini özel entegratör sistemlerine gönderilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin VKNsi.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-e-rsaliye-yan-t-y-kleme-loadreceiptadvice">Taslak E-İrsaliye Yanıtı Yükleme (LoadReceiptAdvice)</h2>
+
+<ul>
+<li>Taslak E-İrsaliye Yanıtı belgelerini yüklemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-yan-t-durumu-okuma-getreceiptadvicestatus">E-İrsaliye Yanıtı Durumu Okuma (GetReceiptAdviceStatus)</h2>
+
+<ul>
+<li>Sistemde bulunan irsaliye yanıtlarının durumlarını okumak için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RECEIPTADVICE_STATUS</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan irsaliye yanıtlarının listesi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICE_STATUS.RECEIPTADVICEHEADER</strong></td>
+<td>Complex</td>
+<td>İrsaliye yanıtına ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ID</strong></td>
+<td>String</td>
+<td>İrsaliye yanıtı numarası.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Evrensel tekil tanımlama numarası.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
+<td>Date</td>
+<td>Fiili sevk tarihi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
+<td>String</td>
+<td>Fiili sevk zamanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye yanıtı için <code class="prettyprint">IN</code>, giden irsaliye yanıtı için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgenin zarf IDsi.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-yan-t-okuma-getreceiptadvice">E-İrsaliye Yanıtı Okuma (GetReceiptAdvice)</h2>
+
+<ul>
+<li>Sistemde bulunan irsaliye yanıtlarını okumak için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belge yönü. Gelen veya Giden irsaliyeleri çekmek için kullanılabilir. Gelen irsaliyeleleri çekmek için <code class="prettyprint">IN</code>, giden irsaliyeleleri çekmek için <code class="prettyprint">OUT</code> değeri gönderilebilir. Varsayılan değer <code class="prettyprint">IN</code> olduğu için eğer parametre gönderilmezse sadece gelen irsaliyeler dönülecektir. Gönderilebilecek değerler: <code class="prettyprint">IN</code>, <code class="prettyprint">OUT</code></td>
+</tr>
+<tr>
+<td><strong>LIMIT</strong></td>
+<td>Integer</td>
+<td><strong>Hayır</strong></td>
+<td>Gelen cevapta en fazla kaç adet irsaliye olabileceğini belirtir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Gönderenin ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_ALIAS</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Alıcının ünvanı.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>START_DATE</strong></td>
+<td>Date</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında başlangıç tarihi ataması yapılır. <strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>END_DATE</strong></td>
+<td>Date</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında bitiş tarihi ataması yapılır. <strong>Format: 2019-12-31</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">Y</code> verildiğinde irsaliye özeti döner. <code class="prettyprint">N</code> verildiğinde ise <code class="prettyprint">CONTENT</code>i de yollanır.</td>
+</tr>
+<tr>
+<td><strong>READ_INCLUDED</strong></td>
+<td>Boolean</td>
+<td><strong>Hayır</strong></td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir.<code class="prettyprint">true</code> değeri atanırsa okunmuş belgeler de gelir, <code class="prettyprint">false</code> atamasında iste sadece okunmamış belgeler gelecektir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İrsaliye contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RECEIPTADVICE</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan irsaliye yanıtlarının listesi. İrsaliye numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası <code class="prettyprint">UUID</code> ve e-irsaliye sisteminde tanımlı tekil numara değeri <code class="prettyprint">LIST_ID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICE.RECEIPTADVICEHEADER</strong></td>
+<td>Complex</td>
+<td>İrsaliye yanıtına ait özet bilgiler içermektedir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu. <code class="prettyprint">TEMELIRSALIYE</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme zamanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ACTUAL_SHIPMENT_DATE</strong></td>
+<td>Date</td>
+<td>Fiili sevk tarihi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ACTUAL_SHIPMENT_TIME</strong></td>
+<td>String</td>
+<td>Fiili sevk zamanı.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.TYPE_CODE</strong></td>
+<td>String</td>
+<td>Belgenin tipi. <code class="prettyprint">SEVK</code> değeri olabilir.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.DIRECTION</strong></td>
+<td>String</td>
+<td>Belge yönü. Gelen irsaliye yanıtı için <code class="prettyprint">IN</code>, giden irsaliye yanıtı için <code class="prettyprint">OUT</code> değeri dönülür.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.SENDER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.RECEIVER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firma VKN&#39;si.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması. Detay için <strong>E-İrsaliye Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.GIB_STATUS_CODE</strong></td>
+<td>Integer</td>
+<td>Belgenin GİB&#39;de ki durum kodu. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin GİB&#39;de ki durum kodunun açıklaması. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.CDATE</strong></td>
+<td>DateTime</td>
+<td>Belgenin sisteme ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICEHEADER.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgenin zarf IDsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIPTADVICE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse XML dosya, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş XML dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-rsaliye-yan-t-n-okundu-aretleme-markreceiptadvice">E-İrsaliye Yanıtını Okundu İşaretleme (MarkReceiptAdvice)</h2>
+
+<ul>
+<li>E-İrsaliye Yanıtı belgelerini okundu/okunmadı olarak işaretlemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ACTION</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Başarı ile alındıysa <code class="prettyprint">READ</code> gönderilmeli. Daha önce alındı olarak işaretlenen bir faturayı tekrar çekmeden önce <code class="prettyprint">UNREAD</code> olarak gönderilebilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İşaretlenecek belgenin Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-smm-metodlar">E-SMM Metodları</h2>
+
+<p>Serbest Meslek Makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, muhafazası, ibrazı ve raporlanmasını kapsayan uygulamadır. Aşağıdaki metodlari içerir.</p>
+
+<ul>
+<li>GetSmm</li>
+<li>GetSmmStatus</li>
+<li>SendSmm</li>
+<li>CancelSmm</li>
+<li>LoadSmm</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-smm">Dikkat Edilecek Hususlar(E-SMM)</h2>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendSMM</strong> metodu ile belge gönderimi yapılmaktadır.</li>
+<li><strong>GetSMMStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>CancelSMM</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="e-smm-okuma-getsmm">E-SMM Okuma (GetSmm)</h2>
+
+<ul>
+<li>Özel entegratör platformundan imzalanmış belgeleri okumayı sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Fatura contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+<tr>
+<td><strong>LIMIT</strong></td>
+<td>Integer</td>
+<td><strong>Hayır</strong></td>
+<td>Gelen cevapta en fazla kaç adet smm olabileceğini belirtir.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge numarası ile okumak için kullanılabilir. Format: ABC2019000000001</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>START_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında başlangıç tarihi ataması yapılır. <strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>END_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında bitiş tarihi ataması yapılır. <strong>Format: 2019-12-31</strong></td>
+</tr>
+<tr>
+<td><strong>READ_INCLUDED</strong></td>
+<td>Boolean</td>
+<td><strong>Hayır</strong></td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir.<code class="prettyprint">true</code> değeri atanırsa okunmuş belgeler de gelir, <code class="prettyprint">false</code> atamasında iste sadece okunmamış belgeler gelecektir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Müstahsil içeriğinin nasıl yollanacağını belirler. <code class="prettyprint">XML</code>, <code class="prettyprint">HTML</code> ve <code class="prettyprint">PDF</code> olabilir. <strong><code class="prettyprint">HEADER_ONLY</code> değeri <code class="prettyprint">N</code> verildiyse değer atanması zorunludur.</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td><code class="prettyprint">Y</code> verildiğinde SMM özeti döner. <code class="prettyprint">N</code> verildiğinde ise içeriğin kendiside yollanır. <strong><code class="prettyprint">N</code> yollandığı zaman <code class="prettyprint">CONTENT_TYPE</code> değerinin atanması zorunludur.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SMM</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan tekil belge. Belge numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>SMM.HEADER</strong></td>
+<td>Complex</td>
+<td>Belgeye ait özet bilgileri içerir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CUSTOMER</strong></td>
+<td>Complex</td>
+<td>Belge düzenlenen alıcı bilgisi. <code class="prettyprint">IDENTIFIER</code> attribute ile VKN/TCKN bilgisi, <code class="prettyprint">NAME</code> attribute ile ünvan bilgisi dönülür.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>DateTime</td>
+<td>Belge düzenlenme tarihi. <strong>Format: 2019-12-31+03:00</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>AmountType</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILE_ID</strong></td>
+<td>String</td>
+<td>Belge senaryosu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belge durum kodu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması.</td>
+</tr>
+<tr>
+<td><strong>HEADER.CDATE</strong></td>
+<td>String</td>
+<td>Belgenin sisteme yüklendiği tarih. <strong>Format: 2019-12-31T23:59:59.000+03:00</strong></td>
+</tr>
+<tr>
+<td><strong>SMM.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. PDF formatında. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse PDF dosya sıkıştırılmadan, <code class="prettyprint">COMPRESSED</code> elemanı gönderilmemiş veya <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş PDF dosyası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-smm-durumu-okuma-getsmmstatus">E-SMM Durumu Okuma (GetSMMStatus)</h2>
+
+<ul>
+<li>Özel entegratör platformundan imzalanmış belgelerin durumlarını okumayı sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SMM_STATUS</strong></td>
+<td>Complex</td>
+<td>Sorgu kriterine uyan tekil belge. Belge numarası <code class="prettyprint">ID</code>, evrensel tekil tanımlama numarası <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>SMM_STATUS.HEADER</strong></td>
+<td>Complex</td>
+<td>Belgeye ait özet bilgileri içerir.</td>
+</tr>
+<tr>
+<td><strong>HEADER.ISSUE_DATE</strong></td>
+<td>DateTime</td>
+<td>Belge düzenlenme tarihi. <strong>Format: 2019-12-31+03:00</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER.PAYABLE_AMOUNT</strong></td>
+<td>AmountType</td>
+<td>Toplam ödenecek tutar.</td>
+</tr>
+<tr>
+<td><strong>HEADER.PROFILE_ID</strong></td>
+<td>String</td>
+<td>Belge senaryosu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belge durum kodu.</td>
+</tr>
+<tr>
+<td><strong>HEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belge durum açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-smm-g-nderme-sendsmm">E-SMM Gönderme (SendSmm)</h2>
+
+<ul>
+<li>E-SMM belgesini özel entegratör sistemlerine gönderilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge sıkıştırılarak/ziplenerek gönderiliyorsa değer verilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. XML formatında sıkıştırılmadan yüklemek için <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın ID değeri.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+<tr>
+<td><strong>SMS_FLAG</strong></td>
+<td>Enum</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">ELEKTRONIK</code> olarak yollanan belgelerde kontrolü yapılır. <code class="prettyprint">Y</code> girildi ise <code class="prettyprint">SMS_NUMBER</code> değeri verilmelidir. <code class="prettyprint">N</code>verildiğinde verilse bile <code class="prettyprint">SMS_NUMBER</code> değeri dikkate alınmaz.</td>
+</tr>
+<tr>
+<td><strong>SMS_NUMBER</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin yollanacağı kişinin telefon numarası. <strong>Format: 0(500) 500 50 50</strong></td>
+</tr>
+<tr>
+<td><strong>EMAIL_FLAG</strong></td>
+<td>Enum</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">ELEKTRONIK</code> olarak yollanan belgelerde kontrolü yapılır. <code class="prettyprint">Y</code> girildi ise <code class="prettyprint">EMAIL</code> değeri verilmelidir. <code class="prettyprint">N</code>verildiğinde verilse bile <code class="prettyprint">EMAIL</code> değeri dikkate alınmaz.</td>
+</tr>
+<tr>
+<td><strong>EMAIL</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin yollanacağı mail adresi. Format kontrolü yapılır, emailin doğruluğu kullanıcıya aittir. <strong>Format: smm@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>SERIES_FLAG</strong></td>
+<td>Enum</td>
+<td><strong>Hayır</strong></td>
+<td>Belge numarasının özel entegratör tarafından atanması için <code class="prettyprint">Y</code> değeri gönderilmelidir. DİKKAT: <code class="prettyprint">SERIES_PREFIX</code> elemanında belirlenen ön ek ile belge numarası atanacak ve belge içerisinde ki değer ezilecektir.</td>
+</tr>
+<tr>
+<td><strong>SERIES_PREFIX</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge numarası atanacak ön ek. 3 hane alfanumerik değer içermelidir. Belge numarası yönetimi hakkında daha detaylı bilgi almak için <strong>Başlarken -&gt; Belge Numarası Yönetimi</strong> başlığını inceleyiniz. Belge numarasının özel entegratör tarafından atanması için <code class="prettyprint">Y</code> değeri gönderilmelidir. DİKKAT: <code class="prettyprint">SERIES_FLAG</code> elemanı <code class="prettyprint">Y</code> değeri gönderilmemişse bu alan dolu olsa dahi belge numarası atanmayacaktır.</td>
+</tr>
+<tr>
+<td><strong>SENDING_TYPE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin yollanma şekli. <code class="prettyprint">ELEKTRONIK</code> veya <code class="prettyprint">KAGIT</code> olabilir. Gönderim şekli <code class="prettyprint">ELEKTRONIK</code> olan belge SMS veya ePosta adresi olmak zorundadır</td>
+</tr>
+<tr>
+<td><strong>SMM_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-smm-ptal-cancelsmm">E-SMM İptal (CancelSmm)</h2>
+
+<ul>
+<li>E-SMM belgesinin iptal edilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-e-smm-y-kleme-loadsmm">Taslak E-SMM Yükleme (LoadSmm)</h2>
+
+<ul>
+<li>Taslak E-SMM belgesinin yüklenmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge sıkıştırılarak/ziplenerek gönderiliyorsa değer verilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. XML formatında sıkıştırılmadan yüklemek için <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın ID değeri.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+<tr>
+<td><strong>SMS_FLAG</strong></td>
+<td>Enum</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">ELEKTRONIK</code> olarak yollanan belgelerde kontrolü yapılır. <code class="prettyprint">Y</code> girildi ise <code class="prettyprint">SMS_NUMBER</code> değeri verilmelidir. <code class="prettyprint">N</code>verildiğinde verilse bile <code class="prettyprint">SMS_NUMBER</code> değeri dikkate alınmaz.</td>
+</tr>
+<tr>
+<td><strong>SMS_NUMBER</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin yollanacağı kişinin telefon numarası. <strong>Format: 0(500) 500 50 50</strong></td>
+</tr>
+<tr>
+<td><strong>EMAIL_FLAG</strong></td>
+<td>Enum</td>
+<td><strong>Hayır</strong></td>
+<td><code class="prettyprint">ELEKTRONIK</code> olarak yollanan belgelerde kontrolü yapılır. <code class="prettyprint">Y</code> girildi ise <code class="prettyprint">EMAIL</code> değeri verilmelidir. <code class="prettyprint">N</code>verildiğinde verilse bile <code class="prettyprint">EMAIL</code> değeri dikkate alınmaz.</td>
+</tr>
+<tr>
+<td><strong>EMAIL</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin yollanacağı mail adresi. Format kontrolü yapılır, emailin doğruluğu kullanıcıya aittir. <strong>Format: smm@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>SENDING_TYPE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin yollanma şekli. <code class="prettyprint">ELEKTRONIK</code> veya <code class="prettyprint">KAGIT</code> olabilir. Gönderim şekli <code class="prettyprint">ELEKTRONIK</code> olan belge SMS veya ePosta adresi olmak zorundadır</td>
+</tr>
+<tr>
+<td><strong>SMM_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mustahsil">E-Mustahsil</h2>
+
+<p>e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, hem kağıt hem de elektronik ortamda muhafazası ve ibrazı ile elektronik ortamda raporlamasını kapsayan uygulamadır. Aşağıdaki metodları içerir.</p>
+
+<ul>
+<li>CancelCreditNote</li>
+<li>GetCreditNote</li>
+<li>GetCreditNoteReport</li>
+<li>GetCreditNoteStatus</li>
+<li>LoadCreditNote</li>
+<li>MarkCreditNote</li>
+<li>SendCreditNote</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-m-stahsil">Dikkat Edilecek Hususlar(E-Müstahsil)</h2>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>SendCreditNote</strong> metodu ile müstahsil makbuzu gönderimi yapılmaktadır.</li>
+<li><strong>GetCreditNoteStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>CancelCreditNote</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+kapatabilirsiniz.</li>
+</ol>
+
+<h2 id="e-mustahsil-ptal-cancelcreditnote">E-Mustahsil İptal (CancelCreditNote)</h2>
+
+<ul>
+<li>Mevcut E-Müstahsil Makbuzu belgesinin iptalini sağlayan servisin clientıdır.</li>
+<li>Belge UUID si kullanılarak iptal işlemi sağlanır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Müstahsil, Evrensel Tekil Tanımlama Numarası (ETTN) kullanılarak iptal edilir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mustahsil-okuma-getcreditnote">E-Mustahsil Okuma (GetCreditNote)</h2>
+
+<ul>
+<li>Özel entegratör platformundan e-müstahsil belgelerini okumayı sağlayan servisin clientıdır.</li>
+<li>Belgeler özet olarak getirilebileceği gibi, imzalı UBL-TR XML, PDF veya HTML olarak okunabilinir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Fatura contentini nasıl alınacağını belirler. <code class="prettyprint">Y</code> değeri için sıkıştırılmış, <code class="prettyprint">N</code> değeri için sıkıştırılmamış contenti verir.</td>
+</tr>
+<tr>
+<td><strong>DIRECTION</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgenin gönderildiği yön. Gelen için <code class="prettyprint">IN</code>, giden için <code class="prettyprint">OUT</code> değeri verilir.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge numarası ile okumak için kullanılabilir. Format: ABC2019000000001</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Evrensel Tekil Tanımlama Numarası (ETTN) ile okumak için kullanılır.</td>
+</tr>
+<tr>
+<td><strong>LIMIT</strong></td>
+<td>Integer</td>
+<td><strong>Hayır</strong></td>
+<td>Gelen cevapta en fazla kaç adet mühtahsil olabileceğini belirtir. Eğer eleman gönderilmezse 10 adet kayıt dönülür.</td>
+</tr>
+<tr>
+<td><strong>READ_INCLUDED</strong></td>
+<td>Boolean</td>
+<td><strong>Hayır</strong></td>
+<td>Daha önce okunmuş belgeleri dönüşe dahil edilip edilmeyeceğini belirleyen parametredir.<code class="prettyprint">true</code> değeri atanırsa okunmuş belgelerde gelir, <code class="prettyprint">false</code> atamasında iste sadece okunmamış belgeler gelecektir.</td>
+</tr>
+<tr>
+<td><strong>CREDIT_NOTE_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Müstahsil içeriğinin nasıl yollanacağını belirler. <code class="prettyprint">XML</code>, <code class="prettyprint">HTML</code> ve <code class="prettyprint">PDF</code> olabilir. <strong><code class="prettyprint">HEADER_ONLY</code> değeri <code class="prettyprint">N</code> verildiyse değer atanması zorunludur.</strong></td>
+</tr>
+<tr>
+<td><strong>START_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında başlangıç tarihi ataması yapılır. <strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>END_DATE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belirli bir tarih aralığı araması yapıldığında bitiş tarihi ataması yapılır. <strong>Format: 2019-12-31</strong></td>
+</tr>
+<tr>
+<td><strong>HEADER_ONLY</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td><code class="prettyprint">Y</code> verildiğinde müstahsilin özeti döner. <code class="prettyprint">N</code> verildiğinde ise içeriğin kendiside yollanır. <strong><code class="prettyprint">N</code> yollandığı zaman <code class="prettyprint">CREDIT_NOTE_TYPE</code> değerinin atanması zorunludur.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE</strong></td>
+<td>Complex</td>
+<td><code class="prettyprint">CREDITNOTEHEADER</code> ve <code class="prettyprint">CONTENT</code> objelerini barındıran nesnedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CREDITNOTEHEADER</strong></td>
+<td>Complex</td>
+<td>Müstahsilin özet bilgilerini içeren nesnedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.ID</strong></td>
+<td>String</td>
+<td>Müstahsilin belge numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.UUID</strong></td>
+<td>String</td>
+<td>Müstahsilin Evrensel Tekil Tanımlama Numarası (ETTN)</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.SENDER</strong></td>
+<td>Complex</td>
+<td>Belgeyi gönderen firmanın VKN ve ünvanını içeren nesne.</td>
+</tr>
+<tr>
+<td><strong>SENDER.VKN</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firmanın VKNsi.</td>
+</tr>
+<tr>
+<td><strong>SENDER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgeyi gönderen firmanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.RECEIVER</strong></td>
+<td>Complex</td>
+<td>Belgeyi alan firmanın VKN ve ünvanını içeren nesne.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER.VKN</strong></td>
+<td>String</td>
+<td>Belgeyi alan firmanın VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER.IDENTIFIER</strong></td>
+<td>String</td>
+<td>Belgeyi alan firmanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTEHEADER.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin durum açıklaması.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Belgenin içeriği. Eğer <code class="prettyprint">COMPRESSED</code> parametresi <code class="prettyprint">N</code> olarak gönderilmişse sıkıştırılmamış dosya, <code class="prettyprint">COMPRESSED</code> parametresine <code class="prettyprint">Y</code> değeri gönderilmişse sıkıştırılmış/ziplenmiş dosya dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mustahsil-durumu-okuma-getcreditnotestatus">E-Mustahsil Durumu Okuma (GetCreditNoteStatus)</h2>
+
+<ul>
+<li>Özel entegratör platformundan e-müstahsil belgelerinin durumunu okumayı sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Durumuna bakılacak belgenin Evrensel Tekil Tanımlama Numarası(ETTN).</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>CREDITNOTE_STATUS</strong></td>
+<td>Complex</td>
+<td>Müstahsilin özet bilgilerini içeren nesnedir.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.ID</strong></td>
+<td>String</td>
+<td>Müstahsilin belge numarası.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.UUID</strong></td>
+<td>String</td>
+<td>Müstahsilin Evrensel Tekil Tanımlama Numarası (ETTN)</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.PROFILEID</strong></td>
+<td>String</td>
+<td>Belge senaryosu.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.ISSUE_DATE</strong></td>
+<td>Date</td>
+<td>Belge tarihi.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.ISSUE_TIME</strong></td>
+<td>String</td>
+<td>Belge düzenleme tarihi.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.DIRECTION</strong></td>
+<td>String</td>
+<td>Belgenin gönderildiği yön. Gelen için <code class="prettyprint">IN</code>, giden için <code class="prettyprint">OUT</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.STATUS</strong></td>
+<td>String</td>
+<td>Belgenin durumu. Karar vermek için <code class="prettyprint">STATUS_CODE</code> alanını kullanınız.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.STATUS_CODE</strong></td>
+<td>String</td>
+<td>Belgenin durum kodu.</td>
+</tr>
+<tr>
+<td><strong>CREDITNOTE_STATUS.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Belgenin durum açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-e-mustahsil-y-kleme-loadcreditnote">Taslak E-Mustahsil Yükleme (LoadCreditNote)</h2>
+
+<ul>
+<li>Taslak E-Müstahsil Makbuzu belgelerini yüklemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge sıkıştırılarak/ziplenerek gönderiliyorsa değer verilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. XML formatında sıkıştırılmadan yüklemek için <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın ID değeri.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+<tr>
+<td><strong>CREDIT_NOTE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mustahsil-okundu-aretleme-markcreditnote">E-Mustahsil Okundu İşaretleme (MarkCreditNote)</h2>
+
+<ul>
+<li>E-Müstahsil Makbuzu belgelerini okundu/okunmadı olarak işaretlemek için kullanılan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>İşaretlenecek belgenin Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+<tr>
+<td><strong>MARK_VALUE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Başarı ile alındıysa <code class="prettyprint">READ</code> gönderilmeli. Daha önce alındı olarak işaretlenen bir faturayı tekrar çekmeden önce <code class="prettyprint">UNREAD</code> olarak gönderilebilir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mustahsil-g-nderme-sendcreditnote">E-Mustahsil Gönderme (SendCreditNote)</h2>
+
+<ul>
+<li>E-Müstahsil Makbuzu belgesini özel entegratör sistemlerine gönderilmesini sağlayan servisin clientıdır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>COMPRESSED</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge sıkıştırılarak/ziplenerek gönderiliyorsa değer verilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. XML formatında sıkıştırılmadan yüklemek için <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>EMAIL_ADDRESS</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin e-posta olarak iletileceği e-posta adresi. E-Posta formatında olmak zorundadır. E-Posta gönderimini özel entegratör sisteminden yapılması isteniyorsa <code class="prettyprint">Y</code> değeri gönderilmelidir. Varsayılan değer <code class="prettyprint">N</code> dir. <code class="prettyprint">EMAIL_FLAG</code> alanı <code class="prettyprint">Y</code> gönderildiği zaman bu elaman zorunludur. <code class="prettyprint">EMAIL_FLAG</code> gönderilmemiş veya <code class="prettyprint">N</code> değeri gönderilmişse bu elaman dolu olsa dahi e-posta gönderilmeyecektir.</td>
+</tr>
+<tr>
+<td><strong>EMAIL_FLAG</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. *<em>DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir. *</em></td>
+</tr>
+<tr>
+<td><strong>ID_ASSIGN_FLAG</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belge numarasının özel entegratör ortamından atanmasını sağlamak için kullanılacak parametredir. Eğer belge numarası istemci tarafında atanmışsa parametre gönderilmemeli veya <code class="prettyprint">N</code> değeri gönderilmelidir. Belge numarasını sunucuda atamak için <code class="prettyprint">Y</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>ID_ASSIGN_PREFIX</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Belge numarasının özel entegratör ortamından atanmasını talep edildiği durumlarda atama yapılacak seri ön eki değerinin belirlendiği parametredir. <strong>Seri ön eki 3 hane alfanumerik değer içerebilir.</strong> Gönderilen seri ön eki özel entegratör platformunda tanımlı olmalıdır. Eğer <code class="prettyprint">ID_ASSIGN_FLAG=Y</code> olarak gönderilmiş ama <code class="prettyprint">ID_ASSIGN_PREFIX</code> parametresi gönderilmemişse, müşterinin özel entegratörde tanımlı varsaylılan serisi kullanılacaktır. Eğer varsayılan seri tanımlanmamışsa işlem başarısız olacak ve hata dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>SENDER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgeyi gönderen firmanın VKNsi.</td>
+</tr>
+<tr>
+<td><strong>RECEIVER_VKN</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Belgeyi alan firmanın VKNsi.</td>
+</tr>
+<tr>
+<td><strong>ID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın ID değeri.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Yüklenecek taslağın UUID değeri.</td>
+</tr>
+<tr>
+<td><strong>CREDIT_NOTE_CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Belgenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Eğer belgeyi ziplemeden/sıkıştırmadan göndermek istiyorsanız <code class="prettyprint">COMPRESSED</code> elemanı eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mutabakat">E-Mutabakat</h2>
+
+<p>e-Mutabakat webservisinin clientıdır. Aşağıdaki metodları içerir.</p>
+
+<ul>
+<li>GetReconcilationStatus</li>
+<li>SendMailReconciliation</li>
+<li>SendReconciliation</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-mutabakat">Dikkat Edilecek Hususlar(E-Mutabakat)</h2>
+
+<ol>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>SendReconciliation</strong> metodu ile BA/BS ve Cari mutabakat gönderimi yapılabilmektedir. Detaylar için <strong>E-Mutabakat Gönderme</strong> bölümünü inceleyiniz.</li>
+<li><strong>GetReconciliationStatus</strong> metodu ile gönderilen mutabakatların durumları sorgulanabilir. Nihai duruma erişene kadar mutabakatların durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.</li>
+</ol>
+
+<h2 id="e-mutabakat-durumu-okuma-getreconciliationstatus">E-Mutabakat Durumu Okuma (GetReconciliationStatus)</h2>
+
+<ul>
+<li>Entegrasyon platformunda bulunan BA/BS Mutabakat ve Cari Mutabakatın durumunu sorgulamayı sağlayan servisin clientidir.</li>
+<li>Sorgulamak için Mutabakatın ETTN değeri verilmelidir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <code class="prettyprint">SESSION ID</code> değeri.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>ETTN</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Durumu sorgulanacak mutabakatın Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>RECONCILIATION_STATUS</strong></td>
+<td>Complex</td>
+<td>ETTN si verilmiş mutabakatları içeren yapıdır.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION_STATUS.RECONCILIATION</strong></td>
+<td>Complex</td>
+<td>ETTN si verilmiş mutabakata dair bilgileri bulunduran yapıdır.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.TYPE</strong></td>
+<td>Enum</td>
+<td>Gelen Mutabakat eğer Cari Mutabakat ise <code class="prettyprint">CM</code>, BA/BS Mutabakat ise <code class="prettyprint">EM</code> olarak dönecektir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.ETTN</strong></td>
+<td>String</td>
+<td>Mutabakatın Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Mutabakat gönderilmiş firmanın vergi kimlik nuarası.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.COMMERCIAL_NAME</strong></td>
+<td>String</td>
+<td>Mutabakat gönderilmiş firmanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.BABS_ACCOUNTING_PERIOD</strong></td>
+<td>String</td>
+<td>BA/BS mutabakat tarihi. Sadece Type değeri <code class="prettyprint">EM</code> olan mutabakatlarda dönecektir. <strong>Format : 201901</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CM_DATE</strong></td>
+<td>DateTime</td>
+<td>Cari mutabakat tarihi. Sadece Type değeri <code class="prettyprint">CM</code> olan mutabakatlarda dönecektir. <strong>Format : 2019-01-01T01:01:01.001+03:00</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CM_AMOUNT_TYPE</strong></td>
+<td>Enum</td>
+<td>Cari mutabakat durumu. Alacak için <code class="prettyprint">A</code> Borç için <code class="prettyprint">B</code> sonucu dönecektir. Sadece Type değeri <code class="prettyprint">CM</code> olan mutabakatlarda dönecektir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.STATUS</strong></td>
+<td>String</td>
+<td>ETTN si verilmiş Mutabakatın durumu dönmektedir.</td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION.CREATE_DATE</strong></td>
+<td>DateTime</td>
+<td>Mutabakatın üretilme tarihi. <strong>Format : 2019-01-01T01:01:01.001+03:00</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="e-mutabakat-maili-g-nderme-sendmailreconciliation">E-Mutabakat Maili Gönderme (SendMailReconciliation)</h2>
+
+<ul>
+<li>Mutabakat mükellefine mail yollayan servisin clientidir.</li>
+<li>Mutabakatın UUID değeri verilmesi gerekir.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <code class="prettyprint">SESSION ID</code> değeri.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mail yollanacak mutabakatın UUID si.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<h2 id="e-mutabakat-g-nderme-sendreconciliation">E-Mutabakat Gönderme (SendReconciliation)</h2>
+
+<ul>
+<li>Özel entegratör sistemi üzerinden toplu BA/BS ve Cari mutabakat gönderimini sağlayan servisin clientidir.</li>
+<li><code class="prettyprint">BA/BS Mutabakat</code> veya <code class="prettyprint">Cari Mutabakat</code> göndermek için kullanılır. </li>
+<li><code class="prettyprint">RECONCILIATION_TYPE</code> parametresinin aldığı değerlere göre Cari ve BA/BS Mutabakat arası ayrım yapılır.</li>
+<li>BA/BS Mutabakatlar için <code class="prettyprint">BABS_ACCOUNTING_PERIOD</code>, <code class="prettyprint">BA_DOCUMENT_AMOUNT</code>, <code class="prettyprint">BA_DOCUMENT_COUNT</code>, <code class="prettyprint">BS_DOCUMENT_AMOUNT</code> ve <code class="prettyprint">BS_DOCUMENT_COUNT</code> kullanılır. Cari Mutabakatlar için <code class="prettyprint">CM_AMOUNT</code>, <code class="prettyprint">CM_AMOUNT_TYPE</code> ve <code class="prettyprint">CM_DATE</code> kullanılır. Kalan parametreler iki seçenek için ortaktır.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>APPLICATION_NAME</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Metodu kullanan uygulamanın adı verilir.</td>
+</tr>
+<tr>
+<td><strong>BABS_ACCOUNTING_PERIOD</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat dönemi. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">EM</code> girilmiş mutabakatlar için zorunludur.<strong>Format: 201806</strong></td>
+</tr>
+<tr>
+<td><strong>BA_DOCUMENT_AMOUNT</strong></td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>BA mutabakat belgelerinin toplam tutarı. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">EM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>BA_DOCUMENT_COUNT</strong></td>
+<td>Integer</td>
+<td><strong>Evet</strong></td>
+<td>BA mutabakat belge adeti.<strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">EM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>BS_DOCUMENT_AMOUNT</strong></td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>BS mutabakat belgelerinin toplam tutarı. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">EM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>BS_DOCUMENT_COUNT</strong></td>
+<td>Integer</td>
+<td><strong>Evet</strong></td>
+<td>BS mutabakat belge adeti.<strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">EM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>CM_AMOUNT</strong></td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Cari mutabakat alacak ve borç toplan tutarı. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">CM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>CM_AMOUNT_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Cari mutabakat durumu. Alacak için <code class="prettyprint">A</code> Borç için <code class="prettyprint">B</code> gönderilmelidir. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">CM</code> girilmiş mutabakatlar için zorunludur.</td>
+</tr>
+<tr>
+<td><strong>CM_DATE</strong></td>
+<td>Date</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat tarihi. <strong>RECONCILIATION_TYPE</strong> <code class="prettyprint">CM</code> girilmiş mutabakatlar için zorunludur.<strong>Format: 2019-01-01</strong></td>
+</tr>
+<tr>
+<td><strong>COMMERCIAL_NAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın ünvanı.</td>
+</tr>
+<tr>
+<td><strong>CURRENCY_CODE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakattaki tutarın para birimi. <code class="prettyprint">TRY</code>, <code class="prettyprint">USD</code>, <code class="prettyprint">EUR</code>, <code class="prettyprint">GBP</code> ve <code class="prettyprint">CAD</code> gönderilebilir.</td>
+</tr>
+<tr>
+<td><strong>CUSTOMER_ADDRESS</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın adresi.</td>
+</tr>
+<tr>
+<td><strong>CUSTOMER_IDENTIFIER</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın vergi kimlik nuarası. VKN doğrulaması yapılmadığı için gönderilen verinin doğruluğu kullanıcıya aittir.</td>
+</tr>
+<tr>
+<td><strong>EMAIL</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakat gönderilecek firmanın e-posta adresi. Format kontrolu yapılır ancak doğruluğu kullanıcıya aittir. <strong>Format: muhasebe@firma.com.tr</strong></td>
+</tr>
+<tr>
+<td><strong>FAX_NO</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Mutabakat gönderilecek firmanın faks numarası. <strong>Önerilen Format: 0(212) 100 00 00</strong></td>
+</tr>
+<tr>
+<td><strong>NOTE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Mutabakata eklenecek ek açıklamalar.</td>
+</tr>
+<tr>
+<td><strong>TAX_OFFICE</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Mutabakat gönderilecek firmanın vergi dairesi.</td>
+</tr>
+<tr>
+<td><strong>PHONE_NO</strong></td>
+<td>String</td>
+<td><strong>Hayır</strong></td>
+<td>Mutabakat gönderilecek firmanın telefon numarası. <strong>Önerilen Format: 0(212) 100 00 00</strong></td>
+</tr>
+<tr>
+<td><strong>RECONCILIATION_TYPE</strong></td>
+<td>Enum</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakatın türü. BA/BS Mutabakatlar için <code class="prettyprint">EM</code>, Cari Mutabakatlar için <code class="prettyprint">CM</code> gönderilir.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mutabakata atanacak Evrensel Tekil Tanımlama Numarası.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="z-b-z-e-defter-uygulamas">İZİBİZ E-Defter Uygulaması</h1>
+
+<h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
+
+<ul>
+<li>Platform bağımsız özelliği ile veritabanına erişerek doğrudan veya CSV formatında veri aktarımı desteklenmektedir</li>
+<li>Yaygın kullanılan muhasebe sistemleri ile tam uyumludur. Veritabanına erişilebilen bütün senaryoları desteklemektedir</li>
+<li>Yevmiye ve sıra numaralandırmasını ERP&#39;den veya E-Defter programından yapabilme</li>
+<li>Kullanıcı yönetim ve yetkilendirme modülü ile sınırsız kullanıcı oluşturma ve yetkilendirme</li>
+<li>Defter Oluşturma</li>
+<li>Defter İmzalama</li>
+<li>Berat Oluşturma</li>
+<li>Berat İmzalama</li>
+<li>GIB’e Otomatik Berat Yükleme</li>
+<li>GIB’den Otomatik Berat İndirme</li>
+<li>Birden fazla firmanın e-Defter ihtiyacını tek kurulum ile yönetebilme</li>
+<li>Organizasyon yönetimi ile çoklu firma ve çoklu şube yönetimi desteklenmektedir</li>
+<li>Kolay arayüzü ve yüksek performans sayesinde hızlı e-defter üretme ve takip</li>
+<li>Doğrudan GİB entegrasyonu sayesinde program içerisinden online berat yükleme ve indirme</li>
+<li>Oluşturulan E-Defterlerin İzibiz sunucularında saklama özelliği</li>
+<li>Mali mühürün ortak bir sunucuda kurulumu yapılarak bir çok bilgisayarda kullanılması</li>
+<li>İmzalama yönteminde mali mühür yanında zaman damgası kullanımı tercih ederek verinin değişmezliğinin sağlanması</li>
+<li>Dönemde tarih aralığına göre defter oluşturma ve boyuta göre parçalama özelliği</li>
+<li>Kullanıcı hatalarını önleyen arayüzü sayesinde iş akışına göre butonların aktif olması</li>
+<li>Entegrasyon kaynağından aktarılan verilerin GİB standartlarına uygunluk kontrolü ve hatalı kayıt bazında kullanıcının uyarılması</li>
+</ul>
+
+<h2 id="rnek-verideseni">Örnek Verideseni</h2>
+
+<p>İZİBİZ E-Defter uygulaması platform bağımsızdır. Bundan dolayı verilerin kaynak ortamda programın beklediği formatta hazırlanması beklemektedir. Beklenen veri desen hakkında aşağıda detaylı bilgi paylaşılmıştır.</p>
+
+<p>Hazırlanan veriler <strong>CSV formatında</strong> olarak veya <strong>veritabanında View (Görünüm)</strong> hazırlanarak programa aktarılabilir.</p>
+
+<p><strong>Örnek Dosya İndir:</strong> <a href="/resource/edefter/verideseni_ornek.csv" target="_blank">
+                            <img src="/images/csv-icon.png" height="40" width="35"/>
+                        </a>
+<br><br></p>
+
+<table><thead>
+<tr>
+<th><strong>Alan Adı</strong></th>
+<th><strong>Açıklama</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>detailref</strong></td>
+<td>Detay satır referansı</td>
+</tr>
+<tr>
+<td><strong>entryref</strong></td>
+<td>Bu alan muhasebe fişlerini gruplamak için kullandığımız bir alandır, bulunması zorunludur.</td>
+</tr>
+<tr>
+<td><strong>Fişler</strong></td>
+<td>hesaplanırken bu referans numarasına göre gruplanmaktadır. Bu alana, eğer ERP’de muhasebe fiş satır referans numaraları varsa onların yazılması gerekmekte. Eğer yoksa yevmiye madde numarası yani linenumbercounter yazılması gerekmekte.</td>
+</tr>
+<tr>
+<td><strong>linenumber</strong></td>
+<td>Yevmiye madde numarası haricinde dönem başında 1’den başlayacak ve arada boşluk olmaksızın ardışık olacak şekilde yevmiye madde satır numarası</td>
+</tr>
+<tr>
+<td><strong>linenumbercounter</strong></td>
+<td>Yevmiye madde no</td>
+</tr>
+<tr>
+<td><strong>accmainid</strong></td>
+<td>Kebir kodu (muhasebe kodu ilk 3 hane)</td>
+</tr>
+<tr>
+<td><strong>accmainiddesc</strong></td>
+<td>Kebir kodu (muhasebe kodu ilk 3 hane) açıklaması</td>
+</tr>
+<tr>
+<td><strong>accsubid</strong></td>
+<td>Muhasebe kodu</td>
+</tr>
+<tr>
+<td><strong>accsubdesc</strong></td>
+<td>Muhasebe kod açıklaması</td>
+</tr>
+<tr>
+<td><strong>amount</strong></td>
+<td>Tutar (negatif değer olmamalı)</td>
+</tr>
+<tr>
+<td><strong>debitcreditcode</strong></td>
+<td>Borç ise D, Alacak ise C</td>
+</tr>
+<tr>
+<td><strong>postingdate</strong></td>
+<td>Muhasebe fiş tarihi</td>
+</tr>
+<tr>
+<td><strong>documenttype</strong></td>
+<td><strong>invoice:</strong> Fatura <strong>check:</strong> Çek  <strong>voucher:</strong> Senet  ** other:** other : Yukarıda sayılanların dışında varolan belgeler için <strong>“other”</strong> belge türü kullanılır ve bununda açıklaması (documenttypedescription) alanında yapılır.  Belgeler hakkında detaylı bilgi için <strong>Önemli Hususlar</strong> başlığını inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>documenttypedesc</strong></td>
+<td><em>Doküman tipinin other olması durumunda bazı örnekler;</em> <strong>Paymentmethod Banka;</strong> Gelen Havaleler, Gönderilen Havaleler <strong>Paymentmethod Nakit;</strong> CH Tahsilat, CH Ödeme, Bankaya Yatırılan, Bankadan Çekilen, Gider Pusulası, Verilen Serbest Meslek Makbuzu, Alınan Serbest Meslek Makbuzu <strong>Paymentmethod Teminat Mektubu;</strong> Teminat Girişi,Teminat Çıkışı</td>
+</tr>
+<tr>
+<td><strong>documentnumber</strong></td>
+<td>İlişkili belgenin numarası (Örn: Fatura numarası)</td>
+</tr>
+<tr>
+<td><strong>documentreference</strong></td>
+<td>Muhasebe fiş referans numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
+</tr>
+<tr>
+<td><strong>entrynumbercounter</strong></td>
+<td>Yevmiye madde no</td>
+</tr>
+<tr>
+<td><strong>documentdate</strong></td>
+<td>İlişkili belgenin tarihi (Örn: Fatura tarihi) yyyy-aa-gg formatında</td>
+</tr>
+<tr>
+<td><strong>paymentmethod</strong></td>
+<td>Çek, Senet, Nakit, Banka, Teminat Mektubu ya da boş</td>
+</tr>
+<tr>
+<td><strong>detailcomment</strong></td>
+<td>Muhasebe fişi satır açıklaması</td>
+</tr>
+<tr>
+<td><strong>erpno</strong></td>
+<td>Kullanılan sistemde firmaları birbirinden ayırt eden firma numarası, yoksa 001</td>
+</tr>
+<tr>
+<td><strong>divisionno</strong></td>
+<td>Kullanılan sistemde işyerlerini birbirinden ayıran işyeri numarası, kağıt ortamında basılan defterlerde ayrı olarak basılıyorsa e-defter’de farklı bir işyeri numarasına sahip olmalı yoksa 0</td>
+</tr>
+<tr>
+<td><strong>enteredby</strong></td>
+<td>Muhasebe fişini giren kişinin ad soyad ilk harfi yada açık halde adı soyadı</td>
+</tr>
+<tr>
+<td><strong>entereddate</strong></td>
+<td>Muhasebe fişi kayıt tarihi</td>
+</tr>
+<tr>
+<td><strong>entrynumber</strong></td>
+<td>Muhasebe fiş numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
+</tr>
+<tr>
+<td><strong>entrycomment</strong></td>
+<td>Muhasebe fişi açıklaması</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+  Platform bağımsız e-defter uygulaması olduğumuz için Gelir İdaresi Başkanlığına gönderilecek verilerin hazırlanması mükellefin sorumluluğundadır.
+Muhasebe programında GİB’in belirlediği doküman tipleri haricinde belge türü olması durumunda, bu belgelerin hangi belge türü ile ilişkilendirileceği konusunda mali müşavirinizden bilgi alabilirsiniz.
+</aside>
+
+<h2 id="nemli-hususlar">Önemli Hususlar</h2>
+
+<p>E-defter uygulamasına geçen mükelleflerin e-defteri oluşturacak kayıtların oluşturulması esnasında dikkat etmesi gereken konuları, e-defter belge tiplerinin neler olduğunu, e-defter alanlarının nasıl doldurulması gerektiğine değineceğiz.
+Elektronik defter tutanlar, elektronik defterlerini oluşturdukları ve muhafaza ettikleri bilgi işlem sistemlerinin haczedilmesi veya bu sistemlere yetkili mercilerce el konulması halinde, durumu en geç üç iş günü içerisinde Başkanlık’a bildirmek zorundadırlar.</p>
+
+<aside class="notice">DİKKAT: Elektronik defter uygulamasında her bir belgeye ait bilgilerin, tek bir yevmiye kaydında gösterilmesi esastır.
+</aside>
+
+<h3 id="belge-tipi">Belge Tipi</h3>
+
+<p>Muhasebe kaydına esas teşkil eden işlem bir belgeye dayanıyorsa, mutlaka belge tipi alanının kullanılması gerekmektedir. Ancak muhasebe kaydına esas teşkil eden işlem bir belgeye dayanmıyorsa belge tipi alanı kullanılmamalıdır. Dolayısıyla muhasebe kaydına esas teşkil eden işlem bir belgeye dayanmıyorsa, belge türü, tarihi veya numarası gibi bilgiler verilemez. Örneğin, açılış-kapanış işlemleri belgeye dayalı olmayabilir.</p>
+
+<p>Gelir İdaresi Başkanlığının yayımlandığı Yevmiye Defteri kılavuzunda aşağıdaki sekiz belge tipi tanımlanmıştır. Tabloda sayılan yedi belge tipinin dışında ki belgeler için <strong>“Diğer”</strong> belge türü kullanılır.</p>
+
+<table><thead>
+<tr>
+<th><strong>Belge Tipi</strong></th>
+<th><strong>Esas Belge</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>invoice</strong></td>
+<td>Fatura</td>
+</tr>
+<tr>
+<td><strong>check</strong></td>
+<td>Çek</td>
+</tr>
+<tr>
+<td><strong>voucher</strong></td>
+<td>Senet</td>
+</tr>
+<tr>
+<td><strong>receipt</strong></td>
+<td>Makbuz</td>
+</tr>
+<tr>
+<td><strong>shipment</strong></td>
+<td>Navlun</td>
+</tr>
+<tr>
+<td><strong>order-vendor</strong></td>
+<td>Satıcı Sipariş Belgesi</td>
+</tr>
+<tr>
+<td><strong>order-customer</strong></td>
+<td>Müşteri Sipariş Belgesi</td>
+</tr>
+<tr>
+<td><strong>other</strong></td>
+<td>Diğer</td>
+</tr>
+</tbody></table>
+
+<h3 id="perakende-sat-fi-i">Perakende Satışı Fişi</h3>
+
+<p>Perakende satış fişi sayılan 7 belge içerisinde olmadığı için belge tipi diğer olarak, belge açıklaması da perakende satış fişi olarak seçilmelidir.</p>
+
+<h3 id="banka-lemleri">Banka İşlemleri</h3>
+
+<p>Bilindiği üzere bankaya ait işlemlerde muhasebe kaydına esas belge bankadan verilen dekont olmaktadır. Dekontların e-Defter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“dekont”</strong> olarak kaydı yapılır ve dekontun numara ve tarihinin de girilmesi zorunludur. Ancak dekont üzerinde belge numarası-tarihi yok ise, kullanılan muhasebe programının söz konusu işleme vermiş olduğu tarih ve numara, belge numarası ve tarihi olarak yazılabilir.</p>
+
+<p>Eğer bankaya ait işlemler dekont bazında tek tek muhasebeleştirilemiyorsa, bu banka işlemleri günlük olarak, banka banka ayrıştırmak koşuluyla, her bir bankadan yapılan işlemler birer muhasebe fişinde işlenebilir. e-Defterde bu kayda esas belge olarak muhasebe fişi gösterilebilir. Bu muhasebe fişi e-defter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Muhasebe Fişi”</strong> olarak kaydı yapılır ve fişin numarası ve tarihi girilir.</p>
+
+<h3 id="masraf-listeleri">Masraf Listeleri</h3>
+
+<p>Gün içinde işletmenin ya da personelin yapmış olduğu giderlere ilişkin alınmış belgeler teknik kılavuzlarda sayılan belgelerden biriyse mutlaka belge tipi kılavuzda belirtildiği gibi olmalıdır. Örneğin, personelin yapmış olduğu giderler arasında belge olarak fatura varsa, bu fatura ayrı bir yevmiye kaydında belge türü <strong>“invoice”</strong> yani fatura olarak fatura belge tarih-numarası da yazılmak şartıyla kaydedilmelidir. Eğer yapılan giderle ilgili belge tipi, tablo 1’de sayılan ilk yedi belge tipinden biri değil ise bir masraf formu oluşturulup eDefter uygulamasında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“masraf formu”</strong> olarak kaydı yapılır. Ayrıca bu masraf formunun numarası ve tarihinin de girilmesi zorunludur. Bu masraf formlarında matbu bir numara ve tarih olmadığı için, oluşturulacak her bir form için müteselsil bir numara ve formun oluşturulduğu günün tarihi üzerine yazılmalıdır. Bu masraf formunda yapılan giderlere ait belgelerin detayları yer almak zorundadır. Ayrıca bu masraf formu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
+
+<h3 id="z-raporu">Z raporu</h3>
+
+<p>Gün sonunda her bir yazar kasadan alınan Z raporu, muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Z Raporu”</strong> olarak kaydı yapılır. Ayrıca bu Z Raporu’nun numarası ve tarihinin de girilmesi zorunludur. Ancak gün içinde yapılan satışlarda Z Raporunun üzerinde yer alan ödeme yöntemlerine (nakit, kredi kartı, vb.) göre ayrıştırılmalıdır. Ödeme yöntemine isabet edecek KDV tutarlarının da ayrıştırılması ve her bir ödeme yönteminin farklı yevmiye maddelerinde gösterilmesi gerekmektedir.</p>
+
+<h3 id="ek-bordrosu">Çek Bordrosu</h3>
+
+<p>e-Defter uygulamasında kılavuzda sayılan tüm belge tiplerinde olduğu gibi, her bir çek belgesinin de ayrı yevmiye maddelerine kaydedilmesi esastır. Ancak çek bordrosuyla da kaydı mümkün olduğundan e-Defter uygulamasında da bu bordolar üzerinden, aynı alıcı veya satıcıya ait olmak şartıyla, birden fazla çek aynı yevmiye maddesinde kaydedilebilir. Ayrıca muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Çek bordrosu”</strong> olarak kaydı yapılır ve bu çek bordrosunun numarası ve tarihinin girilmesi zorunludur. Bu çek bordrosunda matbu bir numara ve tarih olmadığı için, oluşturulacak her bir bordro için müteselsil bir numara verilmeli ve bordronun oluşturulduğu günün tarihi üzerine yazılmalıdır. Her bir çek bordrosunda, çeklerin detayları yer almak zorundadır. Bu çek bordrosu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
+
+<h3 id="senet-bordrosu">Senet Bordrosu</h3>
+
+<p>e-Defter uygulamasında kılavuzda sayılan tüm belge türlerinde olduğu gibi, her bir senet belgesinin de ayrı yevmiye maddelerine kaydedilmesi esastır. Ancak senet bordrosuyla da kaydı mümkün olduğundan e-Defter uygulamasında da bu bordolar üzerinden, aynı alıcı veya satıcıya ait olmak şartıyla, birden fazla senet aynı yevmiye maddesinde kaydedilebilir. Ayrıca muhasebe kaydında belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Senet bordrosu”</strong> olarak kaydı yapılır ve bu senet bordrosunun numarası ve tarihinin girilmesi zorunludur. Bu senet bordrosunda matbu bir numara ve tarih olmadığı için, oluşturulacak her bir bordro için müteselsil bir numara verilmeli ve bordronun oluşturulduğu günün tarihi üzerine yazılmalıdır. Senet bordrolarında, senetlerin detayları yer almak zorundadır. Bu senet bordrosu firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur</p>
+
+<h3 id="cret-bordrosu">Ücret Bordrosu</h3>
+
+<p>Firmalar çalışanları için aylık olarak oluşturacakları ücret bordrolarını, e-Defter uygulamasına aktarırken, tüm personel için oluşan bordroları bir listeye bağlayıp, belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“Ücret Bordrosu İcmali”</strong> olarak kaydedebilir. Ücret bordrosu icmalinin numara ve tarihinin girilmesi zorunludur. Ancak Ücret bordrosu icmalinde matbu bir numara ve tarih olmadığı için, oluşturulacak her bir icmal listesi için müteselsil bir numara verilmeli ve icmalin oluşturulduğu günün tarihi üzerine yazılmalıdır. Bu ücret bordrosu icmalinde her bir ücret bordrosunun detayları yer almalıdır. Ayrıca bu icmaller firma kaşesi ve imzasıyla matbu olarak ya da elektronik imza/mali mühür ile elektronik ortamda muhafaza edilmek zorundadır. Elektronik ortamda tutulacak belgelerin görüntülenebilir ve doğrulanabilir şekilde muhafaza ve ibraz edilmesinden, diğer matbu belgeler de olduğu gibi, mükellef sorumludur.</p>
+
+<h3 id="serbest-meslek-makbuzu">Serbest Meslek Makbuzu</h3>
+
+<p>Serbest meslek erbabının, mesleki faaliyetlerine ilişkin her türlü tahsilatı için düzenlediği belge serbest meslek makbuzudur. Bu makbuz e-Defter kılavuzunda sayılan belgeler arasında yer alan makbuz ile karıştırılmamalıdır. Serbest meslek makbuzu sayılan belgeler arasında yer almadığı için belge tipi <strong>“Diğer”</strong> ve belge açıklaması <strong>“serbest meslek makbuzu”</strong> olarak kaydı yapılır. Ayrıca belgenin numarası ve tarihinin de girilmesi zorunludur.</p>
+
+<h2 id="e-defter-ematron-kontrol">E-Defter Şematron Kontrolü</h2>
+
+<ul>
+<li>Uygulamamız tarafından hazırlanan defterler Gelir İdaresi Başkanlığı tarafından yayınlanan şematron kurallarından, iş kurallarından, mali mühür ya da imza kontrolünden geçmektedir. Oluşturulan defterlerin şematron kontrolünde hata
+almaması için aşağıdaki kurallara uygun olarak veri hazırlanmalıdır.</li>
+<li>Oluşturulacak defterlerin boyutunun 200 MB’ı geçmesi halinde bölünmesi gerekmektedir. Bölme işlemi uygulama
+tarafından Gelir İdaresi Başkanlığı tarafından belirlenen kurallara göre otomatik olarak yapılmaktadır.</li>
+<li>Bir yevmiyenin satır kalemleri aynı defter parçasında olmak durumundadır. Bir yevmiye kaydı 200 MB’ı geçerse
+belirli icmal yöntemleriyle yevmiye kaydı gruplandırılmalıdır. Firmaların veri büyüklüklerine göre farklılık
+göstermekle birlikte 200 MB‘lık parça yaklaşık 100.000 yevmiye satırına denk gelmektedir.</li>
+<li>Defterler sıra ile aylık olarak yüklenmelidir. Örneğin, Temmuz ayının defteri GİB’e yüklenmemişse ya da GİB’den
+onaylı beratları alınıp ay kapatılmamışsa mükellef bir sonraki ayın yani Ağustos’un defterini sistemde oluşturamaz.
+Uygulama bu durumda hata verir.</li>
+<li>GİB’e yüklenmiş, GİB’den onaylı beratları alınmış bir tarih aralığı için bir daha defter oluşturulamaz, aynı yolla ileri
+bir tarihi de kapsayacak şekilde defter oluşturulamaz.</li>
+<li>Defter kaynak verilerindeki zorunlu alanların kontrolü yapılır, kaynak veri detayları için destek@izibiz.com.tr
+adresinden detaylı bilgi talep edilebilir.</li>
+</ul>
 
       </div>
       <div class="dark-box">
