@@ -16,8 +16,9 @@ includes:
   - emustahsil
   - esmm
   - emutabakat
-  - zrapor
-  - edefter
+  - ezrapor
   - faturalama
+  - proxy
+  - edefter
 search: true
 ---
