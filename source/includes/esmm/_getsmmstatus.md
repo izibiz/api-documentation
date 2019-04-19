@@ -26,24 +26,23 @@ Parametre | Tip        | Açıklama
 
 ## E-SMM Durumları
 
-Durum	| Kod | Durum Açıklaması
-------- |---------- | --------------
-DURUM_HENUZ_GUNCELLENMEDI	| 100	| DURUM HENÜZ GÜNCELLENMEDİ
-LOAD_DRAFT	| 101	| TASLAK
-LOAD_WAIT_ID_ASSIGN	| 102	|NUMARA ATANMA BEKLENİYOR
-LOAD_NEW |	103	 |	KUYRUĞA EKLENDİ
-LOAD_PROCESSING	 |	104	 |	İŞLENİYOR
-LOAD_SUCCEED	 |	105	 |	İŞLENDİ
-LOAD_FAILED	 |	106	 |	BAŞARISIZ
-CANCEL_CANCEL |		107 |	İPTAL EDİLDİ 
+Durum Kodu | Durum Açıklaması
+------- | --------------
+100	| DURUM HENÜZ GÜNCELLENMEDİ
+101	| TASLAK
+102	| NUMARA ATANMA BEKLENİYOR
+103	| KUYRUĞA EKLENDİ
+104	| İŞLENİYOR
+105	| İŞLENDİ
+106	| BAŞARISIZ
+107 | İPTAL EDİLDİ 
 
 
-## E-SMM Rapor Durumları
+### E-SMM E-Posta Gönderim Durumları
 
-Durum Kodu	| Durum Açıklaması  
-------- |---------- 
-200 |  RAPORLANACAK	 
-201	| RAPORLANDI	 			 
-202	| İPTAL RAPORLANACAK	 			 
-203	| İPTAL RAPORLANDI 	 	 
-204	| RAPORLANMAYACAK	  
+Durum Kodu | Durum Açıklaması       
+--------- | -----------
+100 | HENÜZ İŞLENMEDİ
+110 | İŞLENİYOR
+120 | İŞLENDİ
+130 | E-MAIL GÖNDERİM SONLANDI
