@@ -477,6 +477,14 @@
 
 <p>Test portali erişim bilgileri için <strong>entegrasyon@izibiz.com.tr</strong> adresi ile iletişime geçebilirsiniz.</p>
 
+<h2 id="entegrasyon-s-k-a-sorulan-sorular">Entegrasyon Sıkça Sorulan Sorular</h2>
+
+<p>Entegrasyon sürecinde karşılaşılan soruların cevapları:</p>
+
+<p><strong>Soru:</strong> Ürün bazlı (E-Fatura, E-İrsaliye) kayıtlı kullanıcıları sorgulayabileceğimiz bir servis mevcut mu ?</p>
+
+<p><strong>Cevap:</strong> Kimlik Doğrulama webservisinde bulunan <strong>Mükellef Listesi Çekme (GetGibUserList)</strong> metodumuzu kullanarak E-Fatura ve E-İrsaliye mükellef listesini çekebilirsiniz. <strong>DOCUMENT_TYPE</strong>  parametresine E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir. Her iki ürüne ait etiketleri toplu çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Parametre gönderilmez veya boş gönderilirse bütün liste dönülecektir.</p>
+
           <h1 id="kimlik-do-rulama-webservisi">Kimlik Doğrulama Webservisi</h1>
 
 <p>Entegrasyon sürecinin ilk adımı olan kimlik doğrulamayı sağlayan servistir.  Yapılan her işlem mutlaka aktif bir oturum ile yapılmalıdır.</p>
@@ -8523,6 +8531,985 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
 <li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
 </ol>
+
+<h2 id="fatura-g-nderme-sendinvoicebyxml">Fatura Gönderme(SendInvoiceByXml)</h2>
+
+<ul>
+<li>UBL-TR XML üretmeden webservis parametreleri doldurularak fatura gönderimi sağlar.</li>
+<li>Webservice Endpoint URL için iletişme geçiniz.</li>
+</ul>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>İşlem yapılacak oturum. Oturum açmak için <code class="prettyprint">Login</code> metodu kullanılır.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Fatura gönderimi ile ilgili parametreler</td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES.INVOICE_TYPE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>E-Fatura olarak göndermek için <code class="prettyprint">EINVOICE</code> E-Arşiv olarak göndermek için <code class="prettyprint">EARCHIVE</code> değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_PROPERTIES.EMAIL_FLAG</strong></td>
+<td>boolean</td>
+<td>Hayır</td>
+<td>Değerler [Y,N]: E-Arşiv faturalarını e-posta olarak iletmek için <code class="prettyprint">Y</code> değeri gönderilmelidir. Parametre gönderilmez veya <code class="prettyprint">N</code> değeri gönderilirse fatura e-posta gönderilmez. E-Fatura için bu parametre dikkate alınmaz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Gönderilecek fatura alanları</td>
+</tr>
+<tr>
+<td><strong>INVOICE.PROFILE_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Gönderilecek fatura profili. E-Arşiv için <code class="prettyprint">EARSIVFATURA</code> olmalıdır. E-Fatura için  [TEMELFATURA, TICARIFATURA, YOLCUBERABERFATURA, IHRACAT] değerleri içerebilir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.INVOICE_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Faturanın numarası (AAA2019000000001 formatında olmak zorunda)</td>
+</tr>
+<tr>
+<td><strong>INVOICE.UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Faturanın ETTN numarası</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ISSUE_DATE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Fatura Tarihi (YYYY-AA-GG formatında)</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ISSUE_TIME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Fatura Düzenleme Saati (SS:DD:ss)</td>
+</tr>
+<tr>
+<td><strong>INVOICE.INVOICE_TYPE_CODE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>E-Fatura için [SATIS, IADE, TEVKIFAT, ISTISNA, OZELMATRAH, IHRACKAYITLI]. E-Arşiv için SATIS ve IADE dışında değer gönderilemez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.DOCUMENT_CURRENCY_CODE</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Fatura para birimi [TRY, USD, EUR vs] <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Diğer para birimleri için Kod Listesi dokümanında Para Birimi Kodları bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td><strong>INVOICE.LINE_COUNT_NUMERIC</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Fatura satır sayısı</td>
+</tr>
+<tr>
+<td><strong>INVOICE.CALCULATION_RATE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Dövizli faturalar kur bilgisi</td>
+</tr>
+<tr>
+<td><strong>INVOICE.NOTE</strong></td>
+<td>Array</td>
+<td>Hayır</td>
+<td>Faturaya eklenecek notlar. Çoklanabilir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ORDER_REFERENCE</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Sipariş bilgileri</td>
+</tr>
+<tr>
+<td>INVOICE.ORDER_REFERENCE.ID</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Sipariş numarası</td>
+</tr>
+<tr>
+<td>INVOICE.ORDER_REFERENCE.ISSUE_DATE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Sipariş tarihi</td>
+</tr>
+<tr>
+<td><strong>INVOICE.DESPACTH_DOCUMENT_REFERENCE</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>İrsaliye bilgileri. Çoklanabilir.</td>
+</tr>
+<tr>
+<td>DESPACTH_DOCUMENT_REFERENCE.ID</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İrsaliye numarası</td>
+</tr>
+<tr>
+<td>DESPACTH_DOCUMENT_REFERENCE.ISSUE_DATE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İrsaliye tarihi</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ADDITIONAL_DOCUMENT_REFERENCE</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Ek belgeler. Çoklanabilir. En az fatura şablonu (xslt) eklenmelidir.</td>
+</tr>
+<tr>
+<td>ADDITIONAL_DOCUMENT_REFERENCE.ID</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ek belge id</td>
+</tr>
+<tr>
+<td>ADDITIONAL_DOCUMENT_REFERENCE.ISSUE_DATE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>ek belge tarihi</td>
+</tr>
+<tr>
+<td>ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>ek belge tip kodu. Fatura şablonu için XSLT değeri gönderilmelidir.</td>
+</tr>
+<tr>
+<td>ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>ek belge tipi</td>
+</tr>
+<tr>
+<td>ADDITIONAL_DOCUMENT_REFERENCE.ATTACHMENT</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>belgenin Base64Binary değeri</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ACCOUNTING_SUPPLIER_PARTY</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Faturayı düzenleyen tarafın bilgileri</td>
+</tr>
+<tr>
+<td>ACCOUNTING_SUPPLIER_PARTY.PARTY</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Gönderen firma bilgileri</td>
+</tr>
+<tr>
+<td>PARTY.WEB_SITE_URI</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Gönderen firma websitesi (http://www.firmaadres.com formatında)</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Gönderen firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklabilir. Bu alan çoklanarak şu bilgiler eklenebilir.</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION.ID</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Düzenleyen tarafı tanımlayan bilgi. VKN veya TCKN bilgisi olmak zorundadır.</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION.TYPE</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Düzenleyen tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>PARTY.NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Düzenleyen firma ünvanı</td>
+</tr>
+<tr>
+<td>PARTY.POSTAL_ADDRESS</td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Düzenleyen firma adresi</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.STREET_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Adres (Sokak mahalle cadde vs)</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.BUILDING_NUMBER</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Bina numarası</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_SUB_DIVISION_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İlçe</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İl</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.POSTAL_ZONE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Posta kodu</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.COUNTRY</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Ülke. (Türkiye)</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_TAX_SCHEME</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Vergi Dairesi.</td>
+</tr>
+<tr>
+<td>PARTY.CONTACT</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Düzenleyen firma irtibat bilgileri</td>
+</tr>
+<tr>
+<td>CONTACT.TELEPHONE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Telefon numarası</td>
+</tr>
+<tr>
+<td>CONTACT.TELEFAX</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Faks numarası</td>
+</tr>
+<tr>
+<td>CONTACT.ELECTRONIC_MAIL</td>
+<td>String</td>
+<td>Hayır</td>
+<td>E-Posta adresi</td>
+</tr>
+<tr>
+<td>PARTY.FIRST_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Düzenleyen şahıs firması ise firma sahibinin Adı zorunlu</td>
+</tr>
+<tr>
+<td>PARTY.FAMILY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Düzenleyen şahıs firması ise firma sahibinin Soyadı zorunlu</td>
+</tr>
+<tr>
+<td><strong>INVOICE.ACCOUNTING_CUSTOMER_PARTY</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Faturayı alan tarafın bilgileri</td>
+</tr>
+<tr>
+<td>PARTY.WEB_SITE_URI</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Alıcı firma websitesi (http://www.firmaadres.com formatında)</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Alıcı firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklabilir. Bu alan çoklanarak şu bilgiler eklenebilir.</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION.ID</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Alıcı tarafı tanımlayan bilgi. VKN veya TCKN bilgisi olmak zorundadır.</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_IDENTIFICATION.TYPE</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Alıcı tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>PARTY.NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Alıcı firma ünvanı</td>
+</tr>
+<tr>
+<td>PARTY.POSTAL_ADDRESS</td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Alıcı firma adresi</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.STREET_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Adres (Sokak mahalle cadde vs)</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.BUILDING_NUMBER</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Bina numarası</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_SUB_DIVISION_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İlçe</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İl</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.POSTAL_ZONE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Posta kodu</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.COUNTRY</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Ülke. (Türkiye)</td>
+</tr>
+<tr>
+<td>PARTY.PARTY_TAX_SCHEME</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Vergi Dairesi. Alıcısı firma olanlar için zorunludur. Nihai tüketiciye düzenenlenen faturalar için zorunlu değildir.</td>
+</tr>
+<tr>
+<td>PARTY.CONTACT</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Alıcı firma irtibat bilgileri</td>
+</tr>
+<tr>
+<td>CONTACT.TELEPHONE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Telefon numarası</td>
+</tr>
+<tr>
+<td>CONTACT.TELEFAX</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Faks numarası</td>
+</tr>
+<tr>
+<td>CONTACT.ELECTRONIC_MAIL</td>
+<td>String</td>
+<td>Hayır</td>
+<td>E-Posta adresi</td>
+</tr>
+<tr>
+<td>PARTY.FIRST_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Alıcı firma şahıs firması ise firma sahibinin Adı zorunlu veya nihai tüketicinin adı</td>
+</tr>
+<tr>
+<td>PARTY.FAMILY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Alıcı firma şahıs firması ise firma sahibinin Soyadı zorunlu veya nihai tüketici soyadı</td>
+</tr>
+<tr>
+<td><strong>INVOICE.DELIVERY</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Gönderim, Taşıma, Sevkiyat Bilgileri. E-Arşiv için Zorunludur.</td>
+</tr>
+<tr>
+<td><strong>DELIVERY.CARRIER_PARTY</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Taşıyan firma bilgiler. Internet üzerinden yapılan satışlar için düzünlenen E-Arşiv fatura için zorunludur.</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.ID</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Taşıyan firma/şahıs 10 hane VKN veya 11 hane TCKN değeri</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.TYPE</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Değerler [<code class="prettyprint">VKN</code>,<code class="prettyprint">TCKN</code>]. Taşıyan kurumsal firma ise <code class="prettyprint">VKN</code>, şahıs firması veya şahıs ise <code class="prettyprint">TCKN</code> gönderilmeldir.</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Taşıyan firma ünvanı</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.FIRST_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Taşıyan şahıs adı</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.FAMILY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Taşıyan şahıs soyadı</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.POSTAL_ADDRESS</td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Taşıyan firma adresi</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.STREET_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Adres (Sokak mahalle cadde vs)</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.BUILDING_NUMBER</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Bina numarası</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_SUB_DIVISION_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İlçe</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.CITY_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>İl</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.POSTAL_ZONE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Posta kodu</td>
+</tr>
+<tr>
+<td>POSTAL_ADDRESS.COUNTRY</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ülke. (Türkiye)</td>
+</tr>
+<tr>
+<td>CARRIER_PARTY.ACTULA_DEPATCH_DATE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fiili Sevk Tarihi</td>
+</tr>
+<tr>
+<td><strong>INVOICE.PAYMENT_MEANS</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Ödeme Şekli. Internet satışları için zorunludur.</td>
+</tr>
+<tr>
+<td>PAYMENT_MEANS.PAYMENT_MEANS_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ödeme şeklinin kodu</td>
+</tr>
+<tr>
+<td>PAYMENT_MEANS.PAYMENT_DUE_DATE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Son ödeme günü yıl-ay-gün formatında</td>
+</tr>
+<tr>
+<td>PAYMENT_MEANS.PAYMENT_CHANNEL_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ödeme kanalı kodu</td>
+</tr>
+<tr>
+<td>PAYMENT_MEANS.INSTRUCTION_NOTE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ödeme ile ilgili açıklamalar serbest metin</td>
+</tr>
+<tr>
+<td><strong>INVOICE.PAYMENT_TERMS</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Ödeme Koşulları</td>
+</tr>
+<tr>
+<td>PAYMENT_TERMS.PENALTY_SURCHARGE_PERCENT</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ödemenin gecikmesi durumunda uygulanacak ceza oranı numerik olarak girilir.</td>
+</tr>
+<tr>
+<td>PAYMENT_TERMS.AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Ödemenin gecikmesi durumunda uygulanacak ceza tutarı numerik olarak girilir.</td>
+</tr>
+<tr>
+<td>PAYMENT_TERMS.NOTE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Ödeme koşulları ile ilgili açıklama serbest metin olarak girilir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE.TAX_TOTAL</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Vergi Toplamı</td>
+</tr>
+<tr>
+<td>TAX_TOTAL.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Toplam vergi tutarı girilir.</td>
+</tr>
+<tr>
+<td>TAX_TOTAL.TAX_SUB_TOTAL</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Vergi ara toplamı. Çoklanarak birden fazla vergi tipi eklenebilir.</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_ABLE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Hesaplanan Vergi Tutarı</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.CALCULATION_SEQ_NUMERIC</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi hesaplamasında sıra numarası.</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.PERCENT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Vergi oranı</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_TYPE_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td><strong>INVOICE.WITH_HOLDING_TAX</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Tevkifatlı faturalarda, uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifat tutari</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_SUB_TOTAL</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Tevkifat ara toplamı. Çoklanarak birden fazla tevkifat tipi eklenebilir.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_ABLE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Hesaplanan Tevkifat Tutarı</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.CALCULATION_SEQ_NUMERIC</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat hesaplamasında sıra numarası.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.PERCENT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifat oranı</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_TYPE_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td><strong>INVOICE.ALLOWANCE_CHARGES</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>İskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.CHARGE_INDICATOR</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Eğer artırım ise <code class="prettyprint">Y</code> değilse <code class="prettyprint">N</code> değeri doldurulur</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.MULTIPLIER_FACTOR_NUMERIC</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Iskonto/ Artırım Oranı</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Iskonto/ Artırım Tutarı</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.BASE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>İskonto veya artırımın uygulandığı tutar</td>
+</tr>
+<tr>
+<td><strong>INVOICE.LEGAL_MONETARY_TOTAL</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Fatura Parasal Toplam Bilgileri</td>
+</tr>
+<tr>
+<td>LEGAL_MONETARY_TOTAL.LINE_EXTENSION_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır.</td>
+</tr>
+<tr>
+<td>LEGAL_MONETARY_TOTAL.TAX_EXCLUSIVE_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Vergiler hariç, ıskonto veya artırım dahil toplam tutarı (Vergi Matrahı)</td>
+</tr>
+<tr>
+<td>LEGAL_MONETARY_TOTAL.TAX_INCLUSIVE_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Vergiler, ıskonto ve artırım dahil toplam tutar girilir.</td>
+</tr>
+<tr>
+<td>LEGAL_MONETARY_TOTAL.ALLOWANCE_TOTAL_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Toplam ıskonto tutarı</td>
+</tr>
+<tr>
+<td>LEGAL_MONETARY_TOTAL.PAYABLE_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Ödenecek tutar</td>
+</tr>
+<tr>
+<td><strong>INVOICE.INVOICE_LINE</strong></td>
+<td>Complex</td>
+<td><strong>Evet</strong></td>
+<td>Mal/Hizmet Kalemleri</td>
+</tr>
+<tr>
+<td>INVOICE_LINE.ID</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Kalem sıra numarası</td>
+</tr>
+<tr>
+<td>INVOICE_LINE.INVOICE_QUANTITY</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Mal/hizmet miktarı</td>
+</tr>
+<tr>
+<td>INVOICE_LINE.UNITCODE</td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Mal/hizmet miktar birimi   Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td>INVOICE_LINE.LINE_EXTENSION_AMOUNT</td>
+<td>Decimal</td>
+<td><strong>Evet</strong></td>
+<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutar</td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.ALLOWANCE_CHARGES</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Satırda İskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.CHARGE_INDICATOR</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Eğer artırım ise <code class="prettyprint">Y</code> değilse <code class="prettyprint">N</code> değeri doldurulur</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.MULTIPLIER_FACTOR_NUMERIC</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Iskonto/ Artırım Oranı</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Iskonto/ Artırım Tutarı</td>
+</tr>
+<tr>
+<td>ALLOWANCE_CHARGES.BASE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>İskonto veya artırımın uygulandığı tutar</td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.TAX_TOTAL</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Satırda Vergi Toplamı</td>
+</tr>
+<tr>
+<td>TAX_TOTAL.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Toplam vergi tutarı girilir.</td>
+</tr>
+<tr>
+<td>TAX_TOTAL.TAX_SUB_TOTAL</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Vergi ara toplamı. Çoklanarak birden fazla vergi tipi eklenebilir.</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_ABLE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Hesaplanan Vergi Tutarı</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.CALCULATION_SEQ_NUMERIC</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi hesaplamasında sıra numarası.</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.PERCENT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Vergi oranı</td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_TYPE_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td>TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.WITH_HOLDING_TAX</strong></td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>satırda uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifat tutari</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_SUB_TOTAL</td>
+<td>Complex</td>
+<td>Hayır</td>
+<td>Tevkifat ara toplamı. Çoklanarak birden fazla tevkifat tipi eklenebilir.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_ABLE_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Hesaplanan Tevkifat Tutarı</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.CALCULATION_SEQ_NUMERIC</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat hesaplamasında sıra numarası.</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.PERCENT</td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Tevkifat oranı</td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_NAME</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_TYPE_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Tevkifat Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td>WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE</td>
+<td>String</td>
+<td>Hayır</td>
+<td>Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a></td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.ITEM_NAME</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mal/hizmet adı serbest metin</td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.ITEM_PRICE</strong></td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Mal/hizmetin birim fiyatı</td>
+</tr>
+<tr>
+<td><strong>INVOICE_LINE.BUYER_IDENTIFICATION</strong></td>
+<td>Decimal</td>
+<td>Hayır</td>
+<td>Alıcının mal/hizmete verdiği tanımlama bilgisi. barkod bilgisi girilebilir.</td>
+</tr>
+</tbody></table>
 
 <h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme(SendInvoice)</h2>
 
