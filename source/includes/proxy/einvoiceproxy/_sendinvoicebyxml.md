@@ -29,17 +29,17 @@ DESPACTH_DOCUMENT_REFERENCE.ID | String | Hayır | İrsaliye numarası
 DESPACTH_DOCUMENT_REFERENCE.ISSUE_DATE | String | Hayır | İrsaliye tarihi
 **INVOICE.ADDITIONAL_DOCUMENT_REFERENCE** | Complex | **Evet** | Ek belgeler. Çoklanabilir. En az fatura şablonu (xslt) eklenmelidir.
 ADDITIONAL_DOCUMENT_REFERENCE.ID | String | Hayır | Ek belge id
-ADDITIONAL_DOCUMENT_REFERENCE.ISSUE_DATE | String | Hayır | ek belge tarihi
-ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE_CODE | String | Hayır | ek belge tip kodu. Fatura şablonu için XSLT değeri gönderilmelidir.
-ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE | String | Hayır | ek belge tipi
-ADDITIONAL_DOCUMENT_REFERENCE.ATTACHMENT | String | **Evet** | belgenin Base64Binary değeri
+ADDITIONAL_DOCUMENT_REFERENCE.ISSUE_DATE | String | Hayır | Ek belge tarihi
+ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE_CODE | String | Hayır | Ek belge tip kodu. Fatura şablonu için XSLT değeri gönderilmelidir.
+ADDITIONAL_DOCUMENT_REFERENCE.DOCUMENT_TYPE | String | Hayır | Ek belge tipi
+ADDITIONAL_DOCUMENT_REFERENCE.ATTACHMENT | Base64 | **Evet** | Belgenin Base64Binary değeri
 **INVOICE.ACCOUNTING_SUPPLIER_PARTY** | Complex | **Evet** | Faturayı düzenleyen tarafın bilgileri
 ACCOUNTING_SUPPLIER_PARTY.PARTY | Complex | Hayır | Gönderen firma bilgileri
 PARTY.WEB_SITE_URI | String | Hayır | Gönderen firma websitesi (http://www.firmaadres.com formatında)
-PARTY.PARTY_IDENTIFICATION | Complex | Hayır | Gönderen firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklabilir. Bu alan çoklanarak şu bilgiler eklenebilir.
+PARTY.PARTY_IDENTIFICATION | Complex | Hayır | Gönderen firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklanabilir. Bu alan çoklanarak şu bilgiler eklenebilir.
 PARTY.PARTY_IDENTIFICATION.ID | String | **Evet** | Düzenleyen tarafı tanımlayan bilgi. VKN veya TCKN bilgisi olmak zorundadır.
 PARTY.PARTY_IDENTIFICATION.TYPE | String | **Evet** | Düzenleyen tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a>
-PARTY.NAME | String | Hayır | Düzenleyen firma ünvanı
+PARTY.NAME | String | **Evet** | Düzenleyen firma ünvanı
 PARTY.POSTAL_ADDRESS | Complex | **Evet** | Düzenleyen firma adresi
 POSTAL_ADDRESS.STREET_NAME | String | Hayır | Adres (Sokak mahalle cadde vs)
 POSTAL_ADDRESS.BUILDING_NUMBER | String | Hayır | Bina numarası
@@ -56,10 +56,10 @@ PARTY.FIRST_NAME | String | Hayır | Düzenleyen şahıs firması ise firma sahi
 PARTY.FAMILY_NAME | String | Hayır | Düzenleyen şahıs firması ise firma sahibinin Soyadı zorunlu
 **INVOICE.ACCOUNTING_CUSTOMER_PARTY** | Complex | **Evet** | Faturayı alan tarafın bilgileri
 PARTY.WEB_SITE_URI | String | Hayır | Alıcı firma websitesi (http://www.firmaadres.com formatında)
-PARTY.PARTY_IDENTIFICATION | Complex | Hayır | Alıcı firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklabilir. Bu alan çoklanarak şu bilgiler eklenebilir.
+PARTY.PARTY_IDENTIFICATION | Complex | Hayır | Alıcı firmayı tanımlayan bilgiler.  VKN/TCKN no bilgisi ekleneblir. Çoklanabilir. Bu alan çoklanarak şu bilgiler eklenebilir.
 PARTY.PARTY_IDENTIFICATION.ID | String | **Evet** | Alıcı tarafı tanımlayan bilgi. VKN veya TCKN bilgisi olmak zorundadır.
 PARTY.PARTY_IDENTIFICATION.TYPE | String | **Evet** | Alıcı tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a>
-PARTY.NAME | String | Hayır | Alıcı firma ünvanı
+PARTY.NAME | String | **Evet** | Alıcı firma ünvanı
 PARTY.POSTAL_ADDRESS | Complex | **Evet** | Alıcı firma adresi
 POSTAL_ADDRESS.STREET_NAME | String | Hayır | Adres (Sokak mahalle cadde vs)
 POSTAL_ADDRESS.BUILDING_NUMBER | String | Hayır | Bina numarası
@@ -75,7 +75,7 @@ CONTACT.ELECTRONIC_MAIL | String | Hayır | E-Posta adresi
 PARTY.FIRST_NAME | String | Hayır | Alıcı firma şahıs firması ise firma sahibinin Adı zorunlu veya nihai tüketicinin adı
 PARTY.FAMILY_NAME | String | Hayır | Alıcı firma şahıs firması ise firma sahibinin Soyadı zorunlu veya nihai tüketici soyadı
 **INVOICE.DELIVERY** | Complex | **Evet** | Gönderim, Taşıma, Sevkiyat Bilgileri. E-Arşiv için Zorunludur.
-**DELIVERY.CARRIER_PARTY** | Complex | **Evet** | Taşıyan firma bilgiler. Internet üzerinden yapılan satışlar için düzünlenen E-Arşiv fatura için zorunludur.
+**DELIVERY.CARRIER_PARTY** | Complex | **Evet** | Taşıyan firma bilgiler. Internet üzerinden yapılan satışlar için düzenlenen E-Arşiv fatura için zorunludur.
 CARRIER_PARTY.ID | String | **Evet** | Taşıyan firma/şahıs 10 hane VKN veya 11 hane TCKN değeri
 CARRIER_PARTY.TYPE | String | **Evet** | Değerler [`VKN`,`TCKN`]. Taşıyan kurumsal firma ise `VKN`, şahıs firması veya şahıs ise `TCKN` gönderilmeldir.
 CARRIER_PARTY.NAME | String | Hayır | Taşıyan firma ünvanı
@@ -120,11 +120,11 @@ WITH_HOLDING_TAX.TAX_NAME | String | Hayır |  Tevkifat türü ismi. <a href="
 WITH_HOLDING_TAX.TAX_TYPE_CODE | String | Hayır |  Tevkifat Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a>
 WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE | String | Hayır |  Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a>
 WITH_HOLDING_TAX.TAX_EXEMPTION_REASON_CODE | String | Hayır |  Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a>
-**INVOICE.ALLOWANCE_CHARGES** | Complex | Hayır |  İskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.
+**INVOICE.ALLOWANCE_CHARGES** | Complex | Hayır |  Iskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.
 ALLOWANCE_CHARGES.CHARGE_INDICATOR | String | Hayır |  Eğer artırım ise `Y` değilse `N` değeri doldurulur
 ALLOWANCE_CHARGES.MULTIPLIER_FACTOR_NUMERIC | Decimal | Hayır |  Iskonto/ Artırım Oranı
 ALLOWANCE_CHARGES.AMOUNT | Decimal | Hayır |  Iskonto/ Artırım Tutarı
-ALLOWANCE_CHARGES.BASE_AMOUNT | Decimal | Hayır |  İskonto veya artırımın uygulandığı tutar
+ALLOWANCE_CHARGES.BASE_AMOUNT | Decimal | Hayır |  Iskonto veya artırımın uygulandığı tutar
 **INVOICE.LEGAL_MONETARY_TOTAL** | Complex | **Evet** |  Fatura Parasal Toplam Bilgileri
 LEGAL_MONETARY_TOTAL.LINE_EXTENSION_AMOUNT | Decimal | **Evet** |  Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır.
 LEGAL_MONETARY_TOTAL.TAX_EXCLUSIVE_AMOUNT | Decimal | **Evet** |  Vergiler hariç, ıskonto veya artırım dahil toplam tutarı (Vergi Matrahı)
@@ -136,11 +136,11 @@ INVOICE_LINE.ID | String | **Evet** |  Kalem sıra numarası
 INVOICE_LINE.INVOICE_QUANTITY | Decimal | **Evet** |  Mal/hizmet miktarı
 INVOICE_LINE.UNITCODE | String | **Evet** |  Mal/hizmet miktar birimi   Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a>
 INVOICE_LINE.LINE_EXTENSION_AMOUNT | Decimal | **Evet** |  Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutar
-**INVOICE_LINE.ALLOWANCE_CHARGES** | Complex | Hayır |  Satırda İskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.
+**INVOICE_LINE.ALLOWANCE_CHARGES** | Complex | Hayır |  Satırda Iskonto / Artırım. Eğer iskonto veya artırım uygulanacaksa eklenir. Birden fazla iskonto/artırım uygulamak için çoklanır.
 ALLOWANCE_CHARGES.CHARGE_INDICATOR | String | Hayır |  Eğer artırım ise `Y` değilse `N` değeri doldurulur
 ALLOWANCE_CHARGES.MULTIPLIER_FACTOR_NUMERIC | Decimal | Hayır |  Iskonto/ Artırım Oranı
 ALLOWANCE_CHARGES.AMOUNT | Decimal | Hayır |  Iskonto/ Artırım Tutarı
-ALLOWANCE_CHARGES.BASE_AMOUNT | Decimal | Hayır |  İskonto veya artırımın uygulandığı tutar
+ALLOWANCE_CHARGES.BASE_AMOUNT | Decimal | Hayır |  Iskonto veya artırımın uygulandığı tutar
 **INVOICE_LINE.TAX_TOTAL** | Complex | Hayır | Satırda Vergi Toplamı
 TAX_TOTAL.TAX_AMOUNT | Decimal | Hayır | Toplam vergi tutarı girilir.
 TAX_TOTAL.TAX_SUB_TOTAL | Complex | Hayır | Vergi ara toplamı. Çoklanarak birden fazla vergi tipi eklenebilir.
@@ -152,7 +152,7 @@ TAX_SUB_TOTAL.TAX_NAME | String | Hayır |  Vergi türü ismi. <a href="/resou
 TAX_SUB_TOTAL.TAX_TYPE_CODE | String | Hayır |  Vergi Tipi Kodu. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a>
 TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE | String | Hayır |  Vergi muafiyet, istisna kodu Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a>
 TAX_SUB_TOTAL.TAX_EXEMPTION_REASON_CODE | String | Hayır |  Vergi muafiyet, istisna sebepleri serbest metin. Bknz. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod listeleri</a>
-**INVOICE_LINE.WITH_HOLDING_TAX** | Complex | Hayır | satırda uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.
+**INVOICE_LINE.WITH_HOLDING_TAX** | Complex | Hayır | Satırda uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.
 WITH_HOLDING_TAX.TAX_AMOUNT | Decimal | Hayır | Tevkifat tutari
 WITH_HOLDING_TAX.TAX_SUB_TOTAL | Complex | Hayır | Tevkifat ara toplamı. Çoklanarak birden fazla tevkifat tipi eklenebilir.
 WITH_HOLDING_TAX.TAX_ABLE_AMOUNT | Decimal | Hayır | Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi

@@ -11,7 +11,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **RECEIVER_VKN** | String | **Hayır** | Alıcının VKNsi.
 **RECEIVER_ALIAS** | String | **Hayır** | Alıcının ünvanı.
 **RECEIVER_EMAIL** | String | **Hayır** | Alıcının e-posta adresi. **Format: invoice@firma.com.tr**
-**INVOICE_TYPE** | Enum | **Evet** | E-Faturanın tipi. `INTERNET` veya `NORMAL` girilir.
+**INVOICE_TYPE** | Enum | **Evet** | E-Faturanın tipi. `SATIS` veya `IADE` girilir.
 **INVOICE_CONTENT** | Base64Binary | **Evet** | Belgenin Base64Binary olarak encode edilmiş içeriği.
 <br><br>
 
