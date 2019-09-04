@@ -5,3 +5,4 @@ Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı i
 <a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
 <a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a>
