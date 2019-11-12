@@ -8425,9 +8425,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-          <h1 id="e-d-n-m-proxy">E-Dönüşüm Proxy</h1>
+          <h1 id="di-er-e-d-n-m-servisleri">Diğer E-Dönüşüm Servisleri</h1>
 
-<p>Tüm e-Dönüşüm modüllerin içerisinde bulunduran webservistir. Lütfen bu servisi Özel entegratör ile kararlaştırmadan kullanmayınız.</p>
+<p>Tüm e-Dönüşüm modüllerin içerisinde bulunduran webservistir.
+<strong>Lütfen bu servisi Özel entegratör ile kararlaştırmadan kullanmayınız.</strong></p>
 
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
@@ -13412,6 +13413,346 @@ kapatabilirsiniz.</li>
 <td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
 <td>String</td>
 <td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-defter-saklama-servisi">E-Defter Saklama Servisi</h2>
+
+<p>Mükellefler tarafında hazırlanan E-Defter dosyalarının özel entegratör sisteminde saklanmasını sağlayan servistir. Aşağıdaki metodlari içerir.</p>
+
+<ul>
+<li>E-Defter Yedekleme (ArchiveELedger)</li>
+<li>E-Defter Çekme (GetELeger)</li>
+<li>E-Defter İptal Etme (CancelELedger)</li>
+</ul>
+
+<h2 id="dikkat-edilecek-hususlar-e-defter-saklama">Dikkat Edilecek Hususlar(E-Defter Saklama)</h2>
+
+<ol>
+<li>Proxy servisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacaktır.</li>
+<li><strong>ArchiveELedger</strong> metodu ile bir döneme ait defter yedekleme yapılmaktadır. Bir dönem en fazla bir defa yedeklenebilir.</li>
+<li><strong>GetELedger</strong> metodu ile daha önce yedeklenen bir döneme ait e-defterleri tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>CancelELedger</strong> metodu ile yedeklendikten sonra iptal edilmiş e-defterlerin iptali sağlanabilir.</li>
+<li>Proxy servisinde bulunan <strong>Logout</strong> metodu ile oturum kapatılabilir.</li>
+</ol>
+
+<h2 id="e-defter-yedekleme-archiveeledger">E-Defter Yedekleme (ArchiveELedger)</h2>
+
+<ul>
+<li>Bir döneme ait bütün defterlerin yüklenmesini sağlayan metotdur.</li>
+<li>Döneme için bütün parçalara ait XML dosyaları içermeledir.</li>
+</ul>
+
+<h3 id="stek-parametreleri">İstek Parametreleri</h3>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri verilmelidir.</td>
+</tr>
+<tr>
+<td><strong>FILENAME</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenecek dosyanın adı. (Format: VKN-DONEM-SUBE.zip : 4840847211-201911-0000.zip). Şubesiz yapıda bir firma ise şube numarası 0000 olarak gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>CONTENT</strong></td>
+<td>Base64Binary</td>
+<td><strong>Evet</strong></td>
+<td>Bir dönemde ki bütün parçalara ait XML dosyalarının (Yevmiye, Kebir, Yevmiye Beratı, Kebir Beratı, GIB İmzalı Yevmiye Beratı, GIB İmzalı Kebir Beratı, Defter Raporu) sıkıştırılmış (zip) Base64Binary olarak encode edilmiş değeri.</td>
+</tr>
+</tbody></table>
+
+<h3 id="ba-ar-l-sonu-nesnesi">Başarılı Sonuç Nesnesi</h3>
+
+<p>Webservis işlemi başarılı olması durumunda response objesi içerisinde  <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>Başarılı sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda <code class="prettyprint">REQUEST_RETURN</code> objesi dönülmez. <code class="prettyprint">ERROR_TYPE</code> objesi dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>Başarısız sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">0</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-defter-ekme-geteledger">E-Defter Çekme (GetELedger)</h2>
+
+<ul>
+<li>Daha önce yüklenen E-Defter verisini tekrar müşteri ortamına çekilmesini sağlayan servistir.</li>
+<li>Döneme ait bütün defterler sıkışıtırılmış formatta dönülecektir.</li>
+</ul>
+
+<h3 id="stek-parametreleri">İstek Parametreleri</h3>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri</td>
+</tr>
+<tr>
+<td><strong>DONEM</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenen e-defter dönemi YYYYAA formatında (Ekim 2019 için 201911)</td>
+</tr>
+<tr>
+<td><strong>VKN</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenen e-defterin sahibi firmanın vergi kimlik numarası. 10-11 hane numerik değer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="ba-ar-l-sonu-nesnesi">Başarılı Sonuç Nesnesi</h3>
+
+<p>Webservis işlemi başarılı olması durumunda response objesi içerisinde <code class="prettyprint">GEN_ARCHIVE_DOC</code> ve <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>GEN_ARCHIVE_DOC</strong></td>
+<td>Base64Binary</td>
+<td>Döneme ait e-defterleri içeren sıkıştırılmış (zip) Base64Binary encode edilmiş dosya değeri. Sıkışıtırılmış (zip) formatında dönüldüğü gözönünde bulundurularak işlem yapılmalıdır.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>Başarılı sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>Başarısız sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h2 id="e-defter-ptal-canceleledger">E-Defter İptal (CancelELedger)</h2>
+
+<ul>
+<li>E-Defter döneminin iptal edilmesini sağlayan servistir.</li>
+<li>İptal edilen dönem tekrar yedeklenmelidir.</li>
+</ul>
+
+<h3 id="stek-parametreleri">İstek Parametreleri</h3>
+
+<p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>SESSION_ID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Login metodundan alınmış olan aktif <strong>SESSION_ID</strong> değeri</td>
+</tr>
+<tr>
+<td><strong>DONEM</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenen e-defter dönemi YYYYAA formatında (Ekim 2019 için 201911)</td>
+</tr>
+<tr>
+<td><strong>VKN</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Yüklenen e-defterin sahibi firmanın vergi kimlik numarası. 10-11 hane numerik değer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="ba-ar-l-sonu-nesnesi">Başarılı Sonuç Nesnesi</h3>
+
+<p>Webservis işlemi başarılı olması durumunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>Başarılı sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>Başarısız sonuç nesnesi</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">0</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
