@@ -1,0 +1,17 @@
+#IZIBIZ Integration
+
+The following information will be useful when designing your application:
+
+1.  Invoice should be prepared in UBL-TR XML format.
+2.  Every invoice must be assigned 16 digit ID in AAAYYYY999999999 format.<br>
+    **AAA** - First 3 digits is the alphanumeric unit code. <br>
+    **YYYY** - the next four digits is the year of the invoice issue date <br>
+    **999999999** - the remaining nine digits means the successive number starting from 1 every year.<br>
+3. **Login** method on the **Authentication** service will be used to autheticate and the session id will be send with every request.
+4. **GetGibUserList** method on the **Authentication** service returns list of firms which registered to TRA e-invoicing system. The list is updated every 2 hours from TRA.
+5. **SendInvoice** method will be used to to send outgoing e-Invoices.
+6. **GetInvoice** method will be used to retrieve incoming e-invoices to the client side. Maximum 100 new invoices can be returned with XML content. If there are 100 invoices in the returned list, GetInvoice method should be called again to check if there are any other invoices. If there are fewer than 100 invoices in the returned list, no further inquiry is required. If invoice is made with a timer, a service should be called for at least 15 minutes.
+7. **GetInvoiceStatus** method will be used to query the status of incoming / outgoing e-invoices. The status of the invoice must be queried from the service provider every 4 hours until it reaches the final state. Do not question frequently.
+8. **MarkInvoice** method should be executed for every invoice received successfully with GetInvoice method to mark it as read.
+9. **SendInvoiceResponseWithServerSign** method can be used to send an acceptance or rejection response for a commercial invoice. A commercial invoice can be accepted or rejected within 8 business days. Acceptance / rejection should be prevented after 8 days. For basic invoices, sending responses should be restricted. A maximum of 1 response can be sent electronically to a commercial invoice. Therefore, if a successful response (accept / reject) has been sent to an invoice, sending a different response should be restricted.
+10. **Logout** method on the **Authentication** service can be used close an active session.
