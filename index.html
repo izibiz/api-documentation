@@ -13756,6 +13756,26 @@ kapatabilirsiniz.</li>
 </tr>
 </tbody></table>
 
+          <h1 id="izibiz-integration">IZIBIZ Integration</h1>
+
+<p>The following information will be useful when designing your application:</p>
+
+<ol>
+<li> Invoice should be prepared in UBL-TR XML format.</li>
+<li> Every invoice must be assigned 16 digit ID in AAAYYYY999999999 format.<br>
+<strong>AAA</strong> - First 3 digits is the alphanumeric unit code. <br>
+<strong>YYYY</strong> - the next four digits is the year of the invoice issue date <br>
+<strong>999999999</strong> - the remaining nine digits means the successive number starting from 1 every year.<br></li>
+<li><strong>Login</strong> method on the <strong>Authentication</strong> service will be used to autheticate and the session id will be send with every request.</li>
+<li><strong>GetGibUserList</strong> method on the <strong>Authentication</strong> service returns list of firms which registered to TRA e-invoicing system. The list is updated every 2 hours from TRA.</li>
+<li><strong>SendInvoice</strong> method will be used to to send outgoing e-Invoices.</li>
+<li><strong>GetInvoice</strong> method will be used to retrieve incoming e-invoices to the client side. Maximum 100 new invoices can be returned with XML content. If there are 100 invoices in the returned list, GetInvoice method should be called again to check if there are any other invoices. If there are fewer than 100 invoices in the returned list, no further inquiry is required. If invoice is made with a timer, a service should be called for at least 15 minutes.</li>
+<li><strong>GetInvoiceStatus</strong> method will be used to query the status of incoming / outgoing e-invoices. The status of the invoice must be queried from the service provider every 4 hours until it reaches the final state. Do not question frequently.</li>
+<li><strong>MarkInvoice</strong> method should be executed for every invoice received successfully with GetInvoice method to mark it as read.</li>
+<li><strong>SendInvoiceResponseWithServerSign</strong> method can be used to send an acceptance or rejection response for a commercial invoice. A commercial invoice can be accepted or rejected within 8 business days. Acceptance / rejection should be prevented after 8 days. For basic invoices, sending responses should be restricted. A maximum of 1 response can be sent electronically to a commercial invoice. Therefore, if a successful response (accept / reject) has been sent to an invoice, sending a different response should be restricted.</li>
+<li><strong>Logout</strong> method on the <strong>Authentication</strong> service can be used close an active session.</li>
+</ol>
+
           <h1 id="z-b-z-e-defter-uygulamas">İZİBİZ E-Defter Uygulaması</h1>
 
 <h2 id="uygulaman-n-zellikleri">Uygulamanın Özellikleri</h2>
