@@ -1,7 +1,7 @@
 ## Mükellef Listesi Çekme (GetGibUserList)
 E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin sıkıştırılmış olarak istenilen tipte dönüldüğü servistir.
 
-## Mükellef Çekme Senaryoları
+### Mükellef Çekme Senaryoları
 
 <div style="width:500px">İşlem</div> | DOCUMENT | ALIAS|ALIAS_MODIFY|REGISTER_TIME       
 --------- | -----------|-------|--------|--------
