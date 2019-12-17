@@ -686,6 +686,89 @@ Servisten dönen parametreler şu şekildedir:</p>
 
 <p>E-Fatura ve E-İrsaliye sistemine kayıtlı firmalara ait GB/PK etiketlerinin sıkıştırılmış olarak istenilen tipte dönüldüğü servistir.</p>
 
+<h2 id="m-kellef-ekme-senaryolar">Mükellef Çekme Senaryoları</h2>
+
+<table><thead>
+<tr>
+<th><div style="width:500px">İşlem</div></th>
+<th>DOCUMENT</th>
+<th>ALIAS</th>
+<th>ALIAS_MODIFY</th>
+<th>REGISTER_TIME</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">Aktif</code> E-Fatura ve E-İrsaliye posta kutusu etiketlerini çekme</td>
+<td>ALL</td>
+<td>PK</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code class="prettyprint">Aktif</code> E-Fatura ve E-İrsaliye GB ve PK etiketlerini çekme</td>
+<td>ALL</td>
+<td>ALL</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code class="prettyprint">Aktif</code> E-Fatura posta kutusu etiketlerini çekme</td>
+<td>INVOICE</td>
+<td>PK</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code class="prettyprint">Aktif</code> E-İrsaliye posta kutusu etiketlerini çekme</td>
+<td>DESPATCHADVICE</td>
+<td>PK</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2019-12-01) <code class="prettyprint">eklenen veya silinen</code> E-Fatura ve E-İrsaliye posta kutusu etiketlerini çekme</td>
+<td>ALL</td>
+<td>PK</td>
+<td>2019-12-01</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2019-12-01) <code class="prettyprint">eklenen veya silinen</code> E-Fatura ve E-İrsaliye GB ve PK etiketlerini çekme</td>
+<td>ALL</td>
+<td>ALL</td>
+<td>2019-12-01</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2019-12-01) <code class="prettyprint">eklenen veya silinen</code> E-Fatura posta kutusu etiketlerini çekme</td>
+<td>INVOICE</td>
+<td>PK</td>
+<td>2019-12-01</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2019-12-01) <code class="prettyprint">eklenen veya silinen</code> E-İrsaliye posta kutusu etiketlerini çekme</td>
+<td>DESPATCHADVICE</td>
+<td>PK</td>
+<td>2019-12-01</td>
+<td></td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2019-12-01) E-Fatura veya E-İrsaliye <code class="prettyprint">mükellefi</code> olan firmaların etiketlerini çekme</td>
+<td>ALL</td>
+<td>ALL</td>
+<td>-</td>
+<td>2019-12-01</td>
+</tr>
+<tr>
+<td>Belirli tarihten sonra (2013-12-01) E-Fatura veya E-İrsaliye <code class="prettyprint">mükellefi</code> olan firmaların belirtilen bir tarihten (2019-12-01) sonra <code class="prettyprint">eklenen veya silinen</code> etiketlerini çekme</td>
+<td>ALL</td>
+<td>ALL</td>
+<td>2019-12-01</td>
+<td>2013-12-01</td>
+</tr>
+</tbody></table>
+
 <table><thead>
 <tr>
 <th>Parametre</th>
@@ -710,13 +793,25 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><strong>DOCUMENT_TYPE</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir. Her iki ürüne ait etiketleri çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Parametre gönderilmez veya boş gönderilirse bütün liste dönülecektir.</td>
+<td>Mükellef listesi çekilmek istenilen ürün tipi. E-Fatura için <code class="prettyprint">INVOICE</code>, E-İrsaliye için <code class="prettyprint">DESPATCHADVICE</code> gönderilmelidir. Her iki ürüne ait etiketleri çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Parametre gönderilmez bütün ürünlere ait <code class="prettyprint">Aktif</code> etiket listesi dönülecektir.</td>
+</tr>
+<tr>
+<td><strong>ALIAS_TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Mükelleflerin etiketlerine göre çekmek için kullanılır. Sadece Gönderici Birim etiketini çekmek için <code class="prettyprint">GB</code>, Posta Kutusu etiketini çekmek için  <code class="prettyprint">PK</code> gönderilmelidir. Bütün etiketleri çekmek için <code class="prettyprint">ALL</code> değeri gönderilebilir. Varsayılan <code class="prettyprint">PK</code>dir.  Parametre gönderilmez ise sadece <code class="prettyprint">PK</code> etiket listesi dönülecektir. Belge göndermek için sadece PK etiketlerine ihtiyaç bulunmaktadır.</td>
 </tr>
 <tr>
 <td><strong>REGISTER_TIME_START</strong></td>
 <td>DateTime</td>
 <td>Hayır</td>
-<td>Belirli bir tarihten sonra sisteme dahil olmuş mükellefleri çekmek için kullanılabilir. formatı: 2013-01-01T01:01:01</td>
+<td>Mükellefiyet başlangıç tarihi. Belirli bir tarihten sonra e-fatura veya e-irsaliye mükellefi sisteme dahil olmuş mükellefleri çekmek için kullanılabilir. Eğer tarih içerisinde saat bilgisi gönderilirse sonuç dönülürken dikkate alınacaktır. format: YYYY-AA-GG veya YYYY-AA-GGTSS:DD:SS formatında 2013-01-01, 2013-01-01T01:01:01</td>
+</tr>
+<tr>
+<td><strong>ALIAS_MODIFY_DATE</strong></td>
+<td>DateTime</td>
+<td>Hayır</td>
+<td>Etiket durum değişiklik tarihi. Belirli bir tarihten sonra sisteme eklenen veya silinen etiketleri çekmek için kullanılabilir. Bu parametre gönderilirse gönderilen tarihten sonra sisteme eklenen veya silinen etiketler dönülecektir. Eğer tarih içerisinde saat bilgisi gönderilirse sonuç dönülürken dikkate alınacaktır. format: YYYY-AA-GG veya YYYY-AA-GGTSS:DD:SS formatında 2013-01-01, 2013-01-01T01:01:01</td>
 </tr>
 </tbody></table>
 
@@ -789,6 +884,16 @@ Sonuç sıkıştırılmış XML dosyası içerisinde `USER` tipinde değer dön�
 <td><strong>USER.ALIAS_CREATION_TIME</strong></td>
 <td>DateTime</td>
 <td>Etiketin oluşturulduğu tarih. formatı: 2013-07-01T15:22:11</td>
+</tr>
+<tr>
+<td><strong>USER.DELETED</strong></td>
+<td>String</td>
+<td>Eleman sadece silinmiş etiketlerde bulunur. Değeri <code class="prettyprint">Y</code> olur. Silinmemiş etiketlerde bu eleman bulunmaz.</td>
+</tr>
+<tr>
+<td><strong>USER.DELETION_TIME</strong></td>
+<td>DateTime</td>
+<td>Eleman sadece silinmiş etiketlerde bulunur. Etiketin GİB sisteminde kapatıldığı tarih. formatı: 2013-07-01T15:22:11</td>
 </tr>
 </tbody></table>
 
@@ -2099,6 +2204,517 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h3 id="giden-fatura-durumlar">Giden Fatura Durumları</h3>
+
+<table><thead>
+<tr>
+<th>DURUM KODU</th>
+<th><div style="width:200px">DURUM AÇIKLAMASI</div></th>
+<th>STATUS_SUBSTATUS</th>
+<th>ALINACAK AKSİYON</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
+<td>LOAD_SUCCEED</td>
+<td>Durum sorgulanması yapmaya devam edilecek</td>
+</tr>
+<tr>
+<td>101</td>
+<td>KUYRUĞA EKLENDİ</td>
+<td>LOAD_SUCCEED</td>
+<td>Fatura Yükleme - Başarılı</td>
+</tr>
+<tr>
+<td>102</td>
+<td>TASLAK İŞLENİYOR</td>
+<td>LOAD_PROCESSING</td>
+<td>Belge İşleniyor</td>
+</tr>
+<tr>
+<td>103</td>
+<td>PAKETLENİYOR</td>
+<td>PACKAGE_PROCESSING</td>
+<td>Belge GİB&#39;e Göndermek İçin Zarflanıyor</td>
+</tr>
+<tr>
+<td>104</td>
+<td>PAKETLENDİ</td>
+<td>PACKAGE_SUCCEED</td>
+<td>Belge Zarflandı GİB&#39;e Gönderilecek</td>
+</tr>
+<tr>
+<td>105</td>
+<td>PAKETLEME HATASI</td>
+<td>PACKAGE_FAILED</td>
+<td>Belge Zarflanırken Hata Oluştu. Tekrar Denenecektir.</td>
+</tr>
+<tr>
+<td>106</td>
+<td>İMZALANIYOR</td>
+<td>SIGN_PROCESSING</td>
+<td>Belge İmzalanıyor</td>
+</tr>
+<tr>
+<td>107</td>
+<td>İMZALANDI&quot;</td>
+<td>SIGN_SUCCEED</td>
+<td>Belge İmzalandı</td>
+</tr>
+<tr>
+<td>109</td>
+<td>GİB&#39;DEN YANIT BEKLİYOR</td>
+<td>SEND_WAIT_GIB_RESPONSE</td>
+<td>Belge GİB&#39;e Gönderildi</td>
+</tr>
+<tr>
+<td>110</td>
+<td>ALICIDAN YANIT BEKLİYOR</td>
+<td>SEND_WAIT_SYSTEM_RESPONSE</td>
+<td>Belge Alıcıya Başarıyla Ulaştırıldı. Sistem Yanıtı Bekliyor.</td>
+</tr>
+<tr>
+<td>111</td>
+<td>ALICIDAN ONAY BEKLİYOR</td>
+<td>SEND_WAIT_APPLICATION_RESPONSE</td>
+<td>Ticari Belge Alıcıdan Onay Bekliyor</td>
+</tr>
+<tr>
+<td>112</td>
+<td>KABUL EDİLDİ</td>
+<td>ACCEPTED_SUCCEED</td>
+<td>Belge Kabul Edildi</td>
+</tr>
+<tr>
+<td>120</td>
+<td>RET EDİLDİ</td>
+<td>REJECTED_SUCCEED</td>
+<td>Belge Ret Edildi</td>
+</tr>
+<tr>
+<td>134</td>
+<td>ZAMAN AŞIMI OLUŞTU</td>
+<td>SEND_TIMEOUT</td>
+<td>Belge GİB&#39;e Gönderilirken Zaman Aşımına Uğradı.</td>
+</tr>
+<tr>
+<td>135</td>
+<td>GÖNDERİLİYOR</td>
+<td>SEND_PROCESSING</td>
+<td>Belge GİB&#39;e Gönderiliyor</td>
+</tr>
+<tr>
+<td>136</td>
+<td>GÖNDERME İŞLEMİ BAŞARISIZ</td>
+<td>SEND_FAILED</td>
+<td>Belge GİB&#39;e Gönderilirken Hata Oluştu</td>
+</tr>
+<tr>
+<td>137</td>
+<td>GÖNDERİLDİ</td>
+<td>SEND_SUCCEED</td>
+<td>Belge GİB&#39;e Gönderildi</td>
+</tr>
+<tr>
+<td>139</td>
+<td>OTOMATİK GÖNDERİM HATASI</td>
+<td>AUTO_FAILED</td>
+<td>Otomatik Gönderim Hatası</td>
+</tr>
+<tr>
+<td>140</td>
+<td>FATURA NUMARASI ATANDI</td>
+<td>LOAD_ID_ASSIGNED</td>
+<td>Belge Numarası Atandı</td>
+</tr>
+<tr>
+<td>141</td>
+<td>FATURA NUMARASI ATANMA BEKLENİYOR</td>
+<td>LOAD_WAIT_ID_ASSIGNED</td>
+<td>Belge Numarası Atandı</td>
+</tr>
+</tbody></table>
+
+<h3 id="gelen-fatura-durumlar">Gelen Fatura Durumları</h3>
+
+<table><thead>
+<tr>
+<th>DURUM KODU</th>
+<th><div style="width:200px">DURUM AÇIKLAMASI</div></th>
+<th>STATUS_SUBSTATUS</th>
+<th>ALINACAK AKSİYON</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>133</td>
+<td>ALINDI</td>
+<td>RECEIVE_SUCCEED</td>
+<td></td>
+</tr>
+<tr>
+<td>134</td>
+<td>ZAMAN AŞIMI OLUŞTU</td>
+<td>ACCEPT/REJECT_TIMEOUT - YANLIŞ</td>
+<td></td>
+</tr>
+<tr>
+<td>122</td>
+<td>KABUL EDİLDİ</td>
+<td>ACCEPTED_SUCCEED</td>
+<td></td>
+</tr>
+<tr>
+<td>123</td>
+<td>KABUL İŞLENİYOR</td>
+<td>ACCEPTED_PROCESSING</td>
+<td></td>
+</tr>
+<tr>
+<td>124</td>
+<td>KABUL GİBDEN YANIT BEKLİYOR</td>
+<td>ACCEPT_GIB_RESPONSE</td>
+<td></td>
+</tr>
+<tr>
+<td>125</td>
+<td>KABUL ALICIDAN YANIT BEKLİYOR</td>
+<td>ACCEPT_WAIT_SYSTEM_RESPONSE</td>
+<td></td>
+</tr>
+<tr>
+<td>126</td>
+<td>KABUL İŞLEMİ BAŞARISIZ</td>
+<td>ACCEPT_FAILED</td>
+<td></td>
+</tr>
+<tr>
+<td>127</td>
+<td>RED ALICIDAN YANIT BEKLİYOR</td>
+<td>REJECT_WAIT_SYSTEM_RESPONSE</td>
+<td></td>
+</tr>
+<tr>
+<td>128</td>
+<td>RED GİBDE YANIT BEKLİYOR</td>
+<td>REJECT_WAIT_GIB_RESPONSE</td>
+<td></td>
+</tr>
+<tr>
+<td>129</td>
+<td>RED İŞLENİYOR</td>
+<td>REJECT_PROCESSING</td>
+<td></td>
+</tr>
+<tr>
+<td>130</td>
+<td>REDDEDİLDİ</td>
+<td>REJECT_SUCCEED</td>
+<td></td>
+</tr>
+<tr>
+<td>131</td>
+<td>RED İŞLEMİ BAŞARISIZ</td>
+<td>FAILED</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="g-b-durum-kodlar">GİB Durum Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Kod</th>
+<th>Açıklama</th>
+<th>Alınacak Aksiyon</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1000</td>
+<td>ZARF KUYRUĞA EKLENDİ</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>ZARF İŞLENİYOR</td>
+<td>Durum kodunun güncellenmesi beklenmelidir.</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>ZIP DOSYASI DEĞİL</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>ZARF ID UZUNLUĞU GEÇERSİZ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1120</td>
+<td>ZARF ARŞİVDEN KOPYALANAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1130</td>
+<td>ZIP AÇILAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1131</td>
+<td>ZIP BİR DOSYA İÇERMELİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1132</td>
+<td>XML DOSYASI DEĞİL</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1133</td>
+<td>ZARF ID VE XML DOSYASININ ADI AYNI OLMALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1140</td>
+<td>DOKUMAN AYRIŞTIRILAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1141</td>
+<td>ZARF ID YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1142</td>
+<td>ZARF ID VE ZIP DOSYASI ADI AYNI OLMALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1143</td>
+<td>GEÇERSİZ VERSİYON</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1150</td>
+<td>SCHEMATRON KONTROL SONUCU HATALI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1160</td>
+<td>XML SEMA KONTROLÜNDEN GEÇEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1161</td>
+<td>İMZA SAHİBİ TCKN VKN ALINAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1162</td>
+<td>İMZA KAYDEDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1163</td>
+<td>GÖNDERİLEN ZARF SİSTEMDE DAHA ÖNCE KAYITLI OLAN BİR FATURAYI İÇERMEKTEDİR</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1170</td>
+<td>YETKİ KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1171</td>
+<td>GÖNDERİCİ BİRİM YETKİSİ YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1172</td>
+<td>POSTA KUTUSU YETKİSİ YOK</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1175</td>
+<td>İMZA YETKİSİ KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1176</td>
+<td>İMZA SAHİBİ YETKİSİZ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1177</td>
+<td>GEÇERSİZ İMZA</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1180</td>
+<td>ADRES KONTROL EDİLEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1181</td>
+<td>ADRES BULUNAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1182</td>
+<td>KULLANICI EKLENEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1183</td>
+<td>KULLANICI SİLİNEMEDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1190</td>
+<td>SİSTEM YANITI HAZIRLANAMADI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1195</td>
+<td>SİSTEM HATASI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1200</td>
+<td>ZARF BAŞARIYLA İŞLENDİ</td>
+<td>Özel entegratörden gönderilen Belgede sorun tespit edilmedi. Sonra ki aşamalara geçilecek.</td>
+</tr>
+<tr>
+<td>1210</td>
+<td>DOKUMAN BULUNAN ADRESE GÖNDERİLEMEDİ</td>
+<td>GİB’in tekrar gönderme denemesi sonlandıktan sonra, 1215 durum kodu alınır ise belgeler yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1215</td>
+<td>DOKÜMAN GÖNDERİMİ BAŞARISIZ. TEKRAR GÖNDERME SONLANDI</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1220</td>
+<td>HEDEFTEN SİSTEM YANITI GELMEDİ</td>
+<td>Bu durum kodundan sonra 1230 HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ durum kodu alınır ise Belge yeniden gönderilmelidir.</td>
+</tr>
+<tr>
+<td>1230</td>
+<td>HEDEFTEN SİSTEM YANITI BAŞARISIZ GELDİ</td>
+<td>Belge yeniden gönderilmeli</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>BAŞARIYLA TAMAMLANDI</td>
+<td>Başarılı olan Belge aynı numara ile gönderilemez.</td>
+</tr>
+</tbody></table>
+
+<h2 id="toplu-fatura-durum-sorgulama-getinvoicestatusall">Toplu Fatura Durum Sorgulama (GetInvoiceStatusAll)</h2>
+
+<ul>
+<li>E-Fatura sisteminde bulunan bir veya birden fazla taslak, gelen ve giden faturaların durumunu sorgulamayı sağlayan servistir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Durumu sorgulanacak faturanın GUID formatında Evrensel Tekil Tanımlama Numarası. Birden fazla fatura durum sorgulamak için <code class="prettyprint">INVOICE</code> elementini çoklayınız.</td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>INVOICE_STATUS</strong></td>
+<td>ComplexType</td>
+<td>Sorgu kriterine uyan fatura(lar)ın listesi. Fatura numarası <code class="prettyprint">ID</code>, fatura evrensel tekil tanımlama numarası  <code class="prettyprint">UUID</code> attribute içerisinde dönülmektedir.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.STATUS</strong></td>
+<td>String</td>
+<td>Faturanın e-fatura sisteminde ki durumu. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Fatura durum açıklaması. Detay için <strong>Fatura Durumları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GIB_STATUS_CODE</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durum kodu. Faturanın GİB&#39;de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GIB_STATUS_DESCRIPTION</strong></td>
+<td>String</td>
+<td>Faturanın GİB&#39;de ki durumunun kodunun açıklaması. Faturanın GİB&#39;de ki durumu e-fatura sistemi tarafından henüz sorgulanmadıysa eleman dönülmez. Detay için <strong>GİB Durum Kodları</strong> başlığını inceleyiniz.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.RESPONSE_CODE</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum kodu. Eğer faturanın senaryosu TICARIFATURA değilse eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.RESPONSE_DESC</strong></td>
+<td>String</td>
+<td>Ticari fatura için verilen yanıtı içeren zarfın durum açıklaması. Eğer faturanın senaryosu TICARIFATURA değilse eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_REFNO</strong></td>
+<td>String</td>
+<td>Gümrük Sistemine alınan ihracat faturaları için, Gümrük ve Ticaret Bakanlığı tarafından üretilen 23 haneli bir referans numarasıdır.  23 haneli bir referans numarası ile belge tarihi yükümlü tarafından gümrük beyannamesinin 44 no’lu kutusunda “Belge Referans No” ve “Belge Tarihi” alanlarında beyan edilecektir. <strong>İhracat faturası değilse dönülmez.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_GCB_TESCILNO</strong></td>
+<td>String</td>
+<td>Gümrük İdaresi fiili ihracatı tamamlanan eşyanın kabul uygulama yanıtı ile ilgilisine dönülen Gümrük Çıkış Belgesi (GÇB) tescil numarasıdır. <strong>İhracat faturası değilse dönülmez.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.GTB_FIILI_IHRACAT_TARIHI</strong></td>
+<td>String</td>
+<td>Gümrük İdaresi tarafından fiili ihracatı tamamlanan ihracat faturaları için döndüğü fiili ihraç tarihi bilgisidir.  Gümrük İdaresi bu bilgiyi fiili ihracat (intaç) gerçekleştiğinde dönecektir. Eğer ihracat faturası için bu alan dönülmemişse hala fiili ihracat yapılmamıştır. <strong>İhracat faturası değilse dönülmez.</strong></td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.CDATE</strong></td>
+<td>String</td>
+<td>Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.ENVELOPE_IDENTIFIER</strong></td>
+<td>String</td>
+<td>Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.</td>
+</tr>
+</tbody></table>
+
 <h3 id="fatura-durumlar">Fatura Durumları</h3>
 
 <table><thead>
@@ -2116,6 +2732,273 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>Faturanın veya uygulama yanıtının alıcısına ulaştırılma süreci tamamlanmıştır. Nihai Aşamada ki faturanın başarılı mı yoksa başarısız mı tamamlandığı kontrol edilerek gerekli aksiyon alınmalıdır. <strong>Nihai Aşama faturanın başarılı olduğu anlamına gelmez.</strong></td>
 </tr>
 </tbody></table>
+
+<h3 id="giden-fatura-durumlar">Giden Fatura Durumları</h3>
+
+<table><thead>
+<tr>
+<th>DURUM KODU</th>
+<th>DURUM AÇIKLAMASI</th>
+<th>STATUS_SUBSTATUS</th>
+<th>ALINACAK AKSİYON</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>DURUM HENÜZ GÜNCELLENMEDİ</td>
+<td>LOAD_SUCCEED</td>
+<td>Durum sorgulanması yapmaya devam edilecek</td>
+</tr>
+<tr>
+<td>101</td>
+<td>KUYRUĞA EKLENDİ</td>
+<td>LOAD_SUCCEED</td>
+<td></td>
+</tr>
+<tr>
+<td>102</td>
+<td>TASLAK İŞLENİYOR</td>
+<td>LOAD_PROCESSING</td>
+<td>Belge İşleniyor</td>
+</tr>
+<tr>
+<td>103</td>
+<td>PAKETLENİYOR</td>
+<td>PACKAGE_PROCESSING</td>
+<td>Belge GİB&#39;e Göndermek İçin Zarflanıyor</td>
+</tr>
+<tr>
+<td>104</td>
+<td>PAKETLENDİ</td>
+<td>PACKAGE_SUCCEED</td>
+<td>Belge Zarflandı GİB&#39;e Gönderilecek</td>
+</tr>
+<tr>
+<td>105</td>
+<td>PAKETLEME HATASI</td>
+<td>PACKAGE_FAILED</td>
+<td>Belge Zarflanırken Hata Oluştu. Tekrar Denenecektir.</td>
+</tr>
+<tr>
+<td>106</td>
+<td>İMZALANIYOR</td>
+<td>SIGN_PROCESSING</td>
+<td>Belge İmzalanıyor</td>
+</tr>
+<tr>
+<td>107</td>
+<td>İMZALANDI&quot;</td>
+<td>SIGN_SUCCEED</td>
+<td>Belge İmzalandı</td>
+</tr>
+<tr>
+<td>109</td>
+<td>GİB&#39;DEN YANIT BEKLİYOR</td>
+<td>SEND_WAIT_GIB_RESPONSE</td>
+<td>Belge GİB&#39;e Gönderildi</td>
+</tr>
+<tr>
+<td>110</td>
+<td>ALICIDAN YANIT BEKLİYOR</td>
+<td>SEND_WAIT_SYSTEM_RESPONSE</td>
+<td>Belge Alıcıya Başarıyla Ulaştırıldı. Sistem Yanıtı Bekliyor.</td>
+</tr>
+<tr>
+<td>111</td>
+<td>ALICIDAN ONAY BEKLİYOR</td>
+<td>SEND_WAIT_APPLICATION_RESPONSE</td>
+<td>Ticari Belge Alıcıdan Onay Bekliyor</td>
+</tr>
+</tbody></table>
+
+<p>112 | KABUL EDİLDİ | Belge Kabul Edildi
+113 | KABUL İŞLENİYOR | Kabul Yanıtı İşleniyor
+114 | KABUL GİBDEN YANIT BEKLİYOR | Kabul Yanıtı GİB&#39;e Gönderildi
+115 | KABUL ALICIDAN YANIT BEKLİYOR | Kabul Yanıtı Alıcıya Ulaştırıldı
+116 | KABUL İŞLENİYOR | Kabul Yanıtı İşleniyor
+117 | RET ALICIDAN YANIT BEKLİYOR | Ret Yanıtı Alıcıya Ulaştırıldı
+118 | RET GİBDE YANIT BEKLİYOR | Ret Yanıtı GİB&#39;e Gönderildi
+119 | RET İŞLENİYOR | Ret Yanıtı İşleniyor
+120 | RET EDİLDİ | Belge Ret Edildi
+121 | RET İŞLENİYOR | Ret Yanıtı İşleniyor</p>
+
+<p>WAIT_APPLICATION_RESPONSE(111, &ldquo;ALICIDAN ONAY BEKLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.WAIT_APPLICATION_RESPONSE), //</p>
+
+<table><thead>
+<tr>
+<th>STATUS</th>
+<th>SUBSTATUS</th>
+<th>PORTAL STATUS</th>
+<th>Detaylı Açıklama</th>
+<th>Aşama Durumu</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>LOAD</td>
+<td>SUCCEED</td>
+<td>Fatura Yükleme - Başarılı</td>
+<td>Fatura Yükleme Başarılı. Taslak olarak sisteme yüklenmiş faturadır.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>LOAD</td>
+<td>FAILED</td>
+<td>Fatura Yükleme - Başarısız Oldu</td>
+<td>Fatura Yükleme Hatalı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>PACKAGE</td>
+<td>FAILED</td>
+<td>Fatura Paketleme - Başarısız oldu</td>
+<td>Fatura paketleme sırasında hata oluştu.  Sistem tarafından tekrar paketle işlemi yapılarak gönderilecektir.</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>PACKAGE</td>
+<td>SUCCEED</td>
+<td>Fatura Paketleme - Başarıyla işlendi</td>
+<td>Fatura paketleme başarılı</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>PROCESSING</td>
+<td>Fatura Gönderimi - İşleniyor</td>
+<td>Fatura Gönderimi Yapılıyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>SUCCEED</td>
+<td>Fatura Gönderimi - Başarıyla işlendi</td>
+<td>Temel Fatura Gönderimi Başarılı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>FAILED</td>
+<td>Fatura Gönderimi – Başarısız Oldu</td>
+<td>Fatura Gönderiminde Hata Alındı</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_GIB_RESPONSE</td>
+<td>Fatura Gönderimi - GIB&#39;e Gönderildi</td>
+<td>Fatura GIB e gönderildi ve GIB den faturanın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_SYSTEM_RESPONSE</td>
+<td>Fatura Gönderimi - Sistem Yanıtı Bekleniyor</td>
+<td>Fatura GIB tarafından alıcısına gönderildi ve alıcı taraftan faturanın alındığına dair sistem yanıtı bekleniyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>SEND</td>
+<td>WAIT_APPLICATION_RESPONSE</td>
+<td>Fatura Gönderimi - Fatura Onayı Bekleniyor</td>
+<td>Ticari Fatura Alıcıdan Cevap Bekliyor</td>
+<td>Ara aşama</td>
+</tr>
+<tr>
+<td>ACCEPTED</td>
+<td>SUCCEED</td>
+<td>Giden Ticari Fatura Kabul - Başarıyla işlendi</td>
+<td>Gönderilmiş olan ticari fatura alıcı tarafından kabul edilmiştir ve alıcının kabul yanıtı gönderen tarafa başarılı şekilde ulaşmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+<tr>
+<td>REJECTED</td>
+<td>SUCCEED</td>
+<td>Giden Ticari Fatura Red - Başarıyla işlendi</td>
+<td>Gönderilmiş olan ticari fatura alıcı tarafından red edilmiştir ve alıcının red yanıtı gönderen tarafa başarılı şekilde ulaşmıştır.</td>
+<td>Nihai Aşama</td>
+</tr>
+</tbody></table>
+
+<p>public static enum STATUS_DESC {
+DURUM_HENUZ_GUNCELLENMEDI(100, &ldquo;DURUM HENÜZ GÜNCELLENMEDİ&rdquo;, null, null),
+LOAD_SUCCEED(101, &ldquo;KUYRUĞA EKLENDİ&rdquo;, EI.STATUS.LOAD, EI.SUBSTATUS.SUCCEED),
+LOAD_PROCESSING(102, &ldquo;TASLAK İŞLENİYOR&rdquo;, EI.STATUS.LOAD, EI.SUBSTATUS.PROCESSING), //
+PACKAGE_PROCESSING(103, &ldquo;PAKETLENIYOR&rdquo;, EI.STATUS.PACKAGE, EI.SUBSTATUS.PROCESSING), //
+PACKAGE_SUCCEED(104, &ldquo;PAKETLENDİ&rdquo;, EI.STATUS.PACKAGE, EI.SUBSTATUS.SUCCEED), //
+PACKAGE_FAILED(105, &ldquo;PAKETLEME HATASI&rdquo;, EI.STATUS.PACKAGE, EI.SUBSTATUS.FAILED), //
+SIGN_PROCESSING(106, &ldquo;IMZALANIYOR&rdquo;, EI.STATUS.SIGN, EI.SUBSTATUS.PROCESSING), //
+SIGN_FAILED(106, &ldquo;İMZALANIYOR&rdquo;, EI.STATUS.SIGN, EI.SUBSTATUS.FAILED), //
+SIGN_SUCCEED(107, &ldquo;İMZALANDI&rdquo;, EI.STATUS.SIGN, EI.SUBSTATUS.SUCCEED),</p>
+
+<p>WAIT_GIB_RESPONSE(109, &ldquo;GİB DEN YANIT BEKLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.WAIT_GIB_RESPONSE),//
+WAIT_SYSTEM_RESPONSE(110, &ldquo;ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+WAIT_APPLICATION_RESPONSE(111, &ldquo;ALICIDAN ONAY BEKLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.WAIT_APPLICATION_RESPONSE), //</p>
+
+<p>ACCEPTED(112, &ldquo;KABUL EDİLDİ&rdquo;, EI.STATUS.ACCEPTED, EI.SUBSTATUS.SUCCEED), //
+ACCEPTED_PROCESSING(113, &ldquo;KABUL İŞLENİYOR&rdquo;, EI.STATUS.ACCEPTED, EI.SUBSTATUS.PROCESSING),
+ACCEPTED_GIB_RESPONSE(114, &ldquo;KABUL GİBDEN YANIT BEKLİYOR&rdquo;, EI.STATUS.ACCEPTED, EI.SUBSTATUS.WAIT_GIB_RESPONSE), //
+ACCEPTED_SYSTEM_RESPONSE(115, &ldquo;KABUL ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.ACCEPTED, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+ACCEPTED_FAILED(116, &ldquo;KABUL İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.ACCEPTED, EI.SUBSTATUS.FAILED),</p>
+
+<p>REJECTED_SYSTEM_RESPONSE(117, &ldquo;RED ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECTED, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+REJECTED_GIB_RESPONSE(118, &ldquo;RED GİBDE YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECTED, EI.SUBSTATUS.WAIT_GIB_RESPONSE), //
+REJECTED_PROCESSING(119, &ldquo;RED İŞLENİYOR&rdquo;, EI.STATUS.REJECTED, EI.SUBSTATUS.PROCESSING), //
+REJECTED_SUCCEED(120, &ldquo;REDDEDİLDİ&rdquo;, EI.STATUS.REJECTED, EI.SUBSTATUS.SUCCEED), //
+REJECTED_FAILED(121, &ldquo;RED İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.REJECTED, EI.SUBSTATUS.FAILED), //</p>
+
+<p>ACCEPT(122, &ldquo;KABUL EDİLDİ&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.SUCCEED), //
+ACCEPT_PROCESSING(123, &ldquo;KABUL İŞLENİYOR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.PROCESSING),
+ACCEPT_GIB_RESPONSE(124, &ldquo;KABUL GİBDEN YANIT BEKLİYOR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.WAIT_GIB_RESPONSE), //
+ACCEPT_SYSTEM_RESPONSE(125, &ldquo;KABUL ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+ACCEPT_FAILED(126, &ldquo;KABUL İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.FAILED),</p>
+
+<p>REJECT_SYSTEM_RESPONSE(127, &ldquo;RED ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+REJECT_GIB_RESPONSE(128, &ldquo;RED GİBDE YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.WAIT_GIB_RESPONSE), //
+REJECT_PROCESSING(129, &ldquo;RED İŞLENİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.PROCESSING), //
+REJECT_SUCCEED(130, &ldquo;REDDEDİLDİ&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.SUCCEED), //
+REJECT_FAILED(131, &ldquo;RED İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.FAILED),</p>
+
+<p>RECEIVE_WAIT_RESPONSE(132, &ldquo;ONAY BEKLENİYOR&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.WAIT_APPLICATION_RESPONSE),
+RECEIVE_SUCCEED(133, &ldquo;ALINDI&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.SUCCEED), //</p>
+
+<p>SEND_TIMEOUT(134, &ldquo;GÖNDERME İŞLEMİ SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.TIMEOUT),//
+RECEIVE_TIMEOUT(134, &ldquo;İŞLEM SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.TIMEOUT), //
+ACCEPT_TIMEOUT(134, &ldquo;İŞLEMİ SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.SUCCEED), //
+REJECT_TIMEOUT(134, &ldquo;İŞLEMİ SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.SUCCEED), //
+SEND_PROCESSING(135, &ldquo;GÖNDERİLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.PROCESSING),
+SEND_FAILED(136, &ldquo;GÖNDERME İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.FAILED),
+SEND_SUCCEED(137, &ldquo;GÖNDERİLDİ&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.SUCCEED),
+ENVELOPE_APPROVED(138, &ldquo;GİBE GÖNDERİM ONAYLANDI&rdquo;, EI.STATUS.ENVELOPE , EI.SUBSTATUS.APPROVED),
+AUTO_FAILED(139, &ldquo;OTOMATİK GÖNDERİM HATASI&rdquo;, EI.STATUS.AUTO , EI.SUBSTATUS.FAILED),
+LOAD_ID_ASSIGNED(140, &ldquo;FATURA NUMARASI ATANDI&rdquo;, EI.STATUS.LOAD , EI.SUBSTATUS.ID_ASSIGNED),
+LOAD_WAIT_ID_ASSIGNED(141, &ldquo;FATURA NUMARASI ATANMA BEKLENİYOR&rdquo;, EI.STATUS.LOAD , EI.SUBSTATUS.WAIT_ID_ASSIGN);</p>
+
+<p>Gelen Belge Durumları</p>
+
+<p>122 | KABUL EDİLDİ | Kabul Edildi
+123 | KABUL İŞLENİYOR | Kabul Yanıtı İşleniyor
+124 | KABUL GİBDEN YANIT BEKLİYOR | Kabul Yanıtı GİB&#39;e Gönderildi
+ACCEPT_SYSTEM_RESPONSE(125, &ldquo;KABUL ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+ACCEPT_FAILED(126, &ldquo;KABUL İŞLENİYOR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.FAILED),</p>
+
+<p>REJECT_SYSTEM_RESPONSE(127, &ldquo;KABUL ALICIDAN YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.WAIT_SYSTEM_RESPONSE), //
+REJECT_GIB_RESPONSE(128, &ldquo;KABUL GİBDE YANIT BEKLİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.WAIT_GIB_RESPONSE), //
+REJECT_PROCESSING(129, &ldquo;KABUL İŞLENİYOR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.PROCESSING), //
+REJECT_SUCCEED(130, &ldquo;KABUL EDİLDİ&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.SUCCEED), //
+REJECT_FAILED(131, &ldquo;KABUL İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.FAILED),</p>
+
+<p>RECEIVE_WAIT_RESPONSE(132, &ldquo;ONAY BEKLENİYOR&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.WAIT_APPLICATION_RESPONSE),
+RECEIVE_SUCCEED(133, &ldquo;RED İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.SUCCEED), //</p>
+
+<p>SEND_TIMEOUT(134, &ldquo;GÖNDERME İŞLEM SİSTEM TARAFINDAN  TEKRAR DENECEKTİR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.TIMEOUT),//
+RECEIVE_TIMEOUT(134, &ldquo;İŞLEM SİSTEM TARAFINDAN  TEKRAR DENECEKTİR&rdquo;, EI.STATUS.RECEIVE, EI.SUBSTATUS.TIMEOUT), //
+ACCEPT_TIMEOUT(134, &ldquo;İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENECEKTİR&rdquo;, EI.STATUS.ACCEPT, EI.SUBSTATUS.SUCCEED), //
+REJECT_TIMEOUT(134, &ldquo;İŞLEMİ SİSTEM TARAFINDAN  TEKRAR DENECEKTİR&rdquo;, EI.STATUS.REJECT, EI.SUBSTATUS.SUCCEED), //
+SEND_PROCESSING(135, &ldquo;GÖNDERİLİYOR&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.PROCESSING),
+SEND_FAILED(136, &ldquo;GÖNDERME İŞLEMİ BAŞARISIZ&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.FAILED),
+SEND_SUCCEED(137, &ldquo;GÖNDERME İŞLEMİ BAŞARILI&rdquo;, EI.STATUS.SEND, EI.SUBSTATUS.SUCCEED),
+ENVELOPE_APPROVED(138, &ldquo;GİBE GÖNDERİM ONAYLANDI&rdquo;, EI.STATUS.ENVELOPE , EI.SUBSTATUS.APPROVED),
+AUTO_FAILED(139, &ldquo;OTOMATİK GÖNDERİM HATASI&rdquo;, EI.STATUS.AUTO , EI.SUBSTATUS.FAILED);</p>
 
 <h3 id="gelen-fatura-durumlar">Gelen Fatura Durumları</h3>
 
