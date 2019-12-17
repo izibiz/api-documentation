@@ -29,45 +29,46 @@ Parametre | Tip        | Açıklama
 **INVOICE_STATUS.CDATE** | String | Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih
 **INVOICE_STATUS.ENVELOPE_IDENTIFIER** | String | Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.
 
-
-### Fatura Durumları
-AŞAMA | AÇIKLAMA
------- | -------
-`Ara Aşama` | Faturanın veya uygulama yanıtının alıcısına ulaştırılmak için geçen aşamanın tamamlanmadığı durumdur. Ara Aşamada ki faturalar üzerinde işlem yapılmamalı ve sürecin tamamlanması beklenmelidir.
-`Nihai Aşama` | Faturanın veya uygulama yanıtının alıcısına ulaştırılma süreci tamamlanmıştır. Nihai Aşamada ki faturanın başarılı mı yoksa başarısız mı tamamlandığı kontrol edilerek gerekli aksiyon alınmalıdır. **Nihai Aşama faturanın başarılı olduğu anlamına gelmez.**
+### Giden Fatura Durumları
+DURUM KODU|	<div style="width:200px">DURUM AÇIKLAMASI</div> 	| STATUS_SUBSTATUS |ALINACAK AKSİYON
+------- | --------- | ----------- |--------
+100 | DURUM HENÜZ GÜNCELLENMEDİ | LOAD_SUCCEED | Durum sorgulanması yapmaya devam edilecek
+101 | KUYRUĞA EKLENDİ | LOAD_SUCCEED|Fatura Yükleme - Başarılı
+102 | TASLAK İŞLENİYOR | LOAD_PROCESSING | Belge İşleniyor
+103 | PAKETLENİYOR | PACKAGE_PROCESSING | Belge GİB'e Göndermek İçin Zarflanıyor
+104 | PAKETLENDİ | PACKAGE_SUCCEED | Belge Zarflandı GİB'e Gönderilecek
+105 | PAKETLEME HATASI | PACKAGE_FAILED | Belge Zarflanırken Hata Oluştu. Tekrar Denenecektir.
+106 | İMZALANIYOR | SIGN_PROCESSING | Belge İmzalanıyor
+107 | İMZALANDI" | SIGN_SUCCEED | Belge İmzalandı
+109 | GİB'DEN YANIT BEKLİYOR | SEND_WAIT_GIB_RESPONSE| Belge GİB'e Gönderildi
+110 | ALICIDAN YANIT BEKLİYOR | SEND_WAIT_SYSTEM_RESPONSE | Belge Alıcıya Başarıyla Ulaştırıldı. Sistem Yanıtı Bekliyor.
+111 | ALICIDAN ONAY BEKLİYOR | SEND_WAIT_APPLICATION_RESPONSE | Ticari Belge Alıcıdan Onay Bekliyor
+112 | KABUL EDİLDİ | ACCEPTED_SUCCEED | Belge Kabul Edildi
+120 | RET EDİLDİ | REJECTED_SUCCEED | Belge Ret Edildi
+134 | ZAMAN AŞIMI OLUŞTU | SEND_TIMEOUT | Belge GİB'e Gönderilirken Zaman Aşımına Uğradı.
+135 | GÖNDERİLİYOR | SEND_PROCESSING | Belge GİB'e Gönderiliyor
+136 | GÖNDERME İŞLEMİ BAŞARISIZ | SEND_FAILED | Belge GİB'e Gönderilirken Hata Oluştu
+137 | GÖNDERİLDİ | SEND_SUCCEED | Belge GİB'e Gönderildi
+139 | OTOMATİK GÖNDERİM HATASI | AUTO_FAILED | Otomatik Gönderim Hatası
+140 | FATURA NUMARASI ATANDI | LOAD_ID_ASSIGNED | Belge Numarası Atandı
+141 | FATURA NUMARASI ATANMA BEKLENİYOR | LOAD_WAIT_ID_ASSIGNED | Belge Numarası Atandı
 
 
 ### Gelen Fatura Durumları
-STATUS |	SUBSTATUS	|PORTAL STATUS |	Detaylı Açıklama	| Aşama Durumu
-------- | --------- | ----------- | --------- | --------- |
-RECEIVE	| SUCCEED	| Fatura Alımı - Başarıyla işlendi	| Temel Fatura Alımı Başarılı	| Nihai Aşama
-RECEIVE	| WAIT_APPLICATION_RESPONSE	| Fatura Alımı - Fatura Onayı Bekleniyor	| Ticari Faatura Alımı Başarılı	| Ara Aşama
-ACCEPT	| PROCESSING	| Gelen Ticari Fatura Kabul – İşleniyor	| Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı GİB’e gönderilmek üzere işlenmektedir.  Hala GİB’e gönderilmemiştir.	| Ara aşama
-ACCEPT	| WAIT_GIB_RESPONSE	| Gelen Ticari Fatura Kabul – GIB'e Gönderildi	| Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı GIB’e gönderildi.  GIB den onayın alındığına dair sistem yanıtı bekleniyor.	| Ara aşama
-ACCEPT	| WAIT_SYSTEM_RESPONSE	| Gelen Ticari Fatura Kabul – Sistem Yanıtı Bekleniyor	| Fatura onayı GIB tarafından alıcısına gönderildi ve alıcı taraftan onayın alındığına dair sistem yanıtı bekleniyor	| Ara aşama
-ACCEPT	| FAILED	| Gelen Ticari Fatura Kabul - Başarısız oldu	| Onaylanan Ticari fatura cevabı gönderiminden hata oluştu.  Bu fatura tekrar onaylanabilir.	| Nihai Aşama
-ACCEPT	| SUCCEED	| Gelen Ticari Fatura Kabul - Başarıyla işlendi	| Gelen Ticari Fatura Kabul Edilmiştir  ve kabul yanıtı göndericiye başarılı bir şekilde ulaştırılmıştır.	| Nihai Aşama
-REJECT	| PROCESSING	| Gelen Ticari Fatura Red – İşleniyor	| Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı GİB’e gönderilmek üzere işlenmektedir.  Hala GİB’e gönderilmemiştir.	| Ara aşama
-REJECT	| WAIT_GIB_RESPONSE	| Gelen Ticari Fatura Red – GIB'e Gönderildi	| Gelen Ticari Fatura reddedilmiştir  ve red yanıtı GIB’e gönderildi.  GIB den onayın alındığına dair sistem yanıtı bekleniyor.	| Ara aşama
-REJECT	| WAIT_SYSTEM_RESPONSE	| Gelen Ticari Fatura Red – Sistem Yanıtı Bekleniyor	| Fatura onayı GIB tarafından alıcısına gönderildi ve alıcı taraftan onayın alındığına dair sistem yanıtı bekleniyor	| Ara aşama
-REJECT	| SUCCEED	| Gelen Ticari Fatura Red - Başarıyla işlendi	| Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı göndericiye başarılı bir şekilde ulaştırılmıştır.	| Nihai Aşama
-REJECT	| FAILED	| Gelen Ticari Fatura Red - Başarısız oldu	| Gelen Ticari Fatura Red Edilmiştir  ve red yanıtı GİB’de veya alıcı tarafında oluşan bir sebeple hatalı duruma ulaşmıştır.	| Nihai Aşama
-
-### Giden Fatura Durumları
-STATUS |	SUBSTATUS	| PORTAL STATUS	| Detaylı Açıklama	| Aşama Durumu
-------- | -------- | ------------| ---------- | -------------
-LOAD |	SUCCEED |	Fatura Yükleme - Başarılı |	Fatura Yükleme Başarılı. Taslak olarak sisteme yüklenmiş faturadır. 	 | Nihai Aşama
-LOAD |	FAILED |	Fatura Yükleme - Başarısız Oldu | 	Fatura Yükleme Hatalı |	Nihai Aşama
-PACKAGE |	FAILED |	Fatura Paketleme - Başarısız oldu |	Fatura paketleme sırasında hata oluştu.  Sistem tarafından tekrar paketle işlemi yapılarak gönderilecektir. |	Ara aşama
-PACKAGE |	SUCCEED |	Fatura Paketleme - Başarıyla işlendi |	Fatura paketleme başarılı |	Ara aşama
-SEND |	PROCESSING |	Fatura Gönderimi - İşleniyor |	Fatura Gönderimi Yapılıyor |	Ara aşama
-SEND |	SUCCEED |	Fatura Gönderimi - Başarıyla işlendi | 	Temel Fatura Gönderimi Başarılı |	Nihai Aşama
-SEND |	FAILED |	Fatura Gönderimi – Başarısız Oldu |	Fatura Gönderiminde Hata Alındı |	Nihai Aşama
-SEND |	WAIT_GIB_RESPONSE |	Fatura Gönderimi - GIB'e Gönderildi |	Fatura GIB e gönderildi ve GIB den faturanın alındığına dair sistem yanıtı bekleniyor	 | Ara aşama
-SEND |	WAIT_SYSTEM_RESPONSE |	Fatura Gönderimi - Sistem Yanıtı Bekleniyor |	Fatura GIB tarafından alıcısına gönderildi ve alıcı taraftan faturanın alındığına dair sistem yanıtı bekleniyor |	Ara aşama
-SEND |	WAIT_APPLICATION_RESPONSE |	Fatura Gönderimi - Fatura Onayı Bekleniyor |	Ticari Fatura Alıcıdan Cevap Bekliyor |	Ara aşama
-ACCEPTED |	SUCCEED |	Giden Ticari Fatura Kabul - Başarıyla işlendi |	Gönderilmiş olan ticari fatura alıcı tarafından kabul edilmiştir ve alıcının kabul yanıtı gönderen tarafa başarılı şekilde ulaşmıştır. |	Nihai Aşama
-REJECTED |	SUCCEED |	Giden Ticari Fatura Red - Başarıyla işlendi |	Gönderilmiş olan ticari fatura alıcı tarafından red edilmiştir ve alıcının red yanıtı gönderen tarafa başarılı şekilde ulaşmıştır. |	Nihai Aşama
+DURUM KODU|	<div style="width:200px">DURUM AÇIKLAMASI</div> 	| STATUS_SUBSTATUS |ALINACAK AKSİYON
+------- | --------- | ----------- |--------
+133 | ALINDI | RECEIVE_SUCCEED |
+134 | ZAMAN AŞIMI OLUŞTU | ACCEPT/REJECT_TIMEOUT - YANLIŞ|
+122 | KABUL EDİLDİ | ACCEPTED_SUCCEED |
+123 | KABUL İŞLENİYOR | ACCEPTED_PROCESSING |
+124 | KABUL GİBDEN YANIT BEKLİYOR | ACCEPT_GIB_RESPONSE |
+125 | KABUL ALICIDAN YANIT BEKLİYOR | ACCEPT_WAIT_SYSTEM_RESPONSE |
+126 | KABUL İŞLEMİ BAŞARISIZ | ACCEPT_FAILED |
+127 | RED ALICIDAN YANIT BEKLİYOR | REJECT_WAIT_SYSTEM_RESPONSE |
+128 | RED GİBDE YANIT BEKLİYOR | REJECT_WAIT_GIB_RESPONSE |
+129 | RED İŞLENİYOR | REJECT_PROCESSING |
+130 | REDDEDİLDİ | REJECT_SUCCEED |
+131 | RED İŞLEMİ BAŞARISIZ | FAILED |
 
 ### GİB Durum Kodları
 
