@@ -9,7 +9,7 @@ Parametre | Tip        | Açıklama
 **ERROR_TYPE.ERROR_CODE** | String | Başarısız işlemlerde `-1` değeri döner.
 **ERROR_TYPE.ERROR_SHORT_DESC** | String | Hatanın kısa açıklaması.
 
-## Hata Kodları
+### Hata Kodları
 Hata Kodu |  Açıklama
 --------- | -----------
 -1    | Sistem Hatası

@@ -6,7 +6,6 @@ e-İrsaliye servisi, irsaliye gönderimini sağlayan uygulamadır.
 3. Alıcısı E-İrsaliye mükellefi olmayan firmalara ait belgeler Gelir İdaresi Başkanlığında açılan sanal posta kutusu etiketine gönderilecektir. 3900892152-urn:mail:irsaliyepk@gib.gov.tr
 4. Gönderilen e-irsaliye GİB sisteminde başarıyla işlendikten sonra irsaliye yazdırılıp kargoya verilebilir.
 
-<%= partial "includes/ortak/response-error" %>
 <%= partial "includes/eirsaliye/senaryolar" %>
 <%= partial "includes/ortak/url" %>
 <%= partial "includes/efatura/testhesaplar" %>
@@ -36,7 +35,7 @@ kapatabilirsiniz.
 ## Entegrasyon Test Senaryoları
 
 <%= partial "includes/ortak/entegrasyon-demo-client" %>
-<%= partial "includes/ortak/errortype" %>
+<%= partial "includes/ortak/response-error" %>
 <%= partial "includes/eirsaliye/irsaliyehatalari" %>
 <%= partial "includes/ortak/requestheader" %>
 <%= partial "includes/eirsaliye/loaddespatch" %>
