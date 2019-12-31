@@ -616,7 +616,7 @@
 </tr>
 </tbody></table>
 
-<h2 id="hata-kodlar">Hata Kodları</h2>
+<h3 id="hata-kodlar">Hata Kodları</h3>
 
 <table><thead>
 <tr>
@@ -4767,118 +4767,6 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <li>Gönderilen e-irsaliye GİB sisteminde başarıyla işlendikten sonra irsaliye yazdırılıp kargoya verilebilir.</li>
 </ol>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h2 id="hata-kodlar">Hata Kodları</h2>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
 <table><thead>
@@ -5106,6 +4994,88 @@ kapatabilirsiniz.</p></li>
 <td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -6045,118 +6015,6 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>e-Müstahsil Makbuzu (e-MM) Uygulaması, müstahsil makbuzunun Gelir İdaresi Başkanlığı tarafından belirlenen standartlara uygun olarak elektronik ortamda oluşturulması, hem kağıt hem de elektronik ortamda muhafazası ve ibrazı ile elektronik ortamda raporlamasını kapsayan uygulamadır.</p>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h2 id="hata-kodlar">Hata Kodları</h2>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
 <h2 id="g-b-dok-manlar">GİB Dokümanları</h2>
 
 <table><thead>
@@ -6406,6 +6264,118 @@ kapatabilirsiniz.</li>
 <td>String</td>
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -6860,118 +6830,6 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>01/01/2018 tarihi itibariyle dileyen serbest meslek erbapları uygulamaya dahil olarak mesleki faaliyetlerine ilişkin tahsilatları için kağıt ortamda düzenlemiş oldukları Serbest Meslek Makbuzunu elektronik belge olarak elektronik ortamda düzenleyebilir, muhatabının talebi doğrultusunda elektronik veya kağıt ortamda iletilebilir, elektronik ortamda muhafaza edip Gelir İdaresi Başkanlığı’na elektronik ortamda raporlayabilirler.</p>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h2 id="hata-kodlar">Hata Kodları</h2>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
 <h2 id="e-serbest-meslek-senaryolar">E-Serbest Meslek Senaryoları</h2>
 
 <p>E-SMM sistemi üzerinden düzenlenebilecek ve gönderilebilecek makbuz senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.</p>
@@ -7166,6 +7024,118 @@ kapatabilirsiniz.</li>
 <td>String</td>
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -7776,118 +7746,6 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p>e-Mutabakat servisi, mükelleflerin BA/BS ve Cari mutabakatlarını yönetmelerini sağlayan webservis uygulamasıdır.</p>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h2 id="hata-kodlar">Hata Kodları</h2>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
 <table><thead>
@@ -8091,6 +7949,118 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>String</td>
 <td>Hayır</td>
 <td>Metod çağrılır ancak arkadaki işlem yapılmaz.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td>String</td>
+<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+</tr>
+<tr>
+<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
