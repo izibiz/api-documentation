@@ -20,7 +20,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SMM_SEARCH_KEY.FROM** | String  | Hayır | Gönderici vergi kimlik/TC kimlik numarası ile sorgulamak için kullanılabilir.
 **SMM_SEARCH_KEY.TO** | String  | Hayır | Alıcı vergi kimlik/TC kimlik numarası ile sadece belirli bir müşteriye gönderilen belgeleri okumak için kullanılabilir.
 **HEADER_ONLY** | String  | Hayır | Sadece özet değerler mi yoksa içerik ile beraber mi okunmak istenildiğini belirleyen parametredir. Eleman **gönderilmezse** veya `N` değeri gönderilirse belgenin içeriği ile (XML) ile beraber dönülür. `Y` değeri gönderilirse belgenin özeti dönülür.  Gönderilebilecek değerler: Y/N
-**CONTENT_TYPE** | Enum  | Hayır | Talep edilen format. Gönderilebilecek değerler: PDF
+**CONTENT_TYPE** | Enum  | Hayır | Talep edilen format. Gönderilebilecek değerler: `PDF`
 <br><br>
 
 Servisten dönen parametreler şu şekildedir:

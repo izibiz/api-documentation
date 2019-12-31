@@ -38,6 +38,7 @@ Durum Kodu | Durum Açıklaması
 115 | İŞLENİYOR
 120 | İŞLENDİ
 130 | RAPORLANDI
+140 | RAPORLANACAK
 200 | FATURA ID BULUNAMADI
 
 ### E-Arşiv E-Posta Gönderim Durumları
