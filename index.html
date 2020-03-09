@@ -439,7 +439,7 @@
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -1325,7 +1325,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -1748,6 +1748,88 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {ÜRÜN ADI} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+</tbody></table>
+
 <h2 id="taslak-fatura-y-kleme-loadinvoice">Taslak Fatura Yükleme (LoadInvoice)</h2>
 
 <ul>
@@ -1801,6 +1883,88 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
 <td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kodlar">Hata Kodları</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {ÜRÜN ADI} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -2365,6 +2529,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih</td>
 </tr>
 <tr>
+<td><strong>INVOICE_STATUS.DIRECTION</strong></td>
+<td>String</td>
+<td>Gelen fatura için <code class="prettyprint">IN</code>, Gönderilen fatura için <code class="prettyprint">OUT</code></td>
+</tr>
+<tr>
 <td><strong>INVOICE_STATUS.ENVELOPE_IDENTIFIER</strong></td>
 <td>String</td>
 <td>Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.</td>
@@ -2517,13 +2686,19 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>133</td>
 <td>ALINDI</td>
 <td>RECEIVE_SUCCEED</td>
-<td></td>
+<td>Temel fatura alındı</td>
+</tr>
+<tr>
+<td>132</td>
+<td>ALINDI</td>
+<td>RECEIVE_WAIT_APPLICATION_RESPONSE</td>
+<td>Ticari Fatura yanıt bekliyor</td>
 </tr>
 <tr>
 <td>134</td>
 <td>ZAMAN AŞIMI OLUŞTU</td>
-<td>ACCEPT/REJECT_TIMEOUT - YANLIŞ</td>
-<td></td>
+<td>ACCEPT/REJECT_TIMEOUT</td>
+<td>İŞLEM SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR</td>
 </tr>
 <tr>
 <td>122</td>
@@ -2874,6 +3049,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_STATUS.CDATE</strong></td>
 <td>String</td>
 <td>Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih</td>
+</tr>
+<tr>
+<td><strong>INVOICE_STATUS.DIRECTION</strong></td>
+<td>String</td>
+<td>Gelen fatura için <code class="prettyprint">IN</code>, Gönderilen fatura için <code class="prettyprint">OUT</code></td>
 </tr>
 <tr>
 <td><strong>INVOICE_STATUS.ENVELOPE_IDENTIFIER</strong></td>
@@ -3714,7 +3894,7 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -4873,7 +5053,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -6088,7 +6268,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -6872,7 +7052,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -7760,7 +7940,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -8552,7 +8732,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -9205,7 +9385,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -9679,7 +9859,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
