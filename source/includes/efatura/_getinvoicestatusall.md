@@ -26,6 +26,7 @@ Parametre | Tip        | Açıklama
 **INVOICE_STATUS.GTB_GCB_TESCILNO** | String | Gümrük İdaresi fiili ihracatı tamamlanan eşyanın kabul uygulama yanıtı ile ilgilisine dönülen Gümrük Çıkış Belgesi (GÇB) tescil numarasıdır. **İhracat faturası değilse dönülmez.**
 **INVOICE_STATUS.GTB_FIILI_IHRACAT_TARIHI** | String |  Gümrük İdaresi tarafından fiili ihracatı tamamlanan ihracat faturaları için döndüğü fiili ihraç tarihi bilgisidir.  Gümrük İdaresi bu bilgiyi fiili ihracat (intaç) gerçekleştiğinde dönecektir. Eğer ihracat faturası için bu alan dönülmemişse hala fiili ihracat yapılmamıştır. **İhracat faturası değilse dönülmez.**
 **INVOICE_STATUS.CDATE** | String | Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih
+**INVOICE_STATUS.DIRECTION** | String | Gelen fatura için `IN`, Gönderilen fatura için `OUT`
 **INVOICE_STATUS.ENVELOPE_IDENTIFIER** | String | Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.
 
 

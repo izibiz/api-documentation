@@ -27,6 +27,7 @@ Parametre | Tip        | Açıklama
 **INVOICE_STATUS.GTB_GCB_TESCILNO** | String | Gümrük İdaresi fiili ihracatı tamamlanan eşyanın kabul uygulama yanıtı ile ilgilisine dönülen Gümrük Çıkış Belgesi (GÇB) tescil numarasıdır. **İhracat faturası değilse dönülmez.**
 **INVOICE_STATUS.GTB_FIILI_IHRACAT_TARIHI** | String |  Gümrük İdaresi tarafından fiili ihracatı tamamlanan ihracat faturaları için döndüğü fiili ihraç tarihi bilgisidir.  Gümrük İdaresi bu bilgiyi fiili ihracat (intaç) gerçekleştiğinde dönecektir. Eğer ihracat faturası için bu alan dönülmemişse hala fiili ihracat yapılmamıştır. **İhracat faturası değilse dönülmez.**
 **INVOICE_STATUS.CDATE** | String | Faturanın e-fatura sistemine yüklendiği/ulaştığı tarih
+**INVOICE_STATUS.DIRECTION** | String | Gelen fatura için `IN`, Gönderilen fatura için `OUT`
 **INVOICE_STATUS.ENVELOPE_IDENTIFIER** | String | Faturanın zarf IDsi. Taslak faturalar için eleman dönülmez.
 
 ### Giden Fatura Durumları
@@ -57,8 +58,9 @@ DURUM KODU|	<div style="width:200px">DURUM AÇIKLAMASI</div> 	| STATUS_SUBSTATUS
 ### Gelen Fatura Durumları
 DURUM KODU|	<div style="width:200px">DURUM AÇIKLAMASI</div> 	| STATUS_SUBSTATUS |ALINACAK AKSİYON
 ------- | --------- | ----------- |--------
-133 | ALINDI | RECEIVE_SUCCEED |
-134 | ZAMAN AŞIMI OLUŞTU | ACCEPT/REJECT_TIMEOUT - YANLIŞ|
+133 | ALINDI | RECEIVE_SUCCEED | Temel fatura alındı
+132 | ALINDI | RECEIVE_WAIT_APPLICATION_RESPONSE | Ticari Fatura yanıt bekliyor
+134 | ZAMAN AŞIMI OLUŞTU | ACCEPT/REJECT_TIMEOUT| İŞLEM SİSTEM TARAFINDAN OTOMATİK TEKRARLANCAKTIR
 122 | KABUL EDİLDİ | ACCEPTED_SUCCEED |
 123 | KABUL İŞLENİYOR | ACCEPTED_PROCESSING |
 124 | KABUL GİBDEN YANIT BEKLİYOR | ACCEPT_GIB_RESPONSE |
