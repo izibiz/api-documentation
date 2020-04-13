@@ -1750,9 +1750,11 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<p><br><br></p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -1762,6 +1764,11 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
 <td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
@@ -1769,12 +1776,47 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
 <td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası. Eğer fatura numarası dışarıdan atanmışsa gönderilen faturanın numarası.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -1788,7 +1830,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Sistem Hatası</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -1857,6 +1899,10 @@ Servisten dönen parametreler şu şekildedir:</p>
 <tr>
 <td>10017</td>
 <td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Yetkisiz erişim tespit edildi! {HATA SEBEBİ}</td>
 </tr>
 </tbody></table>
 
@@ -1893,9 +1939,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<p><br><br></p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -1905,14 +1953,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
 <td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -1926,7 +2019,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Sistem Hatası</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -1995,6 +2088,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td>10017</td>
 <td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Yetkisiz erişim tespit edildi! {HATA SEBEBİ}</td>
 </tr>
 </tbody></table>
 
@@ -5445,9 +5542,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<p><br><br></p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -5457,19 +5556,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -5483,7 +5622,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Sistem Hatası</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -5552,6 +5691,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td>10017</td>
 <td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Yetkisiz erişim tespit edildi! {HATA SEBEBİ}</td>
 </tr>
 </tbody></table>
 
@@ -5594,9 +5737,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<p><br><br></p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -5606,19 +5751,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -5632,7 +5817,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Sistem Hatası</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -5701,6 +5886,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td>10017</td>
 <td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Yetkisiz erişim tespit edildi! {HATA SEBEBİ}</td>
 </tr>
 </tbody></table>
 
@@ -6753,7 +6942,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </tr>
 </tbody></table>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -6763,19 +6956,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda REQUEST_RETURN objesi dönülmez. ERROR_TYPE objesi dönülecektir.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -7471,7 +7704,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </tr>
 </tbody></table>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -7481,19 +7718,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda REQUEST_RETURN objesi dönülmez. ERROR_TYPE objesi dönülecektir.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -8268,7 +8545,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <li>Özel entegratör sistemi üzerinden toplu <code class="prettyprint">BA/BS Mutabakat</code> veya <code class="prettyprint">Cari Mutabakat</code> gönderimini sağlayan servistir.</li>
 <li>Toplu mutabakat göndermek için <code class="prettyprint">RECONCILIATION</code> parametresi çoklanabilir.</li>
 <li><code class="prettyprint">RECONCILIATION_TYPE</code> parametresinin aldığı değerlere göre Cari ve BA/BS Mutabakat arası ayrım yapılır.</li>
-<li>BA/BS mutabakat için cariye düzenlenen belge tutarı 5000 TL ve üzeri olmalıdır. </li>
+<li>BA/BS mutabakat için cariye düzenlenen belge tutarı 5000 TL ve üzeri olmalıdır.</li>
 <li>BA/BS Mutabakatlar için <code class="prettyprint">BABS_ACCOUNTING_PERIOD</code>, <code class="prettyprint">BA_DOCUMENT_AMOUNT</code>, <code class="prettyprint">BA_DOCUMENT_COUNT</code>, <code class="prettyprint">BS_DOCUMENT_AMOUNT</code> ve <code class="prettyprint">BS_DOCUMENT_COUNT</code> kullanılır. Cari Mutabakatlar için <code class="prettyprint">CM_AMOUNT</code>, <code class="prettyprint">CM_AMOUNT_TYPE</code> ve <code class="prettyprint">CM_DATE</code> kullanılır. Kalan parametreler iki seçenek için ortaktır.</li>
 </ul>
 
@@ -8412,7 +8689,11 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <p><br><br></p>
 
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -8422,14 +8703,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INT_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
