@@ -1,4 +1,4 @@
-## Hata Kodları
+## Irsaliye Hata Kod Listesi
 Hata Kodu |  Açıklama
 --------- | -----------
 -1    | Sistem Hatası

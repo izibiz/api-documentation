@@ -1,4 +1,4 @@
-## Başarı Sonuç Nesnesi
+## Başarılı Sonuç Nesnesi
 Webservis işlem başarılı olduğunda response objesi içerisinde `REQUEST_RETURN` tipinde sonuç dönülecektir.
 
 Servisten dönen hata sonuç nesnesi şu şekildedir:

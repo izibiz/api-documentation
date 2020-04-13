@@ -82,5 +82,20 @@ ZIP | Veri sıkıştırma ve arşivleme formatı
 <%= partial "includes/ortak/belgegorsel" %>
 <%= partial "includes/ortak/gonderimkontrol" %>
 <%= partial "includes/ortak/xsdtoclass" %>
+
+## Ödeme Şekilleri
+e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.
+
+KOD | AÇIKLAMASI
+------ | ----------
+48 | KREDIKARTI/BANKAKARTI
+46 | EFT/HAVALE
+10 | KAPIDAODEME
+1 | Diğerleri
+
+Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
+* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
+** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm
+
 <%= partial "includes/ortak/url" %>
 <%= partial "includes/ortak/entegrasyon-sss" %>
