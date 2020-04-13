@@ -425,6 +425,38 @@
 2. Diğer bir yöntem ise String Replacement yöntemidir. Belgelere ait değişecek alanların belirlendiği bir şablon oluşturulur. Belge düzenlenirken ilgili alanlar güncellenir. Oluşan belge webservice parametre olarak gönderilir.
 </aside></p>
 
+<h2 id="deme-ekilleri">Ödeme Şekilleri</h2>
+
+<p>e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.</p>
+
+<table><thead>
+<tr>
+<th>KOD</th>
+<th>AÇIKLAMASI</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>48</td>
+<td>KREDIKARTI/BANKAKARTI</td>
+</tr>
+<tr>
+<td>46</td>
+<td>EFT/HAVALE</td>
+</tr>
+<tr>
+<td>10</td>
+<td>KAPIDAODEME</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Diğerleri</td>
+</tr>
+</tbody></table>
+
+<p>Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
+* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
+** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm</p>
+
 <h2 id="webservice-endpoint-wsdl-url">Webservice Endpoint (WSDL) URL</h2>
 
 <table><thead>
@@ -586,6 +618,41 @@
 </tr>
 </tbody></table>
 
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
@@ -600,101 +667,24 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -1639,6 +1629,41 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
@@ -1653,17 +1678,22 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
 </tr>
@@ -3564,112 +3594,8 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<p><br><br></p>
-
-<h2 id="uygulama-yan-t-haz-rlama-prepareinvoiceresponse-kullanmay-n-z">Uygulama Yanıtı Hazırlama (PrepareInvoiceResponse) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis kullanımı sonlandırılmıştır. Lütfen Uygulama Yanıtı Gönderme (SendInvoiceResponseWithServerSign) başlığını inceleyiniz.
-</aside>
-
-<h2 id="uygulama-yan-t-g-nderme-mzal-sendinvoiceresponse">Uygulama Yanıtı Gönderme - İmzalı  (SendInvoiceResponse)</h2>
-
-<aside class="warning">
-Bu servis uygulama yanıtını kendi mali mühürü ile hazırlayıp göndermek isteyenler için hazırlanmıştır. Eğer belgelerinizin imzalanmasını Özel Entegratör'e devretmişseniz bu servisi kullanmayınız. Lütfen  Uygulama Yanıtı Gönderme (SendInvoiceResponseWithServerSign) başlığını inceleyiniz.
-</aside>
-
-<p><br>
-Servise gönderilmesi gereken parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>REQUEST_HEADER</strong></td>
-<td>ComplexType</td>
-<td>Evet</td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur.</td>
-</tr>
-<tr>
-<td><strong>APPRESPONSE</strong></td>
-<td>Base64Binary</td>
-<td>Evet</td>
-<td>ApplicationResponse formatında hazırlanmış ve imzalanmış uygulama yanıtının Base64Binary encode edilmiş değeri. Uygulama yanıtı hazırlamak için GİB kılavuzunda paylaşılan Uygulama Yanıtı dokümanı inceleyebilirisiniz.</td>
-</tr>
-</tbody></table>
-
-<p>br&gt;<br></p>
-
-<p>Servisten dönen parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>RETURN_CODE</strong></td>
-<td>String</td>
-<td>İşlem başarılı ise <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.</td>
-</tr>
-</tbody></table>
-
-<h2 id="zarf-okuma-getenvelope-kullanmay-n-z">Zarf Okuma (GetEnvelope) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis kullanımdan kaldırılmıştır. Lütfen GetInvoice servisini kullanınız.
-</aside>
-
-<h2 id="zarf-durum-sorgulama-getenvelopestatus-kullanmay-n-z">Zarf Durum Sorgulama (GetEnvelopeStatus) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis kullanımdan kaldırılmıştır. Lütfen GetInvoiceStatus servisini kullanınız.
-</aside>
-
-<h2 id="zarf-okundu-aretleme-markenvelope-kullanmay-n-z">Zarf Okundu İşaretleme (MarkEnvelope) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis kullanımdan kaldırılmıştır. Lütfen MarkInvoice servisini kullanınız.
-</aside>
-
-<h2 id="uygulama-yan-t-ekme-getapplicationresponse-kullanmay-n-z">Uygulama Yanıt Çekme (getApplicationResponse) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis kullanımdan kaldırılmıştır. Fatura durum sorgulaması yaparak verilen yanıt durumunu öğrenebilirsiniz.
-</aside>
-
-<h2 id="oturum-a-ma-login-kullanmay-n-z">Oturum Açma (Login) - Kullanmayınız</h2>
-
-<aside class="warning">E-Fatura webservis içerisinde ki OTURUM AÇMA (Login) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Lütfen oturum açmak için Authentication servisini kullanınız.
-</aside>
-
-<h2 id="oturum-kapatma-logout-kullanmay-n-z">Oturum Kapatma (Logout) - Kullanmayınız</h2>
-
-<aside class="warning">E-Fatura webservis içerisinde ki OTURUM KAPATMA (Logout) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Lütfen oturum kapatmak için Authentication servisini kullanınız.
-</aside>
-
-<h2 id="m-kellef-listesi-ekme-getuserlistbinary-kullanmay-n-z">Mükellef Listesi Çekme (GetUserListBinary) - Kullanmayınız</h2>
-
-<aside class="warning">E-Fatura webservis içerisinde ki MÜKELLEF LİSTESİ ÇEKME (GetUserListBinary) metodu Kimlik Doğrulama (Authentication) Webservisine taşınmıştır. Ayrıca servisin ismi GetGibUserList olarak değiştirilmiştir. Lütfen mükellef listesini çekmek için Authentication servisindeki GetGibUserList metodunu kullanınız.
-</aside>
-
-<h2 id="m-kellef-listesi-ekme-getuserlist-kullanmay-n-z">Mükellef Listesi Çekme (GetUserList) - Kullanmayınız</h2>
-
-<aside class="warning">
-Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML formatında sıkıştırılmadan toplu çekmek için kullanılmıştır. Ancak E-Fatura sistemine kayıtlı mükellef listesinin artmasından dolayı performans sorunu oluşmuştur. Mükellef listesini sıkıştırılmış/ziplenmiş XML olarak dönen GetGibUserList servisi eklenmiştir. Bu servis kullanımı sonlandırılmıştır. Mevcut iş ortaklarımız yeni servise geçince tamamen kapatılacaktır.  Lütfen Kimlik Doğrulama webservisinde ki Mükellef Listesi Çekme (GetGibUserList) başlığını inceleyiniz.
-</aside>
+<!-- partial "includes/efatura/envelope"
+partial "includes/efatura/moved"-->
 
           <h1 id="e-ar-iv-fatura-webservisi">E-Arşiv Fatura Webservisi</h1>
 
@@ -4064,36 +3990,6 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
 <a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
 <p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
@@ -4174,11 +4070,75 @@ Bu servis e-fatura sistemine kayıtlı bütün mükelleflere ait etiketlerin XML
 </tr>
 </tbody></table>
 
-<h2 id="e-ar-iv-fatura-g-nderme-writetoarchieve-kullanmay-n-z">E-Arşiv Fatura Gönderme (WriteToArchieve) - Kullanmayınız</h2>
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
 
-<aside class="warning">
-Bu servis kullanımı sonlandırılmıştır. Lütfen E-Arşiv fatura göndermek için bir sonra ki başlık olan E-Arşiv Fatura Gönderme (WriteToArchieveExtended) başlığını inceleyiniz.
-</aside>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
 
 <h2 id="e-ar-iv-fatura-g-nderme-writetoarchieveextended">E-Arşiv Fatura Gönderme (WriteToArchieveExtended)</h2>
 
@@ -4215,7 +4175,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <tr>
 <td><strong>INVOICE_PROPERTIES.EARSIV_PROPERTIES</strong></td>
 <td>ComplexType</td>
-<td>Evet</td>
+<td><strong>Evet</strong></td>
 <td>E-Arşiv faturaları için kullanılabilecek parametreler</td>
 </tr>
 <tr>
@@ -4223,6 +4183,18 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>String</td>
 <td><strong>Evet</strong></td>
 <td>Gönderilen e-arşiv faturasının tipi: <code class="prettyprint">NORMAL</code> veya <code class="prettyprint">INTERNET</code> değerleri olabilir. Internet üzerinde yapılan satış için düzenlenen faturalarında e-arşiv tipi <code class="prettyprint">INTERNET</code> olmak zorundadır. Diğerleri fatura tipleri için <code class="prettyprint">NORMAL</code> olacaktır.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_PROPERTIES.SUB_STATUS</strong></td>
+<td>String</td>
+<td><strong>Evet</strong></td>
+<td>Varsayılan değer <code class="prettyprint">NEW</code>. E-Arşiv faturasını göndermek için <code class="prettyprint">NEW</code> değeri gönderilmelidir. Taslaklara yüklemek için ise <code class="prettyprint">DRAFT</code> değeri gönderilebilir.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_PROPERTIES.SERI</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Fatura numara atamasının E-Arşiv platformu üzerinde yapılması istenildiği durumlarda hangi seri ile numara atanacağını belirleyen alandır. Maksimum 3 hane alfanumerik değer içermelidir.  Gönderilecek seri önce portal ekranları kullanılarak e-arşiv sisteminde tanımlanmalıdır. Tanımlanmayan seri gönderildiğinde hata dönülecektir.</td>
 </tr>
 <tr>
 <td><strong>EARSIV_PROPERTIES.EARSIV_EMAIL_FLAG</strong></td>
@@ -4237,34 +4209,40 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>E-Arşiv faturasının iletileceği e-posta adresi. E-Posta formatında olmalıdır.  <code class="prettyprint">EARSIV_EMAIL_FLAG= Y</code> olarak gönderilmişse bu alan zorunludur. DİKKAT: Eğer <code class="prettyprint">EARSIV_EMAIL_FLAG</code> gönderilmemiş veya <code class="prettyprint">N</code> olarak gönderilmişse bu alanda ki değer veritabanına kaydedilecek ama e-posta gönderilmeyecektir.</td>
 </tr>
 <tr>
-<td><strong>EARSIV_PROPERTIES.SUB_STATUS</strong></td>
-<td>String</td>
-<td><strong>Evet</strong></td>
-<td>E-Arşiv faturası için <code class="prettyprint">NEW</code> değeri gönderilmelidir.</td>
-</tr>
-<tr>
-<td><strong>EARSIV_PROPERTIES.SERI</strong></td>
+<td><strong>EARSIV_PROPERTIES.EARSIV_SMS_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura numara atamasının E-Arşiv platformu üzerinde yapılması istenildiği durumlarda hangi seri ile numara atanacağını belirleyen alandır. Maksimum 3 hane alfanumerik değer içermelidir.  Gönderilecek seri önce portal ekranları kullanılarak e-arşiv sisteminde tanımlanmalıdır. Tanımlanmayan seri gönderildiğinde hata dönülecektir.</td>
+<td>E-Arşiv faturasının alıcıya özel entegratör sistemi üzerinden SMS olarak göndermek isteniyorsa <code class="prettyprint">Y</code> değeri gönderilmelidir. Varsayılan değer <code class="prettyprint">N</code> dir. DİKKAT: Eğer E-Arşiv sisteminde müşterinin SMS gönderme hizmeti yoksa <code class="prettyprint">Y</code> değeri gönderilince hata alacaktır. Bu durumda özel entegratör ile iletişime geçerek SMS gönderim hizmetini aktiflemesi talep edilmelidir.</td>
 </tr>
 <tr>
-<td><strong>EARSIV_PROPERTIES.ARCH_INVOICE_ID</strong></td>
+<td><strong>EARSIV_PROPERTIES.SMS_PHONE_NUMBER</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td><strong>Kullanmayınız</strong></td>
+<td>E-Arşiv faturasının iletileceği 10 hane telefon numarası. <strong>Format: 1234567890</strong>. Telefon numarasının başında 0 olmadığına dikkat ediniz.  <code class="prettyprint">EARSIV_SMS_FLAG= Y</code> olarak gönderilmişse bu alan zorunludur. DİKKAT: Eğer <code class="prettyprint">EARSIV_SMS_FLAG</code> gönderilmemiş veya <code class="prettyprint">N</code> olarak gönderilmişse bu alanda ki değer veritabanına kaydedilecek ama SMS gönderilmeyecektir.</td>
 </tr>
 <tr>
 <td><strong>EARSIV_PROPERTIES.EARCHIVE_TEST_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td><strong>Kullanmayınız</strong></td>
+<td><strong>Kullanmayınız</strong> Kullanım sonlandırılmıştır.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_PROPERTIES.ARCH_INVOICE_ID</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Kullanmayınız</strong> Kullanım sonlandırılmıştır.</td>
+</tr>
+<tr>
+<td><strong>EARSIV_PROPERTIES.EARCHIVE_TEST_FLAG</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td><strong>Kullanmayınız</strong> Kullanım sonlandırılmıştır.</td>
 </tr>
 <tr>
 <td><strong>INVOICE_PROPERTIES.PDF_PROPERTIES</strong></td>
 <td>ComplexType</td>
 <td>Hayır</td>
-<td>E-Arşiv faturalara UBL-TR XML yanında üretilen PDF dosyasını da göndermek için kullanılacak parametredir.</td>
+<td><strong>Kullanmayınız</strong> Kullanım sonlandırılmıştır.</td>
 </tr>
 <tr>
 <td><strong>INVOICE_PROPERTIES.ARCHIVE_NOTE</strong></td>
@@ -4280,37 +4258,161 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
-<h2 id="deme-ekilleri">Ödeme Şekilleri</h2>
+<h3 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h3>
 
-<p>e-Arşiv ve e-Fatura ödeme paymentmeans tag’ini fatura içerisinde kullanıyorsanız bu alanın örnek kod’ları aşağıdaki gibidir.</p>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
-<th>KOD</th>
-<th>AÇIKLAMASI</th>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>48</td>
-<td>KREDIKARTI/BANKAKARTI</td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
 </tr>
 <tr>
-<td>46</td>
-<td>EFT/HAVALE</td>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td>10</td>
-<td>KAPIDAODEME</td>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı işlemlerde <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td>1</td>
-<td>Diğerleri</td>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
 </tr>
 </tbody></table>
 
-<p>Diğer kodlar için aşağıdaki referanslardan yararlanabilirsiniz.
-* Referans 1: http://www.unece.org/trade/untdid/d11a/tred/tred4461.htm
-** Referans 2: https://www.stylusstudio.com/edifact/D01C/4461.htm</p>
+<h3 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h3>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-kod-listesi">Hata Kod Listesi</h2>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge kontrolden geçemedi. Hata sebebi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen oturum açıp tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {ÜRÜN ADI} ürün aktif degildir. Lütfen firma yetkiliniz ile görüşünüz.</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır {KRITER}</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. Belge Tipi: Belge No: ve ETTN:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza Hata Sebebi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10018</td>
+<td>Yetkisiz erişim tespit edildi! {HATA SEBEBİ}</td>
+</tr>
+</tbody></table>
 
 <h2 id="e-ar-iv-fatura-okuma-readfromarchive">E-Arşiv Fatura Okuma (ReadFromArchive)</h2>
 
@@ -5147,200 +5249,6 @@ kapatabilirsiniz.</p></li>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
 <a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
 
-<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
-
-<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
-
-<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
-<td>String</td>
-<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
-<td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
-</tr>
-<tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
-<td>String</td>
-<td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
-<h2 id="hata-kodlar">Hata Kodları</h2>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-</tbody></table>
-
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
 <p>Her webservis isteğinde gönderilmesi beklen ortak elemandır (REQUEST_HEADER)</p>
@@ -5421,48 +5329,11 @@ kapatabilirsiniz.</p></li>
 </tr>
 </tbody></table>
 
-<h2 id="taslak-rsaliye-y-kleme-loaddespatchadvice">Taslak İrsaliye Yükleme (LoadDespatchAdvice)</h2>
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
 
-<ul>
-<li>Özel entegratör platformu üzerinden 1 yada daha fazla irsaliyeyi sisteme yükler.</li>
-<li>Eğer irsaliye numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. İrsaliye numarası atanmamışsa şema ve şematron kontrolü yapılmaz.</li>
-<li>Aynı İrsaliye tekrar taslaklara yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.</li>
-</ul>
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
 
-<p><br>
-Servise gönderilmesi gereken parametreler şu şekildedir:</p>
-
-<table><thead>
-<tr>
-<th>Parametre</th>
-<th>Tip</th>
-<th>Zorunluluk</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>REQUEST_HEADER</strong></td>
-<td>ComplexType</td>
-<td><strong>Evet</strong></td>
-<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. İrsaliye sıkıştırılarak/ziplenerek gönderiliyorsa <code class="prettyprint">COMPRESSED</code> alanı gönderilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. <strong>XML formatında sıkıştırılmadan yüklemek için mutlaka <code class="prettyprint">COMPRESSED</code> eleman eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</strong></td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICE</strong></td>
-<td>ComplexType</td>
-<td><strong>Evet</strong></td>
-<td>İrsaliye numarasını <code class="prettyprint">ID</code> attribute içerisine, Evrensel tekil tanımlama numarasını (ETTN) <code class="prettyprint">UUID</code> attribute eklenmelidir.</td>
-</tr>
-<tr>
-<td><strong>DESPATCHADVICE.CONTENT</strong></td>
-<td>Base64Binary</td>
-<td>Evet</td>
-<td>İrsaliyenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Bir istek ile çoklu XML gönderimi yapılabilir. <strong>Birden fazla irsaliye göndermek için DESPATCHADVICE elemanı çoklanmalıdır.</strong></td>
-</tr>
-</tbody></table>
-
-<p><br><br></p>
-
-<p>Servisten dönen parametreler şu şekildedir:</p>
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
 
 <table><thead>
 <tr>
@@ -5472,19 +5343,59 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td><strong>RETURN_CODE</strong></td>
 <td>String</td>
-<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
 </tr>
 <tr>
-<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td><strong>INVOICE_ID</strong></td>
 <td>String</td>
-<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+
+<p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>ERROR_CODE</strong></td>
+<td>String</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
+</tr>
+<tr>
+<td><strong>ERROR_SHORT_DESC</strong></td>
+<td>String</td>
+<td>Hatanın kısa açıklaması.</td>
 </tr>
 </tbody></table>
 
@@ -5561,6 +5472,239 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
 </tr>
 </tbody></table>
+
+<h3 id="hata-kod-listesi">Hata Kod Listesi</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+</tbody></table>
+
+<h2 id="taslak-rsaliye-y-kleme-loaddespatchadvice">Taslak İrsaliye Yükleme (LoadDespatchAdvice)</h2>
+
+<ul>
+<li>Özel entegratör platformu üzerinden 1 yada daha fazla irsaliyeyi sisteme yükler.</li>
+<li>Eğer irsaliye numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. İrsaliye numarası atanmamışsa şema ve şematron kontrolü yapılmaz.</li>
+<li>Aynı İrsaliye tekrar taslaklara yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.</li>
+</ul>
+
+<p><br>
+Servise gönderilmesi gereken parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Zorunluluk</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_HEADER</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>Request Header objesi içerisinde <code class="prettyprint">SESSION_ID</code> ve <code class="prettyprint">APPLICATION_NAME</code> alanı zorunludur. İrsaliye sıkıştırılarak/ziplenerek gönderiliyorsa <code class="prettyprint">COMPRESSED</code> alanı gönderilmeyebilir veya <code class="prettyprint">Y</code> olarak gönderilebilir. <strong>XML formatında sıkıştırılmadan yüklemek için mutlaka <code class="prettyprint">COMPRESSED</code> eleman eklenmeli ve <code class="prettyprint">N</code> değeri gönderilmelidir.</strong></td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE</strong></td>
+<td>ComplexType</td>
+<td><strong>Evet</strong></td>
+<td>İrsaliye numarasını <code class="prettyprint">ID</code> attribute içerisine, Evrensel tekil tanımlama numarasını (ETTN) <code class="prettyprint">UUID</code> attribute eklenmelidir.</td>
+</tr>
+<tr>
+<td><strong>DESPATCHADVICE.CONTENT</strong></td>
+<td>Base64Binary</td>
+<td>Evet</td>
+<td>İrsaliyenin Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Bir istek ile çoklu XML gönderimi yapılabilir. <strong>Birden fazla irsaliye göndermek için DESPATCHADVICE elemanı çoklanmalıdır.</strong></td>
+</tr>
+</tbody></table>
+
+<p><br><br></p>
+
+<p>Servisten dönen parametreler şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN.INTL_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda request return objesi dönülmez.</td>
+</tr>
+<tr>
+<td><strong>REQUEST_RETURN.CLIENT_TXN_ID</strong></td>
+<td>String</td>
+<td>İstek ile istemci tarafından işlem IDsi gönderilmişse sonuç ile beraber dönülür.</td>
+</tr>
+</tbody></table>
+
+<h3 id="hata-kod-listesi">Hata Kod Listesi</h3>
+
+<table><thead>
+<tr>
+<th>Hata Kodu</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>Sistem Hatası</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>Oturum oluşturulamadı</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
+</tr>
+<tr>
+<td>10005</td>
+<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
+</tr>
+<tr>
+<td>10006</td>
+<td>Yetkiniz bulunmamaktadır</td>
+</tr>
+<tr>
+<td>10007</td>
+<td>İstek ZİP bir dosya içermelidir</td>
+</tr>
+<tr>
+<td>10008</td>
+<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
+</tr>
+<tr>
+<td>10009</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+<tr>
+<td>10010</td>
+<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
+</tr>
+<tr>
+<td>10011</td>
+<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
+</tr>
+<tr>
+<td>10012</td>
+<td>Kullanıcı aktif degil {kullanıcı adı}</td>
+</tr>
+<tr>
+<td>10013</td>
+<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
+</tr>
+<tr>
+<td>10014</td>
+<td>Geçersiz İmza</td>
+</tr>
+<tr>
+<td>10015</td>
+<td>Servis desteklenmemektedir. Servis adı</td>
+</tr>
+<tr>
+<td>10016</td>
+<td>Müşteri sistemde aktif degildir.</td>
+</tr>
+<tr>
+<td>10017</td>
+<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
+</tr>
+</tbody></table>
+
+<!-- partial "includes/eirsaliye/irsaliyehatalari" -->
 
 <h2 id="e-rsaliye-okuma-getdespatchadvice">E-İrsaliye Okuma (GetDespatchAdvice)</h2>
 
@@ -6447,6 +6591,41 @@ kapatabilirsiniz.</li>
 </tr>
 </tbody></table>
 
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
@@ -6461,101 +6640,24 @@ kapatabilirsiniz.</li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -7207,6 +7309,41 @@ kapatabilirsiniz.</li>
 </tr>
 </tbody></table>
 
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
@@ -7221,101 +7358,24 @@ kapatabilirsiniz.</li>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
@@ -8132,6 +8192,41 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </tbody></table>
 
+<h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
 <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
@@ -8146,101 +8241,24 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 

@@ -56,7 +56,42 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
+        <h2 id="ba-ar-sonu-nesnesi">Başarı Sonuç Nesnesi</h2>
+
+<p>Webservis işlem başarılı olduğunda response objesi içerisinde <code class="prettyprint">REQUEST_RETURN</code> tipinde sonuç dönülecektir.</p>
+
+<p>Servisten dönen hata sonuç nesnesi şu şekildedir:</p>
+
+<table><thead>
+<tr>
+<th>Parametre</th>
+<th>Tip</th>
+<th>Açıklama</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>REQUEST_RETURN</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarılı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INT_TXN_ID</strong></td>
+<td>String</td>
+<td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
+</tr>
+<tr>
+<td><strong>RETURN_CODE</strong></td>
+<td>String</td>
+<td>Başarılı durumlarda <code class="prettyprint">0</code> değeri döner. Başarısız olduğunda bu eleman dönülmez.</td>
+</tr>
+<tr>
+<td><strong>INVOICE_ID</strong></td>
+<td>String</td>
+<td>Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.</td>
+</tr>
+</tbody></table>
+
+<h2 id="hata-sonu-nesnesi">Hata Sonuç Nesnesi</h2>
 
 <p>Webservis metodunda hata oluşması durumunda response objesi içerisinde <code class="prettyprint">ERROR_TYPE</code> tipinde sonuç dönülecektir.</p>
 
@@ -70,101 +105,24 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>ERROR_TYPE.INTL_TXN_ID</strong></td>
+<td><strong>ERROR_TYPE</strong></td>
+<td>ComplexType</td>
+<td>İşlem sonucunu içeren başarısız/hatalı sonuç objesi</td>
+</tr>
+<tr>
+<td><strong>INTL_TXN_ID</strong></td>
 <td>String</td>
 <td>Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_CODE</strong></td>
+<td><strong>ERROR_CODE</strong></td>
 <td>String</td>
-<td>Başarısız işlemlerde <code class="prettyprint">-1</code> değeri döner.</td>
+<td>Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.</td>
 </tr>
 <tr>
-<td><strong>ERROR_TYPE.ERROR_SHORT_DESC</strong></td>
+<td><strong>ERROR_SHORT_DESC</strong></td>
 <td>String</td>
 <td>Hatanın kısa açıklaması.</td>
-</tr>
-</tbody></table>
-
-<h3 id="hata-kodlar">Hata Kodları</h3>
-
-<table><thead>
-<tr>
-<th>Hata Kodu</th>
-<th>Açıklama</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>-1</td>
-<td>Sistem Hatası</td>
-</tr>
-<tr>
-<td>10001</td>
-<td>Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10002</td>
-<td>Oturum oluşturulamadı</td>
-</tr>
-<tr>
-<td>10003</td>
-<td>Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}</td>
-</tr>
-<tr>
-<td>10004</td>
-<td>Geçersiz oturum. Lütfen tekrar oturum oluşturunuz ve tekrar deneyiniz</td>
-</tr>
-<tr>
-<td>10005</td>
-<td>Hesabınızın {EIRSALIYE} ürün aktif degildir</td>
-</tr>
-<tr>
-<td>10006</td>
-<td>Yetkiniz bulunmamaktadır</td>
-</tr>
-<tr>
-<td>10007</td>
-<td>İstek ZİP bir dosya içermelidir</td>
-</tr>
-<tr>
-<td>10008</td>
-<td>Belirtilen kriterlere uygun kayıt bulunamamıştır</td>
-</tr>
-<tr>
-<td>10009</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
-</tr>
-<tr>
-<td>10010</td>
-<td>Bir istek  boyutu maksimum 5MB veya 100 adet belge  içerebilir</td>
-</tr>
-<tr>
-<td>10011</td>
-<td>Tekrarlanan işlem: kayıt sistemde mevcuttur</td>
-</tr>
-<tr>
-<td>10012</td>
-<td>Kullanıcı aktif degil {kullanıcı adı}</td>
-</tr>
-<tr>
-<td>10013</td>
-<td>Gönderilen istek geçersizdir. Hata sebebi {0}</td>
-</tr>
-<tr>
-<td>10014</td>
-<td>Geçersiz İmza</td>
-</tr>
-<tr>
-<td>10015</td>
-<td>Servis desteklenmemektedir. Servis adı</td>
-</tr>
-<tr>
-<td>10016</td>
-<td>Müşteri sistemde aktif degildir.</td>
-</tr>
-<tr>
-<td>10017</td>
-<td>Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:</td>
 </tr>
 </tbody></table>
 
