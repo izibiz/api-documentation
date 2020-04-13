@@ -11,19 +11,38 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **REQUEST_HEADER** | ComplexType | **Evet** | Request Header objesi içerisinde `SESSION_ID` ve `APPLICATION_NAME` alanı zorunludur. Fatura sıkıştırılarak/ziplenerek gönderiliyorsa `COMPRESSED` alanı gönderilmeyebilir veya `Y` olarak gönderilebilir. **Faturayı XML formatında sıkıştırılmadan yüklemek için mutlaka `COMPRESSED` eleman eklenmeli ve `N` değeri gönderilmelidir.**
 **INVOICE.CONTENT** | Array | **Evet** | Faturanın Base64Binary olarak encode edilmiş XML veya Ziplenmiş içeriği. Bir istek ile çoklu fatura gönderimi yapılabilir. **Birden fazla fatura göndermek için INVOICE elemanı çoklanmalıdır.**
 
-<br><br>
 
-Servisten dönen parametreler şu şekildedir:
+### Başarı Sonuç Nesnesi
+
+Webservis işlem başarılı olduğunda response objesi içerisinde `REQUEST_RETURN` tipinde sonuç dönülecektir.
+
+Servisten dönen hata sonuç nesnesi şu şekildedir:
 
 Parametre | Tip        | Açıklama
 --------- | ----------- | -----------
-**TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
-**RETURN_CODE** | String | Başarılı durumlarda 0 değeri döner. Başarısız olduğunda WS Fault objesi dönecektir.
+**REQUEST_RETURN** | ComplexType| İşlem sonucunu içeren başarılı sonuç objesi
+**INT_TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
+**RETURN_CODE** | String | Başarılı işlemlerde `0` değeri döner. Başarısız olduğunda bu eleman dönülmez.
+**INVOICE_ID** | String | Fatura numarası e-arşiv platformunda atanmışsa atanan fatura numarası dönülür.
+
+
+### Hata Sonuç Nesnesi
+Webservis metodunda hata oluşması durumunda response objesi içerisinde `ERROR_TYPE` tipinde sonuç dönülecektir.
+
+Servisten dönen hata sonuç nesnesi şu şekildedir:
+
+Parametre | Tip        | Açıklama
+--------- | ----------- | -----------
+**ERROR_TYPE** | ComplexType| İşlem sonucunu içeren başarısız/hatalı sonuç objesi
+**INTL_TXN_ID** | String | Sunucuda işlemin gerçekleştirildiği transaction IDsi. Bu ID istemci tarafında kaydedilerek oluşabilecek hatalarda referans olarak destek ekibine iletilebilir.
+**ERROR_CODE** | String | Hata kodu. Hata kod detayları için ilgili servisteki hata kod listesini inceleyebilirsiniz.
+**ERROR_SHORT_DESC** | String | Hatanın kısa açıklaması.
+
 
 ### Hata Kodları
 Hata Kodu |  Açıklama
 --------- | -----------
--1    | Sistem Hatası
+-1    | Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.
 10001 | Sistemde Beklenmedik Bir Hata Oluştu: {HATA SEBEBİ}
 10002 | Oturum oluşturulamadı
 10003 | Belge Şematron Kontrolünden Geçemedi: {HATA SEBEBİ}
@@ -41,3 +60,4 @@ Hata Kodu |  Açıklama
 10015 | Servis desteklenmemektedir. Servis adı
 10016 | Müşteri sistemde aktif degildir.
 10017 | Gönderilen belge daha önce gönderilmiş bir belge ile eşleşmektedir. ID: ve UUID:
+10018 | Yetkisiz erişim tespit edildi! {HATA SEBEBİ}
