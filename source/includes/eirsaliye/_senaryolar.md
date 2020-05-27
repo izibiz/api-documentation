@@ -12,19 +12,19 @@ Doküman | Açıklama         | İndir
 E-İrsaliye sistemi üzerinden düzenlebilecek ve gönderilebilecek e-irsaliye senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.
 
 
-Senaryosu | Açıklama         | XML  
---------- | ----------- | -----------
-**Temel e-İrsaliye** | Malların sevkiyatını sağlayan taraf e-İrsaliyeyi Malları teslim alan tarafa gönderir. | <a href="/resource/xml/irsaliye_temel_ornek.xml" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a>
-**Kısmi Gönderim İçeren e-İrsaliye** | Malların sevkiyatını sağlayan taraf sipariş edilen malların bir kısmını gönderdiği durumlarda düzenlediği senaryodur. | <a href="/resource/xml/irsaliye_kismi_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a>
-**Farklı Tarafların Bulunduğu e-İrsaliye** | Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.| <a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a>
+Senaryosu | Açıklama         | XML  | HTML
+--------- | ----------- | ----------- |--------
+**Temel e-İrsaliye** | Malların sevkiyatını sağlayan taraf e-İrsaliyeyi Malları teslim alan tarafa gönderir. | <a href="/resource/xml/irsaliye_temel_ornek.xml?dummy=dummy" target = "_blank" > <img src = "/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliye_temel_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
+**Kısmi Gönderim İçeren e-İrsaliye** | Malların sevkiyatını sağlayan taraf sipariş edilen malların bir kısmını gönderdiği durumlarda düzenlediği senaryodur. | <a href="/resource/xml/irsaliye_kismi_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliye_kismi_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
+**Farklı Tarafların Bulunduğu e-İrsaliye** | Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.| <a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliye_farklitaraf_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
 
 ## UBL-İrsaliye Yanıt Senaryoları
 E-İrsaliye sistemi üzerinden gönderilebilecek e-irsaliye yanıt senaryoları ve örnek  XML dosyaları aşağıda listelenmiştir.
 
 
-Senaryosu | Açıklama         | XML  
---------- | ----------- | -----------
-**Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı** | Malların teslim alan tarafın bütün malları kabul ettiğini bildiren e-İrsaliye yanıt senaryosudur. | <a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/icon_xml.png" height="40" width="35"/></a>
-**Şikayet İçeren e-İrsaliye Yanıtı** | e-İrsaliye'deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur. | <a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a>
-**Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı** | Malları teslim alan tarafın gelen e-İrsaliye'deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.| <a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a>
-**Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı** | Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.| <a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a>
+Senaryosu | Açıklama         | XML  | HTML
+--------- | ----------- | ----------- |---------
+**Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı** | Malların teslim alan tarafın bütün malları kabul ettiğini bildiren e-İrsaliye yanıt senaryosudur. | <a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliyeyanit_kabul_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
+**Şikayet İçeren e-İrsaliye Yanıtı** | e-İrsaliye'deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur. | <a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliyeyanit_sikayet_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
+**Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı** | Malları teslim alan tarafın gelen e-İrsaliye'deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.| <a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliyeyanit_hasarli_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
+**Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı** | Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.| <a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a> | <a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a>
