@@ -282,7 +282,7 @@
 </tr>
 <tr>
 <td>Fatura Tarihi</td>
-<td>Faturanın kaynak sistemde düzenleme tarihi</td>
+<td>Faturanın kaynak sistemde düzenleme tarihi</td>
 </tr>
 <tr>
 <td>E-Fatura Numarası</td>
@@ -302,7 +302,7 @@
 </tr>
 <tr>
 <td>Alıcı Ünvan / Ad Soyad</td>
-<td>Alıcı cari hesap ünvanı</td>
+<td>Alıcı cari hesap ünvanı</td>
 </tr>
 <tr>
 <td>TCKN / VKN</td>
@@ -332,13 +332,13 @@
 <li>E-Dönüşüm sisteminde düzenlenen bir belgeyi tanımlayan iki önemli bilgi vardır. Bir tanesi Evrensel Tekil Tanımlama Numarası (ETTN), diğeri ise belge numarasıdır.</li>
 <li>ETTN numarası GUID formatında olurken, belge numarası aşağıda açıklanmış formata olması zorunludur.</li>
 <li>Belge numarası toplam 16 haneden oluşmak zorundadır.</li>
-<li>3 hane alfanumerik seri ön eki  + 4 hane belgenin düzenlendiği yılı + 9 hane müteselsil sıra numarasını ifade etmektedir.  <strong>Örnek: IZI+2018+000000001</strong></li>
+<li>3 hane alfanumerik seri ön eki  + 4 hane belgenin düzenlendiği yılı + 9 hane müteselsil sıra numarasını ifade etmektedir.  <strong>Örnek: IZI+2018+000000001</strong></li>
 <li>Her yıl sıra numarası 1 den başlamak zorundadır.</li>
 <li>Ser ön eki (ilk 3 hane) Türkçe karakter içermemeli ve büyük harfler yada sayılardan oluşmalıdr.</li>
 <li>İlk 3 Karakter firmalar tarafından serbestçe belirlebilir. Her firma İstediği kadar seri kullanabilir. Her seri kendi içerisinde 1’den başlayarak sıralı devam etmelidir.</li>
 <li>E-Fatura, E-İhracat fatura, E-Arşiv normal satış ve E-Arşiv internet üzerinden yapılan satışlar için düzenlenen faturalar  <strong>mutlaka</strong> farklı seriden düzenlenmelidir.</li>
 <li>Belge numarası takibi gönderici sistemde yapılmalıdır.</li>
-<li>Fatura düzenleyen bünyesinde aynı fatura numarası birden fazla kullanılamaz.</li>
+<li>Fatura düzenleyen bünyesinde aynı fatura numarası birden fazla kullanılamaz.</li>
 </ul>
 
 <h2 id="belge-g-r-nt-leme">Belge Görüntüleme</h2>
@@ -471,7 +471,7 @@
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -534,9 +534,10 @@
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -554,7 +555,7 @@
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -578,13 +579,13 @@
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -693,7 +694,7 @@
 <ul>
 <li>Web servis istemcisinin(client) özel entegratör platformuna kimlik doğrulayarak giriş yapmasını sağlar.</li>
 <li>Bu servise giriş için kullanılan kullanıcı bilgileri, portale giriş için kullanılan kullanıcı bilgileri ile aynıdır.</li>
-<li><strong>Login</strong> işleminden dönen işlem ID parametresi daha sonra çağrılacak tüm metotlarda <code class="prettyprint">HEADER_REQUEST.SESSION_ID</code> elemanı olarak gönderilmelidir.</li>
+<li><strong>Login</strong> işleminden dönen işlem ID parametresi daha sonra çağrılacak tüm metotlarda <code class="prettyprint">HEADER_REQUEST.SESSION_ID</code> elemanı olarak gönderilmelidir.</li>
 </ul>
 
 <aside class="notice">DİKKAT: Açılan oturum sistemimizde 8 saat aktif kalmaktadır. Her fatura gönderiminde oturum açma ve kapatmak zorunda değilsiniz.
@@ -1107,12 +1108,12 @@ Servisten dönen parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td><strong>UBL-TR Fatura</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
-<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -1137,7 +1138,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Kamu E-Fatura Teknik Kılavuzu</strong></td>
-<td>e-Fatura Uygulamasına kayıtlı olan vergi mükelleflerimiz, 5018 sayılı Kamu Mali Yönetimi ve Kontrol Kanunu ile belirlenmiş merkezi yönetim kapsamında yer alan ve Muhasebat ve Mali Kontrol Genel Müdürlüğü (MGM) tarafından geliştirilen Yeni Harcama Yönetim Sistemini (MYS) kullanan kamu idareleri ve bunlara bağlı harcama birimleri adına, 1.3.2019 tarihinden itibaren GİB e-Fatura Uygulaması aracılığı ile e-Fatura düzenleyip gönderebileceklerdir. Teknik kılavuz hazırlanmıştır.</td>
+<td>e-Fatura Uygulamasına kayıtlı olan vergi mükelleflerimiz, 5018 sayılı Kamu Mali Yönetimi ve Kontrol Kanunu ile belirlenmiş merkezi yönetim kapsamında yer alan ve Muhasebat ve Mali Kontrol Genel Müdürlüğü (MGM) tarafından geliştirilen Yeni Harcama Yönetim Sistemini (MYS) kullanan kamu idareleri ve bunlara bağlı harcama birimleri adına, 1.3.2019 tarihinden itibaren GİB e-Fatura Uygulaması aracılığı ile e-Fatura düzenleyip gönderebileceklerdir. Teknik kılavuz hazırlanmıştır.</td>
 <td><a href="https://ebelge.gib.gov.tr/dosyalar/kilavuzlar/Kamu_e-Fatura_Teknik_Kilavuzu.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -1315,7 +1316,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -1386,17 +1387,17 @@ Servisten dönen parametreler şu şekildedir:</p>
 <p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</li>
-<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> servisi ile GIB e-fatura mükellef listesini her 2 saatte özel entegratör platformundan çekmeniz gerekmektedir. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-fatura mükellefi olup olmadığını güncellemelisiniz.</li>
+<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
 <li><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
-<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
+<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
+<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
 <li><strong>SendInvoiceResponseWithServerSign</strong> metodu ile gelen ticari bir faturaya kabul veya red yanıtı gönderebilirsiniz.</li>
-<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
+<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
 <li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
 </ol>
 
 <h2 id="e-fatura-entegrasyon-kontrol-listesi">E-Fatura Entegrasyon Kontrol Listesi</h2>
@@ -1530,9 +1531,10 @@ Servisten dönen parametreler şu şekildedir:</p>
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="fatura-s-n-f-invoicetype-nas-l-retilir">Fatura Sınıfı (InvoiceType) Nasıl Üretilir ?</h2>
 
@@ -1565,7 +1567,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -1589,13 +1591,13 @@ Servisten dönen parametreler şu şekildedir:</p>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -1702,7 +1704,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme (SendInvoice)</h2>
 
 <ul>
-<li>FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
+<li>FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
 <li>Bu işlemden sonra gönderilen faturaların durumları GetInvoiceStatus servisi ile kontrol edilmelidir.</li>
 <li>Faturanın durumu GIB’de hatalı olduğu zaman bu servis ile faturayı aynı fatura numarası ve aynı ETTN ile tekrar gönderilebilir.</li>
 <li>Fatura yüklenirken fatura şema ve şematron kontrolü ve tekillik kontrolünden geçirilir. Fatura XML içerisinde hata varsa sisteme yüklenmez. Fatura XML içerisinde ki sorun düzeltilerek tekrar gönderilmelidir.</li>
@@ -1830,7 +1832,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -1909,7 +1911,7 @@ Servisten dönen parametreler şu şekildedir:</p>
 <h2 id="taslak-fatura-y-kleme-loadinvoice">Taslak Fatura Yükleme (LoadInvoice)</h2>
 
 <ul>
-<li>FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
+<li>FATURA Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
 <li>Eğer fatura numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. Fatura numarası atanmamışsa şema ve şematron kontrolü yapılmaz.</li>
 <li>Aynı faturanın tekrar yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.</li>
 </ul>
@@ -2019,7 +2021,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -2152,6 +2154,12 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>String</td>
 <td>Hayır</td>
 <td>Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında</td>
+</tr>
+<tr>
+<td><strong>SEARCH_KEY.DATE_TYPE</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>Belirli tarih aralığında fatura çekmek istendiğinde belirlenen tarih tipidir. <code class="prettyprint">CREATE</code> değeri gönderilirse fatura oluşturulma tarihine göre getirilir, boş veya <code class="prettyprint">ISSUE</code> değeri gönderilirse fatura tarihine göre getirilmektedir.</td>
 </tr>
 <tr>
 <td><strong>SEARCH_KEY.START_DATE</strong></td>
@@ -3709,12 +3717,12 @@ partial "includes/efatura/moved"-->
 </thead><tbody>
 <tr>
 <td><strong>UBL-TR Fatura</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan fatura belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Fatura - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
-<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -3739,7 +3747,7 @@ partial "includes/efatura/moved"-->
 </tr>
 <tr>
 <td><strong>Kamu E-Fatura Teknik Kılavuzu</strong></td>
-<td>e-Fatura Uygulamasına kayıtlı olan vergi mükelleflerimiz, 5018 sayılı Kamu Mali Yönetimi ve Kontrol Kanunu ile belirlenmiş merkezi yönetim kapsamında yer alan ve Muhasebat ve Mali Kontrol Genel Müdürlüğü (MGM) tarafından geliştirilen Yeni Harcama Yönetim Sistemini (MYS) kullanan kamu idareleri ve bunlara bağlı harcama birimleri adına, 1.3.2019 tarihinden itibaren GİB e-Fatura Uygulaması aracılığı ile e-Fatura düzenleyip gönderebileceklerdir. Teknik kılavuz hazırlanmıştır.</td>
+<td>e-Fatura Uygulamasına kayıtlı olan vergi mükelleflerimiz, 5018 sayılı Kamu Mali Yönetimi ve Kontrol Kanunu ile belirlenmiş merkezi yönetim kapsamında yer alan ve Muhasebat ve Mali Kontrol Genel Müdürlüğü (MGM) tarafından geliştirilen Yeni Harcama Yönetim Sistemini (MYS) kullanan kamu idareleri ve bunlara bağlı harcama birimleri adına, 1.3.2019 tarihinden itibaren GİB e-Fatura Uygulaması aracılığı ile e-Fatura düzenleyip gönderebileceklerdir. Teknik kılavuz hazırlanmıştır.</td>
 <td><a href="https://ebelge.gib.gov.tr/dosyalar/kilavuzlar/Kamu_e-Fatura_Teknik_Kilavuzu.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -3917,8 +3925,7 @@ partial "includes/efatura/moved"-->
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/
-  </a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -3969,14 +3976,14 @@ partial "includes/efatura/moved"-->
 <p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ul>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li><strong>WriteToArchieveExtended</strong> servisi ile UBL formatlı e-arşiv faturası gönderilir.</li>
 <li><strong>ReadFromArchive</strong> servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.</li>
-<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
-<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
+<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
+<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
 <li><strong>GetEArchiveReport</strong> servisi ile GİBe raporlanan e-arşiv raporlarını dönemlik olarak çekebilirsiniz.</li>
 <li><strong>ReadEArchiveReport</strong> serivisi ile GİBe gönderilen rapor detayını sorgulayabilirsiniz.</li>
-<li><strong>GetEmailEarchiveInvoice</strong> servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.</li>
+<li><strong>GetEmailEarchiveInvoice</strong> servisi ile özel entegratör sistemine daha önce yüklenen e-arşiv faturasının tekrardan e-posta olarak gönderilmesini tetikleyebilirsiniz.</li>
 <li>E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.</li>
 <li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
 <li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı <code class="prettyprint">EARSIVFATURA</code> olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.</li>
@@ -4084,9 +4091,10 @@ partial "includes/efatura/moved"-->
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -4104,7 +4112,7 @@ partial "includes/efatura/moved"-->
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -4128,13 +4136,13 @@ partial "includes/efatura/moved"-->
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -4292,7 +4300,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>EARSIV_PROPERTIES.SERI</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Fatura numara atamasının E-Arşiv platformu üzerinde yapılması istenildiği durumlarda hangi seri ile numara atanacağını belirleyen alandır. Maksimum 3 hane alfanumerik değer içermelidir.  Gönderilecek seri önce portal ekranları kullanılarak e-arşiv sisteminde tanımlanmalıdır. Tanımlanmayan seri gönderildiğinde hata dönülecektir.</td>
+<td>Fatura numara atamasının E-Arşiv platformu üzerinde yapılması istenildiği durumlarda hangi seri ile numara atanacağını belirleyen alandır. Maksimum 3 hane alfanumerik değer içermelidir.  Gönderilecek seri önce portal ekranları kullanılarak e-arşiv sisteminde tanımlanmalıdır. Tanımlanmayan seri gönderildiğinde hata dönülecektir.</td>
 </tr>
 <tr>
 <td><strong>EARSIV_PROPERTIES.EARSIV_EMAIL_FLAG</strong></td>
@@ -4436,7 +4444,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.: {HATA SEBEBİ}</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.: {HATA SEBEBİ}</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -4838,7 +4846,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>TOPLAM_TUTAR</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>iptal edilen faturanın ödenecek tutarı.  E-Arşiv platformunda bulunmayan bir faturayı iptal ederken gönderilmelidir.</td>
+<td>İptal edilen faturanın ödenecek tutarı.  E-Arşiv platformunda bulunmayan bir faturayı iptal ederken gönderilmelidir.</td>
+</tr>
+<tr>
+<td><strong>IPTAL_NOTU</strong></td>
+<td>String</td>
+<td>Hayır</td>
+<td>İptal edilen faturanın iptal not değeri.  E-Arşiv faturasını iptal ederken not eklemek istendiğinde gönderilmelidir.</td>
 </tr>
 <tr>
 <td><strong>INVOICE_CONTENT</strong></td>
@@ -5004,7 +5018,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 
 <h2 id="e-ar-iv-rapor-listesini-ekme-getearchivereport">E-Arşiv Rapor Listesini Çekme (GetEArchiveReport)</h2>
 
-<p>Özel entegratör platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini çekmek için kullanılır. Bu servis sadece rapor listesini döndecektir. Servisin döndüğü raporlara ait içerikleri almak için <strong>ReadEArchiveReport</strong> servisi kullanılabilir.</p>
+<p>Özel entegratör platformunda mükellefe ait oluşturulan bir döneme ait rapor listesini çekmek için kullanılır. Bu servis sadece rapor listesini döndecektir. Servisin döndüğü raporlara ait içerikleri almak için <strong>ReadEArchiveReport</strong> servisi kullanılabilir.</p>
 
 <p><br>
 Servise gönderilmesi gereken parametreler şu şekildedir:</p>
@@ -5154,17 +5168,17 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td><strong>UBL-TR İrsaliye</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan sevk irsaliyesi belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan sevk irsaliyesi belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR irsaliye - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR İrsaliye Yanıtı</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan irsaliye Yanıtı belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan irsaliye Yanıtı belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR irsaliye Yaniti - V 1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
-<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -5200,7 +5214,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td><strong>Farklı Tarafların Bulunduğu e-İrsaliye</strong></td>
-<td>Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.</td>
+<td>Malların Sevkiyatını Sağlayan, Malları Teslim Alan, Malların Satın Alımını Sağlayan, Malları Satan ve Tüm sürecin başlamasını Sağlayan Alıcı tarafın bulunduğu e-İrsaliye Senaryosudur.</td>
 <td><a href="/resource/xml/irsaliye_farklitaraf_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 <td><a href="/resource/xml/irsaliye_farklitaraf_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
@@ -5219,26 +5233,26 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><strong>Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı</strong></td>
+<td><strong>Bütün Sevkiyatı Kabul Eden e-İrsaliye Yanıtı</strong></td>
 <td>Malların teslim alan tarafın bütün malları kabul ettiğini bildiren e-İrsaliye yanıt senaryosudur.</td>
 <td><a href="/resource/xml/irsaliyeyanit_kabul_ornek.xml" target = "_blank"> <img src = "/images/icon_xml.png" height="40" width="35"/></a></td>
 <td><a href="/resource/xml/irsaliyeyanit_kabul_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>Şikayet İçeren e-İrsaliye Yanıtı</strong></td>
-<td>e-İrsaliye&#39;deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur.</td>
+<td>e-İrsaliye&#39;deki tüm ürünler malları alan taraf tarafından kabul edilmiştir. Fakat mallar geç gönderildiği için şikayette bulunduğu e-İrsaliye yanıt senaryosudur.</td>
 <td><a href="/resource/xml/irsaliyeyanit_sikayet_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 <td><a href="/resource/xml/irsaliyeyanit_sikayet_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
-<td><strong>Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı</strong></td>
-<td>Malları teslim alan tarafın gelen e-İrsaliye&#39;deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.</td>
+<td><strong>Hasarlı Ürünleri Bildiren e-İrsaliye Yanıtı</strong></td>
+<td>Malları teslim alan tarafın gelen e-İrsaliye&#39;deki malların ilk iki kaleminde hasarlı ürünler bulunduğunu bildiren e-İrsaliye senaryosudur.</td>
 <td><a href="/resource/xml/irsaliyeyanit_hasarli_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 <td><a href="/resource/xml/irsaliyeyanit_hasarli_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
-<td><strong>Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı</strong></td>
-<td>Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.</td>
+<td><strong>Fazla/Eksik Ürünlerin Bildirilmesine Dair e-İrsaliye Yanıtı</strong></td>
+<td>Malları teslim alan tarafın fazla ürünlerin iadesine ve eksik ürünlerin bildirilmesine dair düzenlediği e-İrsaliye yanıt senaryosudur.</td>
 <td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.xml" target="_blank"> <img src="/images/icon_xml.png" height="40" width="35"/></a></td>
 <td><a href="/resource/xml/irsaliyeyanit_fazlaeksik_ornek.html" target="_blank"><img src="/images/icon_html.png" height="40" width="35"/></a></td>
 </tr>
@@ -5258,7 +5272,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -5329,15 +5343,15 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <p>E-İrsaliye uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
-<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</p></li>
-<li><p>E-İrsaliyeler UBL-TR-DesptachAdvice formatında hazırlanacaktır. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</p></li>
+<li><p><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</p></li>
+<li><p>E-İrsaliyeler UBL-TR-DesptachAdvice formatında hazırlanacaktır. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</p></li>
 <li><p><strong>LoadDespatchAdvice</strong> metodu ile irsaliye dosyalarının özel entegratör portalında taslak olarak yüklenmesi sağlanabilir.</p></li>
 <li><p><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</p></li>
 <li><p><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></p></li>
-<li><p><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
-<li><p><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</p></li>
-<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><p><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</p></li>
+<li><p><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</p></li>
+<li><p><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</p></li>
 </ol>
 
@@ -5348,9 +5362,10 @@ kapatabilirsiniz.</p></li>
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -5368,7 +5383,7 @@ kapatabilirsiniz.</p></li>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -5392,13 +5407,13 @@ kapatabilirsiniz.</p></li>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -5505,7 +5520,7 @@ kapatabilirsiniz.</p></li>
 <h2 id="e-rsaliye-g-nderme-senddespatchadvice">E-İrsaliye Gönderme (SendDespatchAdvice)</h2>
 
 <ul>
-<li>E-İrsaliye Platformu üzerinden 1 ya da daha fazla e-irsaliyeyi GIB (Gelir İdaresi Başkanlığı) E-İrsaliye
+<li>E-İrsaliye Platformu üzerinden 1 ya da daha fazla e-irsaliyeyi GIB (Gelir İdaresi Başkanlığı) E-İrsaliye
 sistemine gönderir.</li>
 <li>E-İrsaliye gönderim esnasında hatalı duruma geçen irsaliyeler bu servis ile tekrar gönderilebilir.</li>
 <li>Bir alıcıya birden fazla irsaliye gönderilebilir.</li>
@@ -5628,7 +5643,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -5707,7 +5722,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="taslak-rsaliye-y-kleme-loaddespatchadvice">Taslak İrsaliye Yükleme (LoadDespatchAdvice)</h2>
 
 <ul>
-<li>Özel entegratör platformu üzerinden 1 yada daha fazla irsaliyeyi sisteme yükler.</li>
+<li>Özel entegratör platformu üzerinden 1 yada daha fazla irsaliyeyi sisteme yükler.</li>
 <li>Eğer irsaliye numarası atanmışsa (16 hane ise) şema ve şematron kontrolünden geçirilir. İrsaliye numarası atanmamışsa şema ve şematron kontrolü yapılmaz.</li>
 <li>Aynı İrsaliye tekrar taslaklara yüklenmesine müsade edilir. Farklı kayıt oluşturulmaz. Oluşan kayıt yeni içerik ile güncellenir.</li>
 </ul>
@@ -5823,7 +5838,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
+<td>Beklenmedik bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -6545,12 +6560,12 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </thead><tbody>
 <tr>
 <td><strong>UBL-TR Müstahsil Makbuzu</strong></td>
-<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR v1.2 (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan müstahsil makbuzu  belgesinde geçen elemanlara ait XSD, tanımlama, kullanım şekilleri, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="http://www.efatura.gov.tr/dosyalar/kilavuzlar/UBL-TR_Mustahsil_Makbuzu-V_1.0.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
 <td><strong>UBL-TR Ortak Elemanlar</strong></td>
-<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
+<td>UBL-TR (UBL 2.1 Türkiye Özelleştirmesi) paketinde yer alan belgelerde geçmesi muhtemel elemanlara ait (ortak elemanlar örneğin: Adres, Parasal Toplamlar, Taraf gibi) XSD, açıklama, kullanım şartları, kardinaliteler hakkında bilgi vermek ve örnek kullanım şekillerini göstermek amacı ile hazırlanmıştır.</td>
 <td><a href="/resource/BELGELER/UBL-TR Ortak Elemanlar - V 0.7.pdf"><img src="/images/icon_pdf.png" height="40" width="35"/></a></td>
 </tr>
 <tr>
@@ -6607,7 +6622,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -6663,13 +6678,13 @@ E-Müstahsil test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 
 <p>E-Müstahsil uygulamanızı geliştirken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li>CREDITNOTE belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>CREDITNOTE belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendCREDITNOTE</strong> metodu ile belge gönderimi yapılmaktadır.</li>
 <li><strong>GetCREDITNOTEStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetCREDITNOTE</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>GetCREDITNOTE</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
 <li><strong>CancelCREDITNOTE</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</li>
 </ol>
 
@@ -6678,9 +6693,10 @@ kapatabilirsiniz.</li>
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="m-stahsil-makbuz-s-n-f-creditnotetype-nas-l-retilir">Müstahsil Makbuz Sınıfı (CreditNoteType) Nasıl Üretilir ?</h2>
 
@@ -6722,7 +6738,7 @@ kapatabilirsiniz.</li>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -6746,13 +6762,13 @@ kapatabilirsiniz.</li>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -6914,7 +6930,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 <td><strong>CREDITNOTE_PROPERTIES.EMAIL_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. ** DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir. **</td>
+<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. <strong>DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir.</strong></td>
 </tr>
 <tr>
 <td><strong>CREDITNOTE_PROPERTIES.EMAIL</strong></td>
@@ -7393,7 +7409,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -7449,13 +7465,13 @@ Test sürecinde düzenlenen belgelerin gönderici VKNsi 4840847211 olmalıdır.<
 <p>E-SMM uygulamanızı geliştirken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendSMM</strong> metodu ile belge gönderimi yapılmaktadır.</li>
 <li><strong>GetSMMStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
 <li><strong>CancelSMM</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</li>
 </ol>
 
@@ -7464,9 +7480,10 @@ kapatabilirsiniz.</li>
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -7484,7 +7501,7 @@ kapatabilirsiniz.</li>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -7508,13 +7525,13 @@ kapatabilirsiniz.</li>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -7676,7 +7693,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</li>
 <td><strong>SMM_PROPERTIES.EMAIL_FLAG</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. ** DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir. **</td>
+<td>Belge alıcısına e-posta olarak gönderilip gönderilmeyeceğinin belirlendiği parametredir. E-Posta göndermek istenilen durumda <code class="prettyprint">Y</code> değeri gönderilmelidir. Eleman gönderilmezse <code class="prettyprint">EMAIL</code> alanı dolu olsa dahi e-posta gönderilmez. <strong>DİKKAT: Eğer müşterinin özel entegratör ile e-posta gönderme hizmeti sözleşmesi yoksa ve <code class="prettyprint">Y</code> değeri gönderilirse belgenin sisteme yüklenmesine izin verilmeyecektir. Bu durumda özel entegratör ile iletişime geçerek e-posta gönderim hizmeti satın alınmalı veya  e-posta gönderiminin farklı bir kanaldan müşteri tarafından yapılması gerekmektedir. Bu durumda bu parametre gönderilmemeli veya <code class="prettyprint">N</code> olarak gönderilmelidir.</strong></td>
 </tr>
 <tr>
 <td><strong>SMM_PROPERTIES.EMAIL</strong></td>
@@ -8283,7 +8300,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -8391,9 +8408,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <p>Webservice entegrasyonu için sunucu taraflı programlama diline uygun farklı istemci(client) örnekleri sunar. Bu istemcilerden programlama yapmak istediğiniz dile uygun olanı seçip test bilgileri ile kullanmaya başlayabilirsiniz.</p>
 
 <p><a href="https://github.com/izibiz/ws-client-dotnet" target="_blank"><img src="/images/icon_dotnet.png"/></a>
-<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png"/></a>
+<a href="https://github.com/izibiz/ws-client-php" target="_blank"><img src="/images/icon_php.png" height="100" width="100"/></a>
 <a href="https://github.com/izibiz/ws-client-java" target="_blank"><img src="/images/icon_java.png"/></a>
-<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="100" width="100"/></a></p>
+<a href="https://github.com/izibiz/ws-client-delphi" target="_blank"><img src="/images/icon_delphi.png" height="80" width="80"/></a>
+<a href="https://github.com/izibiz/ws-client-soapui" target="_blank"><img src="/images/icon_soapui.png" height="90" width="100"/></a></p>
 
 <h2 id="ortak-kullan-lan-eleman">Ortak Kullanılan Eleman</h2>
 
@@ -8411,7 +8429,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -8435,13 +8453,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -9082,7 +9100,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -9133,7 +9151,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li><strong>LoadZReport</strong> metodu ile tekil veya toplu Z-Rapor yüklemesi yapılır.</li>
 <li><strong>GetZReportStatus</strong> metodu ile gönderilen Z-Raporlarının durumları sorgulanabilir.</li>
 <li><strong>GetZReport</strong> metodu ile gönderilen Z-Raporlar tekrar istemciye çekilebilir veya son yüklenen Z-Rapor bilgisi sorgulanabilir.</li>
@@ -9175,7 +9193,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -9199,13 +9217,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -9735,7 +9753,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -9786,7 +9804,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li><strong>Borç Sorgulama(GetBalance)</strong> ile ne kadar borçlarının olduğu sorgulanabilinir. Detaylar için ilgili bölümü inceleyiniz.</li>
 <li><strong>Kontör Bakiye Sorgulama(GetCredit)</strong> ile yüklenen toplam kontör, mevcut kalan kontör miktarı ve son kontör kullanımı sorgulanılabilinir. <strong>CREDIT_DETAIL_FLAG</strong> ile kullanıcıya tanımlanmış olan aktif kontörler detaylı olarak öğrenmek için kullanılmaktadır.</li>
 <li><strong>Kullanım Sorgulama(GetUsage)</strong> ile kullanıcının belirlediği periyotta, seçilen ürüne ve gönderim yönüne göre kullanım miktarı sorgulaması yapılır.</li>
@@ -9809,7 +9827,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>SESSION_ID</strong></td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
+<td>Login Metodunda sistem tarafında gönderilen SESSION_ID bilgisi. Sonraki tüm metod çağrılarında parametre olarak metoda geçmelidir.</td>
 </tr>
 <tr>
 <td><strong>APPLICATION_NAME</strong></td>
@@ -9833,13 +9851,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>CLIENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
+<td>İstemci uygulama tarafından işlem için üretilen işlem bilgisi (transaction id) varsa istek esnasında gönderilip, sonuçta alabileceğiniz bir değerdir. request/response eşleşmesi yapmak için kullanılabilir.</td>
 </tr>
 <tr>
 <td><strong>INT_PARENT_TXN_ID</strong></td>
 <td>String</td>
 <td>Hayır</td>
-<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
+<td>İstemci uygulamasında ana modül entitileri ile ilişkilendirelmek istenen ana transaction ID.</td>
 </tr>
 <tr>
 <td><strong>ACTION_DATE</strong></td>
@@ -10209,7 +10227,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 </tr>
 <tr>
 <td>E-Fatura Webservis</td>
-<td><a href="https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
+<td><a href="https://efaturatest.izibiz.com.tr/EFaturaOIB?wsdl">https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl</a></td>
 </tr>
 <tr>
 <td>E-Arşiv Fatura Webservis</td>
@@ -10260,7 +10278,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <p>Uygulamanızı tasarlarken aşağıda ki bilgiler faydalı olacaktır:</p>
 
 <ol>
-<li>Proxy servisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>Proxy servisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li>Proxy servisinde bulunan <strong>Logout</strong> metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.</li>
 <li>Proxy servisinde bulunan <strong>SendInvoice</strong>, <strong>SendEInvoice</strong>, <strong>LoadInvoice</strong>, <strong>GetInvoice</strong>, <strong>GetUserList</strong>, <strong>CheckUser</strong>, <strong>MarkInvoice</strong>, <strong>GetInvoiceStatus</strong>, <strong>GetUserListBinary</strong>, <strong>GetAllUserListBinary</strong> metodlarına dair detaylar için <strong>E-Fatura</strong> kısmına bakınız.</li>
 <li>Proxy servisinde bulunan <strong>SendEArchiveInvoice</strong>, <strong>CancelEArchiveInvoice</strong>, <strong>ReadFromArchive</strong>, <strong>GetEArchiveReport</strong>, <strong>GetEArchiveInvoiceStatus</strong>, <strong>SendInvoiceByXml</strong> metodlarına dair detaylar için <strong>E-Arşiv Fatura</strong> kısmına bakınız.</li>
@@ -10292,15 +10310,15 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="dikkat-edilecek-hususlar-e-fatura">Dikkat Edilecek Hususlar(E-Fatura)</h2>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>E-Fatura Mükellefi olan firmalara kesilen faturaları UBL-TR formatına dönüştürerek (ekte örnek fatura bulunuyor) İzibiz sunucularına gönderebilirsiniz. Her fatura içerisinde faturanın görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendInvoice</strong> metodu ile fatura gönderimi yapılacak. Gönderim esnasında eğer faturanın alıcısına ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
 <li><strong>GetInvoiceStatus</strong> metodu ile gelen/giden faturaların durumları sorgulanacak. Nihai duruma erişene kadar faturanın durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
-<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
-<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
+<li><strong>GetInvoice</strong> metodu ile firmaya gelen faturalar müşteri bilgisayarına aktarılır. İzibiz sistemlerine gelen yeni faturaları almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet faturayı çekebilirsiniz. Eğer dönen listede 100 adet fatura varsa yeniden getinvoice servisi çağırılarak başka fatura olup olmadığı kontrol edilmelidir. Dönen listede 100den az fatura varsa tekrar sorgulama yapmaya gerek yoktur. Fatura çekme zamanlayıcı ile yapılıyorsa en az 15 dk bir servis çağırılmalıdır.</li>
+<li><strong>MarkInvoice</strong> metodu ile başarılı şekilde teslim alınan faturalar izibiz sistemlerinde okundu olarak işaretlenir. Böylece bir sonra ki getinvoice servisi çağrılınca dönülmez.</li>
+<li>Gelen bir faturaya 8 gün içerisinde kabul veya red gönderilebilir. <strong>8 günü geçtikten sonra kabul/red yapılması engellenmelidir. Temel faturalar için yanıt gönderilmesi kısıtlanmalıdır.</strong></li>
 <li>Ticari bir faturaya elektronik ortamda en fazla 1 adet yanıt gönderilebilir. Bundan dolayı bir faturaya başarıyla yanıt (kabul/red) gönderilmişse farklı bir yanıt gönderilmesi kısıtlanmalıdır.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu kapatabilirsiniz.</li>
 </ol>
 
 <h2 id="fatura-g-nderme-sendinvoicebyxml">Fatura Gönderme(SendInvoiceByXml)</h2>
@@ -10342,7 +10360,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_PROPERTIES.EMAIL_FLAG</strong></td>
 <td>boolean</td>
 <td>Hayır</td>
-<td>Değerler [Y,N]: E-Arşiv faturalarını e-posta olarak iletmek için <code class="prettyprint">Y</code> değeri gönderilmelidir. Parametre gönderilmez veya <code class="prettyprint">N</code> değeri gönderilirse fatura e-posta gönderilmez. E-Fatura için bu parametre dikkate alınmaz.</td>
+<td>Değerler [true,false]: E-Arşiv faturalarını e-posta olarak iletmek için <code class="prettyprint">true</code> değeri gönderilmelidir. Parametre gönderilmez veya <code class="prettyprint">false</code> değeri gönderilirse fatura e-posta gönderilmez. E-Fatura için bu parametre dikkate alınmaz.</td>
 </tr>
 <tr>
 <td><strong>INVOICE</strong></td>
@@ -10486,7 +10504,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE.ACCOUNTING_SUPPLIER_PARTY</strong></td>
 <td>Complex</td>
 <td><strong>Evet</strong></td>
-<td>Faturayı düzenleyen tarafın bilgileri</td>
+<td>Faturayı düzenleyen tarafın bilgileri</td>
 </tr>
 <tr>
 <td>ACCOUNTING_SUPPLIER_PARTY.PARTY</td>
@@ -10516,7 +10534,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>PARTY.PARTY_IDENTIFICATION.TYPE</td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Düzenleyen tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
+<td>Düzenleyen tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>PARTY.NAME</td>
@@ -10636,7 +10654,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>PARTY.PARTY_IDENTIFICATION.TYPE</td>
 <td>String</td>
 <td><strong>Evet</strong></td>
-<td>Alıcı tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
+<td>Alıcı tarafın vergi kimlik numarası veya TC kimlik numarası zorunludur. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Kimlik Şemaları bölümünü inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>PARTY.NAME</td>
@@ -10714,7 +10732,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>CONTACT.ELECTRONIC_MAIL</td>
 <td>String</td>
 <td>Hayır</td>
-<td>E-Posta adresi</td>
+<td>E-Posta adresi. Bu alan boş ise mail gönderimi sağlanamaz.</td>
 </tr>
 <tr>
 <td>PARTY.FIRST_NAME</td>
@@ -10822,55 +10840,55 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE.PAYMENT_MEANS</strong></td>
 <td>Complex</td>
 <td>Hayır</td>
-<td>Ödeme Şekli. Internet satışları için zorunludur.</td>
+<td>Ödeme Şekli. Internet satışları için zorunludur.</td>
 </tr>
 <tr>
 <td>PAYMENT_MEANS.PAYMENT_MEANS_CODE</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Ödeme şeklinin kodu</td>
+<td>Ödeme şeklinin kodu</td>
 </tr>
 <tr>
 <td>PAYMENT_MEANS.PAYMENT_DUE_DATE</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Son ödeme günü yıl-ay-gün formatında</td>
+<td>Son ödeme günü yıl-ay-gün formatında</td>
 </tr>
 <tr>
 <td>PAYMENT_MEANS.PAYMENT_CHANNEL_CODE</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Ödeme kanalı kodu</td>
+<td>Ödeme kanalı kodu</td>
 </tr>
 <tr>
 <td>PAYMENT_MEANS.INSTRUCTION_NOTE</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Ödeme ile ilgili açıklamalar serbest metin</td>
+<td>Ödeme ile ilgili açıklamalar serbest metin</td>
 </tr>
 <tr>
 <td><strong>INVOICE.PAYMENT_TERMS</strong></td>
 <td>Complex</td>
 <td>Hayır</td>
-<td>Ödeme Koşulları</td>
+<td>Ödeme Koşulları</td>
 </tr>
 <tr>
 <td>PAYMENT_TERMS.PENALTY_SURCHARGE_PERCENT</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Ödemenin gecikmesi durumunda uygulanacak ceza oranı numerik olarak girilir.</td>
+<td>Ödemenin gecikmesi durumunda uygulanacak ceza oranı numerik olarak girilir.</td>
 </tr>
 <tr>
 <td>PAYMENT_TERMS.AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Ödemenin gecikmesi durumunda uygulanacak ceza tutarı numerik olarak girilir.</td>
+<td>Ödemenin gecikmesi durumunda uygulanacak ceza tutarı numerik olarak girilir.</td>
 </tr>
 <tr>
 <td>PAYMENT_TERMS.NOTE</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Ödeme koşulları ile ilgili açıklama serbest metin olarak girilir.</td>
+<td>Ödeme koşulları ile ilgili açıklama serbest metin olarak girilir.</td>
 </tr>
 <tr>
 <td><strong>INVOICE.TAX_TOTAL</strong></td>
@@ -10894,7 +10912,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>TAX_SUB_TOTAL.TAX_ABLE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
 </tr>
 <tr>
 <td>TAX_SUB_TOTAL.TAX_AMOUNT</td>
@@ -10918,7 +10936,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>TAX_SUB_TOTAL.TAX_NAME</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>TAX_SUB_TOTAL.TAX_TYPE_CODE</td>
@@ -10942,7 +10960,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE.WITH_HOLDING_TAX</strong></td>
 <td>Complex</td>
 <td>Hayır</td>
-<td>Tevkifatlı faturalarda, uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
+<td>Tevkifatlı faturalarda, uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
@@ -10960,7 +10978,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>WITH_HOLDING_TAX.TAX_ABLE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
@@ -10984,7 +11002,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>WITH_HOLDING_TAX.TAX_NAME</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_TYPE_CODE</td>
@@ -11032,7 +11050,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>ALLOWANCE_CHARGES.BASE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Iskonto veya artırımın uygulandığı tutar</td>
+<td>Iskonto veya artırımın uygulandığı tutar</td>
 </tr>
 <tr>
 <td><strong>INVOICE.LEGAL_MONETARY_TOTAL</strong></td>
@@ -11044,13 +11062,13 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>LEGAL_MONETARY_TOTAL.LINE_EXTENSION_AMOUNT</td>
 <td>Decimal</td>
 <td><strong>Evet</strong></td>
-<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır.</td>
+<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutardır.</td>
 </tr>
 <tr>
 <td>LEGAL_MONETARY_TOTAL.TAX_EXCLUSIVE_AMOUNT</td>
 <td>Decimal</td>
 <td><strong>Evet</strong></td>
-<td>Vergiler hariç, ıskonto veya artırım dahil toplam tutarı (Vergi Matrahı)</td>
+<td>Vergiler hariç, ıskonto veya artırım dahil toplam tutarı (Vergi Matrahı)</td>
 </tr>
 <tr>
 <td>LEGAL_MONETARY_TOTAL.TAX_INCLUSIVE_AMOUNT</td>
@@ -11098,7 +11116,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>INVOICE_LINE.LINE_EXTENSION_AMOUNT</td>
 <td>Decimal</td>
 <td><strong>Evet</strong></td>
-<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutar</td>
+<td>Mal/hizmet miktarı ile Mal/hizmet birim fiyatının çarpımı ile bulunan tutar</td>
 </tr>
 <tr>
 <td><strong>INVOICE_LINE.ALLOWANCE_CHARGES</strong></td>
@@ -11128,7 +11146,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>ALLOWANCE_CHARGES.BASE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Iskonto veya artırımın uygulandığı tutar</td>
+<td>Iskonto veya artırımın uygulandığı tutar</td>
 </tr>
 <tr>
 <td><strong>INVOICE_LINE.TAX_TOTAL</strong></td>
@@ -11152,7 +11170,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>TAX_SUB_TOTAL.TAX_ABLE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+<td>Verginin üzerinden hesaplandığı tutar (matrah) bilgisi</td>
 </tr>
 <tr>
 <td>TAX_SUB_TOTAL.TAX_AMOUNT</td>
@@ -11176,7 +11194,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>TAX_SUB_TOTAL.TAX_NAME</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
+<td>Vergi türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Vergi Kodları Listesini inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>TAX_SUB_TOTAL.TAX_TYPE_CODE</td>
@@ -11200,7 +11218,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_LINE.WITH_HOLDING_TAX</strong></td>
 <td>Complex</td>
 <td>Hayır</td>
-<td>Satırda uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
+<td>Satırda uygulanan tevkifat miktarları, oranları ve diğer bilgileri girilir.</td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
@@ -11218,7 +11236,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>WITH_HOLDING_TAX.TAX_ABLE_AMOUNT</td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
+<td>Tevkifatın üzerinden hesaplandığı tutar (matrah) bilgisi</td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_AMOUNT</td>
@@ -11242,7 +11260,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td>WITH_HOLDING_TAX.TAX_NAME</td>
 <td>String</td>
 <td>Hayır</td>
-<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
+<td>Tevkifat türü ismi. <a href="/resource/BELGELER/UBL-TR Kod Listeleri - V 1.18.pdf">Kod Listesi dokümanında Tevkifat Kodları Listesi bölümünü inceleyiniz.</a></td>
 </tr>
 <tr>
 <td>WITH_HOLDING_TAX.TAX_TYPE_CODE</td>
@@ -11278,14 +11296,14 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <td><strong>INVOICE_LINE.BUYER_IDENTIFICATION</strong></td>
 <td>Decimal</td>
 <td>Hayır</td>
-<td>Alıcının mal/hizmete verdiği tanımlama bilgisi. barkod bilgisi girilebilir.</td>
+<td>Alıcının mal/hizmete verdiği tanımlama bilgisi. barkod bilgisi girilebilir.</td>
 </tr>
 </tbody></table>
 
 <h2 id="fatura-g-nderme-sendinvoice">Fatura Gönderme(SendInvoice)</h2>
 
 <ul>
-<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
+<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
 </ul>
 
 <p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
@@ -11373,7 +11391,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="fatura-g-nderme-sendeinvoice">Fatura Gönderme(SendEInvoice)</h2>
 
 <ul>
-<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
+<li>Fatura Entegrasyon Platformu üzerinden faturayı GIB (Gelir İdaresi Başkanlığı) EFATURA sistemine gönderir.</li>
 </ul>
 
 <p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
@@ -11467,7 +11485,7 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="taslak-fatura-y-kleme-loadinvoice">Taslak Fatura Yükleme (LoadInvoice)</h2>
 
 <ul>
-<li>Fatura Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
+<li>Fatura Entegrasyon Platformu üzerinden 1 yada daha fazla faturayı E-Fatura sistemine yükler.</li>
 </ul>
 
 <p>Servise gönderilmesi gereken parametreler şu şekildedir:</p>
@@ -12168,10 +12186,10 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="dikkat-edilecek-hususlar-e-ar-iv-fatura">Dikkat Edilecek Hususlar(E-Arşiv Fatura)</h2>
 
 <ul>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile giriş yaparak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li><strong>ReadFromArchive</strong> servisi ile fatura istenilen formatta (XML, PDF, HTML) okunabilir.</li>
-<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
-<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
+<li><strong>CancelEArchiveInvoice</strong> servisi ile hata tespiti veya müşterinin malı iade etmesi sebebi ile iptal edilen faturaları GIBe bildirilmek üzere gönderilir.</li>
+<li><strong>GetEArchiveInvoiceStatus</strong> servisi ile özel entegratör sistemine yüklemiş e-Arşiv faturasanın durumu, e-posta durumu ve raporlanma durumunu sorgulayabilirsiniz.</li>
 <li>E-Fatura ve E-Arşiv faturaları farklı seri ile düzenlenmelidir.</li>
 <li>İnternet üzerinden yapılan satışlar için düzenlenen E-Arşiv faturaları ile diğer satışlardan (E-Fatura veya E-Arşiv) farklı serilerden düzenlenmesi zorunludur.</li>
 <li>UBL-TR olarak hazırlanan E-Arşiv faturaların ProfileId alanı <code class="prettyprint">EARSIVFATURA</code> olarak yazılmalıdır. Bu alan eğer sizin tarafınızda farklı bir değer belirtilmiş ise sistem bu alan otomatik olarak “EARSIVFATURA” yazacaktır.</li>
@@ -12564,14 +12582,14 @@ Servise gönderilmesi gereken parametreler şu şekildedir:</p>
 <h2 id="dikkat-edilecek-hususlar-e-rsaliye">Dikkat Edilecek Hususlar(E-İrsaliye)</h2>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</li>
-<li>E-İrsaliye Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>GetGibUserList</strong> metodu ile GIB e-irsaliye mükellef listesini her 2 saatte entegrasyon sunucularından çekmenizi tavsiye ederiz. Güncel listeyi çektikten sonra Cari listenizde ki firmaların e-irsaliye mükellefi olup olmadığını güncellemelisiniz.</li>
+<li>E-İrsaliye Mükellefi olan firmalara düzenlenen irsaliyeleleri UBL-TR İrsaliye formatına dönüştürerek gönderilmelidir. Her e-irsaliye içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendDespatchAdvice</strong> metodu ile irsaliye gönderimi yapılacak. Gönderim esnasında eğer alıcı mükellefe ait birden fazla Posta Kutusu bulunuyorsa ekranda seçilerek gönderilmesi sağlanmalı. Sadece 1 adet PK adresi varsa seçim yapılmadan gönderim sağlanabilir.</li>
 <li><strong>GetDespatchAdviceStatus</strong> metodu ile gelen/giden irsaliyelerin durumları sorgulanacak. Nihai duruma erişene kadar belgenin durumu entegrasyon sunucularından minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</li>
-<li><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</li>
-<li><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><strong>GetDespatchAdvice</strong> metodu ile firmaya gelen irsaliyeleri müşteri bilgisayarına aktarılır. Sisteme gelen yeni irsaliyeleri almanız gerekmektedir. Servis ile yeni gelen en fazla 100 adet belgeyi çekebilirsiniz. Eğer dönen listede 100 adet kayıt varsa yeniden <strong>GetDespatchAdvice</strong> servisi çağırılarak başka belge olup olmadığı kontrol edilmelidir. Dönen listede 100den az kayıt varsa tekrar sorgulama yapmaya gerek yoktur.</li>
+<li><strong>MarkDespatchAdvice</strong> metodu ile başarılı şekilde teslim alınan irsaliyeler eirsaliye sisteminde okundu olarak işaretlenir. Böylece bir sonra ki <strong>GetDespatchAdvice</strong> servisi çağrılınca aynı kayıt dönülmez.</li>
+<li><strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</li>
 </ol>
 
@@ -13652,13 +13670,13 @@ kapatabilirsiniz.</li>
 <h2 id="dikkat-edilecek-hususlar-e-smm">Dikkat Edilecek Hususlar(E-SMM)</h2>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>SMM belgeleri UBL-TR Invoice formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendSMM</strong> metodu ile belge gönderimi yapılmaktadır.</li>
 <li><strong>GetSMMStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>GetSMM</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
 <li><strong>CancelSMM</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</li>
 </ol>
 
@@ -14220,13 +14238,13 @@ kapatabilirsiniz.</li>
 <h2 id="dikkat-edilecek-hususlar-e-m-stahsil">Dikkat Edilecek Hususlar(E-Müstahsil)</h2>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
-<li>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> metodu ile oturum açarak session id alınacaktır. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li>Müstahsil makbuzu belgeleri UBL-TR CreditNote formatına dönüştürerek gönderilmelidir. Her dosya içerisinde görüntülenmesini sağlayan XSLT dokümanı olmalıdır.</li>
 <li><strong>SendCreditNote</strong> metodu ile müstahsil makbuzu gönderimi yapılmaktadır.</li>
 <li><strong>GetCreditNoteStatus</strong> metodu ile entegrasyon sunucularına yüklenen belgelerin durumları sorgulanacak. <strong>Sık sorgulama yapmayınız.</strong></li>
-<li><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>ReadCreditNote</strong> metodu ile yüklenen belgenin imzalı XML, PDF ve HTML formatında tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
 <li><strong>CancelCreditNote</strong> metodu ile eksik/hatalı oluşturulmuş veya müşteri tarafından iptal/iade edilmiş belgeleri GİB&#39;e iptal olarak raporlanmasını veya tamamen iptal edilerek hiç raporlanmamasını sağlayabilirsiniz.</li>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan  <strong>Logout</strong> metodu ile kullanıcı e-fatura programını kapatınca veya sizin belirlediğiniz bir sürede oturumu
 kapatabilirsiniz.</li>
 </ol>
 
@@ -14856,7 +14874,7 @@ kapatabilirsiniz.</li>
 <h2 id="dikkat-edilecek-hususlar-e-mutabakat">Dikkat Edilecek Hususlar(E-Mutabakat)</h2>
 
 <ol>
-<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
+<li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacak. Session Id sistemimiz tarafında 8 saate kadar zaman aşımına uğramadığı için kullanıcı giriş yapınca session id alıp bütün kullanım süresinde aynı session id kullanabilirsiniz.</li>
 <li><strong>SendReconciliation</strong> metodu ile BA/BS ve Cari mutabakat gönderimi yapılabilmektedir. Detaylar için <strong>E-Mutabakat Gönderme</strong> bölümünü inceleyiniz.</li>
 <li><strong>GetReconciliationStatus</strong> metodu ile gönderilen mutabakatların durumları sorgulanabilir. Nihai duruma erişene kadar mutabakatların durumu özel entegratör sisteminden minumum 4 saatte bir sorgulanmalıdır. <strong>Sık sorgulama yapmayınız.</strong></li>
 <li><strong>Kimlik Doğrulama (Authentication)</strong> Webservisinde bulunan <strong>Logout</strong> metodu ile kullanıcı mutabakat programını kapatınca oturum kapatılabilir.</li>
@@ -15196,7 +15214,7 @@ kapatabilirsiniz.</li>
 <ol>
 <li>Proxy servisinde bulunan <strong>Login</strong> servisi ile oturum açarak session id alınacaktır.</li>
 <li><strong>ArchiveELedger</strong> metodu ile bir döneme ait defter yedekleme yapılmaktadır. Bir dönem en fazla bir defa yedeklenebilir.</li>
-<li><strong>GetELedger</strong> metodu ile daha önce yedeklenen bir döneme ait e-defterleri tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
+<li><strong>GetELedger</strong> metodu ile daha önce yedeklenen bir döneme ait e-defterleri tekrar müşteri bilgisayarına çekmek için kullanılabilir.</li>
 <li><strong>CancelELedger</strong> metodu ile yedeklendikten sonra iptal edilmiş e-defterlerin iptali sağlanabilir.</li>
 <li>Proxy servisinde bulunan <strong>Logout</strong> metodu ile oturum kapatılabilir.</li>
 </ol>
@@ -15599,7 +15617,7 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>linenumber</strong></td>
-<td>Yevmiye madde numarası haricinde dönem başında 1’den başlayacak ve arada boşluk olmaksızın ardışık olacak şekilde yevmiye madde satır numarası</td>
+<td>Yevmiye madde numarası haricinde dönem başında 1’den başlayacak ve arada boşluk olmaksızın ardışık olacak şekilde yevmiye madde satır numarası</td>
 </tr>
 <tr>
 <td><strong>linenumbercounter</strong></td>
@@ -15623,7 +15641,7 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>amount</strong></td>
-<td>Tutar (negatif değer olmamalı)</td>
+<td>Tutar (negatif değer olmamalı)</td>
 </tr>
 <tr>
 <td><strong>debitcreditcode</strong></td>
@@ -15631,7 +15649,7 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>postingdate</strong></td>
-<td>Muhasebe fiş tarihi</td>
+<td>Muhasebe fiş tarihi</td>
 </tr>
 <tr>
 <td><strong>documenttype</strong></td>
@@ -15643,11 +15661,11 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>documentnumber</strong></td>
-<td>İlişkili belgenin numarası (Örn: Fatura numarası)</td>
+<td>İlişkili belgenin numarası (Örn: Fatura numarası)</td>
 </tr>
 <tr>
 <td><strong>documentreference</strong></td>
-<td>Muhasebe fiş referans numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
+<td>Muhasebe fiş referans numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
 </tr>
 <tr>
 <td><strong>entrynumbercounter</strong></td>
@@ -15655,15 +15673,15 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>documentdate</strong></td>
-<td>İlişkili belgenin tarihi (Örn: Fatura tarihi) yyyy-aa-gg formatında</td>
+<td>İlişkili belgenin tarihi (Örn: Fatura tarihi) yyyy-aa-gg formatında</td>
 </tr>
 <tr>
 <td><strong>paymentmethod</strong></td>
-<td>Çek, Senet, Nakit, Banka, Teminat Mektubu ya da boş</td>
+<td>Çek, Senet, Nakit, Banka, Teminat Mektubu ya da boş</td>
 </tr>
 <tr>
 <td><strong>detailcomment</strong></td>
-<td>Muhasebe fişi satır açıklaması</td>
+<td>Muhasebe fişi satır açıklaması</td>
 </tr>
 <tr>
 <td><strong>erpno</strong></td>
@@ -15671,23 +15689,23 @@ kapatabilirsiniz.</li>
 </tr>
 <tr>
 <td><strong>divisionno</strong></td>
-<td>Kullanılan sistemde işyerlerini birbirinden ayıran işyeri numarası, kağıt ortamında basılan defterlerde ayrı olarak basılıyorsa e-defter’de farklı bir işyeri numarasına sahip olmalı yoksa 0</td>
+<td>Kullanılan sistemde işyerlerini birbirinden ayıran işyeri numarası, kağıt ortamında basılan defterlerde ayrı olarak basılıyorsa e-defter’de farklı bir işyeri numarasına sahip olmalı yoksa 0</td>
 </tr>
 <tr>
 <td><strong>enteredby</strong></td>
-<td>Muhasebe fişini giren kişinin ad soyad ilk harfi yada açık halde adı soyadı</td>
+<td>Muhasebe fişini giren kişinin ad soyad ilk harfi yada açık halde adı soyadı</td>
 </tr>
 <tr>
 <td><strong>entereddate</strong></td>
-<td>Muhasebe fişi kayıt tarihi</td>
+<td>Muhasebe fişi kayıt tarihi</td>
 </tr>
 <tr>
 <td><strong>entrynumber</strong></td>
-<td>Muhasebe fiş numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
+<td>Muhasebe fiş numarası, kullanılan sistemde böyle bir numara yoksa yevmiye no</td>
 </tr>
 <tr>
 <td><strong>entrycomment</strong></td>
-<td>Muhasebe fişi açıklaması</td>
+<td>Muhasebe fişi açıklaması</td>
 </tr>
 </tbody></table>
 
