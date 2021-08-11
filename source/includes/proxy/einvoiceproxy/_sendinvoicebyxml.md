@@ -9,7 +9,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SESSION_ID** | String | **Evet** | İşlem yapılacak oturum. Oturum açmak için `Login` metodu kullanılır.
 **INVOICE_PROPERTIES** | Complex | **Evet** | Fatura gönderimi ile ilgili parametreler
 **INVOICE_PROPERTIES.INVOICE_TYPE** | String | **Evet** | E-Fatura olarak göndermek için `EINVOICE` E-Arşiv olarak göndermek için `EARCHIVE` değeri gönderilmelidir.
-**INVOICE_PROPERTIES.EMAIL_FLAG** | boolean | Hayır | Değerler [Y,N]: E-Arşiv faturalarını e-posta olarak iletmek için `Y` değeri gönderilmelidir. Parametre gönderilmez veya `N` değeri gönderilirse fatura e-posta gönderilmez. E-Fatura için bu parametre dikkate alınmaz.
+**INVOICE_PROPERTIES.EMAIL_FLAG** | boolean | Hayır | Değerler [true,false]: E-Arşiv faturalarını e-posta olarak iletmek için `true` değeri gönderilmelidir. Parametre gönderilmez veya `false` değeri gönderilirse fatura e-posta gönderilmez. E-Fatura için bu parametre dikkate alınmaz.
 **INVOICE** | Complex | **Evet** | Gönderilecek fatura alanları
 **INVOICE.PROFILE_ID** | String | **Evet** | Gönderilecek fatura profili. E-Arşiv için `EARSIVFATURA` olmalıdır. E-Fatura için  [TEMELFATURA, TICARIFATURA, YOLCUBERABERFATURA, IHRACAT] değerleri içerebilir.
 **INVOICE.INVOICE_ID** | String | **Evet** | Faturanın numarası (AAA2019000000001 formatında olmak zorunda)
@@ -71,7 +71,7 @@ PARTY.PARTY_TAX_SCHEME | String | **Evet** | Vergi Dairesi. Alıcısı firma ola
 PARTY.CONTACT | Complex | Hayır| Alıcı firma irtibat bilgileri
 CONTACT.TELEPHONE | String | Hayır | Telefon numarası
 CONTACT.TELEFAX | String | Hayır | Faks numarası
-CONTACT.ELECTRONIC_MAIL | String | Hayır | E-Posta adresi
+CONTACT.ELECTRONIC_MAIL | String | Hayır | E-Posta adresi. Bu alan boş ise mail gönderimi sağlanamaz.
 PARTY.FIRST_NAME | String | Hayır | Alıcı firma şahıs firması ise firma sahibinin Adı zorunlu veya nihai tüketicinin adı
 PARTY.FAMILY_NAME | String | Hayır | Alıcı firma şahıs firması ise firma sahibinin Soyadı zorunlu veya nihai tüketici soyadı
 **INVOICE.DELIVERY** | Complex | **Evet** | Gönderim, Taşıma, Sevkiyat Bilgileri. E-Arşiv için Zorunludur.

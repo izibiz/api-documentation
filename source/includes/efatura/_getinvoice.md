@@ -17,6 +17,7 @@ Parametre | Tip         | Zorunluluk  | Açıklama
 **SEARCH_KEY.TO** | String  | Hayır | Birden fazla Posta Kutusu (PK) etiketi olan bir firmanın sadece bir PK adresine gelen faturaları çekmek için kullanılabilir. Eğer etiket gönderilmez ise kullanıcının yetkisine bağlı olarak bütün faturalar dönülür. format: urn:mail:muhasebepk@firma.com
 **SEARCH_KEY.ID** | String  | Hayır | Fatura numarası ile fatura okumak için kullanılabilir. format: FYA2018000000001
 **SEARCH_KEY.UUID** | String  | Hayır |  Evrensel Tekil Tanımlama Numarası (ETTN) ile fatura okumak için kullanılabilir.  GUID formatında
+**SEARCH_KEY.DATE_TYPE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde belirlenen tarih tipidir. `CREATE` değeri gönderilirse fatura oluşturulma tarihine göre getirilir, boş veya `ISSUE` değeri gönderilirse fatura tarihine göre getirilmektedir.
 **SEARCH_KEY.START_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem başlangıç tarihi format: YYYY-MM-DD
 **SEARCH_KEY.END_DATE** | String  | Hayır | Belirli tarih aralığında fatura çekmek istendiğinde dönem bitiş tarihi format: YYYY-MM-DD
 **SEARCH_KEY.READ_INCLUDED** | Boolean  | Hayır | Fatura okurken daha önce okunmuş faturaları dönüşe dahil edilip edilmeyeceğini belirler. `true` değeri gönderilirse fatura daha önce okunmuş olsa bile yanıta eklenir. Gönderilmezse veya `false` gönderilirse sadece yeni gelen faturalar dönülür. Değerler: true/false
