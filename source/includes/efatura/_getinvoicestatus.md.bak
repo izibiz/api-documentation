@@ -45,7 +45,7 @@ DURUM KODU|	<div style="width:200px">DURUM AÇIKLAMASI</div> 	| STATUS_SUBSTATUS
 110 | ALICIDAN YANIT BEKLİYOR | SEND_WAIT_SYSTEM_RESPONSE | Belge Alıcıya Başarıyla Ulaştırıldı. Sistem Yanıtı Bekliyor.
 111 | ALICIDAN ONAY BEKLİYOR | SEND_WAIT_APPLICATION_RESPONSE | Ticari Belge Alıcıdan Onay Bekliyor
 112 | KABUL EDİLDİ | ACCEPTED_SUCCEED | Belge Kabul Edildi
-117 | RET EDİLDİ | REJECTED_WAIT_SYSTEM_RESPONSE | Red alıcıdan yanıt bekliyor
+117 | RET EDİLDİ | REJECTED_WAIT_SYSTEM_RESPONSE | RED ALICIDAN YANIT BEKLİYOR
 120 | RET EDİLDİ | REJECTED_SUCCEED | Belge Ret Edildi
 134 | ZAMAN AŞIMI OLUŞTU | SEND_TIMEOUT | Belge GİB'e Gönderilirken Zaman Aşımına Uğradı.
 135 | GÖNDERİLİYOR | SEND_PROCESSING | Belge GİB'e Gönderiliyor
